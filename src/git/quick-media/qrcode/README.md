@@ -1,7 +1,7 @@
 ---
 title: qrcode-plugin
 order: 1
-index: true
+index: false
 icon: folder
 ---
 
