@@ -1,0 +1,1 @@
+import{ab as e,H as t,I as n,F as c}from"./framework-b6e5a340.js";const o={},s=c("p",null,"二维码自定义生成工具包",-1),_=[s];function a(r,l){return t(),n("div",null,_)}const i=e(o,[["render",a],["__file","index.html.vue"]]);export{i as default};
