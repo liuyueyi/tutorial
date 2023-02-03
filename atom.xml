@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/atom.xsl"?>
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="https://liuyueyi.github.io/tutorial/atom.xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
-  <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/</id>
+  <id>https://liuyueyi.github.io/tutorial/</id>
   <title>一灰灰的站点</title>
   <subtitle>一灰灰的全网知识站点</subtitle>
   <author>
     <name>一灰灰blog</name>
     <uri>https://hhui.top</uri>
   </author>
-  <logo>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/logo.svg</logo>
+  <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2023-02-03T13:41:14.411Z</updated>
+  <updated>2023-02-03T13:48:16.003Z</updated>
   <generator>vuepress-plugin-feed2</generator>
-  <link rel="self" href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/atom.xml"/>
-  <link rel="alternate" href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/"/>
+  <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
+  <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
   <category term="SpringBoot"/>
   <category term="基础系列"/>
   <category term="AOP"/>
@@ -37,8 +37,8 @@
   </contributor>
   <entry>
     <title type="text">3.拦截优先级详解</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/03.190310-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E4%B9%8B%E6%8B%A6%E6%88%AA%E4%BC%98%E5%85%88%E7%BA%A7%E8%AF%A6%E8%A7%A3.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/03.190310-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E4%B9%8B%E6%8B%A6%E6%88%AA%E4%BC%98%E5%85%88%E7%BA%A7%E8%AF%A6%E8%A7%A3.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/AOP/03.190310-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E4%B9%8B%E6%8B%A6%E6%88%AA%E4%BC%98%E5%85%88%E7%BA%A7%E8%AF%A6%E8%A7%A3.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/AOP/03.190310-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E4%B9%8B%E6%8B%A6%E6%88%AA%E4%BC%98%E5%85%88%E7%BA%A7%E8%AF%A6%E8%A7%A3.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>前面两篇分别介绍了AOP的基本使用姿势和一些高级特性，当时还遗留了一个问题没有说明，即不同的advice，拦截同一个目标方法时，优先级是怎样的，本篇博文将进行详细分析</p>
 <ul>
@@ -150,8 +150,8 @@
   </entry>
   <entry>
     <title type="text">4.AOP实现一个日志插件（应用篇）</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/04.190313-SpringBoot%E5%BA%94%E7%94%A8%E7%AF%87%E4%B9%8BAOP%E5%AE%9E%E7%8E%B0%E6%97%A5%E5%BF%97%E5%8A%9F%E8%83%BD.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/04.190313-SpringBoot%E5%BA%94%E7%94%A8%E7%AF%87%E4%B9%8BAOP%E5%AE%9E%E7%8E%B0%E6%97%A5%E5%BF%97%E5%8A%9F%E8%83%BD.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/AOP/04.190313-SpringBoot%E5%BA%94%E7%94%A8%E7%AF%87%E4%B9%8BAOP%E5%AE%9E%E7%8E%B0%E6%97%A5%E5%BF%97%E5%8A%9F%E8%83%BD.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/AOP/04.190313-SpringBoot%E5%BA%94%E7%94%A8%E7%AF%87%E4%B9%8BAOP%E5%AE%9E%E7%8E%B0%E6%97%A5%E5%BF%97%E5%8A%9F%E8%83%BD.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>前面针对AOP的使用姿势和一些疑问进行了说明，这一篇则从应用的角度出发，看下AOP可以实现些什么样的效果</p>
 <ul>
@@ -208,8 +208,8 @@
   </entry>
   <entry>
     <title type="text">1.h2databse集成示例demo</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/H2Database/01.200911-SpringBoot%E7%B3%BB%E5%88%97h2databse%E9%9B%86%E6%88%90%E7%A4%BA%E4%BE%8Bdemo.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/H2Database/01.200911-SpringBoot%E7%B3%BB%E5%88%97h2databse%E9%9B%86%E6%88%90%E7%A4%BA%E4%BE%8Bdemo.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/H2Database/01.200911-SpringBoot%E7%B3%BB%E5%88%97h2databse%E9%9B%86%E6%88%90%E7%A4%BA%E4%BE%8Bdemo.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/H2Database/01.200911-SpringBoot%E7%B3%BB%E5%88%97h2databse%E9%9B%86%E6%88%90%E7%A4%BA%E4%BE%8Bdemo.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>h2dabase基于内存的数据库，更常见于嵌入式数据库的使用场景，依赖小，功能齐全；一般来讲，正常的商业项目用到它的场景不多，但是在一些特殊的case中，还是比较有用的，比如用于单元测试，业务缓存，一些简单的示例demo等；本文将手把手教你创建一个继承h2dabase的项目，并支持从sql中导入预定好的schema和data</p>
 ]]></summary>
@@ -283,8 +283,8 @@
   </entry>
   <entry>
     <title type="text">H2Database</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/H2Database/</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/H2Database/"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/H2Database/</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/H2Database/"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>SpringBoot整合H2Database，实现老生常谈的CURD</p>
 ]]></summary>
@@ -303,8 +303,8 @@
   </entry>
   <entry>
     <title type="text">1.JPA之基础环境搭建</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/01.190612-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/01.190612-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JPA/01.190612-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JPA/01.190612-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>JPA（Java Persistence API）Java持久化API，是 Java 持久化的标准规范，Hibernate是持久化规范的技术实现，而Spring Data JPA是在 Hibernate 基础上封装的一款框架。JPA作为标准，实际上并没有说局限于某个固定的数据源，事实上mysql，mongo， solr都是ok的。接下来我们将介绍下springboot结合jpa 来实现mysql的curd以及更加复杂一点的sql支持</p>
 ]]></summary>
@@ -377,8 +377,8 @@
   </entry>
   <entry>
     <title type="text">2.JPA之新增记录使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/02.190614-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8B%E6%96%B0%E5%A2%9E%E8%AE%B0%E5%BD%95%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/02.190614-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8B%E6%96%B0%E5%A2%9E%E8%AE%B0%E5%BD%95%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JPA/02.190614-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8B%E6%96%B0%E5%A2%9E%E8%AE%B0%E5%BD%95%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JPA/02.190614-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8B%E6%96%B0%E5%A2%9E%E8%AE%B0%E5%BD%95%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>上一篇文章介绍了如何快速的搭建一个JPA的项目环境，并给出了一个简单的演示demo，接下来我们开始业务教程，也就是我们常说的CURD，接下来进入第一篇，如何添加数据</p>
 <p>通过本篇文章，你可以get到以下技能点</p>
@@ -629,8 +629,8 @@
   </entry>
   <entry>
     <title type="text">3.JPA之update使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/03.190623-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8Bupdate%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/03.190623-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8Bupdate%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JPA/03.190623-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8Bupdate%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JPA/03.190623-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8Bupdate%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>上面两篇博文拉开了jpa使用姿势的面纱一角，接下来我们继续往下扯，数据插入db之后，并不是说就一层不变了，就好比我在银行开了户，当然是准备往里面存钱了，有存就有取（特别是当下银行利率这么低还不如买比特币屯着，截止19年6月22日，btc已经突破1.1w$，可惜没钱买😭）这就是我们今天的主题，数据更新--update的使用姿势</p>
 ]]></summary>
@@ -756,8 +756,8 @@
   </entry>
   <entry>
     <title type="text">4.JPA之delete使用姿势详解</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/04.190702-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8Bdelete%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%AF%A6%E8%A7%A3.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/04.190702-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8Bdelete%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%AF%A6%E8%A7%A3.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JPA/04.190702-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8Bdelete%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%AF%A6%E8%A7%A3.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JPA/04.190702-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8Bdelete%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%AF%A6%E8%A7%A3.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>常见db中的四个操作curd，前面的几篇博文分别介绍了insert，update，接下来我们看下delete的使用姿势，通过JPA可以怎样删除数据</p>
 <p>一般来讲是不建议物理删除（直接从表中删除记录）数据的，在如今数据就是钱的时代，更常见的做法是在表中添加一个表示状态的字段，然后通过修改这个字段来表示记录是否有效，从而实现逻辑删除；这么做的原因如下</p>
@@ -886,8 +886,8 @@
   </entry>
   <entry>
     <title type="text">5.JPA之query使用姿势详解之基础篇</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/05.190717-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8Bquery%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%AF%A6%E8%A7%A3%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/05.190717-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8Bquery%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%AF%A6%E8%A7%A3%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JPA/05.190717-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8Bquery%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%AF%A6%E8%A7%A3%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JPA/05.190717-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8Bquery%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%AF%A6%E8%A7%A3%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>前面的几篇文章分别介绍了CURD中的增删改，接下来进入最最常见的查询篇，看一下使用jpa进行db的记录查询时，可以怎么玩</p>
 <p>本篇将介绍一些基础的查询使用姿势，主要包括根据字段查询，<code>and/or/in/like/between</code> 语句，数字比较，排序以及分页</p>
@@ -1089,8 +1089,8 @@
   </entry>
   <entry>
     <title type="text">6.JPA之指定id保存</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/06.191119-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8B%E6%8C%87%E5%AE%9Aid%E4%BF%9D%E5%AD%98.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/06.191119-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8B%E6%8C%87%E5%AE%9Aid%E4%BF%9D%E5%AD%98.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JPA/06.191119-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8B%E6%8C%87%E5%AE%9Aid%E4%BF%9D%E5%AD%98.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JPA/06.191119-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA%E4%B9%8B%E6%8C%87%E5%AE%9Aid%E4%BF%9D%E5%AD%98.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>前几天有位小伙伴问了一个很有意思的问题，使用JPA保存数据时，即便我指定了主键id，但是新插入的数据主键却是mysql自增的id；那么是什么原因导致的呢？又可以如何解决呢?</p>
 <p>本文将介绍一下如何使用JPA的AUTO保存策略来指定数据库主键id</p>
@@ -1205,8 +1205,8 @@
   </entry>
   <entry>
     <title type="text">7.JPA 错误姿势之环境配置问题</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/07.191218-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA-%E9%94%99%E8%AF%AF%E5%A7%BF%E5%8A%BF%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/07.191218-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA-%E9%94%99%E8%AF%AF%E5%A7%BF%E5%8A%BF%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JPA/07.191218-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA-%E9%94%99%E8%AF%AF%E5%A7%BF%E5%8A%BF%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JPA/07.191218-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BJPA-%E9%94%99%E8%AF%AF%E5%A7%BF%E5%8A%BF%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>又回到jpa的教程上了，这一篇源于某个简单的项目需要读写db，本想着直接使用jpa会比较简单，然而悲催的是实际开发过程中，发现了不少的坑；本文为错误姿势第一篇，Repository接口无法注入问题</p>
 ]]></summary>
@@ -1288,8 +1288,8 @@
   </entry>
   <entry>
     <title type="text">8.JPA错误姿势之Entity映射</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/08.200103-SpringBoot%E7%B3%BB%E5%88%97JPA%E9%94%99%E8%AF%AF%E5%A7%BF%E5%8A%BF%E4%B9%8BEntity%E6%98%A0%E5%B0%84.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/08.200103-SpringBoot%E7%B3%BB%E5%88%97JPA%E9%94%99%E8%AF%AF%E5%A7%BF%E5%8A%BF%E4%B9%8BEntity%E6%98%A0%E5%B0%84.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JPA/08.200103-SpringBoot%E7%B3%BB%E5%88%97JPA%E9%94%99%E8%AF%AF%E5%A7%BF%E5%8A%BF%E4%B9%8BEntity%E6%98%A0%E5%B0%84.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JPA/08.200103-SpringBoot%E7%B3%BB%E5%88%97JPA%E9%94%99%E8%AF%AF%E5%A7%BF%E5%8A%BF%E4%B9%8BEntity%E6%98%A0%E5%B0%84.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>本篇为JPA错误使用姿势第二篇，java的POJO类与数据库表结构的映射关系，除了驼峰命名映射为下划线之外，还会有什么别的坑么？</p>
 ]]></summary>
@@ -1352,8 +1352,8 @@
   </entry>
   <entry>
     <title type="text">Hibernate</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JPA/"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JPA/</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JPA/"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>据说国外的大仓更喜欢使用Hibernate操作数据库，本手册将手把手教你完全使用Hibernate/JPA方式支撑业务需求</p>
 ]]></summary>
@@ -1372,8 +1372,8 @@
   </entry>
   <entry>
     <title type="text">1.数据插入-Insert</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JdbcTemplate/01.190407-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%8F%92%E5%85%A5%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%AF%A6%E8%A7%A3.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JdbcTemplate/01.190407-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%8F%92%E5%85%A5%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%AF%A6%E8%A7%A3.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JdbcTemplate/01.190407-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%8F%92%E5%85%A5%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%AF%A6%E8%A7%A3.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JdbcTemplate/01.190407-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%8F%92%E5%85%A5%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%AF%A6%E8%A7%A3.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>db操作可以说是java后端的必备技能了，实际项目中，直接使用JdbcTemplate的机会并不多，大多是mybatis，hibernate，jpa或者是jooq，然后前几天写一个项目，因为db操作非常简单，就直接使用JdbcTemplate，然而悲催的发现，对他的操作并没有预期中的那么顺畅，所以有必要好好的学一下JdbcTemplate的CURD；本文为第一篇，插入数据</p>
 ]]></summary>
@@ -1449,8 +1449,8 @@
   </entry>
   <entry>
     <title type="text">2.数据查询Query-上</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JdbcTemplate/02.190412-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%E4%B8%8A%E7%AF%87.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JdbcTemplate/02.190412-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%E4%B8%8A%E7%AF%87.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JdbcTemplate/02.190412-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%E4%B8%8A%E7%AF%87.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JdbcTemplate/02.190412-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%E4%B8%8A%E7%AF%87.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>前面一篇介绍如何使用JdbcTemplate实现插入数据，接下来进入实际业务中，最常见的查询篇。由于查询的姿势实在太多，对内容进行了拆分，本篇主要介绍几个基本的使用姿势</p>
 <ul>
@@ -1564,8 +1564,8 @@
   </entry>
   <entry>
     <title type="text">3.数据查询Query-下</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JdbcTemplate/03.190417-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%E4%B8%8B%E7%AF%87.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JdbcTemplate/03.190417-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%E4%B8%8B%E7%AF%87.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JdbcTemplate/03.190417-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%E4%B8%8B%E7%AF%87.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JdbcTemplate/03.190417-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%E4%B8%8B%E7%AF%87.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p><a href="http://spring.hhui.top/spring-blog/2019/04/12/190412-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%E4%B8%8A%E7%AF%87/" target="_blank" rel="noopener noreferrer">SpringBoot高级篇JdbcTemplate之数据查询上篇</a> 讲了如何使用JdbcTemplate进行简单的查询操作，主要介绍了三种方法的调用姿势 <code>queryForMap</code>, <code>queryForList</code>, <code>queryForObject</code> 本篇则继续介绍剩下的两种方法使用说明</p>
 <ul>
@@ -1663,8 +1663,8 @@
   </entry>
   <entry>
     <title type="text">4.数据更新与删除</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JdbcTemplate/04.190418-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%A0%E9%99%A4.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JdbcTemplate/04.190418-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%A0%E9%99%A4.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JdbcTemplate/04.190418-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%A0%E9%99%A4.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JdbcTemplate/04.190418-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87JdbcTemplate%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%A0%E9%99%A4.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>前面介绍了JdbcTemplate的插入数据和查询数据，占用CURD中的两项，本文则将主要介绍数据更新和删除。从基本使用上来看，姿势和前面的没啥两样</p>
 ]]></summary>
@@ -1738,8 +1738,8 @@
   </entry>
   <entry>
     <title type="text">5.多数据源配置与使用</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JdbcTemplate/05.201227-SpringBoot%E7%B3%BB%E5%88%97JdbcTemplate%E4%B9%8B%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JdbcTemplate/05.201227-SpringBoot%E7%B3%BB%E5%88%97JdbcTemplate%E4%B9%8B%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JdbcTemplate/05.201227-SpringBoot%E7%B3%BB%E5%88%97JdbcTemplate%E4%B9%8B%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JdbcTemplate/05.201227-SpringBoot%E7%B3%BB%E5%88%97JdbcTemplate%E4%B9%8B%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>虽然我们前面的db系列教程更多的是基于单数据源的db操作，但是实际的业务开发中，难免会遇到一个项目配置多个数据源的情况，接下来本文将介绍一下多个数据源可以怎么配置，我们的JdbcTemplate又应该如何获取</p>
 ]]></summary>
@@ -1810,8 +1810,8 @@
   </entry>
   <entry>
     <title type="text">JdbcTemplate</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JdbcTemplate/</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/JdbcTemplate/"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/JdbcTemplate/</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/JdbcTemplate/"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>摆脱ORM框架，直接JdbcTemplate来操作数据库，数据扫描、脚本开发者都应该掌握的知识点，享受直写Sql的魅力</p>
 ]]></summary>
@@ -1830,8 +1830,8 @@
   </entry>
   <entry>
     <title type="text">1.Jooq初体验</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/01.200915-SpringBoot%E7%B3%BB%E5%88%97Jooq%E5%88%9D%E4%BD%93%E9%AA%8C.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/01.200915-SpringBoot%E7%B3%BB%E5%88%97Jooq%E5%88%9D%E4%BD%93%E9%AA%8C.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Jooq/01.200915-SpringBoot%E7%B3%BB%E5%88%97Jooq%E5%88%9D%E4%BD%93%E9%AA%8C.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Jooq/01.200915-SpringBoot%E7%B3%BB%E5%88%97Jooq%E5%88%9D%E4%BD%93%E9%AA%8C.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>java环境中，说到数据库的操作，我们通常会想到的是mybatis或者hibernate，今天给大家介绍一个国内可能用得不太多的操作方式JOOQ，一款基于Java访问关系型数据库的工具包，轻量，简单，并且足够灵活的ORM框架</p>
 <p>本文将各位小伙伴演示一下jooq集成springboot的姿势</p>
@@ -1893,8 +1893,8 @@
   </entry>
   <entry>
     <title type="text">2.Jooq代码自动生成</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/02.200916-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/02.200916-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Jooq/02.200916-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Jooq/02.200916-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>Jooq提供了非常简单的方式来自动生成对应的代码，就我个人的使用感触，比mybatis-plus用起来爽，下面介绍两种殊途同归的自动生成方式</p>
 <ul>
@@ -1982,8 +1982,8 @@
   </entry>
   <entry>
     <title type="text">3.Jooq之insert</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/03.200920-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E6%96%B0%E5%A2%9E%E8%AE%B0%E5%BD%95%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/03.200920-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E6%96%B0%E5%A2%9E%E8%AE%B0%E5%BD%95%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Jooq/03.200920-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E6%96%B0%E5%A2%9E%E8%AE%B0%E5%BD%95%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Jooq/03.200920-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E6%96%B0%E5%A2%9E%E8%AE%B0%E5%BD%95%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>接下来我们开始进入jooq的增删改查的使用姿势系列，本篇将主要介绍如何利用jooq来实现添加数据</p>
 ]]></summary>
@@ -2055,8 +2055,8 @@
   </entry>
   <entry>
     <title type="text">4.Jooq之Update &amp; Delete</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/04.200930-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E8%AE%B0%E5%BD%95%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%A0%E9%99%A4.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/04.200930-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E8%AE%B0%E5%BD%95%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%A0%E9%99%A4.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Jooq/04.200930-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E8%AE%B0%E5%BD%95%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%A0%E9%99%A4.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Jooq/04.200930-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E8%AE%B0%E5%BD%95%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%88%A0%E9%99%A4.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>前面一篇介绍了Jooq的记录新增，除了利用自动生成的代码来保存数据之外，也可以借助<code>DSL.table()</code> + <code>DSL.field()</code>来实现类sql的写法；本文将介绍curd中的删除和更新的用法</p>
 ]]></summary>
@@ -2127,8 +2127,8 @@
   </entry>
   <entry>
     <title type="text">5.Jooq批量写入采坑记录</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/05.201202-SpingBoot%E7%B3%BB%E5%88%97Jooq%E6%89%B9%E9%87%8F%E5%86%99%E5%85%A5%E9%87%87%E5%9D%91%E8%AE%B0%E5%BD%95.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/05.201202-SpingBoot%E7%B3%BB%E5%88%97Jooq%E6%89%B9%E9%87%8F%E5%86%99%E5%85%A5%E9%87%87%E5%9D%91%E8%AE%B0%E5%BD%95.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Jooq/05.201202-SpingBoot%E7%B3%BB%E5%88%97Jooq%E6%89%B9%E9%87%8F%E5%86%99%E5%85%A5%E9%87%87%E5%9D%91%E8%AE%B0%E5%BD%95.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Jooq/05.201202-SpingBoot%E7%B3%BB%E5%88%97Jooq%E6%89%B9%E9%87%8F%E5%86%99%E5%85%A5%E9%87%87%E5%9D%91%E8%AE%B0%E5%BD%95.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>前面介绍了jooq的三种批量插入方式，结果最近发现这里面居然还有一个深坑，我以为的批量插入居然不是一次插入多条数据，而是一条一条的插入...，这就有点尬了</p>
 ]]></summary>
@@ -2198,8 +2198,8 @@
   </entry>
   <entry>
     <title type="text">6.Jooq之记录查询</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/06.201203-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E8%AE%B0%E5%BD%95%E6%9F%A5%E8%AF%A2%E5%9F%BA%E7%A1%80%E7%AF%87.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/06.201203-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E8%AE%B0%E5%BD%95%E6%9F%A5%E8%AF%A2%E5%9F%BA%E7%A1%80%E7%AF%87.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Jooq/06.201203-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E8%AE%B0%E5%BD%95%E6%9F%A5%E8%AF%A2%E5%9F%BA%E7%A1%80%E7%AF%87.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Jooq/06.201203-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E8%AE%B0%E5%BD%95%E6%9F%A5%E8%AF%A2%E5%9F%BA%E7%A1%80%E7%AF%87.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>本文将主要介绍一下JOOQ查询篇的基本使用姿势，如果看完本文，会发现jooq的用法，和写sql基本上没啥两样</p>
 ]]></summary>
@@ -2267,8 +2267,8 @@
   </entry>
   <entry>
     <title type="text">7.Jooq之聚合查询</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/07.201204-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/07.201204-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Jooq/07.201204-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Jooq/07.201204-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>上一篇介绍的时候一些Jooq基本的查询使用方式，分组聚合查询，在实际的业务场景中也比较常见，本文将介绍下jooq中，如何使用聚合查询</p>
 ]]></summary>
@@ -2328,8 +2328,8 @@
   </entry>
   <entry>
     <title type="text">8.Jooq之常用函数</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/08.201210-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/08.201210-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Jooq/08.201210-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Jooq/08.201210-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>在我们的实际业务开发中，某些场景下会借助一些数据库支持的函数来做一些简单的操作，如针对浮点数的取整（<code>ceil</code>, <code>floor</code>）,字符串的长度获取(<code>length</code>)等，本文将介绍一下jooq中一些常见的函数使用姿势</p>
 ]]></summary>
@@ -2408,8 +2408,8 @@
   </entry>
   <entry>
     <title type="text">9.Jooq之多表联合查询</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/09.201211-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E5%A4%9A%E8%A1%A8%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/09.201211-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E5%A4%9A%E8%A1%A8%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Jooq/09.201211-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E5%A4%9A%E8%A1%A8%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Jooq/09.201211-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E5%A4%9A%E8%A1%A8%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>一般互联网应用，我们不太建议在业务中使用多表联合查询，当然在业务体量比较小的情况下，多表联合查询有时候可以有效减少业务逻辑代码，所以用不用且不说，我们还是有必要了解一下多表的联合查询使用姿势</p>
 ]]></summary>
@@ -2475,8 +2475,8 @@
   </entry>
   <entry>
     <title type="text">10.Jooq之事务</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/10.201213-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E4%BA%8B%E5%8A%A1.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/10.201213-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E4%BA%8B%E5%8A%A1.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Jooq/10.201213-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E4%BA%8B%E5%8A%A1.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Jooq/10.201213-SpringBoot%E7%B3%BB%E5%88%97Jooq%E4%B9%8B%E4%BA%8B%E5%8A%A1.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>在SpringBoot中使用事务比较简单，大部分场景下，直接借助<code>@Transactional</code>注解即可，本文将介绍一下Jooq中使用事务的两种方式</p>
 ]]></summary>
@@ -2535,8 +2535,8 @@
   </entry>
   <entry>
     <title type="text">Jooq</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Jooq/"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Jooq/</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Jooq/"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>享受链式的sql写法，可以说是我用过最顺滑的orm框架，通过一些列博文让您体验下这个好用到要收费的ORM是怎么玩耍的</p>
 ]]></summary>
@@ -2555,8 +2555,8 @@
   </entry>
   <entry>
     <title type="text">1.基本环境搭建与使用</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/MongoDB/01.181213-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/MongoDB/01.181213-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/MongoDB/01.181213-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/MongoDB/01.181213-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>SpringBoot结合mongodb进行业务开发，也属于比较基本的需求了，本文为mongo系列的基本篇，主要就是环境搭建、工程的配置设置相关</p>
 ]]></summary>
@@ -2624,8 +2624,8 @@
   </entry>
   <entry>
     <title type="text">2.查询基本使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/MongoDB/02.190113-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E6%9F%A5%E8%AF%A2%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/MongoDB/02.190113-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E6%9F%A5%E8%AF%A2%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/MongoDB/02.190113-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E6%9F%A5%E8%AF%A2%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/MongoDB/02.190113-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E6%9F%A5%E8%AF%A2%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>学习一个新的数据库，一般怎么下手呢？基本的CURD没跑了，当可以熟练的增、删、改、查一个数据库时，可以说对这个数据库算是入门了，如果需要更进一步的话，就需要了解下数据库的特性，比如索引、事物、锁、分布式支持等</p>
 <p>本篇博文为mongodb的入门篇，将介绍一下基本的查询操作，在Spring中可以怎么玩</p>
@@ -2707,8 +2707,8 @@
   </entry>
   <entry>
     <title type="text">3.如何新增文档</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/MongoDB/03.190124-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E5%A6%82%E4%BD%95%E6%96%B0%E5%A2%9E%E6%96%87%E6%A1%A3.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/MongoDB/03.190124-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E5%A6%82%E4%BD%95%E6%96%B0%E5%A2%9E%E6%96%87%E6%A1%A3.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/MongoDB/03.190124-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E5%A6%82%E4%BD%95%E6%96%B0%E5%A2%9E%E6%96%87%E6%A1%A3.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/MongoDB/03.190124-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E5%A6%82%E4%BD%95%E6%96%B0%E5%A2%9E%E6%96%87%E6%A1%A3.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>本篇博文为mongodb的curd中一篇，前面介绍简单的查询使用，这一篇重点则放在插入数据;</p>
 ]]></summary>
@@ -2769,8 +2769,8 @@
   </entry>
   <entry>
     <title type="text">4.修改基本使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/MongoDB/04.190218-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E4%BF%AE%E6%94%B9%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/MongoDB/04.190218-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E4%BF%AE%E6%94%B9%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/MongoDB/04.190218-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E4%BF%AE%E6%94%B9%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/MongoDB/04.190218-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E4%BF%AE%E6%94%B9%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>本篇依然是MongoDB curd中的一篇，主要介绍document的更新，主要内容如下</p>
 <ul>
@@ -2887,8 +2887,8 @@
   </entry>
   <entry>
     <title type="text">MongoDB</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/MongoDB/</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/MongoDB/"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/MongoDB/</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/MongoDB/"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>文档数据库SpringBoot的系列教程，彻底扫平阻碍我们CURD的路障，适用于对Mongodb不了解或了解不够的小伙伴</p>
 ]]></summary>
@@ -2907,8 +2907,8 @@
   </entry>
   <entry>
     <title type="text">1.Mybatis+xml整合篇</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/01.191227-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BMybatis-xml%E6%95%B4%E5%90%88%E7%AF%87.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/01.191227-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BMybatis-xml%E6%95%B4%E5%90%88%E7%AF%87.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/01.191227-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BMybatis-xml%E6%95%B4%E5%90%88%E7%AF%87.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/01.191227-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BMybatis-xml%E6%95%B4%E5%90%88%E7%AF%87.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生类型、接口和 Java 的 POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p>
 <p>本文将通过实例方式，介绍下如何整合SpringBoot + Mybatis，构建一个支持CRUD的demo工程</p>
@@ -3003,8 +3003,8 @@
   </entry>
   <entry>
     <title type="text">2.Mybatis+注解整合篇</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/02.191230-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BMybatis-%E6%B3%A8%E8%A7%A3%E6%95%B4%E5%90%88%E7%AF%87.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/02.191230-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BMybatis-%E6%B3%A8%E8%A7%A3%E6%95%B4%E5%90%88%E7%AF%87.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/02.191230-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BMybatis-%E6%B3%A8%E8%A7%A3%E6%95%B4%E5%90%88%E7%AF%87.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/02.191230-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BMybatis-%E6%B3%A8%E8%A7%A3%E6%95%B4%E5%90%88%E7%AF%87.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>上一篇博文介绍了SpringBoot整合mybatis的过程，但是xml的方式，总感觉让人有点蛋疼；本文将介绍一种noxml的使用姿势，纯用注解的方式来支持CURD</p>
 ]]></summary>
@@ -3067,8 +3067,8 @@
   </entry>
   <entry>
     <title type="text">3.MybatisPlus整合篇</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/03.191231-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BMybatisPlus%E6%95%B4%E5%90%88%E7%AF%87.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/03.191231-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BMybatisPlus%E6%95%B4%E5%90%88%E7%AF%87.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/03.191231-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BMybatisPlus%E6%95%B4%E5%90%88%E7%AF%87.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/03.191231-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BMybatisPlus%E6%95%B4%E5%90%88%E7%AF%87.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>前面介绍了SpringBoot整合Mybatis 实现db的增删改查操作，分别给出了xml和注解两种实现mapper接口的方式；虽然注解方式干掉了xml文件，但是使用起来并不优雅，本文将介绍mybats-plus的使用case，简化常规的CRUD操作</p>
 ]]></summary>
@@ -3122,8 +3122,8 @@
   </entry>
   <entry>
     <title type="text">4.Mybatis-Plus代码自动生成</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/04.200406-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BMybatis-Plus%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/04.200406-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BMybatis-Plus%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/04.200406-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BMybatis-Plus%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/04.200406-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BMybatis-Plus%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>一个简单的实例工程，介绍利用mybatis-plus的代码自动生成插件，根据表结构来生成对应的类和xml配置文件</p>
 ]]></summary>
@@ -3216,8 +3216,8 @@
   </entry>
   <entry>
     <title type="text">5.Mybatis多数据源配置与使用</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/05.210109-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/05.210109-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/05.210109-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/05.210109-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>上一篇博文介绍JdbcTemplate配置多数据源的使用姿势，在我们实际的项目开发中，使用mybatis来操作数据库的可能还是非常多的，本文简单的介绍一下mybatis中，多数据源的使用姿势</p>
 <ul>
@@ -3293,8 +3293,8 @@
   </entry>
   <entry>
     <title type="text">6.Mybatis-Plus多数据源配置</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/06.210110-SpringBoot%E7%B3%BB%E5%88%97Mybatis-Plus%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/06.210110-SpringBoot%E7%B3%BB%E5%88%97Mybatis-Plus%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/06.210110-SpringBoot%E7%B3%BB%E5%88%97Mybatis-Plus%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/06.210110-SpringBoot%E7%B3%BB%E5%88%97Mybatis-Plus%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>前面介绍了两种Mybatis的数据源配置，当然也少不了mybatis-plus</p>
 <p>MyBatis-Plus (opens new window)（简称 MP）是一个 MyBatis (opens new window)的增强工具，在 MyBatis 的基础上只做增强不做改变，既然做增强，那多数据源这种硬性场景，肯定是有非常简单的解决方案的</p>
@@ -3364,8 +3364,8 @@
   </entry>
   <entry>
     <title type="text">7.基于AbstractRoutingDataSource与AOP实现多数据源切换</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/07.210110-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E5%9F%BA%E4%BA%8EAbstractRoutingDataSource%E4%B8%8EAOP%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/07.210110-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E5%9F%BA%E4%BA%8EAbstractRoutingDataSource%E4%B8%8EAOP%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/07.210110-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E5%9F%BA%E4%BA%8EAbstractRoutingDataSource%E4%B8%8EAOP%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/07.210110-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E5%9F%BA%E4%BA%8EAbstractRoutingDataSource%E4%B8%8EAOP%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%87%E6%8D%A2.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>前面一篇博文介绍了Mybatis多数据源的配置，简单来讲就是一个数据源一个配置指定，不同数据源的Mapper分开指定；本文将介绍另外一种方式，借助<code>AbstractRoutingDataSource</code>来实现动态切换数据源，并通过自定义注解方式 + AOP来实现数据源的指定</p>
 ]]></summary>
@@ -3461,8 +3461,8 @@
   </entry>
   <entry>
     <title type="text">8.SpringBoot系列Mybatis之Mapper注册的几种方式</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/08.210706-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8BMapper%E6%B3%A8%E5%86%8C%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/08.210706-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8BMapper%E6%B3%A8%E5%86%8C%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/08.210706-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8BMapper%E6%B3%A8%E5%86%8C%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/08.210706-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8BMapper%E6%B3%A8%E5%86%8C%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>SpringBoot项目中借助Mybatis来操作数据库，对大部分java技术栈的小伙伴来说，并不会陌生；我们知道，使用mybatis，一般会有下面几个</p>
 <ul>
@@ -3550,8 +3550,8 @@
   </entry>
   <entry>
     <title type="text">9.Mapper接口与Sql绑定几种姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/09.210707-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8BMapper%E6%8E%A5%E5%8F%A3%E4%B8%8ESql%E7%BB%91%E5%AE%9A%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/09.210707-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8BMapper%E6%8E%A5%E5%8F%A3%E4%B8%8ESql%E7%BB%91%E5%AE%9A%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/09.210707-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8BMapper%E6%8E%A5%E5%8F%A3%E4%B8%8ESql%E7%BB%91%E5%AE%9A%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/09.210707-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8BMapper%E6%8E%A5%E5%8F%A3%E4%B8%8ESql%E7%BB%91%E5%AE%9A%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>通常我们在使用Mybatis进行开发时，会选择xml文件来写对应的sql，然后将Mapper接口与sql的xml文件建立绑定关系，然后在项目中调用mapper接口就可以执行对应的sql</p>
 <p>那么如何将Mapper接口与sql进行绑定呢？本文将介绍四种常见的姿势</p>
@@ -3682,8 +3682,8 @@
   </entry>
   <entry>
     <title type="text">10.自定义类型转换TypeHandler</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/10.210725-SpringBoo%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2TypeHandler.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/10.210725-SpringBoo%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2TypeHandler.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/10.210725-SpringBoo%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2TypeHandler.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/10.210725-SpringBoo%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2TypeHandler.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>在使用mybatis进行db操作的时候，我们经常会干的一件事情就是将db中字段映射到java bean，通常我们使用<code>ResultMap</code>来实现映射，通过这个标签可以指定两者的绑定关系，那么如果java bean中的字段类型与db中的不一样，应该怎么处理呢？</p>
 <p>如db中为timestamp, 而java bean中定义的却是long</p>
@@ -3781,8 +3781,8 @@
   </entry>
   <entry>
     <title type="text">11.插件机制Interceptor</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/11.210726-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E6%8F%92%E4%BB%B6%E6%9C%BA%E5%88%B6Interceptor.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/11.210726-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E6%8F%92%E4%BB%B6%E6%9C%BA%E5%88%B6Interceptor.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/11.210726-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E6%8F%92%E4%BB%B6%E6%9C%BA%E5%88%B6Interceptor.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/11.210726-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E6%8F%92%E4%BB%B6%E6%9C%BA%E5%88%B6Interceptor.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>在Mybatis中，插件机制提供了非常强大的扩展能力，在sql最终执行之前，提供了四个拦截点，支持不同场景的功能扩展</p>
 <ul>
@@ -3898,8 +3898,8 @@
   </entry>
   <entry>
     <title type="text">12.CURD基本使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/12.210815-Mybatis%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BCURD%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/12.210815-Mybatis%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BCURD%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/12.210815-Mybatis%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BCURD%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/12.210815-Mybatis%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BCURD%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>mybatis作为数据的ORM框架，在国内的应用市场还是非常可观的，当初刚开始工作时使用spring + mybatis进行开发，后来也使用过hibernate, jdbctemplate, jooq，mybatisplus等其他的一些框架，</p>
 <p>就个人使用感触来讲jooq的使用姿势和写sql差不多，基本上可以会写sql的无需额外的培训，立马可以上手；</p>
@@ -4039,8 +4039,8 @@
   </entry>
   <entry>
     <title type="text">13.Mybatis传参作为字段/表名时的注意事项</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/13.210825-SpringBoot%E7%B3%BB%E5%88%97%E4%B9%8BMybatis%E4%BC%A0%E5%8F%82%E4%BD%9C%E4%B8%BA%E5%AD%97%E6%AE%B5-%E8%A1%A8%E5%90%8D%E6%97%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/13.210825-SpringBoot%E7%B3%BB%E5%88%97%E4%B9%8BMybatis%E4%BC%A0%E5%8F%82%E4%BD%9C%E4%B8%BA%E5%AD%97%E6%AE%B5-%E8%A1%A8%E5%90%8D%E6%97%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/13.210825-SpringBoot%E7%B3%BB%E5%88%97%E4%B9%8BMybatis%E4%BC%A0%E5%8F%82%E4%BD%9C%E4%B8%BA%E5%AD%97%E6%AE%B5-%E8%A1%A8%E5%90%8D%E6%97%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/13.210825-SpringBoot%E7%B3%BB%E5%88%97%E4%B9%8BMybatis%E4%BC%A0%E5%8F%82%E4%BD%9C%E4%B8%BA%E5%AD%97%E6%AE%B5-%E8%A1%A8%E5%90%8D%E6%97%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>今天遇到一个非常有意思的事情，一个小伙伴反馈，同样的sql，为啥直接通过mysql终端执行的结果，和mybatis的执行结果不一致，感觉有点鬼畜；然后看了一下，发现这是个比较典型的问题，<code>#{}</code>与<code>${}</code>的使用区别</p>
 <p>接下来我们看一下这个问题，顺带也重新学习一下它们两的区别</p>
@@ -4171,8 +4171,8 @@
   </entry>
   <entry>
     <title type="text">14.CURD基本使用姿势-注解篇</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/14.210831-SpringBoot%E7%B3%BB%E5%88%97%E4%B9%8BMybatis%20CURD%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF-%E6%B3%A8%E8%A7%A3%E7%AF%87.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/14.210831-SpringBoot%E7%B3%BB%E5%88%97%E4%B9%8BMybatis%20CURD%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF-%E6%B3%A8%E8%A7%A3%E7%AF%87.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/14.210831-SpringBoot%E7%B3%BB%E5%88%97%E4%B9%8BMybatis%20CURD%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF-%E6%B3%A8%E8%A7%A3%E7%AF%87.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/14.210831-SpringBoot%E7%B3%BB%E5%88%97%E4%B9%8BMybatis%20CURD%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF-%E6%B3%A8%E8%A7%A3%E7%AF%87.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>上面一篇博文介绍了mybatis + xml配置文件的使用方式，在上文中介绍到，xml文件是可以省略掉的，直接使用java注解来实现CURD，接下来我们看一下，如何使用注解来实现等同的效果</p>
 ]]></summary>
@@ -4235,8 +4235,8 @@
   </entry>
   <entry>
     <title type="text">15.参数传递的几种姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/15.210924-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/15.210924-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/15.210924-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/15.210924-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>在mybatis的日常开发中，mapper接口中定义的参数如何与xml中的参数进行映射呢？除了我们常用的<code>@Param</code>注解之外，其他的方式是怎样的呢？</p>
 ]]></summary>
@@ -4340,8 +4340,8 @@
   </entry>
   <entry>
     <title type="text">16.转义符的使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/16.210927-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E8%BD%AC%E4%B9%89%E7%AC%A6%E7%9A%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/16.210927-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E8%BD%AC%E4%B9%89%E7%AC%A6%E7%9A%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/16.210927-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E8%BD%AC%E4%B9%89%E7%AC%A6%E7%9A%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/16.210927-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E8%BD%AC%E4%B9%89%E7%AC%A6%E7%9A%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>在mybatis的xml文件中直接写sql比较方便简洁，但是需要注意的是，在xml文件中，经常会遇到一些需要转义的场景，比如查询 <code>id &lt; xxx</code>的数据，这个小于号就不能直接写在sql中，接下来我们将看一下，mybatis中的有哪些转义符，可以怎么处理转义问题</p>
 ]]></summary>
@@ -4435,8 +4435,8 @@
   </entry>
   <entry>
     <title type="text">17.传参类型如何确定</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/17.211025-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E4%BC%A0%E5%8F%82%E7%B1%BB%E5%9E%8B%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/17.211025-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E4%BC%A0%E5%8F%82%E7%B1%BB%E5%9E%8B%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/17.211025-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E4%BC%A0%E5%8F%82%E7%B1%BB%E5%9E%8B%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/17.211025-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E4%BC%A0%E5%8F%82%E7%B1%BB%E5%9E%8B%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>最近有小伙伴在讨论<code>#{}</code>与<code>${}</code>的区别时，有提到<code>#{}</code>是用字符串进行替换，就我个人的理解，它的主要作用是占位，最终替换的结果并不一定是字符串方式，比如我们传参类型是整形时，最终拼接的sql，传参讲道理也应该是整形，而不是字符串的方式</p>
 <p>接下来我们来看一下，mapper接口中不同的参数类型，最终拼接sql中是如何进行替换的</p>
@@ -4535,8 +4535,8 @@
   </entry>
   <entry>
     <title type="text">18.ParameterMap、ParameterType传参类型指定使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/18.211106-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8BParameterMap%E3%80%81ParameterType%E4%BC%A0%E5%8F%82%E7%B1%BB%E5%9E%8B%E6%8C%87%E5%AE%9A%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/18.211106-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8BParameterMap%E3%80%81ParameterType%E4%BC%A0%E5%8F%82%E7%B1%BB%E5%9E%8B%E6%8C%87%E5%AE%9A%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/18.211106-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8BParameterMap%E3%80%81ParameterType%E4%BC%A0%E5%8F%82%E7%B1%BB%E5%9E%8B%E6%8C%87%E5%AE%9A%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/18.211106-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8BParameterMap%E3%80%81ParameterType%E4%BC%A0%E5%8F%82%E7%B1%BB%E5%9E%8B%E6%8C%87%E5%AE%9A%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>在使用Mybatis开发时，借助xml来写具体的sql，再写传参类型或者返回结果类型时，通常会与ParameterType, ParameterMap, ResultMap, ResultType这四个打交到，那么这个Type与Map到底怎么区别，什么时候要指定类型，什么时候又可以不指定呢？</p>
 ]]></summary>
@@ -4614,8 +4614,8 @@
   </entry>
   <entry>
     <title type="text">19.ResultMap、ResultType返回结果使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/19.220110-Mybatis%E4%B9%8BResultMap%E3%80%81ResultType%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/19.220110-Mybatis%E4%B9%8BResultMap%E3%80%81ResultType%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/19.220110-Mybatis%E4%B9%8BResultMap%E3%80%81ResultType%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/19.220110-Mybatis%E4%B9%8BResultMap%E3%80%81ResultType%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>在使用mybatis进行数据库操作时，如果希望将返回结果映射为项目中定义的实体对象Entity时，ResultMap与ResultType就很重要了；它们两的主要区别在于ResultType指定指定实体对象，ResultMap则定义数据库字段与实体的映射关系</p>
 <p>接下来通过简单的实例来看一下这两种的使用姿势</p>
@@ -4708,8 +4708,8 @@
   </entry>
   <entry>
     <title type="text">20.批量插入的几种姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/20.220111-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/20.220111-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/20.220111-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/20.220111-SpringBoot%E7%B3%BB%E5%88%97Mybatis%E4%B9%8B%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>在日常的业务需求开发过程中，批量插入属于非常常见的case，在mybatis的写法中，一般有下面三种使用姿势</p>
 <ul>
@@ -4807,8 +4807,8 @@
   </entry>
   <entry>
     <title type="text">Mybatis</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Mybatis/"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Mybatis/</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Mybatis/"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>国内Java生态下ORM框架的杠把子，零基础教程，保姆级文档，适用于初中级开发的学习参考手册</p>
 ]]></summary>
@@ -4827,8 +4827,8 @@
   </entry>
   <entry>
     <title type="text">1.基本配置</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/01.181029-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8B%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/01.181029-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8B%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/01.181029-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8B%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/01.181029-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8B%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>在Spring的应用中，redis可以算是基础操作了。那么想要玩转redis，我们需要知道哪些知识点呢？</p>
 <ul>
@@ -4902,8 +4902,8 @@
   </entry>
   <entry>
     <title type="text">2.Jedis配置</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/02.181101-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BJedis%E9%85%8D%E7%BD%AE.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/02.181101-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BJedis%E9%85%8D%E7%BD%AE.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/02.181101-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BJedis%E9%85%8D%E7%BD%AE.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/02.181101-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BJedis%E9%85%8D%E7%BD%AE.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>SpringBoot2之后，默认采用Lettuce作为redis的连接客户端，当然我们还是可以强制捡回来，使用我们熟悉的Jedis的，本篇简单介绍下使用Jedis的相关配置</p>
 ]]></summary>
@@ -4942,8 +4942,8 @@
   </entry>
   <entry>
     <title type="text">3.String数据结构的读写</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/03.181108-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BString%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E8%AF%BB%E5%86%99.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/03.181108-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BString%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E8%AF%BB%E5%86%99.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/03.181108-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BString%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E8%AF%BB%E5%86%99.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/03.181108-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BString%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E8%AF%BB%E5%86%99.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>Redis目前常用的存储结构有五种，String字符串，List列表，Set集合，Hash散列，ZSet有序集合；本篇则主要集中在String这个数据结构的读写操作之上</p>
 <p>对于String的操作，除了常见的get/set之外，还有一些比较有特色的功能，如用于实现redis分布式锁的setnx/getset方法；用于实现计数的incr/decr方法；位图算法的经典实用场景之bitmap的使用方法等也有必要了解一下</p>
@@ -5005,8 +5005,8 @@
   </entry>
   <entry>
     <title type="text">4.List数据结构使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/04.181109-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BList%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/04.181109-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BList%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/04.181109-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BList%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/04.181109-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BList%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>前面一篇博文介绍redis五种数据结构中String的使用姿势，这一篇则将介绍另外一个用的比较多的List，对于列表而言，用的最多的场景可以说是当做队列或者堆栈来使用了</p>
 ]]></summary>
@@ -5053,8 +5053,8 @@
   </entry>
   <entry>
     <title type="text">5.Hash数据结构使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/05.181202-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BHash%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/05.181202-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BHash%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/05.181202-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BHash%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/05.181202-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BHash%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>Redis的五大数据结构，前面讲述了String和List的使用姿势，而Hash数据结构，也是比较常用的，接下来看下hash数据结构的读取，删除，塞入的基本使用姿势</p>
 ]]></summary>
@@ -5098,8 +5098,8 @@
   </entry>
   <entry>
     <title type="text">6.Set数据结构使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/06.181211-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BSet%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/06.181211-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BSet%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/06.181211-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BSet%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/06.181211-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BSet%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>Redis的五大数据结构，前面讲述了String和List,Hash的使用姿势，接下来就是Set集合，与list最大的区别就是里面不允许存在重复的数据</p>
 ]]></summary>
@@ -5142,8 +5142,8 @@
   </entry>
   <entry>
     <title type="text">7.ZSet数据结构使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/07.181212-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BZSet%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/07.181212-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BZSet%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/07.181212-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BZSet%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/07.181212-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87Redis%E4%B9%8BZSet%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>Redis的五大数据结构，目前就剩下最后的ZSET，可以简单的理解为带权重的集合；与前面的set最大的区别，就是每个元素可以设置一个score，从而可以实现各种排行榜的功能</p>
 ]]></summary>
@@ -5196,8 +5196,8 @@
   </entry>
   <entry>
     <title type="text">10.Redis集群环境配置</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/10.190927-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BRedis%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/10.190927-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BRedis%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/10.190927-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BRedis%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/10.190927-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BRedis%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>之前介绍的几篇redis的博文都是基于单机的redis基础上进行演示说明的，然而在实际的生产环境中，使用redis集群的可能性应该是大于单机版的redis的，那么集群的redis如何操作呢？它的配置和单机的有什么区别，又有什么需要注意的呢？</p>
 <p>本篇将主要介绍SpringBoot项目整合redis集群，并针对这个过程中出现的问题进行说明，并给出相应的解决方案</p>
@@ -5279,8 +5279,8 @@
   </entry>
   <entry>
     <title type="text">11.管道Pipelined使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/11.200411-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E4%B9%8B%E7%AE%A1%E9%81%93Pipelined%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/11.200411-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E4%B9%8B%E7%AE%A1%E9%81%93Pipelined%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/11.200411-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E4%B9%8B%E7%AE%A1%E9%81%93Pipelined%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/11.200411-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E4%B9%8B%E7%AE%A1%E9%81%93Pipelined%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>redis管道技术，可以在服务端未响应时，客户端可以继续向服务端发送请求，并最终一次性读取所有服务端的响应，这种技术可以很方便的支持我们的批量请求，下面简单介绍下如何使用<code>RedisTemplate</code>来使用管道</p>
 ]]></summary>
@@ -5320,8 +5320,8 @@
   </entry>
   <entry>
     <title type="text">12.高级特性Bitmap使用姿势及应用场景介绍</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/12.201014-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8BBitmap%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E4%BB%8B%E7%BB%8D.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/12.201014-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8BBitmap%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E4%BB%8B%E7%BB%8D.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/12.201014-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8BBitmap%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E4%BB%8B%E7%BB%8D.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/12.201014-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8BBitmap%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E4%BB%8B%E7%BB%8D.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>前面介绍过redis的五种基本数据结构，如String，List, Set, ZSet, Hash，这些属于相对常见了；在这些基本结果之上，redis还提供了一些更高级的功能，如geo, bitmap, hyperloglog，pub/sub，本文将主要介绍Bitmap的使用姿势以及其适用场景，主要知识点包括</p>
 <ul>
@@ -5451,8 +5451,8 @@
   </entry>
   <entry>
     <title type="text">13.高级特性发布订阅</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/13.201017-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8B%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/13.201017-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8B%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/13.201017-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8B%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/13.201017-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8B%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>通常来讲，当我们业务存在消息的业务逻辑时更多的是直接使用成熟的rabbitmq,rocketmq，但是一些简单的业务场景中，真的有必要额外的引入一个mq么？本文将介绍一下redis的发布订阅方式，来实现简易的消息系统逻辑</p>
 ]]></summary>
@@ -5528,8 +5528,8 @@
   </entry>
   <entry>
     <title type="text">14.高级特性HyperLoglog</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/14.201021-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8BHyperLoglog.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/14.201021-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8BHyperLoglog.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/14.201021-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8BHyperLoglog.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/14.201021-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8BHyperLoglog.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>hyperloglog算法，利用非常少的空间，实现比较大的数据量级统计；比如我们前面在介绍bitmap的过程中，说到了日活的统计，当数据量达到百万时，最佳的存储方式是hyperloglog，本文将介绍一下hyperloglog的基本原理，以及redis中的使用姿势</p>
 ]]></summary>
@@ -5621,8 +5621,8 @@
   </entry>
   <entry>
     <title type="text">15.高级特性之GEO</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/15.201027-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8BGEO.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/15.201027-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8BGEO.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/15.201027-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8BGEO.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/15.201027-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B9%8BGEO.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>GEO用于存储地理信息，最直观的就是我们日常使用的地图app中，如果我想查询我所在地的周边餐饮，就可以利用geo中的以<code>(x,y)</code>为圆心，以n为半径，扫描坐标在这个圈内的所有餐饮店，这个case借助redis的geo可以很方便的实现</p>
 ]]></summary>
@@ -5698,8 +5698,8 @@
   </entry>
   <entry>
     <title type="text">16.redisson分布式锁使用及注意事项</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/16.210301-SpringBoot%E7%B3%BB%E5%88%97redisson%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/16.210301-SpringBoot%E7%B3%BB%E5%88%97redisson%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/16.210301-SpringBoot%E7%B3%BB%E5%88%97redisson%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/16.210301-SpringBoot%E7%B3%BB%E5%88%97redisson%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>redis使用分布式锁，除了我们自己借助<code>setnx</code>来实现之外，更为推荐的是借助redisson来完成，借助redisson，可以非常方便的使用redis分布锁，但是一个使用姿势不对，将可能导致锁无法释放问题</p>
 <p>本文将介绍一下SpringBoot中redisson分布式锁的使用姿势，以及使用不当导致锁无法释放的演示</p>
@@ -5766,8 +5766,8 @@
   </entry>
   <entry>
     <title type="text">17.缓存注解@Cacheable @CacheEvit @CachePut使用姿势介绍</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/17.210616-SpringBoot%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3-Cacheable-CacheEvit-CachePut%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E4%BB%8B%E7%BB%8D.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/17.210616-SpringBoot%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3-Cacheable-CacheEvit-CachePut%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E4%BB%8B%E7%BB%8D.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/17.210616-SpringBoot%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3-Cacheable-CacheEvit-CachePut%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E4%BB%8B%E7%BB%8D.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/17.210616-SpringBoot%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3-Cacheable-CacheEvit-CachePut%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E4%BB%8B%E7%BB%8D.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>Spring在3.1版本，就提供了一条基于注解的缓存策略，实际使用起来还是很丝滑的，本文将针对几个常用的注解进行简单的介绍说明，有需要的小伙伴可以尝试一下</p>
 <p>本文主要知识点：</p>
@@ -5853,8 +5853,8 @@
   </entry>
   <entry>
     <title type="text">18.缓存注解@Cacheable之自定义key策略及缓存失效时间指定</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/18.210701-SpringBoot%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3-Cacheable%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89key%E7%AD%96%E7%95%A5%E5%8F%8A%E7%BC%93%E5%AD%98%E5%A4%B1%E6%95%88%E6%97%B6%E9%97%B4%E6%8C%87%E5%AE%9A.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/18.210701-SpringBoot%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3-Cacheable%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89key%E7%AD%96%E7%95%A5%E5%8F%8A%E7%BC%93%E5%AD%98%E5%A4%B1%E6%95%88%E6%97%B6%E9%97%B4%E6%8C%87%E5%AE%9A.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/18.210701-SpringBoot%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3-Cacheable%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89key%E7%AD%96%E7%95%A5%E5%8F%8A%E7%BC%93%E5%AD%98%E5%A4%B1%E6%95%88%E6%97%B6%E9%97%B4%E6%8C%87%E5%AE%9A.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/18.210701-SpringBoot%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3-Cacheable%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89key%E7%AD%96%E7%95%A5%E5%8F%8A%E7%BC%93%E5%AD%98%E5%A4%B1%E6%95%88%E6%97%B6%E9%97%B4%E6%8C%87%E5%AE%9A.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>上一篇博文介绍了Spring中缓存注解<code>@Cacheable</code> <code>@CacheEvit</code> <code>@CachePut</code>的基本使用，接下来我们将看一下更高级一点的知识点</p>
 <ul>
@@ -5982,8 +5982,8 @@
   </entry>
   <entry>
     <title type="text">Redis实战</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/Redis/"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/Redis/</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/Redis/"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>缓存神器Redis的基础 + 进阶教程，搭配实际业务场景的实战博文，彻底掌握redis的使用姿势</p>
 ]]></summary>
@@ -6002,8 +6002,8 @@
   </entry>
   <entry>
     <title type="text">1.声明式事务Transactional</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/01.200119-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1Transactional.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/01.200119-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1Transactional.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/01.200119-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1Transactional.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/01.200119-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1Transactional.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>当我们希望一组操作，要么都成功，要么都失败时，往往会考虑里利用事务来实现这一点；之前介绍的db操作，主要在于单表的CURD，本文将引入声明式事务<code>@Transactional</code>的使用姿势</p>
 ]]></summary>
@@ -6127,8 +6127,8 @@
   </entry>
   <entry>
     <title type="text">2.事务隔离级别知识点小结</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/02.200120-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E7%BB%93.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/02.200120-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E7%BB%93.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/02.200120-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E7%BB%93.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/02.200120-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E7%BB%93.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<blockquote>
 <p>终于渡过漫长的自我隔离期，健康的活着真好；为武汉祈福，希望快点渡过，能早日回归大武汉 😭😭😭</p>
@@ -6326,8 +6326,8 @@
   </entry>
   <entry>
     <title type="text">3.事务传递属性</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/03.200202-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E4%BA%8B%E5%8A%A1%E4%BC%A0%E9%80%92%E5%B1%9E%E6%80%A7.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/03.200202-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E4%BA%8B%E5%8A%A1%E4%BC%A0%E9%80%92%E5%B1%9E%E6%80%A7.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/03.200202-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E4%BA%8B%E5%8A%A1%E4%BC%A0%E9%80%92%E5%B1%9E%E6%80%A7.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/03.200202-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E4%BA%8B%E5%8A%A1%E4%BC%A0%E9%80%92%E5%B1%9E%E6%80%A7.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>对于mysql而言，关于事务的主要知识点可能集中在隔离级别上；在Spring体系中，使用事务的时候，还有一个知识点事务的传递属性同样重要，本文将主要介绍7中传递属性的使用场景</p>
 ]]></summary>
@@ -6496,8 +6496,8 @@
   </entry>
   <entry>
     <title type="text">4.事务不生效的几种case</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/04.200203-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E4%BA%8B%E5%8A%A1%E4%B8%8D%E7%94%9F%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8Dcase.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/04.200203-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E4%BA%8B%E5%8A%A1%E4%B8%8D%E7%94%9F%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8Dcase.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/04.200203-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E4%BA%8B%E5%8A%A1%E4%B8%8D%E7%94%9F%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8Dcase.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/04.200203-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E4%BA%8B%E5%8A%A1%E4%B8%8D%E7%94%9F%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8Dcase.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>前面几篇博文介绍了声明式事务<code>@Transactional</code>的使用姿势，只知道正确的使用姿势可能还不够，还得知道什么场景下不生效，避免采坑。本文将主要介绍让事务不生效的几种case</p>
 ]]></summary>
@@ -6588,8 +6588,8 @@
   </entry>
   <entry>
     <title type="text">5.编程式事务使用姿势介绍篇</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/05.200204-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E4%BB%8B%E7%BB%8D%E7%AF%87.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/05.200204-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E4%BB%8B%E7%BB%8D%E7%AF%87.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/05.200204-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E4%BB%8B%E7%BB%8D%E7%AF%87.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/05.200204-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8B%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E4%BB%8B%E7%BB%8D%E7%AF%87.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>前面介绍的几篇事务的博文，主要是利用<code>@Transactional</code>注解的声明式使用姿势，其好处在于使用简单，侵入性低，可辨识性高（一看就知道使用了事务）；然而缺点也比较明显，不够灵活，稍不注意，可能就因为姿势不对，导致事务不生效</p>
 <p>本文将介绍另外一种事务的使用姿势，借助<code>TransactionTemplate</code>的编程式事务</p>
@@ -6656,8 +6656,8 @@
   </entry>
   <entry>
     <title type="text">事务</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/%E4%BA%8B%E5%8A%A1/"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>进阶知识点，如何在Spring容器中使用事务？看这个系列就完了</p>
 ]]></summary>
@@ -6676,8 +6676,8 @@
   </entry>
   <entry>
     <title type="text">1.DB之基本使用</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/01.180926-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87DB%E4%B9%8B%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/01.180926-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87DB%E4%B9%8B%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/01.180926-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87DB%E4%B9%8B%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/01.180926-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87DB%E4%B9%8B%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>现在的完整的后端项目，基本上离不开DB、缓存，接下来开始进入DB篇的系列教程，首先确定我们的目标，一个是知道怎么配置，怎么用；接着就是更高级一点的多个数据源的配置，使用不同的方式来实现CURD（如Mybatis, JPDA, MyCat, Hibernate, Jooq等），数据库不得不谈到的事物管理，锁机制，以及高级一点的分库分表等；然后再进一步则是优秀的框架的学习了，大名鼎鼎的MyBaits的设计思路，Jooq的使用姿势也特别有意思</p>
 <p>要学习的东西不少，要写的内容也挺多，先一步步来，本篇主要目的是先搭建一个可以跑DB的基础Demo，为后续的博文开开胃</p>
@@ -6743,8 +6743,8 @@
   </entry>
   <entry>
     <title type="text">2.SpringBoot+Mysql 无法保存emoj表情</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/02.191210-SpringBoot-Mysql-%E6%97%A0%E6%B3%95%E4%BF%9D%E5%AD%98emoj%E8%A1%A8%E6%83%85%EF%BC%9F.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/02.191210-SpringBoot-Mysql-%E6%97%A0%E6%B3%95%E4%BF%9D%E5%AD%98emoj%E8%A1%A8%E6%83%85%EF%BC%9F.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/02.191210-SpringBoot-Mysql-%E6%97%A0%E6%B3%95%E4%BF%9D%E5%AD%98emoj%E8%A1%A8%E6%83%85%EF%BC%9F.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/02.191210-SpringBoot-Mysql-%E6%97%A0%E6%B3%95%E4%BF%9D%E5%AD%98emoj%E8%A1%A8%E6%83%85%EF%BC%9F.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>尤记得很久以前，想存emoj表情到mysql中，需要额外的将emoj表情转码之后保存，每次读取时，再解码还原成一下；每次这种sb的操作，真心感觉心塞，那么有没有办法直接存呢？</p>
 <p>mysql本身可以通过选择编码集（如utfbmb4）来支持emoj表情，然而今天遇到了一个相当鬼畜的问题，表中可以直接写入emoj表情，但是通过spring boot代码塞入的emoj时，却抛出异常：</p>
@@ -6821,8 +6821,8 @@
   </entry>
   <entry>
     <title type="text">3.借助Redis实现排行榜功能（应用篇）</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/08.181225-SpringBoot%E5%BA%94%E7%94%A8%E7%AF%87%E4%B9%8B%E5%80%9F%E5%8A%A9Redis%E5%AE%9E%E7%8E%B0%E6%8E%92%E8%A1%8C%E6%A6%9C%E5%8A%9F%E8%83%BD.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/08.181225-SpringBoot%E5%BA%94%E7%94%A8%E7%AF%87%E4%B9%8B%E5%80%9F%E5%8A%A9Redis%E5%AE%9E%E7%8E%B0%E6%8E%92%E8%A1%8C%E6%A6%9C%E5%8A%9F%E8%83%BD.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/08.181225-SpringBoot%E5%BA%94%E7%94%A8%E7%AF%87%E4%B9%8B%E5%80%9F%E5%8A%A9Redis%E5%AE%9E%E7%8E%B0%E6%8E%92%E8%A1%8C%E6%A6%9C%E5%8A%9F%E8%83%BD.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/08.181225-SpringBoot%E5%BA%94%E7%94%A8%E7%AF%87%E4%B9%8B%E5%80%9F%E5%8A%A9Redis%E5%AE%9E%E7%8E%B0%E6%8E%92%E8%A1%8C%E6%A6%9C%E5%8A%9F%E8%83%BD.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<blockquote>
 <p>更多Spring文章，欢迎点击 <a href="http://spring.hhui.top" target="_blank" rel="noopener noreferrer">一灰灰Blog-Spring专题</a></p>
@@ -6940,8 +6940,8 @@
   </entry>
   <entry>
     <title type="text">4.借助Redis搭建一个简单站点统计服务（应用篇）</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/09.190513-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%BA%94%E7%94%A8%E7%AF%87%E4%B9%8B%E5%80%9F%E5%8A%A9Redis%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%AB%99%E7%82%B9%E7%BB%9F%E8%AE%A1%E6%9C%8D%E5%8A%A1.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/09.190513-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%BA%94%E7%94%A8%E7%AF%87%E4%B9%8B%E5%80%9F%E5%8A%A9Redis%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%AB%99%E7%82%B9%E7%BB%9F%E8%AE%A1%E6%9C%8D%E5%8A%A1.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/09.190513-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%BA%94%E7%94%A8%E7%AF%87%E4%B9%8B%E5%80%9F%E5%8A%A9Redis%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%AB%99%E7%82%B9%E7%BB%9F%E8%AE%A1%E6%9C%8D%E5%8A%A1.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/09.190513-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%BA%94%E7%94%A8%E7%AF%87%E4%B9%8B%E5%80%9F%E5%8A%A9Redis%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%AB%99%E7%82%B9%E7%BB%9F%E8%AE%A1%E6%9C%8D%E5%8A%A1.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>判断一个网站值不值钱的一个重要标准就是看pv/uv，那么你知道pv,uv是怎么统计的么？当然现在有第三方做的比较完善的可以直接使用，但如果让我们自己来实现这么一个功能，应该怎么做呢？</p>
 <p>本篇内容较长，源码如右 ➡️  <a href="https://github.com/liuyueyi/spring-boot-demo/tree/master/spring-case/124-redis-sitecount" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/spring-boot-demo/tree/master/spring-case/124-redis-sitecount</a></p>
@@ -7146,8 +7146,8 @@
   </entry>
   <entry>
     <title type="text">5.借助redis来实现延时队列（应用篇）</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/19.210805-SpringBoot%E5%BA%94%E7%94%A8%E7%AF%87%E5%80%9F%E5%8A%A9redis%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/19.210805-SpringBoot%E5%BA%94%E7%94%A8%E7%AF%87%E5%80%9F%E5%8A%A9redis%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/19.210805-SpringBoot%E5%BA%94%E7%94%A8%E7%AF%87%E5%80%9F%E5%8A%A9redis%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/19.210805-SpringBoot%E5%BA%94%E7%94%A8%E7%AF%87%E5%80%9F%E5%8A%A9redis%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97.html"/>
     <updated>2023-02-03T13:38:20.000Z</updated>
     <summary type="html"><![CDATA[<p>延时队列，相信各位小伙伴并不会陌生，jdk原生提供了延时队列的使用，当然我们这里介绍的不是这种；在实际的项目中，如果我们有延时队列的场景，可以怎样去实现呢</p>
 <p>举一个简单的例子，如下单15分钟内，若没有支付，则自动取消订单</p>
@@ -7257,8 +7257,8 @@
   </entry>
   <entry>
     <title type="text">6.Redis实现分布式锁（应用篇）</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/20.201030-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E5%BA%94%E7%94%A8%E7%AF%87%EF%BC%89.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/20.201030-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E5%BA%94%E7%94%A8%E7%AF%87%EF%BC%89.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/20.201030-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E5%BA%94%E7%94%A8%E7%AF%87%EF%BC%89.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/20.201030-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8BRedis%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E5%BA%94%E7%94%A8%E7%AF%87%EF%BC%89.html"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>分布式锁，应用场景可以说是比较多的，网上随便一查就能搜到很多的文章；那么这里为什么跟着来一篇呢，原因也很简单，别人写的再好再清晰，那也是别人的知识点；自己思考过的、写过的才属于自己；</p>
 <p>本篇虽然名为redis实现分布式锁，但也会说一下基于数据库实现分布式锁的思路（至于ZK实现的分布式锁，没玩过zk，就不抄了）</p>
@@ -7375,8 +7375,8 @@
   </entry>
   <entry>
     <title type="text">实战演练</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/db/%E5%AE%9E%E4%BE%8B/"/>
     <updated>2023-02-03T10:09:21.000Z</updated>
     <summary type="html"><![CDATA[<p>实战系列教程，有0基础的搭建项目工程，有进阶的问题排查手册，也有使用的业务场景支持；欢迎来到实战系列教程栏目</p>
 ]]></summary>
@@ -7395,8 +7395,8 @@
   </entry>
   <entry>
     <title type="text">1.基本使用姿势小结</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/01.190301-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E4%B9%8B%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E5%B0%8F%E7%BB%93.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/01.190301-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E4%B9%8B%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E5%B0%8F%E7%BB%93.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/AOP/01.190301-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E4%B9%8B%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E5%B0%8F%E7%BB%93.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/AOP/01.190301-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E4%B9%8B%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E5%B0%8F%E7%BB%93.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>一般来讲，谈到Spring的特性，绕不过去的就是DI（依赖注入）和AOP（切面），在将bean的系列中，说了DI的多种使用姿势；接下来看一下AOP的玩法</p>
 ]]></summary>
@@ -7486,8 +7486,8 @@
   </entry>
   <entry>
     <title type="text">2.高级使用技能</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/02.190302-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E4%B9%8B%E9%AB%98%E7%BA%A7%E4%BD%BF%E7%94%A8%E6%8A%80%E8%83%BD.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/02.190302-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E4%B9%8B%E9%AB%98%E7%BA%A7%E4%BD%BF%E7%94%A8%E6%8A%80%E8%83%BD.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/AOP/02.190302-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E4%B9%8B%E9%AB%98%E7%BA%A7%E4%BD%BF%E7%94%A8%E6%8A%80%E8%83%BD.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/AOP/02.190302-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E4%B9%8B%E9%AB%98%E7%BA%A7%E4%BD%BF%E7%94%A8%E6%8A%80%E8%83%BD.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>前面一篇博文 <a href="http://spring.hhui.top/spring-blog/2019/03/01/190301-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E4%B9%8B%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E5%B0%8F%E7%BB%93/" target="_blank" rel="noopener noreferrer">190301-SpringBoot基础篇AOP之基本使用姿势小结</a> 介绍了aop的简单使用方式，在文章最后，抛出了几个问题待解决，本篇博文则将针对前面的问题，看下更多关于AOP的使用说明</p>
 ]]></summary>
@@ -7585,8 +7585,8 @@
   </entry>
   <entry>
     <title type="text">5.接口上注解AOP拦截不到场景兼容</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/05.210525-SpringBoot%E6%8E%A5%E5%8F%A3%E6%B3%A8%E8%A7%A3%E5%88%87%E9%9D%A2%E6%8B%A6%E6%88%AA%E4%B8%8D%E5%88%B0%E5%9C%BA%E6%99%AF%E5%85%BC%E5%AE%B9.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/05.210525-SpringBoot%E6%8E%A5%E5%8F%A3%E6%B3%A8%E8%A7%A3%E5%88%87%E9%9D%A2%E6%8B%A6%E6%88%AA%E4%B8%8D%E5%88%B0%E5%9C%BA%E6%99%AF%E5%85%BC%E5%AE%B9.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/AOP/05.210525-SpringBoot%E6%8E%A5%E5%8F%A3%E6%B3%A8%E8%A7%A3%E5%88%87%E9%9D%A2%E6%8B%A6%E6%88%AA%E4%B8%8D%E5%88%B0%E5%9C%BA%E6%99%AF%E5%85%BC%E5%AE%B9.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/AOP/05.210525-SpringBoot%E6%8E%A5%E5%8F%A3%E6%B3%A8%E8%A7%A3%E5%88%87%E9%9D%A2%E6%8B%A6%E6%88%AA%E4%B8%8D%E5%88%B0%E5%9C%BA%E6%99%AF%E5%85%BC%E5%AE%B9.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>在Java的开发过程中，面向接口的编程可能是大家的常态，切面也是各位大佬使用Spring时，或多或少会使用的一项基本技能；结果这两个碰到一起，有意思的事情就发生了，接口方法上添加注解，面向注解的切面拦截，居然不生效</p>
 <p>这就有点奇怪了啊，最开始遇到这个问题时，表示难以相信；事务注解也挺多是写在接口上的，好像也没有遇到这个问题（难道是也不生效，只是自己没有关注到？）</p>
@@ -7672,8 +7672,8 @@
   </entry>
   <entry>
     <title type="text">6.AOP结合SpEL实现日志输出的注意事项</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/06.210608-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E7%BB%93%E5%90%88SpEL%E5%AE%9E%E7%8E%B0%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/06.210608-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E7%BB%93%E5%90%88SpEL%E5%AE%9E%E7%8E%B0%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/AOP/06.210608-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E7%BB%93%E5%90%88SpEL%E5%AE%9E%E7%8E%B0%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/AOP/06.210608-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87AOP%E7%BB%93%E5%90%88SpEL%E5%AE%9E%E7%8E%B0%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>使用AOP来打印日志大家一把都很熟悉了，最近在使用的过程中，发现了几个有意思的问题，一个是SpEL的解析，一个是参数的JSON格式输出</p>
 ]]></summary>
@@ -7743,8 +7743,8 @@
   </entry>
   <entry>
     <title type="text">AOP专题</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/AOP/"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/AOP/</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/AOP/"/>
     <updated>2023-02-03T08:06:50.000Z</updated>
     <summary type="html"><![CDATA[<p>教你如何玩转Spring的两大特性之一AOP，掌握工作中的代码整洁之道</p>
 ]]></summary>
@@ -7763,8 +7763,8 @@
   </entry>
   <entry>
     <title type="text">1.Bean之基本定义与使用</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/01.181009-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89%E4%B8%8E%E4%BD%BF%E7%94%A8.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/01.181009-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89%E4%B8%8E%E4%BD%BF%E7%94%A8.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/Bean/01.181009-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89%E4%B8%8E%E4%BD%BF%E7%94%A8.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/Bean/01.181009-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89%E4%B8%8E%E4%BD%BF%E7%94%A8.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>我们知道在Spring中，有两个非常有名的特性，依赖注入（DI）与切面（AOP)，其中依赖注入其主要的作用，可以说就是维护Spring容器创建的Bean之间的依赖关系，简单来说就是一个bean（假定名为A）持有另一个Bean（假定名为B）的引用作为成员变量b，则由Spring容器自动将B赋值给A的成员变量b</p>
 <p>因此在想理解依赖注入，就有必要了解下创建和使用Bean的几种姿势；本篇博文作为基础篇，将介绍</p>
@@ -7833,8 +7833,8 @@
   </entry>
   <entry>
     <title type="text">2.Bean之自动加载</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/02.181012-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/02.181012-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/Bean/02.181012-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/Bean/02.181012-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>前面一篇介绍了Bean的常用姿势，在一个项目中，可能不会出现什么问题，可如果你提供了一个Jar包供第三方用户使用，那么你这个jar包中的Bean，能被第三方加载么？</p>
 <p>本篇博文将主要介绍AutoConfig相关的内容，即如果我想提供一个jar包供第三方在Spring的环境下使用时，可以怎么做</p>
@@ -7906,8 +7906,8 @@
   </entry>
   <entry>
     <title type="text">3.Bean之动态注册</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/03.181013-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/03.181013-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/Bean/03.181013-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/Bean/03.181013-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>Spring中的Bean除了前面提到的几种JavaConfig或者<code>@Component</code>等注解标识之外，也是可以动态的向Spring容器注册的，本篇博文将主要介绍</p>
 <ul>
@@ -7994,8 +7994,8 @@
   </entry>
   <entry>
     <title type="text">5.条件注入@Condition使用姿势</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/05.181018-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5-Condition%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/05.181018-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5-Condition%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/Bean/05.181018-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5-Condition%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/Bean/05.181018-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5-Condition%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>前面几篇关于Bean的基础博文中，主要集中在Bean的定义和使用，但实际的情况中有没有一些场景是不加载我定义的bean，或者只有满足某些前提条件的时候才加载我定义的Bean呢？</p>
 <p>本篇博文将主要介绍bean的加载中，条件注解<code>@Conditional</code>的相关使用</p>
@@ -8145,8 +8145,8 @@
   </entry>
   <entry>
     <title type="text">6.@ConditionalOnBean与@ConditionalOnClass</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/06.181019-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B-ConditionalOnBean%E4%B8%8E@ConditionalOnClass.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/06.181019-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B-ConditionalOnBean%E4%B8%8E@ConditionalOnClass.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/Bean/06.181019-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B-ConditionalOnBean%E4%B8%8E@ConditionalOnClass.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/Bean/06.181019-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B-ConditionalOnBean%E4%B8%8E@ConditionalOnClass.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>bean的条件注入，除了前面一篇博文中介绍的通过<code>@Conditional</code>注解配合<code>Condition</code>接口的实现之外，还提供了更多简化的注解使用方式，省略了自己实现<code>Condtion</code>接口，本篇博文主要介绍下面几个常用的注解使用方式</p>
 <ul>
@@ -8248,8 +8248,8 @@
   </entry>
   <entry>
     <title type="text">7.条件注入@ConditionalOnExpression</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/07.181019-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5-ConditionalOnExpression.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/07.181019-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5-ConditionalOnExpression.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/Bean/07.181019-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5-ConditionalOnExpression.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/Bean/07.181019-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5-ConditionalOnExpression.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>bean的条件注入，除了前面几篇博文分别介绍的通过<code>@Conditional</code>注解配合<code>Condition</code>接口的基本实现，以及如何使用条件注解<code>@ConditionalOnBean</code>和<code>@ConditionalOnClass</code>和基于配置的<code>@ConditionalOnProperty</code></p>
 <p>本文介绍的注解将更加的灵活，基于SPEL表达式的条件注解<code>ConditionalOnExpression</code></p>
@@ -8310,8 +8310,8 @@
   </entry>
   <entry>
     <title type="text">8.条件注入@ConditionalOnProperty</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/08.181019-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5-ConditionalOnProperty.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/08.181019-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5-ConditionalOnProperty.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/Bean/08.181019-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5-ConditionalOnProperty.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/Bean/08.181019-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5-ConditionalOnProperty.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>bean的条件注入，除了前面两篇博文分别介绍的通过<code>@Conditional</code>注解配合<code>Condition</code>接口的基本实现，以及如何使用条件注解<code>@ConditionalOnBean</code>和<code>@ConditionalOnClass</code></p>
 <p>本文将主要介绍根据配置来决定是否创建bean的注解<code>@ConditionalOnProperty</code></p>
@@ -8374,8 +8374,8 @@
   </entry>
   <entry>
     <title type="text">9.多实例选择</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/09.181022-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E5%A4%9A%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/09.181022-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E5%A4%9A%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/Bean/09.181022-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E5%A4%9A%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/Bean/09.181022-SpringBoot%E5%9F%BA%E7%A1%80%E7%AF%87Bean%E4%B9%8B%E5%A4%9A%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>当通过接口的方式注入Bean时，如果有多个子类的bean存在时，具体哪个bean会被注入呢？系统中能否存在两个重名的bean呢？如果可以，那么怎么选择引入呢？如果不行的话又该怎么避免上面的问题呢？</p>
 ]]></summary>
@@ -8472,8 +8472,8 @@
   </entry>
   <entry>
     <title type="text">11.Bean加载顺序之错误使用姿势辟谣</title>
-    <id>https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/11.191023-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BBean%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E4%B9%8B%E9%94%99%E8%AF%AF%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%BE%9F%E8%B0%A3.html</id>
-    <link href="https://vuepress-theme-hope-docs-demo.netlify.app/tutorial/spring/basic/Bean/11.191023-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BBean%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E4%B9%8B%E9%94%99%E8%AF%AF%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%BE%9F%E8%B0%A3.html"/>
+    <id>https://liuyueyi.github.io/tutorial/spring/basic/Bean/11.191023-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BBean%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E4%B9%8B%E9%94%99%E8%AF%AF%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%BE%9F%E8%B0%A3.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/basic/Bean/11.191023-SpringBoot%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8BBean%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E4%B9%8B%E9%94%99%E8%AF%AF%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E8%BE%9F%E8%B0%A3.html"/>
     <updated>2023-02-03T13:31:05.000Z</updated>
     <summary type="html"><![CDATA[<p>在网上查询Bean的加载顺序时，看到了大量的文章中使用<code>@Order</code>注解的方式来控制bean的加载顺序，不知道写这些的博文的同学自己有没有实际的验证过，本文希望通过指出这些错误的使用姿势，让观文的小伙伴可以知道<code>@Order</code>的具体的应用场景</p>
 ]]></summary>
