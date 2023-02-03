@@ -86,6 +86,60 @@ export const zhSidebar = sidebar({
   ],
   "/spring/db/": [
     "",
+    {
+      text: "H2Database",
+      collapsible: true,
+      prefix: "H2Database/",
+      children: "structure"
+    },
+    {
+      text: "JPA",
+      collapsible: true,
+      prefix: "JPA/",
+      children: "structure"
+    },
+    {
+      text: "JdbcTemplate",
+      collapsible: true,
+      prefix: "JdbcTemplate/",
+      children: "structure"
+    },
+    {
+      text: "Jooq",
+      collapsible: true,
+      prefix: "Jooq/",
+      children: "structure"
+    },
+    {
+      text: "MyBatis",
+      collapsible: true,
+      prefix: "Mybatis/",
+      children: "structure"
+    },
+    {
+      text: "事务",
+      collapsible: true,
+      prefix: "事务/",
+      children: "structure"
+    },
+    {
+      text: "MongoDB",
+      collapsible: true,
+      prefix: "MongoDB/",
+      children: "structure"
+    },
+    {
+      text: "Redis",
+      collapsible: true,
+      prefix: "Redis/",
+      children: "structure"
+    },
+    {
+      text: "实战系列",
+      collapsible: true,
+      prefix: "实例/",
+      children: "structure"
+    },
   ],
   "/spring/mq/": [
     "",

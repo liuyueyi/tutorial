@@ -17,7 +17,7 @@ export default defineUserConfig({
   head: [
       // meta
     ["meta", { name: "robots", content: "all" }],
-    ["meta", { name: "author", content: "Guide" }],
+    ["meta", { name: "author", content: "一灰灰blog" }],
     [
       "meta",
       {
