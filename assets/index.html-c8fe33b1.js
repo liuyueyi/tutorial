@@ -1,0 +1,1 @@
+import{_ as e,V as t,W as c,Y as n}from"./framework-ad59245f.js";const _={},o=n("p",null,"摆脱ORM框架，直接JdbcTemplate来操作数据库，数据扫描、脚本开发者都应该掌握的知识点，享受直写Sql的魅力",-1),s=[o];function l(a,r){return t(),c("div",null,s)}const i=e(_,[["render",l],["__file","index.html.vue"]]);export{i as default};
