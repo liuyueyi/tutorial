@@ -1,0 +1,1 @@
+import{_ as e,V as n,W as t,Y as _}from"./framework-ad59245f.js";const a={},c=_("p",null,"对象作为Java第一等公民，而Bean可算是Spring的一等公民了，如何声明、初始化、注入Bean是学习Spring中不可缺少的一环",-1),o=[c];function s(r,i){return n(),t("div",null,o)}const d=e(a,[["render",s],["__file","index.html.vue"]]);export{d as default};
