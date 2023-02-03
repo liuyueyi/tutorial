@@ -6,7 +6,7 @@ export default hopeTheme({
   hostname: "https://vuepress-theme-hope-docs-demo.netlify.app",
 
   author: {
-    name: "YiHui",
+    name: "一灰灰blog",
     url: "https://hhui.top",
   },
 
@@ -14,7 +14,7 @@ export default hopeTheme({
 
   logo: "/logo.svg",
 
-  repo: "liuyueyi/hui-doc",
+  repo: "liuyueyi/tutorial",
 
   docsDir: "/src",
 
@@ -47,7 +47,31 @@ export default hopeTheme({
     },
   },
 
+  pageInfo: [
+    "Author",
+    "Category",
+    "Tag",
+    "Date",
+    "Original",
+    "Word",
+    "ReadingTime",
+  ],
+  blog: {
+    intro: "/about-the-author/",
+    sidebarDisplay: "mobile",
+    medias: {
+      Zhihu: "https://www.zhihu.com/people/liu-yue-44-20",
+      Github: "https://github.com/liuyueyi",
+      Gitee: "https://gitee.com/liuyueyi",
+    },
+  },
+
   plugins: {
+    blog: true,
+    copyright: true,
+    feed: {
+      json: true,
+    },
     // If you don’t need comment feature, you can remove following option
     // The following config is for demo ONLY, if you need comment feature, please generate and use your own config, see comment plugin documentation for details.
     // To avoid disturbing the theme developer and consuming his resources, please DO NOT use the following config directly in your production environment!!!!!
@@ -55,11 +79,12 @@ export default hopeTheme({
       /**
        * Using Giscus
        */
-      // provider: "Giscus",
-      // repo: "vuepress-theme-hope/giscus-discussions",
-      // repoId: "R_kgDOG_Pt2A",
-      // category: "Announcements",
-      // categoryId: "DIC_kwDOG_Pt2M4COD69",
+      provider: "Giscus",
+      repo: "liuyueyi/tutorial",
+      repoId: "R_kgDOI40jCA",
+      category: "Announcements",
+      categoryId: "DIC_kwDOI40jCM4CT9-n",
+      mapping: "title",
 
       /**
        * Using Twikoo
@@ -70,8 +95,8 @@ export default hopeTheme({
       /**
        * Using Waline
        */
-      provider: "Waline",
-      serverURL: "https://vuepress-theme-hope-comment.vercel.app",
+      // provider: "Waline",
+      // serverURL: "https://vuepress-theme-hope-comment.vercel.app",
     },
 
     // Disable features you don’t want here
@@ -117,7 +142,6 @@ export default hopeTheme({
       vPre: true,
       vuePlayground: true,
     },
-
     // uncomment these if you want a pwa
     // pwa: {
     //   favicon: "/favicon.ico",

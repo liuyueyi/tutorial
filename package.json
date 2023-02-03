@@ -28,5 +28,11 @@
     "vuepress-theme-hope": "^2.0.0-beta.122",
     "vuepress-vite": "2.0.0-beta.60",
     "vuepress-webpack": "2.0.0-beta.60"
+  },
+  "devDependencies": {
+    "vuepress-plugin-copy-code2": "^2.0.0-beta.171",
+    "vuepress-plugin-copyright2": "^2.0.0-beta.171",
+    "vuepress-plugin-photo-swipe": "^2.0.0-beta.171",
+    "vuepress-plugin-search-pro": "^2.0.0-beta.166"
   }
 }
