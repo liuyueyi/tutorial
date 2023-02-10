@@ -1,1 +1,0 @@
-import{_ as t,V as n,W as o,Y as e}from"./framework-ad59245f.js";const s={},c=e("div",{class:"hint-container tip"},[e("p",{class:"hint-container-title"},"数据库专栏"),e("p",null,"SpringBoot无障碍接入各类数据库，如h2,MySql,MongoDb,Redis,InfluxDB等")],-1),i=[c];function l(_,a){return n(),o("div",null,i)}const d=t(s,[["render",l],["__file","index.html.vue"]]);export{d as default};
