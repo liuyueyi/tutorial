@@ -143,21 +143,135 @@ export const zhSidebar = sidebar({
   ],
   "/spring/mq/": [
     "",
+     {
+      text: "RabbitMQ",
+      collapsible: true,
+      prefix: "RabbitMQ/",
+      children: "structure"
+    },
   ],
   "/spring/web/": [
     "",
+    {
+      text: "Web请求知识点",
+      collapsible: true,
+      prefix: "Request/",
+      children: "structure"
+    },
+    {
+      text: "Web花样返回",
+      collapsible: true,
+      prefix: "Response/",
+      children: "structure"
+    },
+    {
+      text: "RestTemplate",
+      collapsible: true,
+      prefix: "RestTemplate/",
+      children: "structure"
+    },
+    {
+      text: "WebClient",
+      collapsible: true,
+      prefix: "WebClient/",
+      children: "structure"
+    },
+    {
+      text: "WebFlux",
+      collapsible: true,
+      prefix: "WebFlux/",
+      children: "structure"
+    },
+    {
+      text: "WebSocket",
+      collapsible: true,
+      prefix: "WebSocket/",
+      children: "structure"
+    },
+    {
+      text: "Web三剑客",
+      collapsible: true,
+      prefix: "Web三剑客/",
+      children: "structure"
+    },
+    {
+      text: "Web实战演示",
+      collapsible: true,
+      prefix: "实例/",
+      children: "structure"
+    },
+    {
+      text: "Web踩坑日记簿",
+      collapsible: true,
+      prefix: "其他/",
+      children: "structure"
+    },
   ],
   "/spring/search/": [
     "",
+    {
+      text: "Solr",
+      collapsible: true,
+      prefix: "Solr/",
+      children: "structure"
+    },
+    {
+      text: "ElasticSearch",
+      collapsible: true,
+      prefix: "ElasticSearch/",
+      children: "structure"
+    },
   ],
   "/spring/middle/": [
     "",
+    {
+      text: "Email",
+      collapsible: true,
+      prefix: "Email/",
+      children: "structure"
+    },
+    {
+      text: "Prometheus",
+      collapsible: true,
+      prefix: "Prometheus/",
+      children: "structure"
+    },
+    {
+      text: "ZooKeeper",
+      collapsible: true,
+      prefix: "ZooKeeper/",
+      children: "structure"
+    },
+    {
+      text: "Docker",
+      collapsible: true,
+      prefix: "Docker/",
+      children: "structure"
+    },
   ],
   "/spring/cloud/": [
     "",
+    {
+      text: "Eureka",
+      collapsible: true,
+      prefix: "Eureka/",
+      children: "structure"
+    },
+    {
+      text: "Feign",
+      collapsible: true,
+      prefix: "Feign/",
+      children: "structure"
+    },
   ],
   "/spring/security/": [
     "",
+    {
+      text: "基础教程",
+      collapsible: true,
+      prefix: "basic/",
+      children: "structure"
+    },
   ],
   "/spring/extend/": [
     "",
