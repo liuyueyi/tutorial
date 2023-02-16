@@ -1,0 +1,1 @@
+import{_ as c,V as n,W as o,Y as e,a0 as t}from"./framework-ad59245f.js";const s={},_=e("p",null,[t("实战小技巧，可用于实际编码过程中的 "),e("code",null,"code snippets"),t(" 带你再日常得编码中写得更加顺畅")],-1),a=[_];function l(r,d){return n(),o("div",null,a)}const f=c(s,[["render",l],["__file","index.html.vue"]]);export{f as default};
