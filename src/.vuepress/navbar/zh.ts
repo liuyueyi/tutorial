@@ -4,6 +4,19 @@ export const zhNavbar = navbar([
   "/",
   { text: "导航", icon: "discover", link: "/demo/" },
   {
+    text: "Java",
+    icon: "java",
+    prefix: "/java/",
+    children: [
+      "",
+      {
+        text: "实战系列",
+        prefix: "skill/",
+        children: [""],
+      },
+    ],
+  },
+  {
     text: "Spring",
     icon: "leaf",
     prefix: "/spring/",

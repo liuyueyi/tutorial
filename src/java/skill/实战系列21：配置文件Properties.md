@@ -1,0 +1,123 @@
+---
+title: 21.配置文件Properties
+order: 21
+tag:
+  - JDK
+  - 编程技巧
+  - Properties
+category:
+  - Java
+  - 编程技巧
+date: 2021-08-30 09:34:18
+keywords: java jdk properties
+---
+
+# 实战21：**`Properties配置文件`**
+
+properties配置文件，相信各位小伙伴都不会太陌生，常用Spring的可能会经常看到它，虽说现在更推荐的是使用Yaml配置文件，但是properties配置文件的使用频率也不低
+
+在jdk中有一个直接关连的类Properties，接下来我们来看一下它的用法
+
+<!-- more -->
+
+## 1. Properties配置类
+
+### 1.1. 配置文件
+
+properties文件的格式比较简单
+
+- `key = value`: 等号左边的为配置key，右边的为配置value（value值会去除前后的空格）
+- `#`：以`#`来区分注释
+
+
+一个基础的配置文件如下
+
+```
+# 测试
+key = value
+user.name = 一灰灰blog
+user.age = 18
+user.skill = java,python,js,shell
+```
+
+### 1.2. 配置文件加载
+
+对于Properties配置文件，我们可以非常简单的借助`Properties`类，来实现配置的加载
+
+```java
+public class PropertiesUtil {
+
+    /**
+     * 从文件中读取配置
+     *
+     * @param propertyFile
+     * @return
+     * @throws IOException
+     */
+    public static Properties loadProperties(String propertyFile) throws IOException {
+        Properties config = new Properties();
+        config.load(PropertiesUtil.class.getClassLoader().getResourceAsStream(propertyFile));
+        return config;
+    }
+}
+```
+
+直接使用`Properties#config`就可以读取配置文件内容，并赋值到java对象
+
+**重点注意：**
+
+重点看一下Properties类的继承关系，它的父类是Hashtable, 也就是说它的本质是Map对象
+
+```java
+public
+class Properties extends Hashtable<Object,Object> {
+}
+```
+
+### 1.3. Properties对象使用
+
+因为`Properties`是继承自Hashtable，而Hashtable是线程安全的Map容器，因此Properties也是线程安全的，同样的，在多线程并发获取配置的时候，它的性能表现也就不咋地了，why? 
+
+首先看一下配置获取
+
+```java
+// 获取配置属性
+public String getProperty(String key) {
+    Object oval = super.get(key);
+    String sval = (oval instanceof String) ? (String)oval : null;
+    return ((sval == null) && (defaults != null)) ? defaults.getProperty(key) : sval;
+}
+
+// 获取配置属性，如果不存在，则返回默认值
+public String getProperty(String key, String defaultValue) {
+    String val = getProperty(key);
+    return (val == null) ? defaultValue : val;
+}
+```
+
+上面两个方法的使用频率很高，从签名上也很容易知道使用姿势；接下来需要看一下的为啥说并发效率很低
+
+关键点就在第一个方法的`super.get()`，它对应的源码正是
+
+```java
+public synchronized V get(Object key) {
+  // ...
+}
+```
+
+方法签名上有`synchronized`，所以为啥说并发环境下的性能表现不会特别好也就知道原因了
+
+
+除了获取配置之外，另外一个常用的就是更新配置
+
+```java
+public synchronized Object setProperty(String key, String value) {
+    return put(key, value);
+}
+```
+
+## 2. 小结
+
+本文介绍的知识点主要是properties配置文件的处理，使用同名的java类来操作；需要重点注意的是Properties类属于Hashtable的子类，同样属于容器的范畴
+
+最后提一个扩展的问题，在SpringBoot的配置自动装载中，可以将配置内容自动装载到配置类中，简单来讲就是支持配置到java bean的映射，如果现在让我们来实现这个，可以怎么整？

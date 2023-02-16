@@ -13,6 +13,15 @@ export const zhSidebar = sidebar({
       ]
     }
   ],
+  "/java/": [
+    "",
+    {
+      text: "编程小技巧",
+      icon: "process",
+      prefix: "skill/",
+      children: "structure",
+    },
+  ],
   "/git/": [
     {
       text: "quick-media",

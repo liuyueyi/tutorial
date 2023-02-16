@@ -1,0 +1,186 @@
+---
+title: 13.List转Map List的几种姿势
+order: 13
+tag:
+  - JDK
+category:
+  - Java
+  - 编程技巧
+date: 2022-05-17 19:44:20
+keywords:
+  - Java
+  - Map
+  - 容器
+---
+
+# 实战13：List转Map List的几种姿势
+
+今天介绍一个实用的小知识点，如何将List转为`Map<Object, List<Object>>`
+
+<!-- more -->
+
+## 1. 转换方式
+
+### 1.1. 基本写法
+
+最开始介绍的当然是最常见、最直观的写法，当然也是任何限制的写法
+
+```java
+// 比如将下面的列表，按照字符串长度进行分组
+List<String> list = new ArrayList<>();
+list.add("hello");
+list.add("word");
+list.add("come");
+list.add("on");
+Map<Integer, List<String>> ans = new HashMap<>();
+
+for(String str: list) {
+    List<String> sub = ans.get(str.length());
+    if(sub == null) {
+        sub = new ArrayList<>();
+        ans.put(str.length(), sub);
+    }
+    sub.add(str);
+}
+System.out.println(ans);
+```
+
+对于jdk8+，上面for循环中的内容可以利用`Map.computeIfAbsent`来替换，具体写法如下
+
+```java
+for (String str : list) {
+    ans.computeIfAbsent(str.length(), k -> new ArrayList<>()).add(str);
+}
+```
+
+当然既然已经是jdk1.8了，借助Stream的流处理，可以将上面的更一步进行简化，如下
+
+```java
+Map<Integer, List<String>> ans = list.stream().collect(Collectors.groupingBy(String::length));
+```
+
+### 1.2. 通用方法
+
+上面是针对特定的列表，针对业务进行开发转换，那么我们接下来尝试构建一个通用的工具类
+
+这里我们主要借助的知识点就是泛型，一个重要的点就是如何获取Map中的key
+
+
+对于jdk < 1.8的写法，通过接口来定义实现key的获取姿势
+
+```java
+public static <K, V> Map<K, List<V>> toMapList(List<V> list, KeyFunc<V, K> keyFunc) {
+    Map<K, List<V>> result = new HashMap<>();
+    for (V item: list) {
+        K key = keyFunc.getKey(item);
+        if (!result.containsKey(key)) {
+            result.put(key, new ArrayList<>());
+        }
+        result.get(key).add(item);
+    }
+    return result;
+}
+
+public static interface KeyFunc<T, K> {
+    K getKey(T t);
+}
+```
+
+使用demo如下
+
+```java
+public static void main(String[] args) {
+    List<String> list = new ArrayList<>();
+    list.add("hello");
+    list.add("word");
+    list.add("come");
+    list.add("on");
+    Map<Integer, List<String>> res = toMapList(list, new KeyFunc<String, Integer>() {
+        @Override
+        public Integer getKey(String s) {
+            return s.length();
+        }
+    });
+    System.out.println(res);
+}
+```
+
+接下来再看一下jdk1.8之后的写法，结合stream + 函数方法来实现
+
+```java
+public static <K, V> Map<K, List<V>> toMapList(List<V> list, Function<V, K> func) {
+    return list.stream().collect(Collectors.groupingBy(func));
+}
+````
+
+其对应的使用方式则如下
+
+```java
+public static void main(String[] args) {
+    List<String> list = new ArrayList<>();
+    list.add("hello");
+    list.add("word");
+    list.add("come");
+    list.add("on");
+    Map<Integer, List<String>> res = toMapList(list, (Function<String, Integer>) String::length);
+    System.out.println(res);
+}
+```
+
+### 1.3. 工具类
+
+上一节介绍了基于泛型 + jdk8 Stream + 函数方法来实现通用转换工具类的实现姿势，接下来我们小结一下，输出一个适用于1.8之后的工具类
+
+```java
+/**
+ * List<V>转换为Map<K, List<V>> 特点在于Map中的value，是个列表，且列表中的元素就是从原列表中的元素
+ *
+ * @param list
+ * @param func 基于list#item生成Map.key的函数方法
+ * @param <K>
+ * @param <V>
+ * @return
+ */
+public static <K, V> Map<K, List<V>> toMapList(List<V> list, Function<V, K> func) {
+    return list.stream().collect(Collectors.groupingBy(func));
+}
+
+/**
+ * List<I>转换为Map<K, List<V>> 特点在于Map中的value是个列表，且列表中的元素是由list.item转换而来
+ *
+ * @param list
+ * @param keyFunc 基于list#item生成的Map.key的函数方法
+ * @param valFunc 基于list#item转换Map.value列表中元素的函数方法
+ * @param <K>
+ * @param <I>
+ * @param <V>
+ * @return
+ */
+public static <K, I, V> Map<K, List<V>> toMapList(List<I> list, Function<I, K> keyFunc, Function<I, V> valFunc) {
+    return list.stream().collect(Collectors.groupingBy(keyFunc, Collectors.mapping(valFunc, Collectors.toList())));
+}
+```
+
+### 1.4.guava HashMultimap扩展知识点
+
+最后再介绍一个扩展知识点，Gauva工具包中提供了一个`HashMultimap`的工具类，他的使用姿势和我们平常的Map并无差别，但是需要在注意的是，它的value是个集合
+
+```java
+List<String> list = new ArrayList<>();
+list.add("hello");
+list.add("word");
+list.add("come");
+list.add("on");
+list.add("on");
+HashMultimap<Integer, String> map = HashMultimap.create();
+for (String item: strList) {
+    map.put(item.length(), item);
+}
+System.out.println(map);
+```
+
+实际输出如下，验证了value实际上是个集合（on只有一个，如果是我们上面的工具类，会输出两个）
+
+```
+{2=[on], 4=[word, come], 5=[hello]}
+```

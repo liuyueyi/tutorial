@@ -1,0 +1,144 @@
+---
+title: 9.List.subList使用不当StackOverflowError
+order: 9
+tag:
+  - JDK
+  - 编程技巧
+category:
+  - Java
+  - 编程技巧
+date: 2021-08-19 14:13:42
+keywords: java jdk Collection 容器 编程实战
+---
+
+# 实战9：`List.subList使用不当StackOverflowError`
+
+相信每个小伙伴都使用过`List.subList`来获取子列表，日常使用可能没啥问题，但是，请注意，它的使用，很可能一不小心就可能导致oom
+
+<!-- more -->
+
+## 1.实例说明
+
+### 1.1. subList
+
+场景复现，如基于list实现一个小顶堆
+
+```java
+public List<Integer> minStack(List<Integer> list, int value, int stackSzie) {
+    list.add(value);
+    if (list.size() < stackSzie) {
+        return list;
+    }
+    list.sort(null);
+    return list.subList(0, stackSzie);
+}
+
+@Test
+public void testFix() {
+    List<Integer> list = new ArrayList<>();
+    for (int i = Integer.MAX_VALUE; i > Integer.MIN_VALUE; i--) {
+        list.add(i);
+        list = minStack(list, i, 5);
+        System.out.println(list);
+    }
+}
+```
+
+上面这个执行完毕之后，居然出现栈溢出
+
+```
+// ....
+[2147462802, 2147462803, 2147462804, 2147462805, 2147462806]
+[2147462801, 2147462802, 2147462803, 2147462804, 2147462805]
+
+java.lang.StackOverflowError
+	at java.util.ArrayList$SubList.add(ArrayList.java:1057)
+	at java.util.ArrayList$SubList.add(ArrayList.java:1057)
+```
+
+从实现来看，感觉也没啥问题啊， 我们稍微改一下上面的返回
+
+```java
+public List<Integer> minStack(List<Integer> list, int value, int stackSzie) {
+    list.add(value);
+    if (list.size() < stackSzie) {
+        return list;
+    }
+    list.sort(null);
+    return new ArrayList<>(list.subList(0, stackSzie));
+}
+```
+
+再次执行，却没有异常；所以关键点就在与
+
+- list.subList的使用上
+
+
+### 1.2. StackOverflowError分析
+
+接下来我们主要看一下`list.subList`的实现
+
+```java
+public List<E> subList(int fromIndex, int toIndex) {
+    subListRangeCheck(fromIndex, toIndex, size);
+    return new SubList(this, 0, fromIndex, toIndex);
+}
+
+private class SubList extends AbstractList<E> implements RandomAccess {
+    private final AbstractList<E> parent;
+    private final int parentOffset;
+    private final int offset;
+    int size;
+  
+    SubList(AbstractList<E> parent,
+            int offset, int fromIndex, int toIndex) {
+        this.parent = parent;
+        this.parentOffset = fromIndex;
+        this.offset = offset + fromIndex;
+        this.size = toIndex - fromIndex;
+        this.modCount = ArrayList.this.modCount;
+    }
+    ...
+}
+```
+
+上面返回的子列表是ArrayList的一个内部类`SubList`，它拥有一个指向父列表的成员`parrent`
+
+也就是说，从源头的ArryList开始，后面每次调用`subList`，这个指代关系就深一层
+
+然后它的add方法也很有意思
+
+```java
+public void add(int index, E e) {
+    rangeCheckForAdd(index);
+    checkForComodification();
+    parent.add(parentOffset + index, e);
+    this.modCount = parent.modCount;
+    this.size++;
+}
+```
+
+重点看 `parent.add(parentOffset + index, e);`，添加的数据实际上是加在最源头的ArrayList上的，也就是说，虽然你现在拿到的SubList，只有几个元素，但是它对应的数组，可能超乎你的想象
+
+
+当然上面这个异常主要是以为调用栈溢出（一直往上找parent）
+
+这里反应的另外一个重要问题则是内存泄漏，就不继续说了
+
+如果需要解决上面这个问题，改造方法如下
+
+```java
+public List<E> subList(int fromIndex, int toIndex) {
+    subListRangeCheck(fromIndex, toIndex, size);
+    return new ArrayList<>(new SubList(this, 0, fromIndex, toIndex));
+}s
+```
+
+## 2. 小结
+
+jdk提供的原生方法虽然非常好用，但是在使用的时候，也需要多家注意，一不小心就可能掉进坑里；这也告诉我们多看源码是有必要的
+
+最后一句关键知识点小结：
+
+- `ArrayList.subList` 返回的是内部类，与原ArrayList公用一个数组，只是限定了这个数组的起始下标和结束下标而已
+- 在使用`subList`，请注意是否会存在内存泄露和栈溢出的问题

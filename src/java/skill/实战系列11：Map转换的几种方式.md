@@ -1,0 +1,121 @@
+---
+title: 11.Map转换的几种方式
+order: 11
+tag:
+  - JDK
+category:
+  - Java
+  - 编程技巧
+date: 2021-11-02 19:43:19
+keywords: java jdk hashmap
+---
+
+# 实战11：`Map转换Map的几种方式`
+
+
+在日常开发过程中，从一个Map转换为另外一个Map属于基本操作了，那么我们一般怎么去实现这种场景呢？有什么更简洁省事的方法么？
+
+<!-- more -->
+
+## 1.Map互转
+
+### 1.1 实例场景
+
+现在我们给一个简单的实例
+
+希望将一个`Map<String, Integer>` 转换成 `Map<String, String>`，接下来看一下有哪些实现方式，以及各自的优缺点
+
+首先提供一个创建Map的公共方法
+
+```java
+private static <T> Map<String, T> newMap(String key, T val, Object... kv) {
+    Map<String, T> ans = new HashMap<>(8);
+    ans.put(key, val);
+    for (int i = 0, size = kv.length; i < size; i += 2) {
+        ans.put(String.valueOf(kv[i]), (T) kv[i + 1]);
+    }
+    return ans;
+}
+```
+
+#### 1.1.1 基本的for循环转换
+
+这种方式是最容易想到和实现的，直接for循环来转换即可
+
+```java
+@Test
+public void forEachParse() {
+    Map<String, Integer> map = newMap("k", 1, "a", 2, "b", 3);
+    Map<String, String> ans = new HashMap<>(map.size());
+    for (Map.Entry<String, Integer> entry: map.entrySet()) {
+        ans.put(entry.getKey(), String.valueOf(entry.getValue()));
+    }
+    System.out.println(ans);
+}
+```
+
+这种方式的优点很明显，实现容易，业务直观；
+
+缺点就是可复用性较差，代码量多（相比于下面的case）
+
+
+#### 1.1.2 容器的流式使用
+
+在jdk1.8提供了流式操作，同样也可以采用这种方式来实现转换
+
+```java
+@Test
+public void stream() {
+    Map<String, Integer> map = newMap("k", 1, "a", 2, "b", 3);
+    Map<String, String> ans = map.entrySet().stream().collect(
+            Collectors.toMap(Map.Entry::getKey, s -> String.valueOf(s.getValue()), (a, b) -> a));
+    System.out.println(ans);
+}
+```
+
+使用stream的方式，优点就是链式，代码量少；缺点是相较于上面的阅读体验会差一些（当然这个取决于个人，有些小伙伴就更习惯看这种链式的代码）
+
+#### 1.1.3 Guava的trasform方式
+
+从代码层面来看，上面两个都不够直观，如果对guava熟悉的小伙伴对下面的代码可能就很熟悉了
+
+```java
+@Test
+public void transfer() {
+    Map<String, Integer> map = newMap("k", 1, "a", 2, "b", 3);
+    Map<String, String> ans =  Maps.transformValues(map, String::valueOf);
+    System.out.println(ans);
+}
+```
+
+
+核心逻辑就一行 `Maps.transformValues(map, String::valueOf)`，实现了我们的Map转换的诉求
+
+很明显，这种方式的优点就是间接、直观；当然缺点就是需要引入guava，并且熟悉guava
+
+### 1.2 最后一问，这篇文章目的是啥？
+
+既然我们的标题是实战小技巧，本文除了给大家介绍可以使用guava的`Maps.transformValues`来实现map转换之外，更主要的一个目的是如果让我们自己来实现一个工具类，来支持这个场景，应该怎么做？
+
+直接提供一个转换方法？
+
+**第一步：一个泛型的转换接口**
+
+```java
+public <K, T, V> Map<K, V> transform(Map<K, T> map) {
+}
+```
+
+定义上面这个接口之后，自然而然想到的缺点就是差一个value的转换实现
+
+**第二步：value转换的定义**
+
+这里采用Function接口思想来定义转换类
+
+```java
+public <K, T, V> Map<K, V> transform(Map<K, T> map, Function<T, V> func) {
+}
+```
+当然到这里我们就需要注意jdk1.8以下是不支持函数编程的，那么我们可以怎么来实现呢？
+
+这个时候再对照一下guava的实现，然后再手撸一个，知识点就到手了

@@ -1,0 +1,52 @@
+---
+title: 17.Java对象内存地址输出
+order: 17
+tag:
+  - Java 
+category:
+  - Java
+  - JDK 
+date: 2021-01-29 10:37:36
+keywords: java 内存地址
+---
+
+
+# 实战17：**Java对象内存地址输出**
+
+## 输出对象地址
+
+当一个对象没有重写`hascode`方法时，它返回的内存地址，当覆盖之后，我们有什么办法获取对象的内存地址么? 
+
+- 使用 `System.identityHashCode()` 输出内存地址
+
+<!-- more -->
+
+```java
+public static void main(String[] args) {
+    BaseDo base = new BaseDo();
+    base.name = "hello";
+    int addr = System.identityHashCode(base);
+    System.out.println(base.hashCode() + "|" + addr);
+}
+
+public static class BaseDo {
+    String name;
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+}
+```
+
+输出结果如:
+
+```
+997608398|997608398
+```
+
+这个有啥用？
+
+- 判断两个对象是否为同一个对象时，可以借用（我是在验证Mybatis的一级缓存的，判断返回的Entity是否确实是同一个的时候以此来判定的）
+
+
