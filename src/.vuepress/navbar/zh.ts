@@ -95,4 +95,5 @@ export const zhNavbar = navbar([
     ]
   },
   { text: "工具箱", icon: "tool", link: "https://tool.hhui.top/" },
+  { text: "关于", icon: "valine", link: "/me/about-me" },
 ]);
