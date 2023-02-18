@@ -13,15 +13,6 @@ export const zhSidebar = sidebar({
       ]
     }
   ],
-  "/me": [
-    {
-      text: "关于作者",
-      icon: 'valine',
-      prefix: "/",
-      collapsible: true,
-      children: "structure",
-    }
-  ],
   "/java/": [
     "",
     {
