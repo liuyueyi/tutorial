@@ -1,0 +1,1 @@
+import{_ as e,V as t,W as n,Y as _}from"./framework-eef79181.js";const c={},o=_("p",null,"收录web系列相关的实战文档，每一篇博文都对应一个真实的业务场景，从0到1，手把手教你如何完美支撑业务需求",-1),s=[o];function r(a,l){return t(),n("div",null,s)}const i=e(c,[["render",r],["__file","index.html.vue"]]);export{i as default};

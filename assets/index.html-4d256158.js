@@ -1,1 +1,0 @@
-import{_ as e,V as t,W as n,Y as _}from"./framework-ad59245f.js";const c={},o=_("p",null,"所有开发者的好基友，一个成熟的系统离不开日志系统的建设，这里将介绍下如何配置日志、使用日志",-1),s=[o];function r(a,l){return t(),n("div",null,s)}const i=e(c,[["render",r],["__file","index.html.vue"]]);export{i as default};

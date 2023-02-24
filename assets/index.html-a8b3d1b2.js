@@ -1,0 +1,1 @@
+import{_ as e,V as t,W as n,Y as o}from"./framework-eef79181.js";const s={},_=o("p",null,"接入Prometheus，搭建应用监控体系",-1),c=[_];function r(a,l){return t(),n("div",null,c)}const i=e(s,[["render",r],["__file","index.html.vue"]]);export{i as default};

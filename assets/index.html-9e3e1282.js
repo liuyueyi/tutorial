@@ -1,1 +1,0 @@
-import{_ as e,V as t,W as n,Y as _}from"./framework-ad59245f.js";const c={},o=_("p",null,"请求参数如何解析？如何自定义参数转换器？参数校验怎么做？路由匹配又是什么？交互协议JSON还是XML？如有这些疑问，请打开这个教程",-1),s=[o];function r(a,l){return t(),n("div",null,s)}const i=e(c,[["render",r],["__file","index.html.vue"]]);export{i as default};
