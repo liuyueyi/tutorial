@@ -9,7 +9,7 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2023-02-24T02:24:46.652Z</updated>
+  <updated>2023-02-24T08:23:34.572Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
@@ -43,102 +43,10 @@
     <name>一灰灰Blog</name>
   </contributor>
   <entry>
-    <title type="text">数据库</title>
-    <id>https://liuyueyi.github.io/tutorial/db/</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
-    <summary type="html"><![CDATA[<h1> 数据库</h1>
-<h2> ❤️ MySql</h2>
-<h2> 📝 MongoDB</h2>
-<h2> ⌛ InfluxDB</h2>
-<h2> 🪧 ClickHouse</h2>
-<h2> 🫶 Redis</h2>
-<h2> 🔍 ES</h2>
-]]></summary>
-    <content type="html"><![CDATA[<h1> 数据库</h1>
-<h2> ❤️ MySql</h2>
-<h2> 📝 MongoDB</h2>
-<h2> ⌛ InfluxDB</h2>
-<h2> 🪧 ClickHouse</h2>
-<h2> 🫶 Redis</h2>
-<h2> 🔍 ES</h2>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2023-02-24T02:18:35.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">ClickHouse系列教程</title>
-    <id>https://liuyueyi.github.io/tutorial/db/clickhouse/</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/clickhouse/"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
-    <summary type="html"><![CDATA[<p>列式数据库ClickHouse</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>列式数据库ClickHouse</p>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2023-02-24T02:18:35.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">ES系列教程</title>
-    <id>https://liuyueyi.github.io/tutorial/db/es/</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/es/"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
-    <summary type="html"><![CDATA[<p>近实时搜索引擎ElasticSearch</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>近实时搜索引擎ElasticSearch</p>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2023-02-24T02:18:35.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">InfluxDB系列教程</title>
-    <id>https://liuyueyi.github.io/tutorial/db/influxdb/</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/influxdb/"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
-    <summary type="html"><![CDATA[<p>时序数据库Influxdb</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>时序数据库Influxdb</p>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2023-02-24T02:18:35.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
     <title type="text">MongoDB之Collection导入导出</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/01.MongoDB%E4%B9%8BCollection%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/01.MongoDB%E4%B9%8BCollection%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/01.MongoDB%E4%B9%8BCollection%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/01.MongoDB%E4%B9%8BCollection%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>mongodb中集合的导入导出，在robot3t工具中没有找到对应的方法，记录下控制台的操作流程</p>
 <p>主要利用： <code>mongoexport</code> 与 <code>mongoimport</code></p>
 ]]></summary>
@@ -166,9 +74,9 @@
   </entry>
   <entry>
     <title type="text">零：环境安装与初始化</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/02.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E9%9B%B6-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/02.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E9%9B%B6-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/02.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E9%9B%B6-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/02.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E9%9B%B6-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<blockquote>
 <p>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。</p>
 </blockquote>
@@ -217,9 +125,9 @@
   </entry>
   <entry>
     <title type="text">一：基本概念</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/03.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B8%80-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/03.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B8%80-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/03.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B8%80-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/03.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B8%80-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>mongodb和我们通常使用的关系型数据库如mysql，在一些基本概念上有相同之处，但也有一些区别，在进行mongodb的语言介绍之前，有必要先了解一些基础概念</p>
 <p>本文将对比sql对一些基础概念进行解释说明</p>
 ]]></summary>
@@ -312,9 +220,9 @@
   </entry>
   <entry>
     <title type="text">二：连接</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/04.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%BA%8C-%E8%BF%9E%E6%8E%A5.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/04.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%BA%8C-%E8%BF%9E%E6%8E%A5.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/04.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%BA%8C-%E8%BF%9E%E6%8E%A5.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/04.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%BA%8C-%E8%BF%9E%E6%8E%A5.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>后续的所有文章的基础，都是需要先连上mongodb，然后才能执行各种命令操作；</p>
 <p>本文将介绍一下如何连接一个已经启动的mongodb服务器</p>
 ]]></summary>
@@ -351,9 +259,9 @@
   </entry>
   <entry>
     <title type="text">三：基本工具介绍</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/05.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B8%89-%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/05.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B8%89-%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/05.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B8%89-%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/05.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B8%89-%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>mongodb服务器安装完毕之后，提供了一些配套的操作工具，接下来我们有必要认识一下它们，并了解基本用法</p>
 ]]></summary>
     <content type="html"><![CDATA[<p>mongodb服务器安装完毕之后，提供了一些配套的操作工具，接下来我们有必要认识一下它们，并了解基本用法</p>
@@ -398,9 +306,9 @@
   </entry>
   <entry>
     <title type="text">四：数据库 Database</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/06.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%9B%9B-%E6%95%B0%E6%8D%AE%E5%BA%93-Database.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/06.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%9B%9B-%E6%95%B0%E6%8D%AE%E5%BA%93-Database.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/06.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%9B%9B-%E6%95%B0%E6%8D%AE%E5%BA%93-Database.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/06.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%9B%9B-%E6%95%B0%E6%8D%AE%E5%BA%93-Database.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>我们通常把mongodb叫文档型数据库，mysql叫关系型数据库，influxdb叫时序数据库，如果熟悉这三个的话，会发现他们都有一个<code>database</code>，它是<code>collection/table/measurement</code>的上一级，可以简单的把它理解为更高层级的集合，方便统一管理/权限划分/业务拆分</p>
 <p>下面简单介绍一下database的基础操作</p>
 ]]></summary>
@@ -452,9 +360,9 @@
   </entry>
   <entry>
     <title type="text">五：集合 Collection</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/07.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%BA%94-%E9%9B%86%E5%90%88-Collection.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/07.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%BA%94-%E9%9B%86%E5%90%88-Collection.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/07.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%BA%94-%E9%9B%86%E5%90%88-Collection.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/07.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%BA%94-%E9%9B%86%E5%90%88-Collection.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>集合，相当于关系型数据库中的table，在mongodb中，集合的概念非常贴切，属于文档(Document)的集合</p>
 <p>其最大的特点是：</p>
 <ul>
@@ -506,9 +414,9 @@
   </entry>
   <entry>
     <title type="text">六：文档 Document 插入姿势</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/08.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%85%AD-%E6%96%87%E6%A1%A3-Document-%E6%8F%92%E5%85%A5%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/08.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%85%AD-%E6%96%87%E6%A1%A3-Document-%E6%8F%92%E5%85%A5%E5%A7%BF%E5%8A%BF.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/08.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%85%AD-%E6%96%87%E6%A1%A3-Document-%E6%8F%92%E5%85%A5%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/08.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%85%AD-%E6%96%87%E6%A1%A3-Document-%E6%8F%92%E5%85%A5%E5%A7%BF%E5%8A%BF.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>文档相当于关系数据库中数据行，也是我们最关心的数据本身；以BSON格式存储（和json区别不大）</p>
 <p>我们通常所说业务开发者的CURD四大技能，在mongodb中，就是针对Document而言，接下来我们先看一下文档的新增使用姿势</p>
 ]]></summary>
@@ -619,9 +527,9 @@
   </entry>
   <entry>
     <title type="text">七：文档 Document 删除姿势</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/09.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B8%83-%E6%96%87%E6%A1%A3-Document-%E5%88%A0%E9%99%A4%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/09.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B8%83-%E6%96%87%E6%A1%A3-Document-%E5%88%A0%E9%99%A4%E5%A7%BF%E5%8A%BF.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/09.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B8%83-%E6%96%87%E6%A1%A3-Document-%E5%88%A0%E9%99%A4%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/09.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B8%83-%E6%96%87%E6%A1%A3-Document-%E5%88%A0%E9%99%A4%E5%A7%BF%E5%8A%BF.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>前面一篇介绍了插入文档的使用姿势，这一篇则主要介绍删除的使用case</p>
 ]]></summary>
     <content type="html"><![CDATA[<p>前面一篇介绍了插入文档的使用姿势，这一篇则主要介绍删除的使用case</p>
@@ -654,9 +562,9 @@
   </entry>
   <entry>
     <title type="text">八：文档 Document 更新姿势</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/10.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%85%AB-%E6%96%87%E6%A1%A3-Document-%E6%9B%B4%E6%96%B0%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/10.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%85%AB-%E6%96%87%E6%A1%A3-Document-%E6%9B%B4%E6%96%B0%E5%A7%BF%E5%8A%BF.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/10.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%85%AB-%E6%96%87%E6%A1%A3-Document-%E6%9B%B4%E6%96%B0%E5%A7%BF%E5%8A%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/10.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%85%AB-%E6%96%87%E6%A1%A3-Document-%E6%9B%B4%E6%96%B0%E5%A7%BF%E5%8A%BF.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>本篇介绍update/save两种方法提供的更新姿势</p>
 ]]></summary>
     <content type="html"><![CDATA[<p>本篇介绍update/save两种方法提供的更新姿势</p>
@@ -706,9 +614,9 @@
   </entry>
   <entry>
     <title type="text">九：文档 Document 查询基础篇</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/11.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%9D-%E6%96%87%E6%A1%A3-Document-%E6%9F%A5%E8%AF%A2%E5%9F%BA%E7%A1%80%E7%AF%87.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/11.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%9D-%E6%96%87%E6%A1%A3-Document-%E6%9F%A5%E8%AF%A2%E5%9F%BA%E7%A1%80%E7%AF%87.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/11.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%9D-%E6%96%87%E6%A1%A3-Document-%E6%9F%A5%E8%AF%A2%E5%9F%BA%E7%A1%80%E7%AF%87.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/11.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%9D-%E6%96%87%E6%A1%A3-Document-%E6%9F%A5%E8%AF%A2%E5%9F%BA%E7%A1%80%E7%AF%87.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>MongoDb文档查询，主要借助find方法来完成，在实际的业务开发中，为了满足各种复杂的业务场景，查询的姿势也是各种各样，本篇则主要介绍基本的使用姿势，不涉及到聚合、排序、分页相关内容</p>
 ]]></summary>
     <content type="html"><![CDATA[<p>MongoDb文档查询，主要借助find方法来完成，在实际的业务开发中，为了满足各种复杂的业务场景，查询的姿势也是各种各样，本篇则主要介绍基本的使用姿势，不涉及到聚合、排序、分页相关内容</p>
@@ -768,9 +676,9 @@
   </entry>
   <entry>
     <title type="text">十：文档 Document 查询高级篇</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/12.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81-%E6%96%87%E6%A1%A3-Document-%E6%9F%A5%E8%AF%A2%E9%AB%98%E7%BA%A7%E7%AF%87.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/12.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81-%E6%96%87%E6%A1%A3-Document-%E6%9F%A5%E8%AF%A2%E9%AB%98%E7%BA%A7%E7%AF%87.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/12.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81-%E6%96%87%E6%A1%A3-Document-%E6%9F%A5%E8%AF%A2%E9%AB%98%E7%BA%A7%E7%AF%87.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/12.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81-%E6%96%87%E6%A1%A3-Document-%E6%9F%A5%E8%AF%A2%E9%AB%98%E7%BA%A7%E7%AF%87.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>上一篇的mongodb查询，主要介绍的是一些基本操作，当然有基本就高阶操作；</p>
 <p>本文将带来更多的查询姿势</p>
 <ul>
@@ -938,9 +846,9 @@
   </entry>
   <entry>
     <title type="text">十一：文档 Document 查询非典型篇</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/13.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%80-%E6%96%87%E6%A1%A3-Document-%E6%9F%A5%E8%AF%A2%E9%9D%9E%E5%85%B8%E5%9E%8B%E7%AF%87.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/13.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%80-%E6%96%87%E6%A1%A3-Document-%E6%9F%A5%E8%AF%A2%E9%9D%9E%E5%85%B8%E5%9E%8B%E7%AF%87.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/13.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%80-%E6%96%87%E6%A1%A3-Document-%E6%9F%A5%E8%AF%A2%E9%9D%9E%E5%85%B8%E5%9E%8B%E7%AF%87.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/13.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%80-%E6%96%87%E6%A1%A3-Document-%E6%9F%A5%E8%AF%A2%E9%9D%9E%E5%85%B8%E5%9E%8B%E7%AF%87.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>前面介绍的查询可以说是常见的典型case，但是mongodb中有两个比价特殊的数据类型，数组 + 对象，自然的也会有一些非典型的查询case，下面主要针对这两种数据类型的查询姿势，给出实例讲解</p>
 ]]></summary>
     <content type="html"><![CDATA[<p>前面介绍的查询可以说是常见的典型case，但是mongodb中有两个比价特殊的数据类型，数组 + 对象，自然的也会有一些非典型的查询case，下面主要针对这两种数据类型的查询姿势，给出实例讲解</p>
@@ -984,9 +892,9 @@
   </entry>
   <entry>
     <title type="text">十二：文档更新删除之非典型篇</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/14.MongoDB%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81%E4%BA%8C-%E6%96%87%E6%A1%A3%E6%9B%B4%E6%96%B0%E5%88%A0%E9%99%A4%E4%B9%8B%E9%9D%9E%E5%85%B8%E5%9E%8B%E7%AF%87.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/14.MongoDB%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81%E4%BA%8C-%E6%96%87%E6%A1%A3%E6%9B%B4%E6%96%B0%E5%88%A0%E9%99%A4%E4%B9%8B%E9%9D%9E%E5%85%B8%E5%9E%8B%E7%AF%87.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/14.MongoDB%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81%E4%BA%8C-%E6%96%87%E6%A1%A3%E6%9B%B4%E6%96%B0%E5%88%A0%E9%99%A4%E4%B9%8B%E9%9D%9E%E5%85%B8%E5%9E%8B%E7%AF%87.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/14.MongoDB%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81%E4%BA%8C-%E6%96%87%E6%A1%A3%E6%9B%B4%E6%96%B0%E5%88%A0%E9%99%A4%E4%B9%8B%E9%9D%9E%E5%85%B8%E5%9E%8B%E7%AF%87.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>前面介绍document的新增、删除、更新都处于相对常见和基础的说明，但是考虑到mongodb非结构化的特点，它的一些特性是我们的mysql不会遇到的，本文将针对这些特殊场景给出示例说明</p>
 <ul>
 <li>在现有文档中，增加一个field</li>
@@ -1063,9 +971,9 @@
   </entry>
   <entry>
     <title type="text">十三：索引</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/15.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%89-%E7%B4%A2%E5%BC%95.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/15.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%89-%E7%B4%A2%E5%BC%95.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/15.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%89-%E7%B4%A2%E5%BC%95.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/15.MongoDb%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E5%8D%81%E4%B8%89-%E7%B4%A2%E5%BC%95.html"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>索引一般用来提高查询效率，避免全集合搜索，那么在mongodb中，支持索引么？如果支持，如何定义索引，如何使用索引，如何确定一个sql是否走索引？</p>
 ]]></summary>
     <content type="html"><![CDATA[<p>索引一般用来提高查询效率，避免全集合搜索，那么在mongodb中，支持索引么？如果支持，如何定义索引，如何使用索引，如何确定一个sql是否走索引？</p>
@@ -1240,13 +1148,179 @@
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
   <entry>
-    <title type="text">MongoDB系列教程</title>
-    <id>https://liuyueyi.github.io/tutorial/db/mongodb/</id>
-    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <title type="text">MongoDB基础教程</title>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/basic/</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/basic/"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<p>文档数据库MongoDB的基本使用姿势教程，手把手教你学会MongoDB的CURD</p>
 ]]></summary>
     <content type="html"><![CDATA[<p>文档数据库MongoDB的基本使用姿势教程，手把手教你学会MongoDB的CURD</p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2023-02-24T08:19:09.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">SpringBoot整合MongoDB</title>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/spring/</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/spring/"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
+    <summary type="html"><![CDATA[<p><a href="/spring/db/MongoDB/" target="_blank" rel="noopener noreferrer">SpringBoot 整合 MongoDB</a></p>
+<div class="hint-container info">
+<p class="hint-container-title">SpringBoot + MongoDB</p>
+<p>SpringBoot生态下，掌握MongoDB的CURD</p>
+</div>
+]]></summary>
+    <content type="html"><![CDATA[<p><a href="/spring/db/MongoDB/" target="_blank" rel="noopener noreferrer">SpringBoot 整合 MongoDB</a></p>
+<div class="hint-container info">
+<p class="hint-container-title">SpringBoot + MongoDB</p>
+<p>SpringBoot生态下，掌握MongoDB的CURD</p>
+</div>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2023-02-24T08:19:09.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">数据库</title>
+    <id>https://liuyueyi.github.io/tutorial/db/</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/"/>
+    <updated>2023-02-24T02:18:35.000Z</updated>
+    <summary type="html"><![CDATA[<h1> 数据库</h1>
+<h2> ❤️ MySql</h2>
+<h2> 📝 MongoDB</h2>
+<h2> ⌛ InfluxDB</h2>
+<h2> 🪧 ClickHouse</h2>
+<h2> 🫶 Redis</h2>
+<h2> 🔍 ES</h2>
+]]></summary>
+    <content type="html"><![CDATA[<h1> 数据库</h1>
+<h2> ❤️ MySql</h2>
+<h2> 📝 MongoDB</h2>
+<h2> ⌛ InfluxDB</h2>
+<h2> 🪧 ClickHouse</h2>
+<h2> 🫶 Redis</h2>
+<h2> 🔍 ES</h2>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2023-02-24T02:18:35.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">ClickHouse系列教程</title>
+    <id>https://liuyueyi.github.io/tutorial/db/clickhouse/</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/clickhouse/"/>
+    <updated>2023-02-24T02:18:35.000Z</updated>
+    <summary type="html"><![CDATA[<p>列式数据库ClickHouse</p>
+]]></summary>
+    <content type="html"><![CDATA[<p>列式数据库ClickHouse</p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2023-02-24T02:18:35.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">ES系列教程</title>
+    <id>https://liuyueyi.github.io/tutorial/db/es/</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/es/"/>
+    <updated>2023-02-24T02:18:35.000Z</updated>
+    <summary type="html"><![CDATA[<p>近实时搜索引擎ElasticSearch</p>
+]]></summary>
+    <content type="html"><![CDATA[<p>近实时搜索引擎ElasticSearch</p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2023-02-24T02:18:35.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">InfluxDB系列教程</title>
+    <id>https://liuyueyi.github.io/tutorial/db/influxdb/</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/influxdb/"/>
+    <updated>2023-02-24T02:18:35.000Z</updated>
+    <summary type="html"><![CDATA[<p>时序数据库Influxdb</p>
+]]></summary>
+    <content type="html"><![CDATA[<p>时序数据库Influxdb</p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2023-02-24T02:18:35.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">MongoDB系列教程</title>
+    <id>https://liuyueyi.github.io/tutorial/db/mongodb/</id>
+    <link href="https://liuyueyi.github.io/tutorial/db/mongodb/"/>
+    <updated>2023-02-24T08:19:09.000Z</updated>
+    <summary type="html"><![CDATA[<div class="hint-container tip">
+<p class="hint-container-title">专栏说明</p>
+<p>文档数据库MongoDB的基本使用姿势教程，手把手教你学会MongoDB的CURD</p>
+</div>
+<ul>
+<li><a href="./basic">MongoDB 0基础入门</a></li>
+</ul>
+<div class="hint-container info">
+<p class="hint-container-title">mongodb 基础知识</p>
+<p>原生的mongodb知识点，如基础概念，CURD等</p>
+</div>]]></summary>
+    <content type="html"><![CDATA[<div class="hint-container tip">
+<p class="hint-container-title">专栏说明</p>
+<p>文档数据库MongoDB的基本使用姿势教程，手把手教你学会MongoDB的CURD</p>
+</div>
+<ul>
+<li><a href="./basic">MongoDB 0基础入门</a></li>
+</ul>
+<div class="hint-container info">
+<p class="hint-container-title">mongodb 基础知识</p>
+<p>原生的mongodb知识点，如基础概念，CURD等</p>
+</div>
+<ul>
+<li><a href="/spring/db/MongoDB/" target="_blank" rel="noopener noreferrer">SpringBoot 整合 MongoDB</a></li>
+</ul>
+<div class="hint-container info">
+<p class="hint-container-title">SpringBoot + MongoDB</p>
+<p>SpringBoot生态下，掌握MongoDB的CURD</p>
+</div>
 ]]></content>
     <author>
       <name>一灰灰blog</name>
@@ -1263,7 +1337,7 @@
     <title type="text">mongodb零基础入门</title>
     <id>https://liuyueyi.github.io/tutorial/db/mongodb/merge.html</id>
     <link href="https://liuyueyi.github.io/tutorial/db/mongodb/merge.html"/>
-    <updated>2023-02-24T02:18:35.000Z</updated>
+    <updated>2023-02-24T08:19:09.000Z</updated>
     <summary type="html"><![CDATA[<figure><img src="http://cdn.hhui.top/column/mongo_cover.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
 <h2> MongoDB零基础入门</h2>
 <p>MongoDB 是一个基于分布式文件存储的数据库，本片文档主要面向0基础的小伙伴，如何迅速的学会MongoDB的基本知识点以及掌握基础的CURD，实现业务支撑</p>
@@ -2105,7 +2179,7 @@
 <p>写一个简单的测试类，看下mongodb是否连接成功，是否可以正常操作</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面提供了两个方法，新增和查询，简单的使用姿势如</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后开始执行，查看输出，结果演示如下</p>
-<figure><img src="/imgs/181213/00.gif" alt="gif.gif" tabindex="0" loading="lazy"><figcaption>gif.gif</figcaption></figure>
+<figure><img src="https://hhui.top/imgs/181213/00.gif" alt="gif.gif" tabindex="0" loading="lazy"><figcaption>gif.gif</figcaption></figure>
 <h4> 2.4 说明</h4>
 <p>最后针对认证的问题，需要额外提一句，开始测试的时候，使用的配置如下</p>
 <div class="language-properties line-numbers-mode" data-ext="properties"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然而因为mongo采用的是SHA-1加密方式，所以始终验证不通过；然后查了一下，各种让改mongo的验证版本，改回去用CR的方式；但明显这种并不是一种好的解决方式，既然新的版本选择了新的加密方式，总有他的理由，所以应该改的还是spring的使用姿势；目前还没找到匹配上面这种配置方式的解决方案；</p>
@@ -2127,7 +2201,7 @@
 <h4> 1.0. 环境准备</h4>
 <p>在正式开始之前，先准备好环境，搭建好工程，对于这一步的详细信息，可以参考博文: <a href="http://spring.hhui.top/spring-blog/2018/12/13/181213-SpringBoot%E9%AB%98%E7%BA%A7%E7%AF%87MongoDB%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener noreferrer">181213-SpringBoot高级篇MongoDB之基本环境搭建与使用</a></p>
 <p>接下来，在一个集合中，准备一下数据如下，我们的基本查询范围就是这些数据</p>
-<figure><img src="http://spring.hhui.top/spring-blog/imgs/190113/00.jpg" alt="data" tabindex="0" loading="lazy"><figcaption>data</figcaption></figure>
+<figure><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2pwZy9kWVY5Y0FXNjVrYTJnZHpOWjZKaWFpYmljOHhaNGliRHJVS1V1N3oxc1FoaWFKeHBieTRwMk1uSmtpY2ljVDIyOVVpYXNMZWlid3FmaWJTZHlKTnprWVdhUE1iTmtvQkEvNjQwP3d4X2ZtdD1qcGVn?x-oss-process=image/format,png" alt="data" tabindex="0" loading="lazy"><figcaption>data</figcaption></figure>
 <h4> 1.1. 根据字段进行查询</h4>
 <p>最常见的查询场景，比如我们根据查询<code>user=一灰灰blog</code>的数据，这里主要会使用<code>Query</code> + <code>Criteria</code> 来完成</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面是一个实际的case，从中可以知道一般的查询方式为:</p>
@@ -8876,83 +8950,6 @@ docker安装： <code>docker pull docker.elastic.co/elasticsearch/elasticsearch:
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2019-12-23T18:55:02.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">1.基于内存认证（一）</title>
-    <id>https://liuyueyi.github.io/tutorial/spring/security/basic/200111-SpringBoot-%E6%95%B4%E5%90%88-SpringSecurity-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AD%98%E8%AE%A4%E8%AF%81%EF%BC%88%E4%B8%80%EF%BC%89.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/spring/security/basic/200111-SpringBoot-%E6%95%B4%E5%90%88-SpringSecurity-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AD%98%E8%AE%A4%E8%AF%81%EF%BC%88%E4%B8%80%EF%BC%89.html"/>
-    <updated>2023-02-10T04:50:05.000Z</updated>
-    <summary type="html"><![CDATA[<p>在第一篇的教程中，我们简单的了解了一下SpringSecurity的使用姿势，添加依赖，在<code>application.yml</code>文件中加几行配置，就可以实现一个基本的登录认证；</p>
-<p>默认的配置只能设置一个账号，那么如果需要多个账号可以怎么支持呢？</p>
-<p>本文将介绍一下基于内存的认证方式</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>在第一篇的教程中，我们简单的了解了一下SpringSecurity的使用姿势，添加依赖，在<code>application.yml</code>文件中加几行配置，就可以实现一个基本的登录认证；</p>
-<p>默认的配置只能设置一个账号，那么如果需要多个账号可以怎么支持呢？</p>
-<p>本文将介绍一下基于内存的认证方式</p>
-<!-- more -->
-<h2> I. 内存认证</h2>
-<p>基于内存保存认证信息的方式，本篇博文中，会介绍两种常见的使用姿势</p>
-<h3> 0. 项目配置</h3>
-<p>环境配置和前面一致，相关内容可以参考博文: <a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247484424&amp;idx=1&amp;sn=614b861a69c5c04b193b5192d2c8b0e6" target="_blank" rel="noopener noreferrer">191223-SpringBoot 整合 SpringSecurity 之起源篇（零）</a></p>
-<h3> 1. WebSecurityConfigurerAdapter</h3>
-<p>这里主要是借助<code>SpringSecurity</code>的配置适配器来处理，下面是一个简单的case</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>主要逻辑在 <code>configure</code>这个方法中，但是需要注意，我们额外的设置了密码的加密方式, 当我们不设置这个的时候，实际登录的时候会发现，即便你输入了正确的用户名密码，也会提示失败(欢迎各位大佬实测一下)</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>其次，在创建用户的时候，需要注意的是，除了设置了用户名和密码之外，还给用户加上了一个角色，这个会在后续文章的RBAC（基于角色的授权）中介绍它的作用</p>
-<h3> 2. UserDetailsService</h3>
-<p>这里介绍另外一种方式，在后面的db中保存认证信息时，也会用到；在SpringSecurity的实现中，通过 UserDetailService 这个bean来根据用户名查询对应的用户信息；所以我们只需要实现一个我们自定义的Bean来替换默认的，就可以来实现我们的目标</p>
-<p>我们的配置类如下</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 测试</h3>
-<p>上面两种方式，都可以实现在内存中保存认证信息，接下来我们进入实测环节，首先写一个http接口</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>在实际测试时，上面两种case都是ok的，下面的演示过程主要是基于第二种方式给出的示例</p>
-<figure><img src="/imgs/200111/00.gif" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h2> II. 其他</h2>
-<h3> 0. 系列博文&amp;项目源码</h3>
-<p><strong>博文</strong></p>
-<ul>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247484424&amp;idx=1&amp;sn=614b861a69c5c04b193b5192d2c8b0e6" target="_blank" rel="noopener noreferrer">191223-SpringBoot 整合 SpringSecurity 之起源篇（零）</a></li>
-</ul>
-<p><strong>源码</strong></p>
-<ul>
-<li>工程：<a href="https://github.com/liuyueyi/spring-boot-demo" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/spring-boot-demo</a></li>
-<li>源码：
-<ul>
-<li><a href="https://github.com/liuyueyi/spring-boot-demo/tree/master/spring-security/001-authentication-mem-config" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/spring-boot-demo/tree/master/spring-security/001-authentication-mem-config</a></li>
-<li><a href="https://github.com/liuyueyi/spring-boot-demo/tree/master/spring-security/001-authentication-mem-userdetail" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/spring-boot-demo/tree/master/spring-security/001-authentication-mem-userdetail</a></li>
-</ul>
-</li>
-</ul>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="SpringSecurity"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2020-01-11T11:53:44.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">SpringSecurity</title>
-    <id>https://liuyueyi.github.io/tutorial/spring/security/basic/</id>
-    <link href="https://liuyueyi.github.io/tutorial/spring/security/basic/"/>
-    <updated>2023-02-10T04:50:05.000Z</updated>
-    <summary type="html"><![CDATA[<p>SpringBoot Security基础系列教程，目标是实现权限管理的无障碍接入使用</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>SpringBoot Security基础系列教程，目标是实现权限管理的无障碍接入使用</p>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2023-02-10T04:50:05.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
 </feed>
