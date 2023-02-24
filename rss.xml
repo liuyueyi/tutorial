@@ -6,8 +6,8 @@
     <link>https://liuyueyi.github.io/tutorial/</link>
     <description>一灰灰的全网知识站点</description>
     <language>zh-CN</language>
-    <pubDate>Fri, 24 Feb 2023 08:23:34 GMT</pubDate>
-    <lastBuildDate>Fri, 24 Feb 2023 08:23:34 GMT</lastBuildDate>
+    <pubDate>Fri, 24 Feb 2023 09:23:43 GMT</pubDate>
+    <lastBuildDate>Fri, 24 Feb 2023 09:23:43 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 一灰灰blog</copyright>
@@ -1001,7 +1001,7 @@
       <source url="https://liuyueyi.github.io/tutorial/rss.xml">SpringBoot整合MongoDB</source>
       <description>SpringBoot 整合 MongoDB SpringBoot + MongoDB SpringBoot生态下，掌握MongoDB的CURD</description>
       <pubDate>Fri, 24 Feb 2023 08:19:09 GMT</pubDate>
-      <content:encoded><![CDATA[<p><a href="/spring/db/MongoDB/" target="_blank" rel="noopener noreferrer">SpringBoot 整合 MongoDB</a></p>
+      <content:encoded><![CDATA[<p><a href="/tutorial/spring/db/MongoDB/" target="blank">SpringBoot 整合 MongoDB</a></p>
 <div class="hint-container info">
 <p class="hint-container-title">SpringBoot + MongoDB</p>
 <p>SpringBoot生态下，掌握MongoDB的CURD</p>
@@ -1073,7 +1073,7 @@
 <p>原生的mongodb知识点，如基础概念，CURD等</p>
 </div>
 <ul>
-<li><a href="/spring/db/MongoDB/" target="_blank" rel="noopener noreferrer">SpringBoot 整合 MongoDB</a></li>
+<li><a href="/tutorial/spring/db/MongoDB/" target="blank">SpringBoot 整合 MongoDB</a></li>
 </ul>
 <div class="hint-container info">
 <p class="hint-container-title">SpringBoot + MongoDB</p>
