@@ -13,6 +13,51 @@ export const zhSidebar = sidebar({
       ]
     }
   ],
+  "/db/": [
+    "",
+    {
+      text: "MySql",
+      icon: "mysql",
+      prefix: "mysql/",
+      collapsible: true,
+      children: "structure",
+    },
+    {
+      text: "MongoDB",
+      icon: "file",
+      prefix: "mongodb/",
+      collapsible: true,
+      children: "structure",
+    },
+    {
+      text: "influxdb",
+      icon: "time",
+      prefix: "influx/",
+      collapsible: true,
+      children: "structure",
+    },
+    {
+      text: "ClickHouse",
+      icon: "OS",
+      prefix: "clickhouse/",
+      collapsible: true,
+      children: "structure",
+    },
+    {
+      text: "Redis",
+      icon: "cache",
+      prefix: "redis/",
+      collapsible: true,
+      children: "structure",
+    },
+    {
+      text: "ElasticSearch",
+      icon: "search",
+      prefix: "es/",
+      collapsible: true,
+      children: "structure",
+    },
+  ],
   "/java/": [
     "",
     {

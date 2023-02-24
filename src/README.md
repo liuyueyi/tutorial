@@ -22,7 +22,7 @@ features:
   - title: 数据库
     icon: view
     details: 文档型数据库、关系型数据库、时序数据库系列教程
-    link: /database/
+    link: /db/
 
   - title: 分布式专栏
     icon: tree

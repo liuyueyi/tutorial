@@ -78,6 +78,44 @@ export const zhNavbar = navbar([
     ],
   },
   {
+    text: "数据库",
+    icon: "view",
+    prefix: "/db/",
+    children: [
+      "",
+      {
+        text: "MySql",
+        prefix: "mysql/",
+        children: [""],
+      },
+      {
+        text: "MongoDB",
+        prefix: "mongodb/",
+        children: [""],
+      },
+      {
+        text: "Influx",
+        prefix: "influxdb/",
+        children: [""],
+      },
+      {
+        text: "ClickHouse",
+        prefix: "clickhouse/",
+        children: [""],
+      },
+      {
+        text: "Redis",
+        prefix: "redis/",
+        children: [""],
+      },
+      {
+        text: "ElasticSearch",
+        prefix: "es/",
+        children: [""],
+      },
+    ],
+  },
+  {
     text: "开源项目",
     icon: "github",
     prefix: "/git/",
