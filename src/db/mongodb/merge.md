@@ -1693,7 +1693,7 @@ public class Application {
 
 然后开始执行，查看输出，结果演示如下
 
-![gif.gif](/imgs/181213/00.gif)
+![gif.gif](https://hhui.top/imgs/181213/00.gif)
 
 #### 2.4 说明
 
@@ -1744,7 +1744,7 @@ spring.data.mongodb.port=27017
 
 接下来，在一个集合中，准备一下数据如下，我们的基本查询范围就是这些数据
 
-![data](http://spring.hhui.top/spring-blog/imgs/190113/00.jpg)
+![data](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2pwZy9kWVY5Y0FXNjVrYTJnZHpOWjZKaWFpYmljOHhaNGliRHJVS1V1N3oxc1FoaWFKeHBieTRwMk1uSmtpY2ljVDIyOVVpYXNMZWlid3FmaWJTZHlKTnprWVdhUE1iTmtvQkEvNjQwP3d4X2ZtdD1qcGVn?x-oss-process=image/format,png)
 
 #### 1.1. 根据字段进行查询
 
