@@ -81,6 +81,14 @@ export const zhSidebar = sidebar({
       children: "structure"
     },
   ],
+  "/spring/": [
+    {
+      text: "扩展点",
+      icon: "process",
+      prefix: "extend/",
+      children: "structure",
+    },
+  ],
   "/spring/basic/": [
     "",
     {
@@ -111,6 +119,12 @@ export const zhSidebar = sidebar({
       text: "消息事件",
       collapsible: true,
       prefix: "事件/",
+      children: "structure"
+    },
+    {
+      text: "缓存",
+      collapsible: true,
+      prefix: "缓存/",
       children: "structure"
     },
     {
@@ -168,6 +182,12 @@ export const zhSidebar = sidebar({
       text: "MyBatis",
       collapsible: true,
       prefix: "Mybatis/",
+      children: "structure"
+    },
+    {
+      text: "基础",
+      collapsible: true,
+      prefix: "基础/",
       children: "structure"
     },
     {
@@ -327,7 +347,5 @@ export const zhSidebar = sidebar({
       children: "structure"
     },
   ],
-  "/spring/extend/": [
-    "",
-  ],
+  
 });
