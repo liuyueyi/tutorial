@@ -242,7 +242,7 @@ public class Application {
 }
 ```
 
-![](/imgs/230817/00.jpg)
+![](/imgs/230719/00.jpg)
 
 从上图可以看出，myabtis将具体的sql执行，返回的行数等信息进行了返回，但是这个sql，并不是一个可以直接执行的，还需要我们自己来拼装一下，为了解决这个问题，可以通过 [https://book.hhui.top/sql.html](https://book.hhui.top/sql.html) 来进行sql的自动拼接
 
@@ -269,7 +269,7 @@ Map map = jdbcTemplate.queryForMap("select * from money where id = ?", po.getId(
 log.info("查询: {}", map);
 ```
 
-![](/imgs/230817/01.jpg)
+![](/imgs/230719/01.jpg)
 
 druid的默认输出日志中，并没有将请求参数打印出来，其效果相比较于mybatis而言，信息更少一些
 
@@ -450,7 +450,7 @@ public class SqlStateInterceptor implements Interceptor {
 
 然后将第一种测试用例再跑一下，实际输出如下
 
-![](/imgs/230817/02.jpg)
+![](/imgs/230719/02.jpg)
 
 
 ### 3. 小结
