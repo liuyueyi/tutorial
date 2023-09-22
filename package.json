@@ -30,6 +30,7 @@
     "vuepress-webpack": "2.0.0-beta.60"
   },
   "devDependencies": {
+    "vuepress": "2.0.0-beta.60",
     "vuepress-plugin-copy-code2": "^2.0.0-beta.171",
     "vuepress-plugin-copyright2": "^2.0.0-beta.171",
     "vuepress-plugin-photo-swipe": "^2.0.0-beta.171",

@@ -170,7 +170,7 @@ VALUES (3, '333333-0f85-4dd5-845c-7c5df3746e92', 'data', 'data', 0, 0);
 
 然后再次执行，既可以看到db中会新增一条数据
 
-![](/spring-blog/imgs/221221/02.jpg)
+![](/imgs/221221/02.jpg)
 
 
 若`spring.jpa.hibernate.ddl-auto: create`，则再资源目录下，新建`import.sql`文件，来实现数据初始化
