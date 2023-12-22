@@ -13,6 +13,16 @@ export const zhSidebar = sidebar({
       ]
     }
   ],
+  "/column/": [
+    "",
+    {
+      text: "技术管理",
+      icon: "manager",
+      prefix: "techmanager/",
+      collapsible: true,
+      children: "structure",
+    },
+  ],
   "/db/": [
     "",
     {
