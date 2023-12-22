@@ -168,7 +168,7 @@ public class Application {
 
 直接访问，表现如下
 
-![](s/imgs/231027/00.jpg)
+![](/imgs/231027/00.jpg)
 
 
 从截图可以看出，再html标签中，直接使用`${hu}`获取长整型时，显示正常；
