@@ -33,7 +33,7 @@ keywords:
 
 雪花算法可以说是业界内生成全局唯一id的经典算法，其基本原理也比较简单
 
-![](/tutorial/imgs/231026/00.jpg)
+![](/imgs/231026/00.jpg)
 
 Snowflake 以 64 bit 来存储组成 ID 的4 个部分：
 
@@ -308,12 +308,12 @@ public class Snowflake implements Serializable {
 
 1. 记录上次生成id的时间戳，若当前时间戳小于上次产生的时间戳，则表示出现了时钟回拨，超过一定间隔，则直接抛异常
 
-![](/tutorial/imgs/231026/01.jpg)
+![](/imgs/231026/01.jpg)
 
 
 2. 当前时间戳生成的id数量超过了4096最大值限制，则等待下一秒
 
-![](/tutorial/imgs/231026/02.jpg)
+![](/imgs/231026/02.jpg)
 
 
 接下来看一下实际的使用
