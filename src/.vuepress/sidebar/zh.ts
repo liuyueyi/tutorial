@@ -22,6 +22,13 @@ export const zhSidebar = sidebar({
       collapsible: true,
       children: "structure",
     },
+    {
+      text: "实时聊天应用专栏",
+      icon: "websocket",
+      prefix: "im/",
+      collapsible: true,
+      children: "structure",
+    },
   ],
   "/db/": [
     "",

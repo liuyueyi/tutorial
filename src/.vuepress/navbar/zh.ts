@@ -26,6 +26,11 @@ export const zhNavbar = navbar([
         prefix: "techmanager/",
         children: [""],
       },
+      {
+        text: "实时聊天专栏",
+        prefix: "im/",
+        children: [""],
+      },
     ],
   },
   {
