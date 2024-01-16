@@ -6,8 +6,8 @@
     <link>https://liuyueyi.github.io/tutorial/</link>
     <description>一灰灰的全网知识站点</description>
     <language>zh-CN</language>
-    <pubDate>Thu, 28 Dec 2023 07:20:25 GMT</pubDate>
-    <lastBuildDate>Thu, 28 Dec 2023 07:20:25 GMT</lastBuildDate>
+    <pubDate>Tue, 16 Jan 2024 00:54:12 GMT</pubDate>
+    <lastBuildDate>Tue, 16 Jan 2024 00:54:12 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 一灰灰blog</copyright>
@@ -223,10 +223,10 @@
       <pubDate>Thu, 21 Dec 2023 08:53:46 GMT</pubDate>
     </item>
     <item>
-      <title>技术管理</title>
+      <title>一灰灰的技术管理之路</title>
       <link>https://liuyueyi.github.io/tutorial/column/techmanager/</link>
       <guid>https://liuyueyi.github.io/tutorial/column/techmanager/</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">技术管理</source>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">一灰灰的技术管理之路</source>
       <description>技术管理</description>
       <pubDate>Fri, 22 Dec 2023 03:01:10 GMT</pubDate>
       <content:encoded><![CDATA[<h2> 技术管理</h2>

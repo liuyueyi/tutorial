@@ -9,7 +9,7 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2023-12-28T07:20:25.464Z</updated>
+  <updated>2024-01-16T00:54:12.824Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
@@ -211,7 +211,7 @@
     <title type="text">QuickIM聊天专栏</title>
     <id>https://liuyueyi.github.io/tutorial/column/im/</id>
     <link href="https://liuyueyi.github.io/tutorial/column/im/"/>
-    <updated>2023-12-28T07:14:20.000Z</updated>
+    <updated>2024-01-16T00:48:11.000Z</updated>
     <summary type="html"><![CDATA[<h1> WebSocket实现实时聊天应用专栏</h1>
 ]]></summary>
     <content type="html"><![CDATA[<h1> WebSocket实现实时聊天应用专栏</h1>
@@ -231,7 +231,7 @@
     <title type="text">专栏</title>
     <id>https://liuyueyi.github.io/tutorial/column/</id>
     <link href="https://liuyueyi.github.io/tutorial/column/"/>
-    <updated>2023-12-22T03:01:10.000Z</updated>
+    <updated>2024-01-16T00:48:11.000Z</updated>
     <summary type="html"><![CDATA[<h1> 技术专栏</h1>
 <h2> ❤️ 技术管理</h2>
 <h2> 📝 高可用专栏</h2>
@@ -269,10 +269,10 @@
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
   <entry>
-    <title type="text">技术管理</title>
+    <title type="text">一灰灰的技术管理之路</title>
     <id>https://liuyueyi.github.io/tutorial/column/techmanager/</id>
     <link href="https://liuyueyi.github.io/tutorial/column/techmanager/"/>
-    <updated>2023-12-22T03:01:10.000Z</updated>
+    <updated>2024-01-16T00:48:11.000Z</updated>
     <summary type="html"><![CDATA[<h2> 技术管理</h2>
 ]]></summary>
     <content type="html"><![CDATA[<h2> 技术管理</h2>
