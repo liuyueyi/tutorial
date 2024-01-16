@@ -1,6 +1,6 @@
 ---
-title: 技术管理
-icon: sun
+title: 一灰灰的技术管理之路
+icon: repo
 index: false
 ---
 

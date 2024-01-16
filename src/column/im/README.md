@@ -1,5 +1,5 @@
 ---
-icon: view
+icon: wechat
 title: QuickIM聊天专栏
 index: false
 ---

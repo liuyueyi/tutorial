@@ -17,17 +17,47 @@ export const zhSidebar = sidebar({
     "",
     {
       text: "技术管理",
-      icon: "manager",
+      icon: "repo",
       prefix: "techmanager/",
       collapsible: true,
       children: "structure",
     },
     {
-      text: "实时聊天应用专栏",
-      icon: "websocket",
-      prefix: "im/",
+      text: "应用专栏",
+      icon: "app",
+      prefix: "",
       collapsible: true,
-      children: "structure",
+      children: [
+        {
+          text: "实时聊天",
+          icon: "wechat",
+          prefix: "im/",
+          collapsible: true,
+          children: "structure",
+        },
+        {
+          text: "预警",
+          icon: "at",
+          prefix: "alarm/",
+          collapsible: true,
+          children: "structure",
+        }
+      ],
+    },
+    {
+      text: "架构",
+      icon: "define",
+      prefix: "",
+      collapsible: true,
+      children: [
+        {
+          text: "分布式专栏",
+          icon: "discover",
+          prefix: "distribute/",
+          collapsible: true,
+          children: "structure",
+        },
+      ],
     },
   ],
   "/db/": [
