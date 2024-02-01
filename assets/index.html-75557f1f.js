@@ -1,1 +1,0 @@
-import{_ as t,V as a,W as c,Y as e,Z as n}from"./framework-eef79181.js";const r={},s=e("h2",{id:"技术管理",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#技术管理","aria-hidden":"true"},"#"),n(" 技术管理")],-1),o=[s];function _(d,i){return a(),c("div",null,o)}const l=t(r,[["render",_],["__file","index.html.vue"]]);export{l as default};
