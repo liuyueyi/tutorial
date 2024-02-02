@@ -1,1 +1,0 @@
-import{_ as t,V as c,W as a,Y as e,Z as o}from"./framework-eef79181.js";const s={},n=e("h1",{id:"websocket实现实时聊天应用专栏",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#websocket实现实时聊天应用专栏","aria-hidden":"true"},"#"),o(" WebSocket实现实时聊天应用专栏")],-1),r=[n];function _(d,i){return c(),a("div",null,r)}const l=t(s,[["render",_],["__file","index.html.vue"]]);export{l as default};
