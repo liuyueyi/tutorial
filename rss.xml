@@ -6,8 +6,8 @@
     <link>https://liuyueyi.github.io/tutorial/</link>
     <description>一灰灰的全网知识站点</description>
     <language>zh-CN</language>
-    <pubDate>Sun, 04 Feb 2024 09:55:49 GMT</pubDate>
-    <lastBuildDate>Sun, 04 Feb 2024 09:55:49 GMT</lastBuildDate>
+    <pubDate>Mon, 05 Feb 2024 01:40:38 GMT</pubDate>
+    <lastBuildDate>Mon, 05 Feb 2024 01:40:38 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 一灰灰blog</copyright>
@@ -42,8 +42,14 @@
     <category>JDK</category>
     <category>SpringCloud</category>
     <category>Eureka系列</category>
-    <category>Feign系列</category>
-    <category>采坑记录</category>
+    <item>
+      <title>03.入职新项目</title>
+      <link>https://liuyueyi.github.io/tutorial/column/techmanager/03.%E5%85%A5%E8%81%8C%E6%96%B0%E9%A1%B9%E7%9B%AE.html</link>
+      <guid>https://liuyueyi.github.io/tutorial/column/techmanager/03.%E5%85%A5%E8%81%8C%E6%96%B0%E9%A1%B9%E7%9B%AE.html</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">03.入职新项目</source>
+      <category>技术管理</category>
+      <pubDate>Mon, 05 Feb 2024 09:27:46 GMT</pubDate>
+    </item>
     <item>
       <title>01.契机</title>
       <link>https://liuyueyi.github.io/tutorial/column/techmanager/01.%E5%BA%8F%20%E8%BD%AC%E7%AE%A1%E7%90%86%E7%9A%84%E5%A5%91%E6%9C%BA.html</link>
@@ -142,15 +148,14 @@
 <p>当前，我们正面临一个崭新的项目挑战，这个项目不仅要求我们团队展现出卓越的专业能力，更要求我们在组织和协调上达到新的高度。值得注意的，是甲方对我们团队的组长角色（包括产品、前端、后端、测试）提出了面试考核的要求，这无疑对团队的专业素质和综合能力提出了更高的标准。</p>
 <p>在此，我必须指出，尽管这一要求在初次提出时，可能给人带来了一种被质疑或不被信任的错觉，但从专业角度看，这实际上是对项目成功完成的一种保障，也是对团队成员能力的一次全面审视。通过这样的面试考核，我们能够确保团队的每一个成员都具备足够的能力和专业知识，以应对项目中可能出现的各种挑战。</p>
 <p>作为项目团队的一员，我们应该（但是我并不想）积极地接受这一挑战。 为了应对这次的面试，我提前做了一些准备，当然并不算充分；对于技术上倒是没有什么好担心的，个人则主要从项目背景和管理方法论上做一些调研。</p>
-<h2> 准备工作</h2>
-<h3> 1. 背景调研</h3>
+<h2> 1. 背景调研</h2>
 <p>原先，我并未打算详细阐述项目背景，因为目前我参与的这个项目，与典型的IT项目存在显著差异，并且涌现出许多意料之外的挑战。鉴于这些挑战在后续的分享中可能会以各种形式不断显现，我认为有必要阐明下此项目的具体形态。当然由于某些特殊原因，我将对于项目的相关背景会做一些脱敏处理;</p>
 <p>业务类型： 垂直行业的ToB领域的电子商城</p>
 <p>项目归属： 我所在的公司的兄弟企业的核心支柱</p>
 <p>原运营方： 外部分供方</p>
 <p>任务目标： 将项目从外部分供方完整的迁移到新的项目组，并按约定实现合同约定的各专项任务</p>
 <p>当然再开始之初，上面这些背景中我只知道上面的业务类型 + 任务目标，其他的就不太清楚了；从现在往回看，这个背景中，最值得说的是这个项目的多方关系</p>
-<p><strong>项目组织关系</strong></p>
+<h3> 项目组织关系</h3>
 <figure><img src="/imgs/column/manager/02_项目关系图.jpg" alt="项目关系图" tabindex="0" loading="lazy"><figcaption>项目关系图</figcaption></figure>
 <p>这个组织关系看起来有点怪，商城这个项目的所有权在<code>孙公司B-1</code>手中，他们自己又有产研团队，为啥不自己接，而是让我所在<code>孙公司A-1</code>来接产研呢？</p>
 <p>两方面原因：</p>
@@ -160,7 +165,7 @@
 </ol>
 <p>再说句题外话，我所在的<code>孙公司A-1</code>愿意接这个项目吗？ 答案是否订的，核心原因就一点，没有利益（即不赚钱，还责任多）</p>
 <p>从项目的组织关系就可以看出，这个项目的工作模式好不起来，如何协调多方利益是个非常大挑战（还好我不是项目经理，不然我就直接投降了），对于技术管理而言，难受的就是外部协作沟通，后面会准备一篇专文来说我这一年的愉(bie)快(qu)体验</p>
-<p><strong>项目业务背景</strong></p>
+<h3> 项目业务背景</h3>
 <p>一个垂直领域面向企业端的电子商城，再开始之处，对于这个商城我所有能获取到的信息就是借助搜索引擎找到的商城主站，本想体验一下这个商城有哪些功能板块，具体的业务形态，结果不让注册、未登录的用户只能看到商品详情，连价格也看不到...，所以再实际进场这个项目之前，我对它的了解两个概念 “TOB" + “电子商城”</p>
 <p>以我个人的实际体会来说，建议大家再到一个新的项目组做技术管理之前，做好背景调研是一个非常重要的前置工作，比如大家都是这个领域的新手、你怎么快速脱颖而出？ 若只有你是新来的、你怎么让别人信服你？ 很，但是又很幸运，项目组内了解过这个项目的产研不过两三人，且了解得都不算多，所以我的小白表现并不算突出</p>
 <p>基于我个人的实际经历，我强烈建议在加入一个新的项目团队并担任技术管理职责之前，进行充分的背景调研是至关重要的。这一步骤对于项目的顺利进行和您的个人发展都至关重要。</p>
@@ -188,17 +193,17 @@
 </li>
 </ol>
 <p>显然这一块我的工作做的并不合格，但幸运的是，团队中对该项目有深入了解的成员并不多。这意味着，尽管我是新手，但我的不足并没有立即凸显出来。然而，这并不意味着可以忽视背景调研的重要性。</p>
-<h3> 2. 技术管理方法论学习</h3>
+<h2> 2. 技术管理方法论学习</h2>
 <p>由于之前的管理经验不够成熟，或者说不成体系，因此再面对这个新的转机时，求助一下外援楼仔（他的公众号就是“楼仔”，干货满满），学习下相关的方法论，当时的目的比较简单，一个是应付甲方爸爸的面试，另外一个则是规划一下后面怎么带队</p>
 <figure><img src="/imgs/column/manager/02_管理经验图谱.png" alt="项目关系图" tabindex="0" loading="lazy"><figcaption>项目关系图</figcaption></figure>
 <p>上图是之前准备的管理经验图谱，接下来会从两个方面进行细说</p>
-<h4> 团队管理方法论</h4>
+<h3> 2.1 团队管理方法论</h3>
 <blockquote>
 <p>事先声明：市面上有很多的团队管理书籍及相关理论，以下内容仅个人看法、一家之谈，由于我个人经验有限、知识储备不足，如有错漏，误导之处，还请海涵</p>
 </blockquote>
 <p>首先这里明确一点，团队管理并不局限于自己所在团队内的相关工作，从我们自己所处的阶层来说，可以区分为向上汇报、横向沟通以及向下管理，还有一个对外的沟通这里没有提及，后续补上</p>
 <figure><img src="/imgs/column/manager/02_团队管理.png" alt="团队管理" tabindex="0" loading="lazy"><figcaption>团队管理</figcaption></figure>
-<p><strong>向上汇报</strong></p>
+<h4> 向上汇报</h4>
 <p>向上沟通对我个人而言是一个非常有挑战的事情，但是它又是对每一个技术管理者而言，不得不面对的事情</p>
 <p>就我个人的感触而言，向上沟通主要有下面几个困扰：</p>
 <ol>
@@ -221,12 +226,12 @@
 </ul>
 </li>
 </ul>
-<p><strong>横向沟通</strong></p>
+<h4> 横向沟通</h4>
 <p>横向沟通主要是指和你同层级的技术管理、另外的团队之间的沟通协作，对于研发团队而言，跨团队的交流非常普遍，比如前后端协作，研发测试，研发产品都属于这一类</p>
 <p>横向沟通的目的比较存粹，<code>信息同步、目标拉齐</code></p>
 <p>对于技术管理者而言，我们需要提前了解业务动向，知道产品准备做哪些规划，我们现在的资源是否足以应对产品接下来的计划，协作的团队是否可以跟上等等问题；切记在自己啥也不了解的情况下，接了需求，给团队带来无法交付的任务</p>
 <p>其次对于技术管理者而言，横向沟通这里还有一个常见的场景就是帮助团队内的小伙伴和其他团队人员的协作，由于身份地位的问题，你组内成员的话语权没有你的大，他们在跨团队的推动中往往会遇到很多他们解决不了的问题，作为一个靠谱的领导者，不应对此视而不见、全部视为他们自己应该解决的问题，该站出来时就得站出来，能抗得住事、帮团队解决困难是建立个人领导力必不可少的要求</p>
-<p><strong>向下管理</strong></p>
+<h4> 向下管理</h4>
 <p>团队内管理，可以说是技术管理的任务重心，从方法论中学到的核心点在于：</p>
 <ul>
 <li>
@@ -253,10 +258,10 @@
 </ul>
 </li>
 </ul>
-<h4> 项目管理方法论</h4>
+<h3> 2.2 项目管理方法论</h3>
 <p>关于项目管理的方法论将主要从项目流程管理与风险进度管理进行说明，关于这块的内容就不进行展开，有兴趣的小伙伴请关注第六篇</p>
 <figure><img src="/imgs/column/manager/02_项目管理.png" alt="项目管理" tabindex="0" loading="lazy"><figcaption>项目管理</figcaption></figure>
-<p><strong>项目流程管理</strong></p>
+<h4> 项目流程管理</h4>
 <ol>
 <li>建立需求池机制</li>
 </ol>
@@ -298,37 +303,130 @@
 <li>再需求or项目上线之后，再跟踪一段时间，看下具体表现情况如何，收集相关数据指标</li>
 <li>通过效果的追踪反馈，一方面让我们能更清晰的了解业务，另一方面也可以认识到自己的工作价值</li>
 </ul>
-<p><strong>风险管控</strong></p>
-<p>风险是每一个管理者不得不面对的问题，如果遇到通情达理的业务方，还好说，否则这块是真难受。</p>
-<ol>
-<li>交付进度风险</li>
-</ol>
+<h4> 风险管控</h4>
+<p>风险管理是每位管理者必须面对的挑战，尤其是当遇到理解深度和合作态度各异的业务方时，这一挑战尤为显著。</p>
+<p><strong>1. 交付进度风险</strong></p>
 <ul>
-<li>时间问题：通常当我们的排期预留有充足的buffer，再过程中有实时跟进研发迭代进度，整体的交付问题不会太大</li>
+<li>时间管理：在项目排期阶段，应当预留合理的时间缓冲，以应对潜在的延误。同时，需实施持续的项目进度监控，确保研发迭代按计划推进，从而降低整体交付风险。</li>
 </ul>
-<p>从上面的描述也可以看出，我们重点做好两件事情：排期时留缓冲，过程中跟进度</p>
-<p>若再过程中，发现由于之前的评估乐观，导致按时无法交付，那么就需要及时和业务方沟通反馈，看是否可以调整交付时间，或者简化需求设计，实在不行就抽调人手、加班加点冲刺</p>
+<p>若在项目执行过程中，发现由于评估过于乐观导致无法按期交付，应立即与业务方进行沟通，探讨是否可能调整交付时间表或简化需求。在极端情况下，可能需要重新分配资源或采取加班措施以确保项目按期完成。</p>
 <ul>
-<li>倒排期需求：有严格的时间点控制，对于此，我们需要做好任务拆分、优先级制定</li>
+<li>倒排期需求处理：对于具有严格时限的需求，需要细致地进行任务拆分和优先级排序。</li>
 </ul>
-<p>高优先级的先保障，低优先级的往后排；先保证最小交付粒度的准点上线，以应对各种意外导致完整需求无法上线时，还有一个备选的方案，减轻损失</p>
+<p>优先保障高优先级任务的完成，而低优先级任务则相应推迟。确保至少具备最小功能集的按时上线交付能力，以便在意外情况发生时，能够有备选方案减轻损失。</p>
 <ol start="2">
 <li>交付质量风险</li>
 </ol>
 <ul>
-<li>功能的质量保障：是否有bug，是否影响主流程（和测试打好关系）</li>
-<li>安全保障：是否有漏洞</li>
+<li>功能质量保证：确保交付的功能无重大缺陷，且不会对主流程造成影响，这需要与测试团队建立良好的合作关系。</li>
+<li>安全保障：确保交付的功能不存在安全漏洞，保护系统免受潜在威胁。</li>
 </ul>
 <ol start="3">
 <li>其他非预期风险</li>
 </ol>
-<p>凡事都有不可控的风险，如何应对没有定论，需要提前做好心里准备</p>
+<p>在项目管理中，总存在不可预测的风险。对此，没有固定的应对策略，但需要提前做好心理准备，并制定灵活的应急计划。</p>
 <ul>
-<li>人员变更（如裁员，换组）</li>
-<li>需求变更</li>
-<li>突发变故（请假、更高优先级任务插入、多任务并行开发等）</li>
+<li>人员变动风险：如裁员或团队重组等情况，需提前规划人力资源的备份计划。</li>
+<li>需求变更风险：对于需求的变化，需要保持灵活性，及时调整项目计划以适应新的要求。</li>
+<li>突发事件应对：如员工请假、更高优先级任务的插入、多任务并行开发等情况，需制定相应的风险管理策略，以确保项目的顺利进行。</li>
 </ul>
-<h2> 面试</h2>
+<h3> 小结</h3>
+<p>程序员转型为技术管理者是一个重大的职业发展步骤，它要求你不仅要精通技术，还要掌握管理技能。 以下是一些来自于网络的建议，也风险给阅读本文的小伙伴</p>
+<ol>
+<li>
+<p><strong>提升沟通技巧</strong>：</p>
+<ul>
+<li>学习如何清晰、有效地与团队成员和其他部门沟通。</li>
+<li>练习将复杂的技术问题解释给非技术人员听。</li>
+</ul>
+</li>
+<li>
+<p><strong>培养团队领导能力</strong>：</p>
+<ul>
+<li>主动承担更多责任，比如领导小型项目或指导新员工。</li>
+<li>阅读领导力相关书籍，参加相关的工作坊或研讨会。</li>
+</ul>
+</li>
+<li>
+<p><strong>了解管理理论和实践</strong>：</p>
+<ul>
+<li>阅读有关管理的书籍，学习不同的管理风格和理论。</li>
+<li>考虑报名参加管理类课程或获得相关证书。</li>
+</ul>
+</li>
+<li>
+<p><strong>掌握项目管理知识</strong>：</p>
+<ul>
+<li>学习项目管理的基础知识，包括如何制定计划、监控进度和管理预算。</li>
+<li>熟悉使用项目管理工具，如Microsoft Project、JIRA等。</li>
+</ul>
+</li>
+<li>
+<p><strong>增强商业意识</strong>：</p>
+<ul>
+<li>理解公司的商业模式、市场定位以及产品战略。</li>
+<li>学习基础的商业和财务知识。</li>
+</ul>
+</li>
+<li>
+<p><strong>人员管理技能</strong>：</p>
+<ul>
+<li>学习如何激励团队成员，进行绩效评估和职业规划。</li>
+<li>了解如何处理工作中的冲突和建立有效的团队文化。</li>
+</ul>
+</li>
+<li>
+<p><strong>关注技术和行业趋势</strong>：</p>
+<ul>
+<li>持续学习新技术、工具和方法论，了解它们对团队和业务的潜在影响。</li>
+</ul>
+</li>
+<li>
+<p><strong>扩展人际网络</strong>：</p>
+<ul>
+<li>与其他技术管理人员建立联系，交流经验和观点。</li>
+<li>加入专业组织和参与行业会议。</li>
+</ul>
+</li>
+<li>
+<p><strong>时间管理和优先级设定</strong>：</p>
+<ul>
+<li>学习如何高效地管理自己的时间，平衡管理职责和技术工作。</li>
+<li>练习确定任务优先级，以有效达成目标。</li>
+</ul>
+</li>
+<li>
+<p><strong>获取反馈和自我反思</strong>：</p>
+<ul>
+<li>定期向同事和上级寻求关于你管理和领导能力的反馈。</li>
+<li>定期进行自我反思，识别改进空间。</li>
+</ul>
+</li>
+<li>
+<p><strong>实践经验</strong>：</p>
+<ul>
+<li>在当前的编程职位上寻找机会承担更多管理职责。</li>
+<li>参与跨部门的项目，增加管理经验。</li>
+</ul>
+</li>
+<li>
+<p><strong>心理准备</strong>：</p>
+<ul>
+<li>准备好接受从纯技术角色到更多涉及协调和人际关系的工作的转变。</li>
+<li>调整心态，接受你可能不再有太多时间亲自编码的现实。</li>
+</ul>
+</li>
+</ol>
+<p>在项目管理的准备工作中，确实存在众多需要考虑的因素。对于初学者而言，试图同时关注所有细节可能会造成注意力分散，导致无法在任何方面达到最佳状态。因此，识别自己的弱点并集中力量突破最为关键。</p>
+<p>基于此，我的准备策略聚焦于两个核心领域：项目背景的熟悉度以及管理方法论的掌握。</p>
+<ul>
+<li>项目背景熟悉</li>
+</ul>
+<p>提前了解项目的业务环境、组织关系，能迅速发挥自己的能量</p>
+<ul>
+<li>管理方法论</li>
+</ul>
+<p>掌握项目管理的核心原则和方法论，如敏捷管理、水平瀑布模型或混合方法等项目管理方法（上面没有细说），团队人员管理、梯度建设等</p>
 ]]></content:encoded>
       <enclosure url="https://liuyueyi.github.io/tutorial/imgs/column/manager/02_项目关系图.jpg" type="image/jpeg"/>
     </item>
@@ -571,48 +669,47 @@
       <link>https://liuyueyi.github.io/tutorial/column/techmanager/</link>
       <guid>https://liuyueyi.github.io/tutorial/column/techmanager/</guid>
       <source url="https://liuyueyi.github.io/tutorial/rss.xml">一灰灰的技术管理之路</source>
-      <description>技术管理 目录清单： 序 契机 准备工作 入职新项目 团队搭建 招人/带人 新项目交接，团队磨合 如何做项目的持续交接（项目流程规范制定与宣讲） 建立信任：攻坚、身先士卒 进入正轨 抗压与异常的应对 任务过重，压力分摊 突发故障及应对方案：超付 中间序曲：转正定级</description>
+      <description>技术管理之路 序 01. 契机 02. 准备工作 03. 入职新项目</description>
       <pubDate>Fri, 22 Dec 2023 03:01:10 GMT</pubDate>
-      <content:encoded><![CDATA[<h2> 技术管理</h2>
-<p>目录清单：</p>
+      <content:encoded><![CDATA[<h2> 技术管理之路</h2>
 <p><strong>序</strong></p>
-<ol>
-<li>契机</li>
-<li>准备工作</li>
-<li>入职新项目</li>
-</ol>
+<ul class="task-list-container">
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-0" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-0"> <a href="01.%E5%BA%8F%20%E8%BD%AC%E7%AE%A1%E7%90%86%E7%9A%84%E5%A5%91%E6%9C%BA">01. 契机</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-1" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-1"> <a href="02.%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">02. 准备工作</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-2" disabled="disabled"><label class="task-list-item-label" for="task-item-2"> <a href="03.%E5%85%A5%E8%81%8C%E6%96%B0%E9%A1%B9%E7%9B%AE">03. 入职新项目</a></label></li>
+</ul>
 <p><strong>团队搭建</strong></p>
-<ol start="4">
-<li>招人/带人</li>
-<li>新项目交接，团队磨合</li>
-<li>如何做项目的持续交接（项目流程规范制定与宣讲）</li>
-<li>建立信任：攻坚、身先士卒</li>
-<li>进入正轨</li>
-</ol>
+<ul class="task-list-container">
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-3" disabled="disabled"><label class="task-list-item-label" for="task-item-3"> <a href="">04. 招人/带人</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-4" disabled="disabled"><label class="task-list-item-label" for="task-item-4"> <a href="">05. 新项目交接，团队磨合</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-5" disabled="disabled"><label class="task-list-item-label" for="task-item-5"> <a href="">06. 如何做项目的持续交接（项目流程规范制定与宣讲）</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-6" disabled="disabled"><label class="task-list-item-label" for="task-item-6"> <a href="">07. 建立信任：攻坚、身先士卒</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-7" disabled="disabled"><label class="task-list-item-label" for="task-item-7"> <a href="">08. 进入正轨</a></label></li>
+</ul>
 <p><strong>抗压与异常的应对</strong></p>
-<ol start="9">
-<li>任务过重，压力分摊</li>
-<li>突发故障及应对方案：超付</li>
-<li>中间序曲：转正定级</li>
-</ol>
+<ul class="task-list-container">
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-8" disabled="disabled"><label class="task-list-item-label" for="task-item-8"> <a href="">09. 任务过重，压力分摊</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-9" disabled="disabled"><label class="task-list-item-label" for="task-item-9"> <a href="">10. 突发故障及应对方案：超付</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-10" disabled="disabled"><label class="task-list-item-label" for="task-item-10"> <a href="">11. 中间序曲：转正定级</a></label></li>
+</ul>
 <p><strong>团队凝聚力</strong></p>
-<ol start="12">
-<li>营造团队氛围</li>
-<li>任务分配：能者多劳？</li>
-<li>授人以渔-软福利的宣扬：项目推进、方案设计、代码评审</li>
-<li>人员变动：怎么看离职</li>
-</ol>
+<ul class="task-list-container">
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-11" disabled="disabled"><label class="task-list-item-label" for="task-item-11"> <a href="">12. 营造团队氛围</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-12" disabled="disabled"><label class="task-list-item-label" for="task-item-12"> <a href="">13. 任务分配：能者多劳？</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-13" disabled="disabled"><label class="task-list-item-label" for="task-item-13"> <a href="">14. 授人以渔-软福利的宣扬：项目推进、方案设计、代码评审</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-14" disabled="disabled"><label class="task-list-item-label" for="task-item-14"> <a href="">15. 人员变动：怎么看离职</a></label></li>
+</ul>
 <p><strong>管理沟通</strong></p>
-<ol start="16">
-<li>向上沟通与成绩汇报</li>
-<li>横向沟通与项目协同推进</li>
-<li>向下沟通：1to1</li>
-<li>外部沟通/与甲方沟通</li>
-</ol>
+<ul class="task-list-container">
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-15" disabled="disabled"><label class="task-list-item-label" for="task-item-15"> <a href="">16. 向上沟通与成绩汇报</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-16" disabled="disabled"><label class="task-list-item-label" for="task-item-16"> <a href="">17. 横向沟通与项目协同推进</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-17" disabled="disabled"><label class="task-list-item-label" for="task-item-17"> <a href="">18. 向下沟通：1to1</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-18" disabled="disabled"><label class="task-list-item-label" for="task-item-18"> <a href="">19. 外部沟通/与甲方沟通</a></label></li>
+</ul>
 <p><strong>小结</strong></p>
-<ol start="20">
-<li>小结与展望</li>
-</ol>
+<ul class="task-list-container">
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-19" disabled="disabled"><label class="task-list-item-label" for="task-item-19"> <a href="">20. 小结与展望</a></label></li>
+</ul>
 ]]></content:encoded>
     </item>
     <item>
@@ -8210,60 +8307,6 @@
       <pubDate>Fri, 10 Feb 2023 04:50:05 GMT</pubDate>
       <content:encoded><![CDATA[<p>注册中心Eureka全知道</p>
 ]]></content:encoded>
-    </item>
-    <item>
-      <title>1.Feign请求参数包装异常问题定位</title>
-      <link>https://liuyueyi.github.io/tutorial/spring/cloud/Feign/01.190306-SpringCloud%E4%B9%8BFeign%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%8C%85%E8%A3%85%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D.html</link>
-      <guid>https://liuyueyi.github.io/tutorial/spring/cloud/Feign/01.190306-SpringCloud%E4%B9%8BFeign%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%8C%85%E8%A3%85%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D.html</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">1.Feign请求参数包装异常问题定位</source>
-      <description>通过Feign包装rpc的调用姿势，在使用的版本中发现一个奇怪的bug，大部分场景下请求正常，少数情况下请求返回400，记录下原因</description>
-      <category>SpringCloud</category>
-      <category>Feign系列</category>
-      <category>采坑记录</category>
-      <pubDate>Wed, 06 Mar 2019 12:43:08 GMT</pubDate>
-      <content:encoded><![CDATA[<p>通过Feign包装rpc的调用姿势，在使用的版本中发现一个奇怪的bug，大部分场景下请求正常，少数情况下请求返回400，记录下原因</p>
-<!-- more -->
-<h2> 场景复现</h2>
-<h3> 1. 环境相关版本</h3>
-<p>Spring版本如</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>Feign版本</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>对应的feign-core版本为</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2. 服务接口</h3>
-<p>接口形如</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>使用时报400的case</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>简单来说，接口参数为集合的情况下，如果传一个空集合，那么这就会出现400的错误</p>
-<p>通过在提供服务的应用中，写一个fitler拦截请求，打印出请求参数</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后发起rpc调用前面的测试用例，通过断点查看请求参数，确实只有两个参数，而我们传入空pairIds集合，直接被吃掉了</p>
-<figure><img src="/imgs/190306/00.jpg" alt="filter截图" tabindex="0" loading="lazy"><figcaption>filter截图</figcaption></figure>
-<p>再对应到我们的api声明方式，要求三个参数，因此问题就很清晰了，解决办法就是在api中参数的必填设置为false即可</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面只是表层的解决了问题，接下来就需要确定，为什么请求参数会被吃掉，通过浅显的推测，多半原因在feign的请求参数封装上了</p>
-<h3> 2. 问题定位</h3>
-<p>对于容易复现的问题，最佳的定位方法就是debug了，直接单步进去，找到对应的请求参数封装逻辑，</p>
-<p>第一步定位到<code>RequestTemplate</code>的创建</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>接下来深入进去之后，参数解析的位置</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>再进去一步就到了根源点</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>下图是我们最终定位的一个截图，从代码实现来看，feign的设计理念是，如果请求参数为null，空集合，则不会将参数拼接到最终的请求参数中，也就导致最终发起请求时，少了一个参数</p>
-<figure><img src="/imgs/190306/01.jpg" alt="debug截图" tabindex="0" loading="lazy"><figcaption>debug截图</figcaption></figure>
-<p>问题清晰之后，然后就可以确认下是bug还是就是这么设计的了，最简单的办法就是看最新的代码有没有改掉了，从git上，目前已经更新到10.x；10.x与9.x的差别挺大，底层很多东西重写了，然而官方的<code>Spring-Cloud-openfeing</code>并没有升级到最新，so，只能取看9.7.0版本的实现了，和9.5.2并没有太大的区别；</p>
-<p>so，站在feign开发者角度出发，这么设计的理由可能有以下几点</p>
-<ul>
-<li>既然允许传入空集合、null参数，那么在api的声明时，就有必要加上 <code>require=False</code></li>
-<li>对于这种无效的请求参数，也没有太大的必要传过去（虽然从使用者角度来说，你就应该老老实实的把我调用的参数都丢过去）</li>
-</ul>
-<h3> 3. 小结</h3>
-<p>最后小结一下，使用feign作为SpringCloud的rpc封装工具时，请注意，</p>
-<ul>
-<li>如果api的请求参数允许为null，请在注解中显示声明；</li>
-<li>此外请求方传入的null、空集合最终不会拼装的请求参数中，即对于接受者而言，就像没有这个参数一样，对于出现400错误的场景，可以考虑下是否是这种问题导致的</li>
-<li>对于复杂的请求参数，推荐使用DTO来替代多参数的类型（因为这样接口的复用性是最佳的，如新增和修改条件时，往往不需要新增api)</li>
-</ul>
-<h2> II. 其他</h2>
-<h3> 0. 项目</h3>
-<ul>
-<li>工程：<a href="https://github.com/liuyueyi/spring-boot-demo" target="_blank" rel="noopener noreferrer">spring-boot-demo</a></li>
-</ul>
-]]></content:encoded>
-      <enclosure url="https://liuyueyi.github.io/tutorial/imgs/190306/00.jpg" type="image/jpeg"/>
     </item>
   </channel>
 </rss>
