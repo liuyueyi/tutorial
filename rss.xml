@@ -6,8 +6,8 @@
     <link>https://liuyueyi.github.io/tutorial/</link>
     <description>一灰灰的全网知识站点</description>
     <language>zh-CN</language>
-    <pubDate>Mon, 05 Feb 2024 01:40:38 GMT</pubDate>
-    <lastBuildDate>Mon, 05 Feb 2024 01:40:38 GMT</lastBuildDate>
+    <pubDate>Wed, 07 Feb 2024 12:48:46 GMT</pubDate>
+    <lastBuildDate>Wed, 07 Feb 2024 12:48:46 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 一灰灰blog</copyright>
@@ -47,8 +47,16 @@
       <link>https://liuyueyi.github.io/tutorial/column/techmanager/03.%E5%85%A5%E8%81%8C%E6%96%B0%E9%A1%B9%E7%9B%AE.html</link>
       <guid>https://liuyueyi.github.io/tutorial/column/techmanager/03.%E5%85%A5%E8%81%8C%E6%96%B0%E9%A1%B9%E7%9B%AE.html</guid>
       <source url="https://liuyueyi.github.io/tutorial/rss.xml">03.入职新项目</source>
+      <description>通常来说，研发转技术管理，要么是在原团队水到渠成的升上去，要么就是抓住一个机会上面任命下来，亦或者跳槽空降。而我这次就稍微有那么点特殊了，突然要去一个新的项目组，担任一个十人左右团队的研发组长，第一个就是接受业务方的面试考核，判断下是否满足他们的要求... 因此这一篇我们将从两个方面入手，来说一下入职新项目的相关事情 1. 面试 上一篇的准备篇中，简单提到了这个项目的背景，一个全新的项目组，有PM从0到1组建团队；服务对象是兄弟单位，首要目标是将整个项目的产研由第三方的外部公司，全部转移到新的项目组来。 团队标配：产品组 + 前端组 + 测试组 + 后台组（业务 + 中台 + 订单）</description>
       <category>技术管理</category>
-      <pubDate>Mon, 05 Feb 2024 09:27:46 GMT</pubDate>
+      <pubDate>Wed, 07 Feb 2024 09:27:46 GMT</pubDate>
+      <content:encoded><![CDATA[<p>通常来说，研发转技术管理，要么是在原团队水到渠成的升上去，要么就是抓住一个机会上面任命下来，亦或者跳槽空降。而我这次就稍微有那么点特殊了，突然要去一个新的项目组，担任一个十人左右团队的研发组长，第一个就是接受业务方的面试考核，判断下是否满足他们的要求...</p>
+<p>因此这一篇我们将从两个方面入手，来说一下入职新项目的相关事情</p>
+<h2> 1. 面试</h2>
+<p>上一篇的准备篇中，简单提到了这个项目的背景，一个全新的项目组，有PM从0到1组建团队；服务对象是兄弟单位，首要目标是将整个项目的产研由第三方的外部公司，全部转移到新的项目组来。</p>
+<p>团队标配：产品组 + 前端组 + 测试组 + 后台组（业务 + 中台 + 订单）</p>
+<p>这次的面试对象就是 四个组长（产品、前端、测试及后台）</p>
+]]></content:encoded>
     </item>
     <item>
       <title>01.契机</title>
