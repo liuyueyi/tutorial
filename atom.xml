@@ -9,7 +9,7 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2024-02-20T10:08:54.657Z</updated>
+  <updated>2024-02-29T10:11:37.773Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
@@ -50,14 +50,14 @@
     <title type="text">03.入职新项目</title>
     <id>https://liuyueyi.github.io/tutorial/column/techmanager/03.%E5%85%A5%E8%81%8C%E6%96%B0%E9%A1%B9%E7%9B%AE.html</id>
     <link href="https://liuyueyi.github.io/tutorial/column/techmanager/03.%E5%85%A5%E8%81%8C%E6%96%B0%E9%A1%B9%E7%9B%AE.html"/>
-    <updated>2024-02-20T10:03:48.000Z</updated>
+    <updated>2024-02-29T10:06:39.000Z</updated>
     <summary type="html"><![CDATA[<p>在职业生涯中，从研发岗位转向技术管理职位，通常有以下几种路径：或是在现有团队中逐步晋升，自然而然地承担起领导职责；或是把握时机，接受上级的任命，实现角色的转变；亦或是通过跳槽，以空降的形式进入新的组织。而我的情况则是跳槽到新的公司，再一个项目组苟了一段时间，突然被调到一个新的项目组，作为十人左右的后端研发组长，结合了上面的二三两种途径；再真实入项之前，首先面临的挑战是接受业务方的面试和评估，以确定我是否满足他们对于该岗位的专业要求。</p>
 <p>因此，在这篇文章中，我们将从两个关键的角度出发，深入探讨加入新项目时需要关注的各项事宜。</p>
-<h2> 1. 面试</h2>
+<h2> 1. 入项面试</h2>
 <p>在上一篇文章中，我们概述了新项目的背景情况。这是一个从零开始组建的全新项目组，由项目经理（PM）负责从无到有地构建团队。该团队的服务对象是兄弟单位，其首要任务是将整个项目的产品研发工作，从委托的第三方外部公司，完全迁移至这个新成立的项目组来承担。</p>]]></summary>
     <content type="html"><![CDATA[<p>在职业生涯中，从研发岗位转向技术管理职位，通常有以下几种路径：或是在现有团队中逐步晋升，自然而然地承担起领导职责；或是把握时机，接受上级的任命，实现角色的转变；亦或是通过跳槽，以空降的形式进入新的组织。而我的情况则是跳槽到新的公司，再一个项目组苟了一段时间，突然被调到一个新的项目组，作为十人左右的后端研发组长，结合了上面的二三两种途径；再真实入项之前，首先面临的挑战是接受业务方的面试和评估，以确定我是否满足他们对于该岗位的专业要求。</p>
 <p>因此，在这篇文章中，我们将从两个关键的角度出发，深入探讨加入新项目时需要关注的各项事宜。</p>
-<h2> 1. 面试</h2>
+<h2> 1. 入项面试</h2>
 <p>在上一篇文章中，我们概述了新项目的背景情况。这是一个从零开始组建的全新项目组，由项目经理（PM）负责从无到有地构建团队。该团队的服务对象是兄弟单位，其首要任务是将整个项目的产品研发工作，从委托的第三方外部公司，完全迁移至这个新成立的项目组来承担。</p>
 <p>对于团队的配置，标准构成包括产品组、前端组、测试组以及后台组，其中后台组进一步细分为业务、中台和订单处理三个关键部分。</p>
 <p>此次参与的面试者则主要是产品组长、前端组长、测试组长以及后端组长。而面试官则由上级公司的分管领导以及业务方公司的高层管理人员共同组成。他们不仅评估面试者的专业能力，还会考察我们是否能够与各小组长协作，推动项目的整体研发工作。</p>
@@ -321,7 +321,127 @@
 </ul>
 <p>下面也是我再面试完毕之后，主持这场面试的项目经理给我的反馈，整体评价是再几个面试者中最高的（通过这一次的面试，我本人再PM这里也刷了一波存在感，留下了非常好的印象，后续的工作展开也确实得到了很多的优待帮助）</p>
 <figure><img src="/imgs/column/manager/03_面试反馈.jpg" alt="面试结果反馈" tabindex="0" loading="lazy"><figcaption>面试结果反馈</figcaption></figure>
-<h2> 2. 团队融入</h2>
+<h2> 2. 职责认知</h2>
+<p>进入新的项目组之后，很容易想到的就是如何融入团队，但是在这里，对于技术管理而言，我则更想说一下，如何对自己做好角色认知和角色定位</p>
+<p>如果我们是以研发的角色进入一个新的团队，那么我们的自我定位则比较明确，快速熟悉项目、能迅速上手，做需求交付；那么做技术管理而言呢？</p>
+<p>同样的对于我个人而言，面对即将进入的项目组，同样面临这些问题。我来干什么？ 上面的领导希望我干什么？ 我又能干什么？</p>
+<p>接下来我将从角色定位、职责要求说一下我个人对这些的理解</p>
+<h3> 2.1 角色定位</h3>
+<p>从研发到管理，必然是存在一些改变的，假定看我这些水文的都是资深的研发小伙伴，接下来的视角将重点放在从“研发工程师”到“技术管理”的角色转变上</p>
+<blockquote>
+<p>以下内容，主要摘抄于 《知行-技术人的管理之路 by 刘建国》</p>
+</blockquote>
+<h4> 2.1.1 职责使命</h4>
+<p>对于研发而言，我们的职责就是干好上级分配的活，或者更进一步，对于一些资深的小伙伴而言，老板有一个想法，我们可以从技术的视角来做拆解、、分配、落地、执行/亦或者判断是否有必要做这个事情</p>
+<p>对于管理者而言，不是自己来做这些任务的研发执行，更多的则是让其他的小伙伴来做最终的落地，比如上面资深小伙伴的任务拆解、分配、推进等大多都是技术管理的工作要求。这通常也意味着，上级只是帮我们设定一个目标，剩下做什么、怎么做，都是我们需要考虑的</p>
+<h4> 2.1.2 负责对象</h4>
+<p>对于研发而言，通常我们只需要对自己负责，做好自己的工作内容即可</p>
+<p>对于管理者而言，向下需要对自己的团队负责，整体团队的成长、绩效、输出、口碑都是需要自己来维护与经营打造；向上则需要对自己的领导负责，有没有浪费公司资源，顺利完成公司分配的任务，达成or超出既定的目标</p>
+<h4> 2.1.3 关注焦点</h4>
+<p>对于研发而言，一般是过程导向，关注脚下，是否有一步一步将工作执行到位</p>
+<p>对于管理者而言，通常则是目标和结果导向，我们有没有完成既定的目标，后面准备做什么</p>
+<h4> 2.1.4 工作内容与能力要求</h4>
+<p>对于研发而言，主要是靠个人的专业能力作为产出，做需求、任务的实现交付，项目系统的运营维护；因此技术专业性通常是核心且最重要的衡量指标</p>
+<p>对于管理者而言，出了技术判断力之外，还需要目标管理能力、团队规划能力、项目管理能力、沟通协调能力、团队建设能力等等，需要看方向的、带人的、做事的更加多维和立体的能力</p>
+<h4> 2.1.5 任务来源</h4>
+<p>对于研发而言，任务一般来自于上级安排，主要是听指挥</p>
+<p>对于管理者而言，出了上级安排的任务之外，更多的需要自己筹划、然后再主动去与上级沟通确认，从被动接活到主动“找事”</p>
+<h4> 2.1.6 实施手段</h4>
+<p>对于研发而言，通常都是动手实干，亲力亲为，主要的贡献就来自于自己的专业产出</p>
+<p>对于管理者而言，更多的是统筹，靠整个团队一起来完成</p>
+<h4> 2.1.7 合作维度</h4>
+<p>对于研发而言，合作的通常是和平级的小伙伴，一起做好研发工作，常见的合作对象是共同参与的研发、测试、产品、ui等</p>
+<p>对于管理者而言，合作的对象就比较丰富了，如需要和上级合作规划好整个团队的目标，和下级合作做好落地执行，和平级管理者合作完成联合项目，有时候还需要和平级的上、下级去一起协调资源和进度</p>
+<h4> 2.1.8 合作关系</h4>
+<p>从团队成员的合作关系来看，对于研发者而言，与团队内成员是“竞争与合作”的关系，日常的工作大多需要共同协作推进，但是大家应该也都经历过资源的竞争、绩效的争取</p>
+<p>对于管理者而言，在团队内一个显著的区别则是不应再有竞争的关系了，我们和团队应该处于全面合作的关系，对于管理者的评价标准更多的是看整个团队的产出</p>
+<h4> 2.1.9 思维方式</h4>
+<p>对于研发而言，通常是执行的思维方式，如何将一件事情落地，更关注过程与实时细节； 通常研发的估算排期比较保守，因为他们需要确保能完成才愿意答应</p>
+<p>对于管理者而言，虽然也考虑风险和成本，但是更习惯于去关注做一件事能带来的可能性收益，并以此来判断是否值得投入资源去做，这种更多的是“规划思维”</p>
+<p>由于管理者总是在盘算和筹划一些可能会对公司和团队有价值的事情，而没有仔细考虑风险和成本，所以在工程师的眼中，管理者时不时会提出一些“不靠谱”的期望和需求，但这正是两个角色关注的东西不同造成的。而这恰恰是一种很好的合作与互补</p>
+<h4> 2.1.10 技术视角</h4>
+<p>对于研发而言，技术是核心生产力，用来保障我们做好实施的主要手段，更多的是以运用的角度来看待技术</p>
+<p>对于管理者而言，技术是达成目标的手段之一，通常是结合实际场景，判断这个技术是否合理，当前最优，经常需要做一些技术决策。对于技术管理者而言，切忌技术崇拜，不能为了追求时髦而引入各种没什么用的技术栈</p>
+<h4> 2.1.11 小结</h4>
+<p>接下来以表格的方式将上面的对比进行小结如下</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>工程师</th>
+<th>管理者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>职责使命</td>
+<td>拉好车-做好自己手头的工作就无咎</td>
+<td>驾好车-引领整个团队往前走</td>
+</tr>
+<tr>
+<td>负责对象</td>
+<td>对自己负责 , "管好自己就可以了"</td>
+<td>对公司(上级)和团队(下级)都负责</td>
+</tr>
+<tr>
+<td>关注焦点</td>
+<td>过程导向:脚下的路</td>
+<td>目标和结果导向:是否达成目标</td>
+</tr>
+<tr>
+<td>工作内容</td>
+<td>内容单纯 , 主要靠专业能力</td>
+<td>多维立体 , 所需能力维度大幅增加</td>
+</tr>
+<tr>
+<td>任务来源</td>
+<td>上级安排</td>
+<td>自己主动规划&amp;向上沟通</td>
+</tr>
+<tr>
+<td>实施手段</td>
+<td>主要靠自己</td>
+<td>主要靠团队</td>
+</tr>
+<tr>
+<td>合作维度</td>
+<td>平级合作为主, 维度单一</td>
+<td>360 度合作, 维度立体</td>
+</tr>
+<tr>
+<td>合作关系</td>
+<td>和团队成员是平级竞合关系</td>
+<td>和团队成员是全面合作关系</td>
+</tr>
+<tr>
+<td>思维方式</td>
+<td>执行思维, 习惯关注确定性风险</td>
+<td>规划思维, 习惯关注可能性收益</td>
+</tr>
+<tr>
+<td>技术视角</td>
+<td>技术实施视角</td>
+<td>技术评估视角</td>
+</tr>
+</tbody>
+</table>
+<p>角色认知的改变，并不是一蹴而就的，需要你我们不断的自我审视和有意识的纠偏，这也是我们做转变的第一道门槛。</p>
+<h3> 2.2 职责要求</h3>
+<p>上面是认识到角色的定位，我们知道应该往什么样的方向进行转变自己，但是接下来我们应该做些什么呢？</p>
+<p>简单来讲，我来这个项目，到底是让我来干嘛的!</p>
+<p>接下来我将以个人实际的体验，来反推一下，一个技术管理的职责要求</p>
+<h4> 2.2.1 任务清单</h4>
+<p>因为这是一个新组建的项目团队，初期目标就是将系统从外部团队接手到项目内，所以给我的任务就比较清晰了</p>
+<ol>
+<li>人员招聘，团队组建</li>
+<li>研发管理流程规范制定</li>
+<li>项目迁移，外部对接</li>
+<li>需求交付，任务实施</li>
+</ol>
+<p>对于项目前期，需要干的事情实际上比较明显，无非就是 <code>团队建设</code> + <code>标准规范</code> + <code>任务交付</code>，至于接下来怎么来做些事情，我会再之后的文章中分段说明</p>
+<h4> 2.2.2 管理图谱</h4>
+<p>下面是一个我个人感觉很有收获的图谱，同样分享给各位小伙伴，当然由于我个人能力有限，以下图谱的内容，再后续的阐释中，可能会有一些偏差谬误之处，还请多批评指正</p>
+<figure><img src="/imgs/column/manager/03_管理图谱.png" alt="管理图谱" tabindex="0" loading="lazy"><figcaption>管理图谱</figcaption></figure>
 ]]></content>
     <author>
       <name>一灰灰blog</name>
@@ -1069,20 +1189,20 @@
     <title type="text">一灰灰的技术管理之路</title>
     <id>https://liuyueyi.github.io/tutorial/column/techmanager/</id>
     <link href="https://liuyueyi.github.io/tutorial/column/techmanager/"/>
-    <updated>2024-02-05T01:35:49.000Z</updated>
+    <updated>2024-02-29T09:48:36.000Z</updated>
     <summary type="html"><![CDATA[<h2> 技术管理之路</h2>
 <p><strong>序</strong></p>
 <ul class="task-list-container">
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-0" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-0"> <a href="01.%E5%BA%8F%20%E8%BD%AC%E7%AE%A1%E7%90%86%E7%9A%84%E5%A5%91%E6%9C%BA">01. 契机</a></label></li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-1" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-1"> <a href="02.%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">02. 准备工作</a></label></li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-2" disabled="disabled"><label class="task-list-item-label" for="task-item-2"> <a href="03.%E5%85%A5%E8%81%8C%E6%96%B0%E9%A1%B9%E7%9B%AE">03. 入职新项目</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-2" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-2"> <a href="03.%E5%85%A5%E8%81%8C%E6%96%B0%E9%A1%B9%E7%9B%AE">03. 入职新项目</a></label></li>
 </ul>]]></summary>
     <content type="html"><![CDATA[<h2> 技术管理之路</h2>
 <p><strong>序</strong></p>
 <ul class="task-list-container">
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-0" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-0"> <a href="01.%E5%BA%8F%20%E8%BD%AC%E7%AE%A1%E7%90%86%E7%9A%84%E5%A5%91%E6%9C%BA">01. 契机</a></label></li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-1" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-1"> <a href="02.%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">02. 准备工作</a></label></li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-2" disabled="disabled"><label class="task-list-item-label" for="task-item-2"> <a href="03.%E5%85%A5%E8%81%8C%E6%96%B0%E9%A1%B9%E7%9B%AE">03. 入职新项目</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-2" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-2"> <a href="03.%E5%85%A5%E8%81%8C%E6%96%B0%E9%A1%B9%E7%9B%AE">03. 入职新项目</a></label></li>
 </ul>
 <p><strong>团队搭建</strong></p>
 <ul class="task-list-container">
