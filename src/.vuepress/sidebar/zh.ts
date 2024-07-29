@@ -13,18 +13,23 @@ export const zhSidebar = sidebar({
       ]
     }
   ],
-  "/column/": [
+
+  "/column/tech/": [
+      "",
+      {
+        text: "技术管理",
+        icon: "repo",
+        prefix: "manager/",
+        collapsible: true,
+        children: "structure",
+      },
+  ],
+
+  "/column/app/": [
     "",
-    {
-      text: "技术管理",
-      icon: "repo",
-      prefix: "techmanager/",
-      collapsible: true,
-      children: "structure",
-    },
-    {
-      text: "应用专栏",
-      icon: "app",
+        {
+      text: "架构",
+      icon: "define",
       prefix: "",
       collapsible: true,
       children: [
@@ -41,9 +46,13 @@ export const zhSidebar = sidebar({
           prefix: "alarm/",
           collapsible: true,
           children: "structure",
-        }
+        },
       ],
     },
+  ],
+
+  "/column/arch/": [
+    "",
     {
       text: "架构",
       icon: "define",
@@ -52,7 +61,7 @@ export const zhSidebar = sidebar({
       children: [
         {
           text: "分布式专栏",
-          icon: "discover",
+          icon: "tree",
           prefix: "distribute/",
           collapsible: true,
           children: "structure",
@@ -60,6 +69,10 @@ export const zhSidebar = sidebar({
       ],
     },
   ],
+  "/column/": [
+    "",
+  ],
+
   "/db/": [
     "",
     {
@@ -128,11 +141,12 @@ export const zhSidebar = sidebar({
       children: "structure"
     },
   ],
-  "/spring/": [
+  "/spring/extend": [
+    "",
     {
       text: "扩展点",
       icon: "process",
-      prefix: "extend/",
+      prefix: "/basic",
       children: "structure",
     },
   ],

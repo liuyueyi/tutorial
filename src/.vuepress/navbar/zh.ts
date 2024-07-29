@@ -23,17 +23,17 @@ export const zhNavbar = navbar([
       "",
       {
         text: "技术管理",
-        prefix: "",
-        children: ["techmanager"],
+        prefix: "tech/",
+        children: ["manager"],
       },
       {
         text: "应用专栏",
-        prefix: "",
+        prefix: "app/",
         children: ["im", "quick-alarm"],
       },
       {
         text: "架构",
-        prefix: "",
+        prefix: "arch/",
         children: ["distribute"],
       },
     ],

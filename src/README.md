@@ -27,7 +27,7 @@ features:
   - title: 分布式专栏
     icon: tree
     details: 分布式设计模式与高可用详解
-    link: /distribute/
+    link: /column/arch/distribute/
 
   - title: Java专栏
     icon: java
@@ -80,7 +80,7 @@ features:
     link: /spring/extend/
 
 copyright: false
-footer: © 2023 @一灰灰Blog 保留所有权利 | <a href="https://beian.miit.gov.cn/" target="_blank"> 鄂ICP备18017282号</a> | 主题 @vuepress-theme-hope 
+footer: © 2024 @一灰灰Blog 保留所有权利 | <a href="https://beian.miit.gov.cn/" target="_blank"> 鄂ICP备18017282号</a> | 主题 @vuepress-theme-hope 
 ---
 
 <div align="center">
@@ -91,9 +91,25 @@ footer: © 2023 @一灰灰Blog 保留所有权利 | <a href="https://beian.miit.
     </p>
 </div>
 
-## ❤️ 关于网站
 
 ## 🔥 精选资料
 
+- [java实战演练36讲](/pdf/java实战演练36讲.pdf)
+- [MongoDB零基础入门手册](/pdf/MongoDB零基础入门手册.pdf)
+- [Java开发手册(黄山版)](/pdf/Java开发手册(黄山版).pdf)
+
+
+
 ## ✨ 公众号
 
+
+### 微信公众号: 一灰灰Blog
+
+尽信书则不如，以上内容，纯属一家之言，因个人能力有限，难免有疏漏和错误之处，如发现bug或者有更好的建议，欢迎批评指正，不吝感激
+
+下面一灰灰的个人博客，记录所有学习和工作中的博文，欢迎大家前去逛逛
+
+一灰灰Blog个人博客 https://blog.hhui.top
+一灰灰Blog-Spring专题博客 http://spring.hhui.top
+
+![](https://spring.hhui.top/spring-blog/imgs/info/info.png)
