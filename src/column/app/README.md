@@ -1,6 +1,6 @@
 ---
 title: 应用专栏
-icon: info
+icon: app
 ---
 
 # 应用专栏

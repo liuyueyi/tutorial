@@ -14,37 +14,43 @@ export const zhSidebar = sidebar({
     }
   ],
 
+  "/column/": [
+      "",
+      {
+        text: "专栏",
+        prefix: "",
+        collapsible: false,
+        children: [ "tech/", "app/", "arch/"],
+      },
+  ],
+
   "/column/tech/": [
       "",
       {
         text: "技术管理",
-        icon: "repo",
+        icon: "people",
         prefix: "manager/",
-        collapsible: true,
         children: "structure",
       },
   ],
 
   "/column/app/": [
     "",
-        {
+    {
       text: "架构",
       icon: "define",
       prefix: "",
-      collapsible: true,
       children: [
         {
           text: "实时聊天",
           icon: "wechat",
           prefix: "im/",
-          collapsible: true,
           children: "structure",
         },
         {
           text: "预警",
           icon: "at",
           prefix: "alarm/",
-          collapsible: true,
           children: "structure",
         },
       ],
@@ -63,14 +69,10 @@ export const zhSidebar = sidebar({
           text: "分布式专栏",
           icon: "tree",
           prefix: "distribute/",
-          collapsible: true,
           children: "structure",
         },
       ],
     },
-  ],
-  "/column/": [
-    "",
   ],
 
   "/db/": [
