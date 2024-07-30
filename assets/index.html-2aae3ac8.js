@@ -1,0 +1,1 @@
+import{_ as e,V as n,W as t,X as s}from"./framework-e9360be2.js";const o={},_=s("p",null,"Spring Expression Language在Spring生态中应用颇广，如配置读取，AOP注解的增强，条件注入等等，推荐有兴趣的了解一下",-1),c=[_];function r(a,i){return n(),t("div",null,c)}const d=e(o,[["render",r],["__file","index.html.vue"]]);export{d as default};

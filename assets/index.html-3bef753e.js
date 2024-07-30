@@ -1,0 +1,1 @@
+import{_ as e,V as o,W as t,X as n}from"./framework-e9360be2.js";const _={},c=n("p",null,"文档数据库SpringBoot的系列教程，彻底扫平阻碍我们CURD的路障，适用于对Mongodb不了解或了解不够的小伙伴",-1),s=[c];function r(a,l){return o(),t("div",null,s)}const i=e(_,[["render",r],["__file","index.html.vue"]]);export{i as default};
