@@ -143,12 +143,12 @@ export const zhSidebar = sidebar({
       children: "structure"
     },
   ],
-  "/spring/extend": [
+  "/spring/extend/": [
     "",
     {
       text: "扩展点",
       icon: "process",
-      prefix: "/basic",
+      prefix: "basic/",
       children: "structure",
     },
   ],
