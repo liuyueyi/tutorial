@@ -25,7 +25,7 @@
     "katex": "0.16.4",
     "sass-loader": "13.2.0",
     "vue": "3.2.45",
-    "vuepress-theme-hope": "2.0.0-beta.122",
+    "vuepress-theme-hope": "2.0.0-beta.171",
     "vuepress-vite": "2.0.0-beta.60",
     "vuepress-webpack": "2.0.0-beta.60"
   },

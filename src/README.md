@@ -94,9 +94,9 @@ footer: © 2024 @一灰灰Blog 保留所有权利 | <a href="https://beian.miit.
 
 ## 🔥 精选资料
 
-- [java实战演练36讲](/pdf/java实战演练36讲.pdf)
-- [MongoDB零基础入门手册](/pdf/MongoDB零基础入门手册.pdf)
-- [Java开发手册(黄山版)](/pdf/Java开发手册(黄山版).pdf)
+- [java实战演练36讲](https://book.hhui.top/pdf/java实战演练36讲.pdf)
+- [MongoDB零基础入门手册](https://book.hhui.top/pdf/MongoDB零基础入门手册.pdf)
+- [Java开发手册(黄山版)](https://book.hhui.top/pdf/Java开发手册(黄山版).pdf)
 
 
 
