@@ -1,5 +1,5 @@
 ---
-title: 一灰灰的技术管理之路
+title: 从0到1转技术管理
 icon: people
 index: false
 ---

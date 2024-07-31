@@ -24,17 +24,17 @@ export const zhNavbar = navbar([
       {
         text: "技术管理",
         prefix: "tech/",
-        children: ["manager"],
+        children: ["manager/"],
       },
       {
         text: "应用专栏",
         prefix: "app/",
-        children: ["im", "quick-alarm"],
+        children: ["im/", "alarm/", "spi/"],
       },
       {
         text: "架构",
         prefix: "arch/",
-        children: ["distribute"],
+        children: ["distribute/"],
       },
     ],
   },
@@ -135,6 +135,11 @@ export const zhNavbar = navbar([
         prefix: "es/",
         children: [""],
       },
+      {
+        text: "RabbitMq",
+        prefix: "rabbitmq/",
+        children: [""],
+      },
     ],
   },
   {
@@ -154,6 +159,12 @@ export const zhNavbar = navbar([
       }
     ]
   },
-  { text: "工具箱", icon: "tool", link: "https://tool.hhui.top/" },
+  {
+    text: "工具|部署",
+    icon: "tool",
+    prefix: "/tool/",
+    children: [ "开发工具", "GIT", "Linux", "Docker"]
+  },
+  { text: "百宝箱", icon: "tool", link: "https://tool.hhui.top/" },
   { text: "关于", icon: "valine", link: "/me/about-me" },
 ]);

@@ -53,6 +53,12 @@ export const zhSidebar = sidebar({
           prefix: "alarm/",
           children: "structure",
         },
+        {
+          text: "SPI",
+          icon: "app",
+          prefix: "spi/",
+          children: "structure",
+        },
       ],
     },
   ],
@@ -116,6 +122,13 @@ export const zhSidebar = sidebar({
       text: "ElasticSearch",
       icon: "search",
       prefix: "es/",
+      collapsible: true,
+      children: "structure",
+    },
+    {
+      text: "RabbitMQ",
+      icon: "notice",
+      prefix: "rabbitmq/",
       collapsible: true,
       children: "structure",
     },
@@ -410,5 +423,26 @@ export const zhSidebar = sidebar({
       children: "structure"
     },
   ],
-  
+  "/tool/": [
+    {
+      text: "开发工具",
+      prefix: "开发工具/",
+      children: "structure"
+    },
+    {
+      text: "Linux&Shell",
+      prefix: "Linux/",
+      children: "structure"
+    },
+    {
+      text: "Git",
+      prefix: "GIT/",
+      children: "structure"
+    },
+    {
+      text: "Docker",
+      prefix: "Docker/",
+      children: "structure"
+    },
+  ],
 });

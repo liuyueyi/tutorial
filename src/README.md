@@ -80,15 +80,16 @@ features:
     link: /spring/extend/
 
 copyright: false
-footer: © 2024 @一灰灰Blog 保留所有权利 | <a href="https://beian.miit.gov.cn/" target="_blank"> 鄂ICP备18017282号</a> | 主题 @vuepress-theme-hope 
+footer: ©2017 - present @一灰灰Blog 保留所有权利 | <a href="https://beian.miit.gov.cn/" target="_blank"> 鄂ICP备18017282号</a> | 主题 @vuepress-theme-hope 
 ---
 
 <div align="center">
-     <p>
-        <a href="/">
-            <img src="/imgs/site/ads.png" style="margin: 0 auto; width: 850px;" />
-        </a>
-    </p>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-format="fluid"
+       data-ad-layout-key="-ef+6k-30-ac+ty"
+       data-ad-client="ca-pub-5592000528061748"
+       data-ad-slot="6935280996"></ins>
 </div>
 
 
