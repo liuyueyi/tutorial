@@ -1,1 +1,0 @@
-import{_ as e,V as o,W as n,X as t}from"./framework-e9360be2.js";const _={},c=t("p",null,"文档数据库MongoDB的基本使用姿势教程，手把手教你学会MongoDB的CURD",-1),s=[c];function r(a,l){return o(),n("div",null,s)}const i=e(_,[["render",r],["__file","index.html.vue"]]);export{i as default};

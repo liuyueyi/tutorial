@@ -1,0 +1,1 @@
+import{_ as e,V as t,W as n,X as o}from"./framework-23f3cf9b.js";const c={},_=o("p",null,"SpringBoot Security基础系列教程，目标是实现权限管理的无障碍接入使用",-1),s=[_];function r(a,i){return t(),n("div",null,s)}const d=e(c,[["render",r],["__file","index.html.vue"]]);export{d as default};
