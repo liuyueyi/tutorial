@@ -1,6 +1,6 @@
 ---
 order: 1
-title: RabbitMQ基础教程之安装与测试
+title: 1. 安装与测试
 tag:
   - RabbitMQ
   - 指南

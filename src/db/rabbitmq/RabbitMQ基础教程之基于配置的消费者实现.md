@@ -1,6 +1,6 @@
 ---
 order: 4
-title: RabbitMQ基础教程之基于配置的消费者实现
+title: 4. 基于配置的消费者实现
 tag:
   - RabbitMQ
   - Spring

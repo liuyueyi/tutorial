@@ -1,6 +1,6 @@
 ---
 order: 7
-title: RabbitMQ基础教程之Spring&JavaConfig&FactoryBean使用姿势
+title: 7. Spring&JavaConfig&FactoryBean使用姿势
 tag:
   - RabbitMQ
   - Spring

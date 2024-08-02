@@ -1,6 +1,6 @@
 ---
 order: 6
-title: RabbitMQ基础教程之Spring&JavaConfig使用篇
+title: 6. Spring&JavaConfig使用篇
 tag:
   - RabbitMQ
 category:

@@ -1,5 +1,5 @@
 ---
-title: SPI
+title: 应用专栏
 icon: app
 ---
 

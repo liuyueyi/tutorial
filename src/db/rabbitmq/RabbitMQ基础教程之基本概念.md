@@ -1,6 +1,6 @@
 ---
 order: 2
-title: RabbitMq基础教程之基本概念
+title: 2. 基本概念
 tag:
   - RabbitMQ
 category:

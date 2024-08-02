@@ -100,7 +100,7 @@ export const zhSidebar = sidebar({
     {
       text: "influxdb",
       icon: "time",
-      prefix: "influx/",
+      prefix: "influxdb/",
       collapsible: true,
       children: "structure",
     },
@@ -136,10 +136,39 @@ export const zhSidebar = sidebar({
   "/java/": [
     "",
     {
+      text: "基础使用",
+      icon: "stack",
+      prefix: "basic/",
+      children: "structure",
+      collapsible: true,
+    },
+    {
       text: "编程小技巧",
       icon: "process",
       prefix: "skill/",
       children: "structure",
+      collapsible: true,
+    },
+    {
+      text: "JDK源码",
+      icon: "java",
+      collapsible: true,
+      children: "structure",
+      prefix: "jdk/",
+    },
+    {
+      text: "序列化",
+      icon: "json",
+      collapsible: true,
+      children: "structure",
+      prefix: "序列化/",
+    },
+     {
+      text: "安全",
+      icon: "lock",
+      collapsible: true,
+      children: "structure",
+      prefix: "安全/",
     },
   ],
   "/git/": [
@@ -427,21 +456,43 @@ export const zhSidebar = sidebar({
     {
       text: "开发工具",
       prefix: "开发工具/",
+      collapsible: true,
       children: "structure"
     },
     {
       text: "Linux&Shell",
       prefix: "Linux/",
+      collapsible: true,
       children: "structure"
     },
     {
       text: "Git",
       prefix: "GIT/",
+      collapsible: true,
       children: "structure"
     },
     {
       text: "Docker",
       prefix: "Docker/",
+      collapsible: true,
+      children: "structure"
+    },
+    {
+      text: "Maven",
+      prefix: "Maven/",
+      collapsible: true,
+      children: "structure"
+    },
+    {
+      text: "Nginx",
+      prefix: "Nginx/",
+      collapsible: true,
+      children: "structure"
+    },
+    {
+      text: "DevOps",
+      prefix: "Devops/",
+      collapsible: true,
       children: "structure"
     },
   ],

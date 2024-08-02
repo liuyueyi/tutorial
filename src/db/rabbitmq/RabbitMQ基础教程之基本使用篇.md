@@ -1,6 +1,6 @@
 ---
 order: 3
-title: RabbitMQ基础教程之基本使用篇
+title: 3. 基本使用篇
 tag:
   - RabbitMQ
 category:

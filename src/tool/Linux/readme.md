@@ -1,3 +1,4 @@
 ---
 title: Linux
+index: false
 ---

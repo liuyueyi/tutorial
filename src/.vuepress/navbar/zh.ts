@@ -8,8 +8,13 @@ export const zhNavbar = navbar([
     prefix: "/java/",
     children: [
       "",
+       {
+        text: "基础系列",
+        prefix: "",
+        children: ["basic/", "jdk/", "安全/", "序列化"],
+      },
       {
-        text: "实战系列",
+        text: "编程实践",
         prefix: "skill/",
         children: [""],
       },
@@ -163,7 +168,7 @@ export const zhNavbar = navbar([
     text: "工具|部署",
     icon: "tool",
     prefix: "/tool/",
-    children: [ "开发工具", "GIT", "Linux", "Docker"]
+    children: [ "开发工具", "GIT", "Linux", "Docker", "Maven", "Devops", "Nginx"]
   },
   { text: "百宝箱", icon: "tool", link: "https://tool.hhui.top/" },
   { text: "关于", icon: "valine", link: "/me/about-me" },

@@ -1,3 +1,4 @@
 ---
 title: Git
+index: false
 ---
