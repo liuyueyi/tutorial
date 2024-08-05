@@ -285,7 +285,7 @@ List<String> strokeSvgList = vo.getStrokes();
 
 几个关键的参数配置
 
-![](hanzi-writer/src/test/resources/struct.jpg)
+![](https://raw.githubusercontent.com/liuyueyi/quick-chinese-transfer/master/hanzi-writer/src/test/resources/struct.jpg)
 
 | 参数               | 类型        | 说明                            | 默认值                                                                                                                                                                                                                                                                   
 |------------------|-----------|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -307,11 +307,11 @@ List<String> strokeSvgList = vo.getStrokes();
 
 对应的svg显示样式如下
 
-![帅](hanzi-writer/src/test/resources/shuai.svg)
+![帅](https://github.com/liuyueyi/quick-chinese-transfer/raw/master/hanzi-writer/src/test/resources/shuai.svg)
 
 | 1                                                | 2                                                | 3                                                | 4                                                | 5                                                |
 |--------------------------------------------------|--------------------------------------------------|--------------------------------------------------|--------------------------------------------------|--------------------------------------------------|
-| ![帅](hanzi-writer/src/test/resources/shuai1.svg) | ![帅](hanzi-writer/src/test/resources/shuai2.svg) | ![帅](hanzi-writer/src/test/resources/shuai3.svg) | ![帅](hanzi-writer/src/test/resources/shuai4.svg) | ![帅](hanzi-writer/src/test/resources/shuai5.svg) |
+| ![帅](https://github.com/liuyueyi/quick-chinese-transfer/raw/master/hanzi-writer/src/test/resources/shuai1.svg) | ![帅](https://github.com/liuyueyi/quick-chinese-transfer/raw/master/hanzi-writer/src/test/resources/shuai2.svg) | ![帅](https://github.com/liuyueyi/quick-chinese-transfer/raw/master/hanzi-writer/src/test/resources/shuai3.svg) | ![帅](https://github.com/liuyueyi/quick-chinese-transfer/raw/master/hanzi-writer/src/test/resources/shuai4.svg) | ![帅](https://github.com/liuyueyi/quick-chinese-transfer/raw/master/hanzi-writer/src/test/resources/shuai5.svg) |
 
 ### 版本说明
 
