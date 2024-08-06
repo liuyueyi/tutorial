@@ -1,9 +1,9 @@
 ---
 title: JVM学习之内存结构
-tags:
+tag:
   - Java
   - JDK
-categories:
+category:
   - Java
   - JVM
 date: 2018-03-13 16:00:31
@@ -15,8 +15,6 @@ date: 2018-03-13 16:00:31
 java运行时对象创建在什么地方？堆和栈空间又有什么区别？听闻已久的Young,Old区又是什么鬼？听说有个常量池，这个又是啥
 
 要想在脑海中清晰的布局一个java类在加载到使用的过程中，整个类生命周期中，各项数据究竟最终落在哪个板块上，就需要了解下JVM的内存区域了
-
-<!-- more -->
 
 ## I. 内存布局
 
@@ -80,27 +78,3 @@ java运行时对象创建在什么地方？堆和栈空间又有什么区别？�
 ### 5. 本地方法栈
 
 本地方法栈（Native Method Stacks）与虚拟机栈所发挥的作用是非常相似的，其区别不过是虚拟机栈为虚拟机执行Java方法（也就是字节码）服务，而本地方法栈则是为虚拟机使用到的Native方法服务
-
-## III. 其他
-
-### 参考:
-
-- [JVM内存结构](http://www.cnblogs.com/ityouknow/p/5610232.html)
-- 《深入理解Java虚拟机-JVM高级特性与最佳实践》
-
-
-### 个人博客： [Z+|blog](https://liuyueyi.github.io/hexblog)
-
-基于hexo + github pages搭建的个人博客，记录所有学习和工作中的博文，欢迎大家前去逛逛
-
-
-### 声明
-
-尽信书则不如，已上内容，纯属一家之言，因本人能力一般，见识有限，如发现bug或者有更好的建议，随时欢迎批评指正
-
-- 微博地址: [小灰灰Blog](https://weibo.com/p/1005052169825577/home)
-- QQ： 一灰灰/3302797840
-
-### 扫描关注
-
-![QrCode](https://s17.mogucdn.com/mlcdn/c45406/180209_74fic633aebgh5dgfhid2fiiggc99_1220x480.png)

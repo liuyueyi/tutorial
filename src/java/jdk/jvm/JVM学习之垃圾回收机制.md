@@ -1,9 +1,9 @@
 ---
 title: JVM学习之垃圾回收机制
-tags:
+tag:
   - Java
   - JDK
-categories:
+category:
   - Java
   - JVM
 date: 2018-03-15 20:18:44
@@ -14,8 +14,6 @@ jvm的垃圾回收算法，除了我们熟悉的引用计数判断对象是否�
 总是听到的年轻代年老代又是啥？
 
 传说中的YoungGC(MinorGC) 和 FullGC的时机是什么，又干了些啥？
-
-<!-- more -->
 
 ## I. 对象存活判断
 
@@ -247,28 +245,3 @@ g1，从结构上而言，划分为一个个独立区域(region)，采用标记-
 - 动态时间判断（某个age对象总和大于Survivor一半，则塞入old区）
 - 分配担保（进入old区，但是old区空间不够的策略，决定是否触发gc）
 
-
-## VI. 其他
-
-### 参考
-
-- [jvm系列(三):java GC算法 垃圾收集器](http://www.cnblogs.com/ityouknow/p/5614961.html)
-- [JVM调优工具介绍](https://liuyueyi.github.io/hexblog/2018/01/03/jvm调优的工具介绍/)
-
-
-
-### 个人博客： [Z+|blog](https://liuyueyi.github.io/hexblog)
-
-基于hexo + github pages搭建的个人博客，记录所有学习和工作中的博文，欢迎大家前去逛逛
-
-
-### 声明
-
-尽信书则不如，已上内容，纯属一家之言，因本人能力一般，见识有限，如发现bug或者有更好的建议，随时欢迎批评指正
-
-- 微博地址: [小灰灰Blog](https://weibo.com/p/1005052169825577/home)
-- QQ： 一灰灰/3302797840
-
-### 扫描关注
-
-![QrCode](https://s17.mogucdn.com/mlcdn/c45406/180209_74fic633aebgh5dgfhid2fiiggc99_1220x480.png)

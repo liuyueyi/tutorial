@@ -1,9 +1,9 @@
 ---
 title: ConcurrentHashMap之1.7与1.8小结
-tags:
+tag:
   - Java
   - JDK
-categories:
+category:
   - Java
   - JDK
   - 容器
@@ -109,22 +109,3 @@ jdk1.8重写了ConcurrentHashMap的实现，丢掉了锁分段的二维数组结
 
 不加锁，和hashmap的原理差不多；需要注意的是Node节点中的value和next都是volatile的，即线程对这些数据的修改对其他线程是立马可见的
 
-
-
-## II. 其他
-
-### 个人博客： [一灰灰Blog](https://liuyueyi.github.io/hexblog)
-
-基于hexo + github pages搭建的个人博客，记录所有学习和工作中的博文，欢迎大家前去逛逛
-
-
-### 声明
-
-尽信书则不如，已上内容，纯属一家之言，因本人能力一般，见识有限，如发现bug或者有更好的建议，随时欢迎批评指正
-
-- 微博地址: [小灰灰Blog](https://weibo.com/p/1005052169825577/home)
-- QQ： 一灰灰/3302797840
-
-### 扫描关注
-
-![QrCode](https://raw.githubusercontent.com/liuyueyi/Source/master/img/info/blogInfoV2.png)

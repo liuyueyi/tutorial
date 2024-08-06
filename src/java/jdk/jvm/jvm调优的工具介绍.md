@@ -1,10 +1,10 @@
 ---
 title: jvm调优的工具介绍
 date: 2018-01-03 14:18:35
-tags:
+tag:
   - Java
   - JDK
-categories:
+category:
   - Java
   - JVM
 ---
@@ -14,7 +14,6 @@ categories:
 ## I. 背景
 > java后端，提供了一个svg渲染的服务，在qps较大时，会出现频繁的gc，而此时的服务器性能本身并没有达到瓶颈（cpu,load,io都不太高）因此考虑调整一下jvm的相关参数，看是否可以提升服务性能
 
-<!-- more -->
 
 jvm相关参数记录
 
@@ -276,7 +275,7 @@ Jmetter
   - 请求方法 + 请求路径
   - 请求参数，支持文件上传，注意编码方式
 
-![15AFB591-DB24-4525-9EE8-ECA190A5BF14.png](https://s10.mogucdn.com/mlcdn/c45406/180103_7fbg17l4787kefbb5h6c39lf83efg_1978x700.jpg)
+![](https://s10.mogucdn.com/mlcdn/c45406/180103_7fbg17l4787kefbb5h6c39lf83efg_1978x700.jpg)
 
 
 
@@ -288,15 +287,4 @@ Jmetter
 - [jvm的GC日志分析](http://swcdxd.iteye.com/blog/1859858)
 - [JVM 运行时内存使用情况监控](http://blog.csdn.net/hinstenyhisoka/article/details/54311722)
 - 《深入理解JVM虚拟机》
-
-
-## V. 其他
-
-### 声明
-
-尽信书则不如，已上内容，纯属一家之言，因本人能力一般，见解不全，如有问题，欢迎批评指正
-
-### 扫描关注，java分享
-
-![QrCode](https://s10.mogucdn.com/mlcdn/c45406/180103_61hi8f7kldkl202fked3k2g0ial1e_640x340.jpg)
 

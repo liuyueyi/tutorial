@@ -1,9 +1,9 @@
 ---
 title: JVM学习之Java类的加载机制
-tags:
+tag:
   - Java
   - JDK
-categories:
+category:
   - Java
   - JVM
 date: 2018-03-13 14:26:40
@@ -21,8 +21,6 @@ date: 2018-03-13 14:26:40
 - 什么时候触发类加载
 - 类加载器
 - 双亲委托机制
-
-<!-- more -->
 
 
 ## I. 什么是类的加载
@@ -142,12 +140,12 @@ class对象是在堆内创建，反射机制就是主要利用它来实现，通
 
 ### 1. 启动类加载器(BootStrap ClassLoader)
 
-源头，根，负责加载存放在JDK\jre\lib(JDK代表JDK的安装目录，下同)下，或被-Xbootclasspath参数指定的路径中的，并且能被虚拟机识别的类库（如rt.jar，所有的java.*开头的类均被Bootstrap ClassLoader加载）。启动类加载器是无法被Java程序直接引用的
+源头，根，负责加载存放在JDK\jre\lib(JDK代表JDK的安装目录，下同)下，或被-Xbootclasspath参数指定的路径中的，并且能被虚拟机识别的类库（如rt.jar，所有的`java.*`开头的类均被Bootstrap ClassLoader加载）。启动类加载器是无法被Java程序直接引用的
 
 
 ### 2. 扩展类加载器（Extension ClassLoader）
 
-该加载器由sun.misc.Launcher$ExtClassLoader实现，它负责加载DK\jre\lib\ext目录中，或者由java.ext.dirs系统变量指定的路径中的所有类库（如javax.*开头的类），开发者可以直接使用扩展类加载器
+该加载器由sun.misc.Launcher$ExtClassLoader实现，它负责加载DK\jre\lib\ext目录中，或者由java.ext.dirs系统变量指定的路径中的所有类库（如`javax.*`开头的类），开发者可以直接使用扩展类加载器
 
 ### 3. 应用类加载器（Application ClassLoader）
 
@@ -188,29 +186,3 @@ class对象是在堆内创建，反射机制就是主要利用它来实现，通
 - 保证Java程序安全稳定运行
 
 说明：双亲委托机制是可以被破坏的
-
-
-## V. 其他
-
-### 参考:
-
-- [java类的加载机制](http://www.cnblogs.com/ityouknow/p/5603287.html)
-- 《深入理解Java虚拟机-JVM高级特性与最佳实践》
-
-
-### 个人博客： [Z+|blog](https://liuyueyi.github.io/hexblog)
-
-基于hexo + github pages搭建的个人博客，记录所有学习和工作中的博文，欢迎大家前去逛逛
-
-
-### 声明
-
-尽信书则不如，已上内容，纯属一家之言，因本人能力一般，见识有限，如发现bug或者有更好的建议，随时欢迎批评指正
-
-- 微博地址: [小灰灰Blog](https://weibo.com/p/1005052169825577/home)
-- QQ： 一灰灰/3302797840
-
-### 扫描关注
-
-![QrCode](https://s17.mogucdn.com/mlcdn/c45406/180209_74fic633aebgh5dgfhid2fiiggc99_1220x480.png)
-
