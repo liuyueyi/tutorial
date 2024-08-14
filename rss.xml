@@ -6,8 +6,8 @@
     <link>https://liuyueyi.github.io/tutorial/</link>
     <description>一灰灰的全网知识站点</description>
     <language>zh-CN</language>
-    <pubDate>Tue, 06 Aug 2024 00:54:34 GMT</pubDate>
-    <lastBuildDate>Tue, 06 Aug 2024 00:54:34 GMT</lastBuildDate>
+    <pubDate>Wed, 14 Aug 2024 14:30:35 GMT</pubDate>
+    <lastBuildDate>Wed, 14 Aug 2024 14:30:35 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 一灰灰blog</copyright>
@@ -16,6 +16,7 @@
       <url>https://liuyueyi.github.io/tutorial/logo.svg</url>
       <link>https://liuyueyi.github.io/tutorial/</link>
     </image>
+    <category>技术组件</category>
     <category>Quick系列</category>
     <category>开源</category>
     <category>ElasticSearch</category>
@@ -49,8 +50,88 @@
     <category>方案设计</category>
     <category>使用手册</category>
     <category>QuickTask</category>
-    <category>DB</category>
-    <category>InfluxDB</category>
+    <item>
+      <title>1. 诞生的契机</title>
+      <link>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/01.%E8%AF%9E%E7%94%9F%E7%9A%84%E5%A5%91%E6%9C%BA.html</link>
+      <guid>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/01.%E8%AF%9E%E7%94%9F%E7%9A%84%E5%A5%91%E6%9C%BA.html</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">1. 诞生的契机</source>
+      <description>为什么会萌发写一个记录链路耗时的组件的念头呢？ 来源于一个不太美妙的线上问题。 自从开始做toB的业务之后，对系统的性能要求阈值不断下降，当一个接口响应超过3s时，发现适应适应还可接受，然后逐渐的，你会发现接口的响应会滑向5s、10s... (底线一段突破，那就将没有底线可言) 在经历某一次重大的迭代之后，整体的数据量翻了两翻，部分接口的响应直接突破10s，然后业主方终于是不能忍了，明确提出要求做性能优化 那么怎么做呢？ 按照一般的做事惯例，先定目标，然后基于现状拆解任务，接着就是任务的研发推进，最终的交付测试上线 当明确提出要优化某个接口时，至少我们现在的目标是明确，要缩减接口的耗时</description>
+      <category>技术组件</category>
+      <pubDate>Wed, 14 Aug 2024 19:19:48 GMT</pubDate>
+      <content:encoded><![CDATA[<p>为什么会萌发写一个记录链路耗时的组件的念头呢？ 来源于一个不太美妙的线上问题。 自从开始做toB的业务之后，对系统的性能要求阈值不断下降，当一个接口响应超过3s时，发现适应适应还可接受，然后逐渐的，你会发现接口的响应会滑向5s、10s... (底线一段突破，那就将没有底线可言)</p>
+<p>在经历某一次重大的迭代之后，整体的数据量翻了两翻，部分接口的响应直接突破10s，然后业主方终于是不能忍了，明确提出要求做性能优化</p>
+<p>那么怎么做呢？</p>
+<p>按照一般的做事惯例，先定目标，然后基于现状拆解任务，接着就是任务的研发推进，最终的交付测试上线</p>
+<p>当明确提出要优化某个接口时，至少我们现在的目标是明确，要缩减接口的耗时</p>
+<p>现在也是明确的，接口响应很慢。 那么我们的任务也相对明确，即是解决接口响应慢的问题。 接下来就自然有一个疑问，到底是哪里慢了？ 对应的策略有两种</p>
+<ol>
+<li>老老实实啃代码，根据个人经验来判断慢的点</li>
+<li>借助一些工具，输出各关键节点的耗时分布情况，直观上找到性能瓶颈点</li>
+</ol>
+<p>对于第一点，没有什么好说的；重点看一下第二个，我现在迫切需要一个工具，能帮我分析整个接口的执行链路中，是哪些环节会比较慢</p>
+<p>现在我有什么？</p>
+<ul>
+<li>skywalking</li>
+<li>loki + grafana</li>
+</ul>
+<p>既然有全链路监控神器Skywalking，当然想着就是充分利用起来，先直接观察一下链路的执行情况</p>
+<figure><img src="/imgs/column/trace/00-skywalking.jpg" alt="来自网图" tabindex="0" loading="lazy"><figcaption>来自网图</figcaption></figure>
+<p>默认的Skywalking的链路追踪中，主要显示的是一些io相关的耗时操作，对于我们实际的业务场景有帮助，但不大（链路长、网络io非常多，很难精确定位到具体是哪里耗时久）</p>
+<p>此时就需要我们主动在代码的方法上埋点，通过<code>@Trace</code>注解来手动插入<code>LocalSpan</code>，从而增加关键方法的执行情况输出；接下来我遇到另外一个稍显现实的问题，特么的代码写得有点拉跨，大部分逻辑放在一个方法里，咋搞....</p>
+<blockquote>
+<p>关于skywalking的基础知识点：（<a href="https://www.jianshu.com/p/541eb76c6edc" target="_blank" rel="noopener noreferrer">Skywalking的埋点-Trace的基本概念 - 简书</a>）</p>
+</blockquote>
+<p>接下来只能老老实实的在代码中通过 <code>StopWatch</code> 来统计代码块的执行耗时情况了，耗时打印输出日志，借助<code>loki+grafana</code>来统一收集查看，也能满足诉求，但是，这种方式写出来的代码，会导致本就岌岌可危的业务代码，又添加了一堆无甚鸟用的逻辑，实在是有点难以忍受； 还有另外一个严重的问题，则是<code>StopWatch</code>对并发的支持不行，对于链路中存在异步调用的场景下，会出现统计偏差或异常</p>
+<p>既然现存的工具栈不合心意，那就自己搞一个，先指定几个基本要求：</p>
+<ul>
+<li>不会引入新的问题</li>
+<li>使用简单方便，输出直观的耗时统计</li>
+<li>对现有的业务代码块侵入较小</li>
+<li>支持链路中存在并行任务执行场景的耗时统计</li>
+<li>可以方便的将某些方法/代码块，由同步的调度改成异步的调度，从而提高接口性能</li>
+</ul>
+<p>接下来我们将正式进入实现篇，如何从0到1手撸一个耗时分布统计的工具组件</p>
+]]></content:encoded>
+      <enclosure url="https://liuyueyi.github.io/tutorial/imgs/column/trace/00-skywalking.jpg" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>trace-watch-dog</title>
+      <link>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/</link>
+      <guid>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">trace-watch-dog</source>
+      <description>trace-watch-dog 源码地址： trace-watch-dog 用于记录项目中，某一个链路的执行耗时情况，同时也支持将链路中的某些同步调用，改成异步执行，从而提高整体的性能表现 迭代记录 v1.0.1 支持在上下文中，随时获取 TraceBridge 进行手动埋点, 支持传入自定义的logSpEL，控制是否输出日志 v1.0.0 实现一个基础的 TraceWatch 工具类，通过手动埋点的方式记录整体的耗时分布情况</description>
+      <pubDate>Wed, 14 Aug 2024 14:17:36 GMT</pubDate>
+      <content:encoded><![CDATA[<h2> trace-watch-dog</h2>
+<blockquote>
+<p>源码地址： <a href="https://github.com/liuyueyi/hhui-components/blob/master/trace-watch-dog" target="_blank" rel="noopener noreferrer">trace-watch-dog</a></p>
+</blockquote>
+<p>用于记录项目中，某一个链路的执行耗时情况，同时也支持将链路中的某些同步调用，改成异步执行，从而提高整体的性能表现</p>
+<h3> 迭代记录</h3>
+<ul class="task-list-container">
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-0" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-0"> v1.0.1 支持在上下文中，随时获取 <code>TraceBridge</code> 进行手动埋点, 支持传入自定义的logSpEL，控制是否输出日志</label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-1" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-1"> v1.0.0 实现一个基础的 <code>TraceWatch</code> 工具类，通过手动埋点的方式记录整体的耗时分布情况</label></li>
+</ul>
+<h3> 系列教程</h3>
+<ul class="task-list-container">
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-2" disabled="disabled"><label class="task-list-item-label" for="task-item-2"> trace-watch-dog 诞生的契机</label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-3" disabled="disabled"><label class="task-list-item-label" for="task-item-3"> 如何实现一个基础版本的耗时监控工具类</label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-4" disabled="disabled"><label class="task-list-item-label" for="task-item-4"> 便捷的同步转异步的实现策略</label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-5" disabled="disabled"><label class="task-list-item-label" for="task-item-5"> 解决异步的上下文信息丢失问题（如traceId）</label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-6" disabled="disabled"><label class="task-list-item-label" for="task-item-6"> 借助上下文，支持随时使用</label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-7" disabled="disabled"><label class="task-list-item-label" for="task-item-7"> 借助AOP，实现非侵入式的埋点</label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-8" disabled="disabled"><label class="task-list-item-label" for="task-item-8"> AOP的使用缺陷</label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-9" disabled="disabled"><label class="task-list-item-label" for="task-item-9"> 基于Agent的实现方式</label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-10" disabled="disabled"><label class="task-list-item-label" for="task-item-10"> 耗时输出重定向(标准输出，slf4j输出，日志上报三方平台)</label></li>
+</ul>
+<h3> 使用姿势</h3>
+<p>引入依赖，基于jitpack的如下</p>
+<blockquote>
+<p>版本根据实际需要进行选择，当前最新版本 0.0.1</p>
+</blockquote>
+<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>基础核心使用，可应用非Spring应用场景</p>
+<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>对于SpringBoot的应用场景下，可以引入下面的依赖，支持基于AOP的埋点方式</p>
+<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content:encoded>
+    </item>
     <item>
       <title>1. 简繁转换原理分析</title>
       <link>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</link>
@@ -5333,128 +5414,6 @@ Nginx通过在客户端和后端服务器之间建立隧道来支持WebSockets�
       <pubDate>Fri, 02 Aug 2024 10:41:58 GMT</pubDate>
       <content:encoded><![CDATA[<h1> QuickTask应用专栏</h1>
 ]]></content:encoded>
-    </item>
-    <item>
-      <title>01.安装及influx-cli使用姿势介绍</title>
-      <link>https://liuyueyi.github.io/tutorial/db/influxdb/learning/01.%E5%AE%89%E8%A3%85%E5%8F%8Ainflux-cli%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E4%BB%8B%E7%BB%8D.html</link>
-      <guid>https://liuyueyi.github.io/tutorial/db/influxdb/learning/01.%E5%AE%89%E8%A3%85%E5%8F%8Ainflux-cli%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E4%BB%8B%E7%BB%8D.html</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">01.安装及influx-cli使用姿势介绍</source>
-      <description>influxdb 时序数据库，因为实际业务中使用到了，然而并没有发现有特别好的文章，完整的介绍influx sql的使用姿势，因此记录下实际开发中学习的体会，主要参考来自于官方文档 Influx Query Language (InfluxQL)</description>
-      <category>DB</category>
-      <category>InfluxDB</category>
-      <pubDate>Wed, 17 Jul 2019 18:15:17 GMT</pubDate>
-      <content:encoded><![CDATA[<p>influxdb 时序数据库，因为实际业务中使用到了，然而并没有发现有特别好的文章，完整的介绍influx sql的使用姿势，因此记录下实际开发中学习的体会，主要参考来自于官方文档 <a href="https://docs.influxdata.com/influxdb/v1.7/query_language/" target="_blank" rel="noopener noreferrer">Influx Query Language (InfluxQL)</a></p>
-<!-- more -->
-<p>influx已经推出2.0beta版本，并没有使用，后面的所有都是以1.7版本进行说明</p>
-<h2> I. 安装</h2>
-<p>安装教程，直接参考官网链接，<a href="https://docs.influxdata.com/influxdb/v1.7/introduction/installation/" target="_blank" rel="noopener noreferrer">installing-influxdb-oss</a>，下面只介绍centos/macos两个操作系统的安装姿势</p>
-<h3> 1. centos</h3>
-<p>通过yum包管理方式实现安装最新的稳定版, 在终端中输入</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后就可以按照常见的yum方式进行安装</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2. macos</h3>
-<p>mac推荐通过homebrew方式进行安装，命令也比较简单</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 相关配置</h3>
-<p>一般安装完毕之后，如果作为测试的话，直接使用并没有啥问题；但是实际的成产环境中，铁定是需要修改默认配置的</p>
-<p>如果需要开启权限校验，访问时需要用户名密码时，可以参考: <a href="https://blog.hhui.top/2019/05/05/190505-InfluxDB%E4%B9%8B%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" target="_blank" rel="noopener noreferrer">190505-InfluxDB之权限管理</a></p>
-<p>如果需要修改数据的存储位置，访问端口号等，可以参考: <a href="https://blog.hhui.top/2019/05/06/190506-InfluxDB%E4%B9%8B%E9%85%8D%E7%BD%AE%E4%BF%AE%E6%94%B9/" target="_blank" rel="noopener noreferrer">190506-InfluxDB之配置修改</a></p>
-<h2> II. influx-cli</h2>
-<p>安装完毕之后，influx自带了一个控制台访问操作的工具: <code>influx</code>，在正式进入后面的<code>influxsql</code>之前，有必要了解一下这个工具如何使用，因为后面的sql，都是需要在它上面玩耍的</p>
-<p>官方也给出了它的使用文档，有兴趣的可以参考: <a href="https://docs.influxdata.com/influxdb/v1.7/tools/shell/" target="_blank" rel="noopener noreferrer">InfluxDB command line interface (CLI/shell)</a></p>
-<h3> 1. 参数</h3>
-<p>默认情况下，我们直接在控制台输入 <code>influx</code> 之后就可以进入与influxdb交互的终端界面，如果我们修改了influx的默认配置，比如增加了用户名/密码时，这个时候可能需要使用参数来链接到influxdb了</p>
-<p>下面给出几个常用的参数</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>示例</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>-username</code></td>
-<td>admin</td>
-<td>配置访问用户名</td>
-</tr>
-<tr>
-<td><code>-password</code></td>
-<td>admin</td>
-<td>配置访问密码</td>
-</tr>
-<tr>
-<td><code>-format</code></td>
-<td><code>json csv column</code></td>
-<td>格式化输出结果</td>
-</tr>
-<tr>
-<td><code>-host</code></td>
-<td><code>localhost</code></td>
-<td>influxdb提供访问的域名或ip</td>
-</tr>
-<tr>
-<td><code>-port</code></td>
-<td>8086</td>
-<td>influxdb提供访问的端口号</td>
-</tr>
-<tr>
-<td><code>-precisoin</code></td>
-<td><code>rfc3339(h,m,s,ms,u,ns)</code></td>
-<td>指定time时间戳格式化</td>
-</tr>
-</tbody>
-</table>
-<p>一个简单的使用case如下</p>
-<figure><img src="/imgs/190717/00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 2. 使用示例</h3>
-<p>上面的参数是在连接的时候直接指定了，这些参数在连接之后，也是可以再指定的，下面给出以下常用的使用姿势</p>
-<h4> a. help</h4>
-<p>直接输入help，会给出一些命令提示</p>
-<figure><img src="/imgs/190717/01.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h4> b. auth</h4>
-<p>因为直接使用前面的方式输入用户名和密码的方式，并不安全，所以推荐的方式是直接influx进去之后，使用auth来权限校验，这种思路和redis-cli的差不多</p>
-<figure><img src="/imgs/190717/02.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h4> c. pretty</h4>
-<p>是输出更加友好的方式，配合<code>-format=json</code>的时候比较合适</p>
-<figure><img src="/imgs/190717/03.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p><strong>注意pretty输入一次表示开启，再输入一次表示关闭</strong></p>
-<h4> d. precision</h4>
-<p>时间戳格式化，对人更友好的显示方式</p>
-<p>直接输入: <code>precision rfc3339</code></p>
-<figure><img src="/imgs/190717/04.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h4> e. history</h4>
-<p>influx-cli会保存历史命令（不包括auth），所以可以通过输入这个来查询之前的命令</p>
-<h4> f. 退出</h4>
-<p>三种方式</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div>]]></content:encoded>
-      <enclosure url="https://liuyueyi.github.io/tutorial/imgs/190717/00.jpg" type="image/jpeg"/>
-    </item>
-    <item>
-      <title>02.database 数据库</title>
-      <link>https://liuyueyi.github.io/tutorial/db/influxdb/learning/02.database-%E6%95%B0%E6%8D%AE%E5%BA%93.html</link>
-      <guid>https://liuyueyi.github.io/tutorial/db/influxdb/learning/02.database-%E6%95%B0%E6%8D%AE%E5%BA%93.html</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">02.database 数据库</source>
-      <description>对于influxdb而言，database和我们更熟悉的mysql中的dababse没有什么特别的区别，可以将数据库简单理解为一堆表(measurement)的集合，接下来我们将看一下在influxdb中，database的常规操作</description>
-      <category>DB</category>
-      <category>InfluxDB</category>
-      <pubDate>Thu, 18 Jul 2019 18:32:51 GMT</pubDate>
-      <content:encoded><![CDATA[<p>对于influxdb而言，database和我们更熟悉的mysql中的dababse没有什么特别的区别，可以将数据库简单理解为一堆表(measurement)的集合，接下来我们将看一下在influxdb中，database的常规操作</p>
-<!-- more -->
-<h3> 1. 查看当前数据库</h3>
-<p>如果需要查询当前有哪些数据库，可以通过show语句来实现</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="/imgs/190718/00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>上面的<code>_internal</code>是内置的数据库</p>
-<h3> 2. 创建数据库</h3>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>创建一个名为yhh的数据库</p>
-<figure><img src="/imgs/190718/01.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 3. 使用数据库</h3>
-<p>如果需要查询某个measurement的数据时，首先需要进入到对应的数据库，直接使用use语句即可</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1> <img src="/imgs/190718/02.jpg" alt="" loading="lazy"></h1>
-<h3> 4. 删除数据库</h3>
-<p>数据库的删除，需要慎重，因为会删除其中所有的数据，属于高危操作</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="/imgs/190718/03.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-]]></content:encoded>
-      <enclosure url="https://liuyueyi.github.io/tutorial/imgs/190718/00.jpg" type="image/jpeg"/>
     </item>
   </channel>
 </rss>
