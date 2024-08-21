@@ -1,6 +1,7 @@
 ---
-title: 应用专栏
+title: SPI业务框架
 icon: app
+index: false
 ---
 
 # 应用专栏

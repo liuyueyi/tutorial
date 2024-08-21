@@ -1,6 +1,6 @@
 ---
 title: trace-watch-dog
-icon: app
+icon: relation
 ---
 
 ## trace-watch-dog

@@ -34,7 +34,7 @@ export const zhNavbar = navbar([
       {
         text: "应用专栏",
         prefix: "app/",
-        children: ["im/", "alarm/", "spi/"],
+        children: ["im/", "alarm/", "spi/", "trace-watch-dog/"],
       },
       {
         text: "架构",
