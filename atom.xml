@@ -9,7 +9,7 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2024-08-14T14:30:35.057Z</updated>
+  <updated>2024-08-21T09:41:21.368Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
@@ -51,6 +51,103 @@
     <name>一灰灰blog</name>
     <uri>https://hhui.top</uri>
   </contributor>
+  <entry>
+    <title type="text">2. 封装一个基础的耗时统计工具类</title>
+    <id>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/02.%E5%9F%BA%E7%A1%80%E8%80%97%E6%97%B6%E5%B7%A5%E5%85%B7%E5%B0%81%E8%A3%85.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/02.%E5%9F%BA%E7%A1%80%E8%80%97%E6%97%B6%E5%B7%A5%E5%85%B7%E5%B0%81%E8%A3%85.html"/>
+    <updated>2024-08-21T09:27:37.000Z</updated>
+    <summary type="html"><![CDATA[<p>在日常的工作中，对某一段代码的执行耗时进行记录，属于相对常见的诉求，实现起来也很简单，不就是开始前记录一下当前时间戳，执行结束之后再记录一下当前时间戳，两者相减就可以得到我们想要的结果了</p>
+<h2> 1. 时间戳差值法</h2>
+<p>这里主要借助的就是 <code>System.currentTimeMillis()</code> 来获取当前的时间戳（毫秒）</p>
+<h3> 1.1 基本实现</h3>
+<p>先来看一下基本的使用姿势</p>
+<div class="language-java line-numbers-mode" data-ext="java"><pre class="language-java"><code><span class="token comment">// com.github.liuyueyi.hhui.trace.test.step.Step1#testCost</span>
+<span class="token keyword">long</span> start <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// ... 这里省略掉需要计算耗时的业务逻辑</span>
+<span class="token keyword">long</span> end <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"cost: "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>end <span class="token operator">-</span> start<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"ms"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></summary>
+    <content type="html"><![CDATA[<p>在日常的工作中，对某一段代码的执行耗时进行记录，属于相对常见的诉求，实现起来也很简单，不就是开始前记录一下当前时间戳，执行结束之后再记录一下当前时间戳，两者相减就可以得到我们想要的结果了</p>
+<h2> 1. 时间戳差值法</h2>
+<p>这里主要借助的就是 <code>System.currentTimeMillis()</code> 来获取当前的时间戳（毫秒）</p>
+<h3> 1.1 基本实现</h3>
+<p>先来看一下基本的使用姿势</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面这种写法比较简单直接，唯一的问题就是会有较多的重复冗余代码，特别是再一个执行链路中，存在较多的地方需要输出耗时时，就会发现代码块中，会出现大量的上面的代码块</p>
+<p>有没有什么办法可以提炼一下呢？</p>
+<ul>
+<li>解决函数方法来实现</li>
+</ul>
+<h3> 1.2 公用方法</h3>
+<p>针对上面的写法，我们抽出一个耗时统计的公用方法，如下</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>当执行一个代码块不需要关注返回结果时，就可以通过下面这种方式进行耗时输出</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>执行以下上面的 testCost2 ，会得到如下的执行耗时输出</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>上面的公用方法适用于没有返回结果的耗时打印，但是现实中，当然还存在需要获取返回的场景，这个时候我们可以再封装一个公共方法，用于有返回结果的场景</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>给出一个具体的使用demo</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>下面是执行的返回结果示例</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 1.3 实现小结</h3>
+<p>上面基于时间戳封装了一个简单的耗时打印工具类，我们整合一下关键的方法，如下</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>对应的使用姿势也比较简单，根据是否有返回结果，可以区分为下面两种</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>这样看起来，这个工具类已经能满足基本诉求了，那还需要做什么？ 或者说这个工具类有什么问题么？</p>
+<p>从使用侧的角度来看，这个工具类还有两个不便</p>
+<ol>
+<li>代码侵入性强，需要主动再业务代码中进行集成</li>
+<li>输出结果离散，对于链路较长的业务，具体哪一块业务逻辑耗时较久不直观</li>
+</ol>
+<h2> 2. StopWatch工具类</h2>
+<p>Spring本身提供了一个耗时统计的工具类<code>StopWatch</code>，当然也有很多的组件库提供了类似的工具类，那么它主要是为了解决什么问题呢？</p>
+<h3> 2.1 使用体验</h3>
+<p>接下来我们通过实际的使用，来体验一下<code>StopWatch</code>的效果表现</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>输出如下</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>从上面的输出结果，可以直观看到每个任务的耗时，对整体耗时的占用百分比，基于此可以更容易找到性能瓶颈点，这里也可以回答上一节的疑问，主要解决的就是上面提到的第二个缺陷：输出比较离散的问题</p>
+<h3> 2.2 使用封装</h3>
+<p>同样的，我们也希望将上面的使用姿势做一个封装，尽量减少冗余代码对业务代码的侵入</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面的工具类中，我们借助<code>Closeable</code> + <code>try</code> 来实现自动的耗时输出</p>
+<p>接下来再看一下使用姿势</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>输出示例</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>使用工具类，整体上对业务代码的可阅读性上，相比较于之前会更优雅一点； 那么这个StopWatchWrapper的工具类是否就已经可以满足我们的诉求了呢？</p>
+<h3> 2.3 StopWatch特性小结</h3>
+<p>仔细看一下上面的耗时打印，StopWatch 输出的耗时，实际上是从首次调用 <code>stopWatch.start</code> 开始计算耗时，到最后一个 <code>stopWatch.stop</code> 调用作为结束</p>
+<p>即上面的测试代码中，try语句中的第一个<code>randSleep(300);</code> 和最后一个 <code>randSleep(300);</code> 的耗时，实际上是不包含在最终的耗时输出结果中的，这里就有一点反直觉了</p>
+<p>此外，有看过<code>StopWatch</code>源码的小伙伴可以知道，它是线程不安全的，即在多线程场景下，即容易出错</p>
+<figure><img src="/imgs/column/trace/01-stopwatch.jpg" alt="异常提示" tabindex="0" loading="lazy"><figcaption>异常提示</figcaption></figure>
+<h2> 3. 小结</h2>
+<p>我们这里主要封装了两个工具类，主要解决的是使用层面的问题</p>
+<ol>
+<li>CostUtil</li>
+</ol>
+<p>适用于单一代码块的耗时输出，借助 <code>System.currentTimeMillis</code> 获取当前时间戳，通过代码块执行前后的时间差来输出耗时情况</p>
+<p>封装的工具类主要借助函数方法来简化使用方式，它本身的缺点有下面几点</p>
+<ul>
+<li>侵入性强，需要主动埋点记录耗时</li>
+<li>对于复杂的业务链路下，存在多个任务耗时统计时，输出结果离散不直观</li>
+</ul>
+<ol start="2">
+<li>StopWatchWrapper</li>
+</ol>
+<p>适用于某一业务链路，多个任务耗时打印输出场景，借助<code>StopWatch</code>来实现耗时分布统计</p>
+<p>这里主要借助函数方法 + try/closeable来简化使用方式, 它解决了CostUtil的输出离散问题，单依然存在下面几个缺点</p>
+<ul>
+<li>侵入性强，需要主动埋点记录耗时</li>
+<li>并发场景下容易出现异常</li>
+</ul>
+<p>既然现有的工具方法不够完美，那就自己撸一个，目标是</p>
+<ul>
+<li>侵入性小</li>
+<li>支持并发场景的耗时记录</li>
+</ul>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="技术组件"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2024-08-21T19:19:48.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
   <entry>
     <title type="text">1. 诞生的契机</title>
     <id>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/01.%E8%AF%9E%E7%94%9F%E7%9A%84%E5%A5%91%E6%9C%BA.html</id>
@@ -111,7 +208,7 @@
     <title type="text">trace-watch-dog</title>
     <id>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/</id>
     <link href="https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/"/>
-    <updated>2024-08-14T14:17:36.000Z</updated>
+    <updated>2024-08-21T09:27:37.000Z</updated>
     <summary type="html"><![CDATA[<h2> trace-watch-dog</h2>
 <blockquote>
 <p>源码地址： <a href="https://github.com/liuyueyi/hhui-components/blob/master/trace-watch-dog" target="_blank" rel="noopener noreferrer">trace-watch-dog</a></p>
@@ -6660,26 +6757,6 @@ worker_processes auto<span class="token punctuation">;</span>
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2018-08-07T22:09:05.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">quick-task</title>
-    <id>https://liuyueyi.github.io/tutorial/column/app/task/</id>
-    <link href="https://liuyueyi.github.io/tutorial/column/app/task/"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<h1> QuickTask应用专栏</h1>
-]]></summary>
-    <content type="html"><![CDATA[<h1> QuickTask应用专栏</h1>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2024-08-02T10:41:58.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
 </feed>
