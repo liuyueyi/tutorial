@@ -9,7 +9,7 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2024-08-21T09:41:21.368Z</updated>
+  <updated>2024-08-22T11:07:57.840Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
@@ -52,10 +52,204 @@
     <uri>https://hhui.top</uri>
   </contributor>
   <entry>
+    <title type="text">3. 从0到1封装一个通用的耗时统计工具类</title>
+    <id>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/03.%E5%B0%81%E8%A3%85%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%80%97%E6%97%B6%E5%88%86%E5%B8%83%E5%B7%A5%E5%85%B7%E7%B1%BB.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/03.%E5%B0%81%E8%A3%85%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%80%97%E6%97%B6%E5%88%86%E5%B8%83%E5%B7%A5%E5%85%B7%E7%B1%BB.html"/>
+    <updated>2024-08-22T10:54:29.000Z</updated>
+    <summary type="html"><![CDATA[<p>接下来本文将再前面的基础耗时工具类的基础之上，从0到1写一个支持多线程场景下的耗时统计工具类</p>
+<h2> 1. 设计思路</h2>
+<h3> 1.1 明确思路</h3>
+<p>首先明确目标：</p>
+<ul>
+<li>实现一个并发安全的<code>StopWatch</code>工具类</li>
+</ul>
+<p>主要挑战：</p>
+<ul>
+<li>并发安全</li>
+</ul>
+<p>实现思路：</p>
+<ul>
+<li>参照<code>StopWatch</code>的实现，解决并发问题</li>
+</ul>
+<h3> 1.2 设计思路</h3>
+<p>到这里，假定大家已经看过了<code>StopWatch</code>的实现源码（实际上没看过也没啥影响）</p>]]></summary>
+    <content type="html"><![CDATA[<p>接下来本文将再前面的基础耗时工具类的基础之上，从0到1写一个支持多线程场景下的耗时统计工具类</p>
+<h2> 1. 设计思路</h2>
+<h3> 1.1 明确思路</h3>
+<p>首先明确目标：</p>
+<ul>
+<li>实现一个并发安全的<code>StopWatch</code>工具类</li>
+</ul>
+<p>主要挑战：</p>
+<ul>
+<li>并发安全</li>
+</ul>
+<p>实现思路：</p>
+<ul>
+<li>参照<code>StopWatch</code>的实现，解决并发问题</li>
+</ul>
+<h3> 1.2 设计思路</h3>
+<p>到这里，假定大家已经看过了<code>StopWatch</code>的实现源码（实际上没看过也没啥影响）</p>
+<ul>
+<li>在<code>StopWatch</code>中，通过<code>List&lt;TaskInfo&gt; taskList</code>来记录每个任务的耗时情况</li>
+<li>因为它主要应用于单线程场景，所以不存在任务的并行耗时记录的场景，通常是要给任务执行完毕，然后开始记录下一个任务，所以在全局使用<code>startTimeNanos</code>表示当前任务的开始时间，当结束记录时，将任务耗时情况写入<code>taskList</code>列表</li>
+</ul>
+<p>基本工作原理如下</p>
+<figure><img src="/imgs/column/trace/02-stopwatch原理.jpg" alt="StopWatch工作原理" tabindex="0" loading="lazy"><figcaption>StopWatch工作原理</figcaption></figure>
+<p>从StopWatch的工作原理上，想实现一个并发安全的貌似也不难，我们将List换成Map，支持同时记录多个任务的耗时情况</p>
+<figure><img src="/imgs/column/trace/03-traceDog原理.jpg" alt="trace-watch-dog工作原理" tabindex="0" loading="lazy"><figcaption>trace-watch-dog工作原理</figcaption></figure>
+<p>我们的设计上也相对清晰</p>
+<ol>
+<li>使用一个并发安全的Map容器（如ConcurrentHashMap)来记录任务的耗时情况</li>
+<li>开始记录一个任务时，向Map中写入<code>任务名</code> + <code>当前时间戳</code> 的键值对</li>
+<li>结束一个任务时，从Map中获取对应任务的时间戳，与当前时间戳取差值，得到任务的执行耗时，并写回到Map中，这样Map中记录的就是这个任务的耗时时间了</li>
+<li>耗时分布输出：遍历map，打印结果</li>
+</ol>
+<h2> 2. 实现</h2>
+<h3> 2.1 基础实现</h3>
+<blockquote>
+<p>下面的源码，可在<code>com.github.liuyueyi.hhui.trace.test.step.Step3</code>进行查看</p>
+</blockquote>
+<p>接下来我们按照上面的设计思路，现来实现一个Map版本的<code>StopWatch</code></p>
+<p>定义一个工具类 <code>TraceWatch</code>，申明两个核心变量 <code>taskName:总任务名</code> + <code>taskCost:子任务耗时map</code></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后就是实现记录某个任务执行耗时的开始、结束方法</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>最后再实现一个各任务的耗时输出分布 （日志打印基本上验用StopWatch的格式化打印，区别在于这里使用的是毫秒输出）</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>到这里，一个支持多任务耗时并行记录的工具类就实现了，接下来写一个测试用例来验证下效果</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>下面是一个示例的输出结果</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>从上面的使用demo以及输出，会发现存在一些问题</p>
+<ol>
+<li>代码的冗余度高</li>
+<li>总耗时与实际不符（总耗时是每个任务的耗时加和，但是有些任务是并行执行的）</li>
+<li>最终的结果输出时，得等到所有任务执行完毕，但是上面的实现无法保证这一点</li>
+<li>耗时统计的代码块抛出异常时，会导致无法正确记录耗时情况（即stop方法要求业务方确保和start一起出现，一定会被调用到）</li>
+</ol>
+<h3> 2.2 使用姿势优化</h3>
+<p>接下来我们尝试解决提出的问题，首先是使用姿势的优化，提供一个耗时的封装</p>
+<p>在前面的基础上，新增一个无返回/有返回的方法</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后，我们再借助<code>try</code>语句来实现自动的耗时输出, 再结果打印时，我们遍历一下所有的任务，看一下是否已经执行完毕(通过判断taskCost中存的是时间戳还是耗时来判断任务是否执行完毕，当然也是可以新增一个状态来判断任务是否已执行完)</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>接下来再看一下新的使用姿势</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>整体来说，相比较于前面的版本，使用侧还是要简单明了不少的。 但是请注意，再实际使用的过程中，可能会出现最后一个 task4 耗时统计异常的情况，如下</p>
+<figure><img src="/imgs/column/trace/04-traceWatch输出.jpg" alt="异常输出" tabindex="0" loading="lazy"><figcaption>异常输出</figcaption></figure>
+<p>为什么会出现这种情况呢？ 我们在耗时输出时，不是已经做了一个自旋等待所有任务执行完毕么，为啥还会出现任务没有执行完毕的情况呢？</p>
+<p>这里主要的原因在于并行的场景下，<code>TraceWatch</code> 的 <code>close</code> 方法执行过程中，<code>allExecuted</code> 这个方法执行完了之后，而在 <code>prettyPrint</code> 打印前，上面的task4这个任务执行了<code>start()</code>方法开始了耗时记录，从而导致出现上面的问题</p>
+<h3> 2.3 并发优化</h3>
+<p>接下来我们再优化一下上面的工具类，除了解决上面的问题之外，我们再调整一下整体耗时的规则，记录从<code>TraceWatch</code>初始化，到最终耗时输出这个时间段的耗时，作为整体的耗时记录（取代之前的所有的单个任务耗时加和作为总耗时）</p>
+<ul>
+<li>新增 <code>markExecuteOver</code> 标记是否所有的任务执行完毕</li>
+<li>若所有任务执行完毕，则不再支持新的任务耗时记录</li>
+<li>对象创建时，作为整体任务的开始时间； 日志打印/close方法触发时，作为整体任务执行结束时间</li>
+</ul>
+<p>添加上面三个逻辑之后，新的工具类如下</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>对应的使用姿势基本上与前面没什么差别，我们新增一个没有被<code>traceWatch.cost</code>包裹的代码块，验证下新的工具类</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>多执行几次，将会看到下面这类的输出</p>
+<figure><img src="/imgs/column/trace/05-traceWatch输出2.jpg" alt="输出结果" tabindex="0" loading="lazy"><figcaption>输出结果</figcaption></figure>
+<p>重点注意几个关键输出：</p>
+<ol>
+<li>task4 耗时记录被忽略了，即出现了先执行<code>allExecuted()</code>，后统计 <code>task4</code> 耗时的场景</li>
+<li><code>整体耗时(147ms)</code> 约等于 <code>前置(12ms)</code> + <code>task1(106ms)</code> + <code>task3(27ms)</code></li>
+</ol>
+<p>因为task2是异步执行的，它可以与task1/3并行执行，所以对整体的耗时基本没有影响，这里的整体耗时输出和我们外层直接统计的耗时输出基本一致，表明这个整体的耗时输出结果是符合真实预期的</p>
+<h3> 2.4 小结</h3>
+<p>本文通过一步一步的实现 + 复盘，得出了一个简单的、适用于并发场景下的耗时分布统计工具类。再实现的过程中，给出了为什么最终的成品长这样，因为什么原因，引入了xx成员变量，解决了什么问题，通过将这个工具类的实现步骤拆分，给大家演示了一下一个相对成熟的工具类的迭代过程</p>
+<p><strong>知识点</strong></p>
+<p>接下来我们对整体的实现，从技术侧做一个小结，相关的知识点有：</p>
+<ul>
+<li>并发任务耗时支持： 借助<code>ConcurrentHashMap</code>来记录每个任务的耗时情况</li>
+<li>通过函数方法，封装代码块的耗时统计使用姿势，确保 <code>start</code> 与 <code>stop</code> 一定会配套出现</li>
+<li>自旋等待的方式，等待所有的任务执行完毕之后，再输出耗时分布</li>
+<li>全局结束标记，当标记结束之后，不再支持新的任务耗时统计（注意<code>markExecuteOver</code>前面的修饰<code>volatile</code>）</li>
+</ul>
+<p><strong>缺陷点</strong></p>
+<p>然后我们再看一下这个工具类的缺陷：</p>
+<ul>
+<li>代码侵入性问题（依然时需要再业务代码侧进行埋点）</li>
+<li>任务名相同时，会出现耗时覆盖</li>
+<li>任务耗时百分比加和不是100%(因为异步任务以及任务之外的代码块执行耗时的影响，导致占比一般不是100%了)</li>
+</ul>
+<p><strong>待优化点</strong></p>
+<p>在上面这个工具类的基础上，我们还有什么可以优化的地方么?</p>
+<ul>
+<li>简化异步代码块的耗时统计，看是否可以直接将异步的能力集成在工具类中，减小业务侧异步支持的成本</li>
+</ul>
+<blockquote>
+<p>本文所有代码均可以在 <a href="https://github.com/liuyueyi/hhui-components/blob/master/trace-watch-dog/src/test/java/com/github/liuyueyi/hhui/trace/test/step/Step4.java" target="_blank" rel="noopener noreferrer">trace-watch-dog</a> 获取</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="技术组件"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2024-08-22T09:19:48.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">4. 异步使用能力增强</title>
+    <id>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/04.%E5%BC%82%E6%AD%A5%E6%94%AF%E6%8C%81%E7%AD%96%E7%95%A5.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/04.%E5%BC%82%E6%AD%A5%E6%94%AF%E6%8C%81%E7%AD%96%E7%95%A5.html"/>
+    <updated>2024-08-22T10:54:29.000Z</updated>
+    <summary type="html"><![CDATA[<p>接上文的耗时统计工具类，对于<code>TraceWatch</code>工具类的基本使用，都是基于同步的策略来的，如</p>
+<div class="language-java line-numbers-mode" data-ext="java"><pre class="language-java"><code>
+<span class="token comment">// 无返回结果</span>
+traceWatch<span class="token punctuation">.</span><span class="token function">cost</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> xxx<span class="token punctuation">,</span> <span class="token string">"task1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 有返回结果</span>
+ans <span class="token operator">=</span> traceWatch<span class="token punctuation">.</span><span class="token function">cost</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span> xxx<span class="token punctuation">;</span>  <span class="token keyword">return</span> xxx<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"task1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></summary>
+    <content type="html"><![CDATA[<p>接上文的耗时统计工具类，对于<code>TraceWatch</code>工具类的基本使用，都是基于同步的策略来的，如</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>接下来我们考虑对它的能力进行增强，我们希望可以简单的指定需要统计的代码块是同步执行还是异步执行</p>
+<p>比如</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 1. 异步增强</h2>
+<h3> 1.1 通用的线程池工具类</h3>
+<p>既然是异步能力增强，支持代码块的异步调度，那么我们可以封装一个简单的线程池工具类，主要用于异步执行的线程池的创建</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 1.2 异步能力增强</h3>
+<p>当我们希望包装的代码块可以同步/异步执行时，首先是在创建对象的时候，指定一下线程池</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>接下来我们封装一下上面的<code>start</code>, <code>end</code>方法的使用姿势，与前面的工具类的实现，重要的区别在于返回</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>为什么返回的是 <code>Runnable/Supplier</code>？</p>
+<blockquote>
+<p>这个就需要从同步/异步的调用方法来看为什么这么设计了</p>
+</blockquote>
+<p>对于同步执行的场景，我们可以分别为有返回/无返回提供两个方法</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>对于异步执行的场景，我们需要将<code>xxWithTime</code>的返回丢到线程池中执行</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>看到上面的实现之后，我们很容易想到，在输出耗时分布时，判断是否所有任务执行完毕，实际上不需要用之前的自旋等待的方式判断是否都执行完毕了，我们可以持有异步的返回的<code>CompletableFuture</code>，通过join的方式来等待所有任务执行完毕</p>
+<p>因此我们可以声明一个全局的异步结果缓存容器，在实例化对象的时候进行初始化</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>接下来就是在异步调度时，保存一下结果</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>等待所有任务执行完毕就可以直接借助<code>CompletableFuture.allOf().join</code>来实现了</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>到此，我们的异步能力增强已基本实现完毕, 接下来进入实测体验</p>
+<h2> 2. 使用体验</h2>
+<h3> 2.1 完整工具类</h3>
+<p>下面是完整的工具实现类</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2.2 使用体验</h3>
+<p>接下来看一下具体的使用实例</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>输出示例</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2.3 小结</h3>
+<p>从上面的使用来看，现在的工具类相对来说就完整很多了，使用上也比较简单(至少代码阅读起来，还算优雅)，但是依然没能解决<code>业务代码侵入</code>问题</p>
+<p>此外，在异步的场景下，我们需要注意多线程/线程池场景下的上下文传递问题，若上面的<code>async</code>代码块中，希望获取主线程中的上下文参数，可以正常拿到么？</p>
+<blockquote>
+<p>本文中的相关代码，可以到这里查看 <a href="https://github.com/liuyueyi/hhui-components/blob/master/trace-watch-dog/src/test/java/com/github/liuyueyi/hhui/trace/test/step/Step5.java" target="_blank" rel="noopener noreferrer">trace-watch-dog</a></p>
+</blockquote>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="技术组件"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2024-08-22T09:19:48.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
     <title type="text">2. 封装一个基础的耗时统计工具类</title>
     <id>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/02.%E5%9F%BA%E7%A1%80%E8%80%97%E6%97%B6%E5%B7%A5%E5%85%B7%E5%B0%81%E8%A3%85.html</id>
     <link href="https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/02.%E5%9F%BA%E7%A1%80%E8%80%97%E6%97%B6%E5%B7%A5%E5%85%B7%E5%B0%81%E8%A3%85.html"/>
-    <updated>2024-08-21T09:27:37.000Z</updated>
+    <updated>2024-08-22T10:54:29.000Z</updated>
     <summary type="html"><![CDATA[<p>在日常的工作中，对某一段代码的执行耗时进行记录，属于相对常见的诉求，实现起来也很简单，不就是开始前记录一下当前时间戳，执行结束之后再记录一下当前时间戳，两者相减就可以得到我们想要的结果了</p>
 <h2> 1. 时间戳差值法</h2>
 <p>这里主要借助的就是 <code>System.currentTimeMillis()</code> 来获取当前的时间戳（毫秒）</p>
@@ -75,30 +269,30 @@
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面这种写法比较简单直接，唯一的问题就是会有较多的重复冗余代码，特别是再一个执行链路中，存在较多的地方需要输出耗时时，就会发现代码块中，会出现大量的上面的代码块</p>
 <p>有没有什么办法可以提炼一下呢？</p>
 <ul>
-<li>解决函数方法来实现</li>
+<li>通过函数方法来实现</li>
 </ul>
 <h3> 1.2 公用方法</h3>
 <p>针对上面的写法，我们抽出一个耗时统计的公用方法，如下</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>当执行一个代码块不需要关注返回结果时，就可以通过下面这种方式进行耗时输出</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>执行以下上面的 testCost2 ，会得到如下的执行耗时输出</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>上面的公用方法适用于没有返回结果的耗时打印，但是现实中，当然还存在需要获取返回的场景，这个时候我们可以再封装一个公共方法，用于有返回结果的场景</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>上面的公用方法适用于没有返回结果的耗时打印，但是现实中，当然还存在需要获取返回的场景，这个时候我们可以再封装一个公共方法，适用于有返回结果的场景</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>给出一个具体的使用demo</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>下面是执行的返回结果示例</p>
 <div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 1.3 实现小结</h3>
-<p>上面基于时间戳封装了一个简单的耗时打印工具类，我们整合一下关键的方法，如下</p>
+<p>上面基于时间戳封装了一个简单的耗时打印公共方法，我们整合一下关键的实现，提炼一个通用工具类如下</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>对应的使用姿势也比较简单，根据是否有返回结果，可以区分为下面两种</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>这样看起来，这个工具类已经能满足基本诉求了，那还需要做什么？ 或者说这个工具类有什么问题么？</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>从结果来看，这个工具类已经能满足基本诉求了，那么到此为止么？再看一下这个工具类，会有什么问题么？</p>
 <p>从使用侧的角度来看，这个工具类还有两个不便</p>
 <ol>
 <li>代码侵入性强，需要主动再业务代码中进行集成</li>
-<li>输出结果离散，对于链路较长的业务，具体哪一块业务逻辑耗时较久不直观</li>
+<li>输出结果分散，对于链路较长的业务，具体是哪一块业务逻辑耗时较久不太直观</li>
 </ol>
 <h2> 2. StopWatch工具类</h2>
-<p>Spring本身提供了一个耗时统计的工具类<code>StopWatch</code>，当然也有很多的组件库提供了类似的工具类，那么它主要是为了解决什么问题呢？</p>
+<p>Spring本身提供了一个耗时统计的工具类<code>StopWatch</code>，当然也有很多的组件库(如Hutool)提供了类似的工具类，那么它主要是为了解决什么问题呢？</p>
 <h3> 2.1 使用体验</h3>
 <p>接下来我们通过实际的使用，来体验一下<code>StopWatch</code>的效果表现</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>输出如下</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>从上面的输出结果，可以直观看到每个任务的耗时，对整体耗时的占用百分比，基于此可以更容易找到性能瓶颈点，这里也可以回答上一节的疑问，主要解决的就是上面提到的第二个缺陷：输出比较离散的问题</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>从上面的输出结果，可以直观看到每个任务的耗时，对整体耗时的占用百分比，基于此可以更容易找到性能瓶颈点，这里也可以回答上一节的疑问，主要解决的就是上面提到的第二个缺陷：输出比较分散的问题</p>
 <h3> 2.2 使用封装</h3>
 <p>同样的，我们也希望将上面的使用姿势做一个封装，尽量减少冗余代码对业务代码的侵入</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面的工具类中，我们借助<code>Closeable</code> + <code>try</code> 来实现自动的耗时输出</p>
@@ -6563,200 +6757,6 @@ worker_processes auto<span class="token punctuation">;</span>
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2018-07-23T21:17:37.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">4. 动态脚本支持框架之任务动态加载</title>
-    <id>https://liuyueyi.github.io/tutorial/column/app/task/180729-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8B%E4%BB%BB%E5%8A%A1%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/column/app/task/180729-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8B%E4%BB%BB%E5%8A%A1%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<h1> Quick-Task 动态脚本支持框架之任务动态加载</h1>
-<p>前面几篇博文分别介绍了整个项目的基本架构，使用说明，以及整体框架的设计与实现初稿，接下来则进入更细节的实现篇，将整个工程中核心实现捞出来，从为什么这么设计到最终的实现给予说明</p>
-<p>相关系列博文：</p>
-<ul>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/07/02/180702-QuickTask%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E6%95%B4%E4%BD%93%E4%BB%8B%E7%BB%8D%E7%AF%87/" target="_blank" rel="noopener noreferrer">180702-QuickTask动态脚本支持框架整体介绍篇</a></li>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/07/19/180719-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8B%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D%E7%AF%87/" target="_blank" rel="noopener noreferrer">180719-Quick-Task 动态脚本支持框架之使用介绍篇</a></li>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/07/23/180723-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8B%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%AF%87/" target="_blank" rel="noopener noreferrer">180723-Quick-Task 动态脚本支持框架之结构设计篇</a></li>
-</ul>
-]]></summary>
-    <content type="html"><![CDATA[<h1> Quick-Task 动态脚本支持框架之任务动态加载</h1>
-<p>前面几篇博文分别介绍了整个项目的基本架构，使用说明，以及整体框架的设计与实现初稿，接下来则进入更细节的实现篇，将整个工程中核心实现捞出来，从为什么这么设计到最终的实现给予说明</p>
-<p>相关系列博文：</p>
-<ul>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/07/02/180702-QuickTask%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E6%95%B4%E4%BD%93%E4%BB%8B%E7%BB%8D%E7%AF%87/" target="_blank" rel="noopener noreferrer">180702-QuickTask动态脚本支持框架整体介绍篇</a></li>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/07/19/180719-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8B%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D%E7%AF%87/" target="_blank" rel="noopener noreferrer">180719-Quick-Task 动态脚本支持框架之使用介绍篇</a></li>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/07/23/180723-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8B%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%AF%87/" target="_blank" rel="noopener noreferrer">180723-Quick-Task 动态脚本支持框架之结构设计篇</a></li>
-</ul>
-<!-- more -->
-<h2> I. 任务动态加载</h2>
-<p>这个动态脚本调度框架，最大的一个功能点就是支持热加载了，何为热加载？</p>
-<p>简单来说就是在程序不宕机的情况下，可以往里面添加新的任务，删除旧的任务，更新已有的任务等等，就好比飞机在天上飞的时候给它加油，就这么高端的操作（😊）</p>
-<p>为了支持热加载，首先面临的问题就是如何判断有任务的新增/删除/修改？</p>
-<h3> 1. 任务监听的从0到1</h3>
-<p>要实现任务变更的监听，自然而然想到的一个方案就是起一个线程，不断的轮询，基本的逻辑无非是判断是否有任务的变更发生而已，也因此关注点就落在了如何判断任务是否有变更了</p>
-<p>最简单粗暴直观的方法，就是记录之前的所有的任务，然后每次轮询时判断当前的所有任务与之前的所有任务是否有区别</p>
-<p>再落到具体的实现上，则与任务的具体存储有关系了。很容易想到了几种任务存储方式有</p>
-<ul>
-<li>文件</li>
-<li>数据库 （如mysql）</li>
-<li>缓存 （如redis)</li>
-</ul>
-<h4> a. 数据库存储方式</h4>
-<p>这种方法比较好想到，同时也好实现，所有的任务都直接存在DB的某张表中；只需要保证表中包含以下几个字段即可</p>
-<ul>
-<li>task: 具体的任务脚本逻辑</li>
-<li>state: 任务的状态（表示运行，暂停等）</li>
-<li>update: 任务的更新时间</li>
-</ul>
-<p>基于上面的三个属性，判断的逻辑就清晰了</p>
-<ul>
-<li>起一个check线程，不断的扫表，获取所有的任务</li>
-<li>将当前获取的任务与上一次获取的任务进行对比</li>
-<li>根据比对的结果，封装任务更新事件，抛给下游处理</li>
-</ul>
-<p>当然在db的场景下，还有一个更简单的方式，借助mysql的dbevent事件来处理任务的变更</p>
-<ul>
-<li>首先开启mysql的dbevent事件，即db中记录的新增删除变更都会抛出一个消息</li>
-<li>监听dbevent，以此封装任务的更新事件，丢给下一层进行处理即可</li>
-</ul>
-<p><strong>说明：</strong></p>
-<p>从个人的角度出发，在实际的应用场景中，基于DB的存储方案是比较合适的，然而我并没有去做这一个，因为相比于文件的方式，有点重量级了； 而我自己的实际项目中，文件方式已经足够解决我的需求了</p>
-<h4> b. 文件存储方式</h4>
-<p>这个可以说是最先想到，也是最容易实现的一种方式了。我的所有任务都放在指定的目录下，然后监听这个目录下所有文件的变动即可</p>
-<p>QuickTask项目中，默认的实现方式，就是基于文件存储的动态任务监听，好处是简单，实现简单，理解简单，用起来也简单</p>
-<h4> c. 缓存存储方式</h4>
-<p>无非是拿缓存做db存储的思路，也没有啥其他的讲究，当然我并没有想过真的去拿缓存来实现，感觉这种实现方式有点非主流，当然也没有什么明显的优势</p>
-<h3> 2. 任务监听的实现</h3>
-<p>上面是基本上把我如何实现动态任务监听的想法都写出来了，接下来就是具体的实现了，采用本地文件来存储具体的任务脚本，那么任务变化监听，就转换为了目录下文件变动的监听了</p>
-<p>到了这一步，具体的实现方案就出来了，要实现文件变动监听，jdk7就提供了<code>WatchService</code>，当然还有大名鼎鼎的 <code>commons-io</code>，两个都可以实现，下面贴出commons-io的实现方式</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面的实现，核心就是注册目录变动的监听，当出现文件的变化时，判断是否为groovy脚本，然后加载任务，并丢给任务容器进行调度执行</p>
-<p>对于文件变动的监听的具体方案和讲解，如有疑问可以参考我之前的一篇博文:</p>
-<ul>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/02/08/Java%E5%8F%AF%E4%BB%A5%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%8F%98%E5%8A%A8%E7%9A%84%E7%9B%91%E5%90%AC/" target="_blank" rel="noopener noreferrer">Java可以如何实现文件变动的监听</a></li>
-</ul>
-<h2> II. 其他</h2>
-<h3> 0. 相关</h3>
-<p><strong>博文：</strong></p>
-<ul>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/06/28/180628-%E5%8A%A8%E6%80%81%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E6%A1%86%E6%9E%B6%E6%83%B3%E6%B3%95%E7%AF%87/" target="_blank" rel="noopener noreferrer">180628-动态任务执行框架想法篇</a></li>
-<li><a href="https://blog.hhui.top/hexblog/2018/07/02/180702-QuickTask%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E6%95%B4%E4%BD%93%E4%BB%8B%E7%BB%8D%E7%AF%87/" target="_blank" rel="noopener noreferrer">180702-QuickTask动态脚本支持框架整体介绍篇</a></li>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/07/23/180723-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8B%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%AF%87/" target="_blank" rel="noopener noreferrer">180723-Quick-Task 动态脚本支持框架之结构设计篇</a></li>
-</ul>
-<p><strong>项目：</strong></p>
-<ul>
-<li><a href="https://github.com/liuyueyi/quick-task" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/quick-task</a></li>
-</ul>
-<h3> 1. <a href="https://liuyueyi.github.io/hexblog" target="_blank" rel="noopener noreferrer">一灰灰Blog</a>： <a href="https://liuyueyi.github.io/hexblog" target="_blank" rel="noopener noreferrer">https://liuyueyi.github.io/hexblog</a></h3>
-<p>一灰灰的个人博客，记录所有学习和工作中的博文，欢迎大家前去逛逛</p>
-<h3> 2. 声明</h3>
-<p>尽信书则不如，已上内容，纯属一家之言，因个人能力有限，难免有疏漏和错误之处，如发现bug或者有更好的建议，欢迎批评指正，不吝感激</p>
-<ul>
-<li>微博地址: <a href="https://weibo.com/p/1005052169825577/home" target="_blank" rel="noopener noreferrer">小灰灰Blog</a></li>
-<li>QQ： 一灰灰/3302797840</li>
-</ul>
-<h3> 3. 扫描关注</h3>
-<p><strong>一灰灰blog</strong></p>
-<figure><img src="https://raw.githubusercontent.com/liuyueyi/Source/master/img/info/blogInfoV2.png" alt="QrCode" tabindex="0" loading="lazy"><figcaption>QrCode</figcaption></figure>
-<p><strong>知识星球</strong></p>
-<figure><img src="https://raw.githubusercontent.com/liuyueyi/Source/master/img/info/goals.png" alt="goals" tabindex="0" loading="lazy"><figcaption>goals</figcaption></figure>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Quick系列"/>
-    <category term="QuickTask"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2018-07-29T17:06:59.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">5. 动态脚本支持框架之Groovy脚本加载执行</title>
-    <id>https://liuyueyi.github.io/tutorial/column/app/task/180807-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8BGroovy%E8%84%9A%E6%9C%AC%E5%8A%A0%E8%BD%BD%E6%89%A7%E8%A1%8C.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/column/app/task/180807-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8BGroovy%E8%84%9A%E6%9C%AC%E5%8A%A0%E8%BD%BD%E6%89%A7%E8%A1%8C.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<h1> Quick-Task 动态脚本支持框架之Groovy脚本加载执行</h1>
-<p>上一篇简答说了如何判断有任务动态添加、删除或更新，归于一点就是监听文件的变化，判断目录下的Groovy文件是否有新增删除和改变，从而判定是否有任务的变更；</p>
-<p>接下来的问题就比较明显了，当任务变更之后，就需要重新加载任务了，即如何动态的编译并执行Groovy文件呢？</p>
-<p>相关系列博文：</p>
-<ul>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/06/28/180628-%E5%8A%A8%E6%80%81%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E6%A1%86%E6%9E%B6%E6%83%B3%E6%B3%95%E7%AF%87/" target="_blank" rel="noopener noreferrer">180628-Quick-Task 动态任务执行框架想法篇</a></li>
-<li><a href="https://blog.hhui.top/hexblog/2018/07/02/180702-QuickTask%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E6%95%B4%E4%BD%93%E4%BB%8B%E7%BB%8D%E7%AF%87/" target="_blank" rel="noopener noreferrer">180702-Quick-Task 动态脚本支持框架整体介绍篇</a></li>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/07/23/180723-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8B%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%AF%87/" target="_blank" rel="noopener noreferrer">180723-Quick-Task 动态脚本支持框架之结构设计篇</a></li>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/07/29/180729-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8B%E4%BB%BB%E5%8A%A1%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/" target="_blank" rel="noopener noreferrer">180729-Quick-Task 动态脚本支持框架之任务动态加载</a></li>
-</ul>]]></summary>
-    <content type="html"><![CDATA[<h1> Quick-Task 动态脚本支持框架之Groovy脚本加载执行</h1>
-<p>上一篇简答说了如何判断有任务动态添加、删除或更新，归于一点就是监听文件的变化，判断目录下的Groovy文件是否有新增删除和改变，从而判定是否有任务的变更；</p>
-<p>接下来的问题就比较明显了，当任务变更之后，就需要重新加载任务了，即如何动态的编译并执行Groovy文件呢？</p>
-<p>相关系列博文：</p>
-<ul>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/06/28/180628-%E5%8A%A8%E6%80%81%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E6%A1%86%E6%9E%B6%E6%83%B3%E6%B3%95%E7%AF%87/" target="_blank" rel="noopener noreferrer">180628-Quick-Task 动态任务执行框架想法篇</a></li>
-<li><a href="https://blog.hhui.top/hexblog/2018/07/02/180702-QuickTask%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E6%95%B4%E4%BD%93%E4%BB%8B%E7%BB%8D%E7%AF%87/" target="_blank" rel="noopener noreferrer">180702-Quick-Task 动态脚本支持框架整体介绍篇</a></li>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/07/23/180723-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8B%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%AF%87/" target="_blank" rel="noopener noreferrer">180723-Quick-Task 动态脚本支持框架之结构设计篇</a></li>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/07/29/180729-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8B%E4%BB%BB%E5%8A%A1%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/" target="_blank" rel="noopener noreferrer">180729-Quick-Task 动态脚本支持框架之任务动态加载</a></li>
-</ul>
-<!--more-->
-<h2> I. Groovy文件动态加载</h2>
-<p>要想动态加载类，可以怎么办？如果对JVM有一定了解的朋友可能知道，自定义一个ClassLoader，可以实现从文件/网络/DB/Jar包中读取class文件，而Groovy，动态语言，简单来说就是.groovy文件可以直接运行，那么我们编码中要怎么玩？</p>
-<h3> 1. 依赖</h3>
-<p>让我自己来实现Groovy文件的编译执行，目前基本上是看不到啥希望的，所以果断的借助第三方工具类加载Groovy文件</p>
-<p>pom文件添加依赖</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2. 加载Groovy</h3>
-<p>直接利用上面jar包中提供的GroovyCalssLoader来加载Groovy文件即可，使用也比较简单</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面看着挺多，关键地方就三行，编译为class对象之后，借助反射来创建对象</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>另外还有一行，也可以顺带凑一眼，判断一个class是否为另一个class的子类，用的是</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>而判断某个对象是否为某类的子类用的则是 <code>instance of</code></p>
-<h3> 3. 调用包装</h3>
-<p>上面既然提供了一个工具类，那么接上篇的获取变动文件之后，获取File对象，借此拿到任务对象，就比较清晰了</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 4. 小结</h3>
-<p>本篇内容比较简单，知识点也没多少，一个是利用<code>GroovyClassLoader</code>来编译Groovy文件并获取实例；另一个就是如何判断一个class是否为另一个class的子类</p>
-<p>还有一个隐藏的点上面没有说，那就是上面的GroovyCompile文件中，每次加载Groovy文件时，都是新创建了一个GroovyClassLoader，并由它来加载并实例Groovy任务，那么问题来了</p>
-<ul>
-<li>能否用一个GoorvyClassLoader来管理所有的Groovy任务呢？</li>
-<li>上面的代码实现中，不同的Groovy任务之间，可以相互通信么？</li>
-</ul>
-<p>针对上面的问题，暂不给出答案，后面再说</p>
-<h2> II. 其他</h2>
-<h3> 0. 相关</h3>
-<p><strong>博文：</strong></p>
-<ul>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/06/28/180628-%E5%8A%A8%E6%80%81%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E6%A1%86%E6%9E%B6%E6%83%B3%E6%B3%95%E7%AF%87/" target="_blank" rel="noopener noreferrer">180628-Quick-Task 动态任务执行框架想法篇</a></li>
-<li><a href="https://blog.hhui.top/hexblog/2018/07/02/180702-QuickTask%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E6%95%B4%E4%BD%93%E4%BB%8B%E7%BB%8D%E7%AF%87/" target="_blank" rel="noopener noreferrer">180702-Quick-Task 动态脚本支持框架整体介绍篇</a></li>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/07/23/180723-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8B%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%AF%87/" target="_blank" rel="noopener noreferrer">180723-Quick-Task 动态脚本支持框架之结构设计篇</a></li>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/07/29/180729-Quick-Task-%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E4%B9%8B%E4%BB%BB%E5%8A%A1%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/" target="_blank" rel="noopener noreferrer">180729-Quick-Task 动态脚本支持框架之任务动态加载</a></li>
-</ul>
-<p><strong>项目：</strong></p>
-<ul>
-<li><a href="https://github.com/liuyueyi/quick-task" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/quick-task</a></li>
-</ul>
-<h3> 1. <a href="https://liuyueyi.github.io/hexblog" target="_blank" rel="noopener noreferrer">一灰灰Blog</a>： <a href="https://liuyueyi.github.io/hexblog" target="_blank" rel="noopener noreferrer">https://liuyueyi.github.io/hexblog</a></h3>
-<p>一灰灰的个人博客，记录所有学习和工作中的博文，欢迎大家前去逛逛</p>
-<h3> 2. 声明</h3>
-<p>尽信书则不如，已上内容，纯属一家之言，因个人能力有限，难免有疏漏和错误之处，如发现bug或者有更好的建议，欢迎批评指正，不吝感激</p>
-<ul>
-<li>微博地址: <a href="https://weibo.com/p/1005052169825577/home" target="_blank" rel="noopener noreferrer">小灰灰Blog</a></li>
-<li>QQ： 一灰灰/3302797840</li>
-</ul>
-<h3> 3. 扫描关注</h3>
-<p><strong>一灰灰blog</strong></p>
-<figure><img src="https://raw.githubusercontent.com/liuyueyi/Source/master/img/info/blogInfoV2.png" alt="QrCode" tabindex="0" loading="lazy"><figcaption>QrCode</figcaption></figure>
-<p><strong>知识星球</strong></p>
-<figure><img src="https://raw.githubusercontent.com/liuyueyi/Source/master/img/info/goals.png" alt="goals" tabindex="0" loading="lazy"><figcaption>goals</figcaption></figure>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Quick系列"/>
-    <category term="QuickTask"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2018-08-07T22:09:05.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
 </feed>
