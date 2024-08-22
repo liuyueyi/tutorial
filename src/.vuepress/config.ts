@@ -48,6 +48,15 @@ export default defineUserConfig({
           s.parentNode.insertBefore(hm, s);
         })();`,
     ],
+    // 添加谷歌广告
+    [
+      "script",
+      {
+         "data-ad-client": "ca-pub-5592000528061748",
+        async: true,
+        src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+      },
+    ],
     [
       "link",
       {
