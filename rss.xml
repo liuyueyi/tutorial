@@ -6,8 +6,8 @@
     <link>https://liuyueyi.github.io/tutorial/</link>
     <description>一灰灰的全网知识站点</description>
     <language>zh-CN</language>
-    <pubDate>Mon, 26 Aug 2024 10:31:08 GMT</pubDate>
-    <lastBuildDate>Mon, 26 Aug 2024 10:31:08 GMT</lastBuildDate>
+    <pubDate>Tue, 27 Aug 2024 09:44:06 GMT</pubDate>
+    <lastBuildDate>Tue, 27 Aug 2024 09:44:06 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 一灰灰blog</copyright>
@@ -17,7 +17,6 @@
       <link>https://liuyueyi.github.io/tutorial/</link>
     </image>
     <category>技术组件</category>
-    <category>Quick系列</category>
     <category>开源</category>
     <category>ElasticSearch</category>
     <category>运维</category>
@@ -25,6 +24,7 @@
     <category>Shell</category>
     <category>环境搭建</category>
     <category>Redis</category>
+    <category>Quick系列</category>
     <category>Maven</category>
     <category>Java</category>
     <category>其他</category>
@@ -49,7 +49,59 @@
     <category>QuickFix</category>
     <category>方案设计</category>
     <category>使用手册</category>
-    <category>QuickTask</category>
+    <item>
+      <title>7. 便捷的使用封装</title>
+      <link>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/07.%E4%BE%BF%E6%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E5%B0%81%E8%A3%85.html</link>
+      <guid>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/07.%E4%BE%BF%E6%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E5%B0%81%E8%A3%85.html</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">7. 便捷的使用封装</source>
+      <description>接上文，我们现在实现的耗时分布记录工具路TraceRecoder已基本成型，接下来我们将重点放在使用层面的优化上，看一下如何给调用者提供简洁、舒适的使用体验 1. 使用侧的问题分析 现来看一下前面测试用例中的使用case @Test public void testCost2() { try (TraceRecorder recorder = new TraceRecorder()) { randSleep(&amp;quot;前置&amp;quot;, 20); recorder.sync(() -&amp;gt; randSleep(&amp;quot;task1&amp;quot;, 200), &amp;quot;task1&amp;quot;); recorder.async(() -&amp;gt; randSleep(&amp;quot;task2&amp;quot;, 100), &amp;quot;task2&amp;quot;); } }</description>
+      <category>技术组件</category>
+      <pubDate>Tue, 27 Aug 2024 18:19:48 GMT</pubDate>
+      <content:encoded><![CDATA[<p>接上文，我们现在实现的耗时分布记录工具路<code>TraceRecoder</code>已基本成型，接下来我们将重点放在使用层面的优化上，看一下如何给调用者提供简洁、舒适的使用体验</p>
+<h2> 1. 使用侧的问题分析</h2>
+<p>现来看一下前面测试用例中的使用case</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>那么上面这种使用姿势，有什么问题呢？</p>
+<p>对于单一方法的代码块而言，并没有什么问题，假设再<code>randSleep</code>方法中，我也希望统计某些代码块的执行耗时，那应该怎么做呢？</p>
+<h3> 1.1 嵌套的耗时记录方式</h3>
+<p>再需要的地方再创建一个 <code>TraceRecoder</code>，实现链路内的代码块耗时记录</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/imgs/column/trace/09-trace-use1.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>从上面的输出也可以看出，外层<code>testCost3</code>的 <code>TraceRecoder</code> 与内部方法<code>subRun</code>的 <code>TraceRecoder</code> 各打印了自己的输出</p>
+<p>而我更希望的是将所有的耗时都集成在一个输出中</p>
+<h3> 1.2 传参方式</h3>
+<p>既然我们希望所有的耗时都放在一个<code>TraceRecoder</code>中，那么可以考虑将这个对象透传给需要的地方，如</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/imgs/column/trace/10-trace-use2.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>使用同一个<code>TraceRecoder</code>作为参数传递给需要记录耗时的方法之后，我们可以看到所有的耗时都集成再一起了</p>
+<p>虽然这种方式可以满足诉求，但是对业务代码的改动就有点大了，需要修改调用方法的传参，那么有其他的解决方法么？</p>
+<h3> 1.3 上下文维护TraceRecoder</h3>
+<p>借助上下文来保存<code>TraceRecoder</code>，然后再需要的地方直接从上下文中获取</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面是一个基于上下文的简单使用示例，再整个执行链路中，需要记录耗时的地方，直接从上下文中获取<code>TraceRecoder</code>即可</p>
+<p>但是这里依然存在一个问题，如果上面的这个 <code>subRun</code> 方法，被另外一个入口调用，但是这个入口的调用链路中，没有开启耗时记录，即上下文中没有<code>TraceRecoder</code>，那岂不是就会导致<code>NPE</code>?</p>
+<p>因此我们需要再上下文获取<code>TraceRecoder</code>时，做一个保护</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 2. 使用优化</h2>
+<p>基于上面的几个分析步骤，我们对使用侧的优化就有了一个基本的方向：</p>
+<ol>
+<li>借助ThreadLocal来持有<code>TraceRecoder</code></li>
+<li>再开始记录的入口，初始化<code>TraceRecoder</code>，并保存到上下文</li>
+<li>再链路的过程中，需要记录耗时的，可以直接从上下文中获取</li>
+</ol>
+<h3> 2.1 抽象TraceRecoder</h3>
+<p>基于上面提到的几点实现思路，面临一个现实的问题就是从上下文获取<code>TraceRecoder</code>记录耗时时，若返回null，需要再使用侧做一个兼容，为了不让业务代码变得恶心，我们就需要考虑再使用侧做一个保护</p>
+<p>我们抽象一个<code>ITraceRecoder</code>的接口类，将前面的工具类作为一个具体实现<code>DefaultTraceRecoder</code>，然后再提供一个同步的实现类<code>SyncTraceRecoder</code>，用于从上下文中获取不到<code>DefaultTraceRecoder</code>时，就返回<code>SyncTraceRecoder</code>，这样对于使用侧而言就不需要做<code>if/else</code>的<code>null</code>保护了</p>
+<p>接口定义:</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>兜底的同步实现<code>SyncTraceRecoder</code></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>前面封装的耗时统计实现<code>DefaultTraceRecoder</code></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2.2 使用门面</h3>
+<p>接下来我们就需要对上面的实现做一个使用的门面封装<code>TraceWatch</code>，对外提供统一的访问姿势</p>
+<p>我们可以考虑在<code>TraceWatch</code>中，持有上下文信息</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2.3 使用示例</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/imgs/column/trace/11-trace-use3.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<blockquote>
+<p>本文中的过程代码，可以到这里查看 <a href="https://github.com/liuyueyi/hhui-components/blob/master/trace-watch-dog/src/test/java/com/github/liuyueyi/hhui/trace/test/step/Step7.java" target="_blank" rel="noopener noreferrer">trace-watch-dog</a></p>
+<p>本文中的实现对应的是 <a href="https://github.com/liuyueyi/hhui-components/blob/master/trace-watch-dog" target="_blank" rel="noopener noreferrer">trace-watch-dog</a> 核心实现</p>
+</blockquote>
+]]></content:encoded>
+      <enclosure url="https://liuyueyi.github.io/tutorial/imgs/column/trace/09-trace-use1.jpg" type="image/jpeg"/>
+    </item>
     <item>
       <title>6. 日志输出与全链路traceId透传</title>
       <link>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/06.%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E4%B8%8E%E5%85%A8%E9%93%BE%E8%B7%AFtraceId%E9%80%8F%E4%BC%A0.html</link>
@@ -91,6 +143,9 @@
 <p>到这里我们就已经实现了<code>trace-watch-dog</code>的日志集成了，并且为全链路的<code>traceId</code>透传也提供了相应的解决方案</p>
 <p>从上面的实现来看，我们还有有个更推荐的写法，再任务的执行前后各添加一个钩子，然后再钩子中进行任务执行前后的执行单元注册，将全链路的<code>traceId</code>透传放在钩子中执行，这样也可以提供更强的扩展能力</p>
 <p>至于这个如何设计后续再来介绍</p>
+<blockquote>
+<p>本文中的相关代码，可以到这里查看 <a href="https://github.com/liuyueyi/hhui-components/blob/master/trace-watch-dog/src/test/java/com/github/liuyueyi/hhui/trace/test/step/Step6.java" target="_blank" rel="noopener noreferrer">trace-watch-dog</a></p>
+</blockquote>
 ]]></content:encoded>
       <enclosure url="https://liuyueyi.github.io/tutorial/imgs/column/trace/07-traceId1.jpg" type="image/jpeg"/>
     </item>
@@ -125,6 +180,9 @@
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>再调整之后，可以继续执行前面的测试用例，我们稍微调整一下，用于多次执行判断是否有异常情况</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2.3 小结</h3>
 <p>本文主要介绍了 <code>TraceRecoder</code> 在异步执行场景执行下可能出现的上下文共享问题，为了解决并发问题，在使用层，我们需要注意使用<code>TransmittableThreadLocal</code> 来存储上下文信息</p>
+<blockquote>
+<p>本文中的相关代码，可以到这里查看 <a href="https://github.com/liuyueyi/hhui-components/blob/master/trace-watch-dog/src/test/java/com/github/liuyueyi/hhui/trace/test/step/Step5.java" target="_blank" rel="noopener noreferrer">trace-watch-dog</a></p>
+</blockquote>
 ]]></content:encoded>
       <enclosure url="https://liuyueyi.github.io/tutorial/imgs/column/trace/06-并发问题.jpg" type="image/jpeg"/>
     </item>
@@ -442,14 +500,6 @@
 <div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>基础核心使用，可应用非Spring应用场景</p>
 <div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>对于SpringBoot的应用场景下，可以引入下面的依赖，支持基于AOP的埋点方式</p>
 <div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content:encoded>
-    </item>
-    <item>
-      <title>1. 简繁转换原理分析</title>
-      <link>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</link>
-      <guid>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">1. 简繁转换原理分析</source>
-      <category>Quick系列</category>
-      <pubDate>Thu, 11 Aug 2022 07:26:49 GMT</pubDate>
     </item>
     <item>
       <title>1. Centos 安装ElasticSearch</title>
@@ -1306,6 +1356,14 @@
 <p>第二行返回的是配置信息，对应配置文件中的</p>
 <div class="language-conf line-numbers-mode" data-ext="conf"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>我们可以修改一下，将60s的策略扔掉，如下</p>
 <div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content:encoded>
+    </item>
+    <item>
+      <title>1. 简繁转换原理分析</title>
+      <link>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</link>
+      <guid>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">1. 简繁转换原理分析</source>
+      <category>Quick系列</category>
+      <pubDate>Thu, 11 Aug 2022 07:26:49 GMT</pubDate>
     </item>
     <item>
       <title>1. Maven打包可项目执行的Jar</title>
@@ -5268,82 +5326,6 @@ Nginx通过在客户端和后端服务器之间建立隧道来支持WebSockets�
       <pubDate>Fri, 02 Aug 2024 10:41:58 GMT</pubDate>
       <content:encoded><![CDATA[<h1> 应用专栏</h1>
 ]]></content:encoded>
-    </item>
-    <item>
-      <title>1. 动态脚本支持框架整体介绍篇</title>
-      <link>https://liuyueyi.github.io/tutorial/column/app/task/180702-QuickTask%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E6%95%B4%E4%BD%93%E4%BB%8B%E7%BB%8D%E7%AF%87.html</link>
-      <guid>https://liuyueyi.github.io/tutorial/column/app/task/180702-QuickTask%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E6%94%AF%E6%8C%81%E6%A1%86%E6%9E%B6%E6%95%B4%E4%BD%93%E4%BB%8B%E7%BB%8D%E7%AF%87.html</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">1. 动态脚本支持框架整体介绍篇</source>
-      <description>logo Quick-Task 动态脚本支持框架整体介绍篇 一个简单的动态脚本调度框架，支持运行时，实时增加,删除和修改动态脚本，可用于后端的进行接口验证、数据订正，执行定时任务或校验脚本 本项目主要涉及到的技术栈: groovyEngine （groovy脚本加载执行） commons-io （文件变动监听）</description>
-      <category>Quick系列</category>
-      <category>QuickTask</category>
-      <pubDate>Mon, 02 Jul 2018 19:19:48 GMT</pubDate>
-      <content:encoded><![CDATA[<figure><img src="https://upload-images.jianshu.io/upload_images/1405936-b9a62b4b97a7e477.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="logo" tabindex="0" loading="lazy"><figcaption>logo</figcaption></figure>
-<h1> Quick-Task 动态脚本支持框架整体介绍篇</h1>
-<p>一个简单的动态脚本调度框架，支持运行时，实时增加,删除和修改动态脚本，可用于后端的进行接口验证、数据订正，执行定时任务或校验脚本</p>
-<p>本项目主要涉及到的技术栈:</p>
-<ul>
-<li>groovyEngine （groovy脚本加载执行）</li>
-<li>commons-io （文件变动监听）</li>
-</ul>
-<!-- more -->
-<h2> I. 使用姿势</h2>
-<h3> 1. pom配置</h3>
-<p>添加仓库地址</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>添加项目依赖</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2. 使用demo</h3>
-<h4> a. 源码方式</h4>
-<p>源码下载之后的使用case，可以参考 <code>com.git.hui.task.AppLaunch</code>，运行main方法，监听<code>./task-core/src/test/java/com/git/hui/task</code>目录下脚本的变动即可</p>
-<h4> b. jar包引用</h4>
-<p>首先准备一个Groovy脚本，放在指定的目录下，如 <code>/tmp/script/DemoScript.groovy</code></p>
-<div class="language-groovy line-numbers-mode" data-ext="groovy"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>对应的启动类可以如下</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4> c. 测试</h4>
-<p>应用启动完毕之后</p>
-<ul>
-<li>可以修改 <code>/tmp/script/DemoScript.groovy</code> 脚本的内容，保存后查看是否关闭旧的脚本并执行更新后的脚本</li>
-<li>测试在 <code>/tmp/script</code> 目录下新增脚本</li>
-<li>测试删除 <code>/tmp/script</code> 目录下的脚本</li>
-<li>测试异常的case (如非法的groovy文件，内部运行异常等...)</li>
-</ul>
-<p><strong>注意</strong> 不要在groovy脚本中执行 <code>System.exit(1)</code>, 会导致整个项目都停止运行</p>
-<h2> II. 设计原理</h2>
-<p>基本结构如下图</p>
-<figure><img src="https://raw.githubusercontent.com/liuyueyi/Source/master/img/blog/daywork/180628/tech.png" alt="脚本框架.png" tabindex="0" loading="lazy"><figcaption>脚本框架.png</figcaption></figure>
-<p>从图中基本上也可以看出，这个项目的结构属于非常轻量级的，核心角色，有下面几个</p>
-<ul>
-<li>Task ： 具体的任务脚本</li>
-<li>TaskContainer： 持有执行任务的容器</li>
-<li>TaskChangeWatcher： 任务观察器，用于查看是否有新增、删除or修改任务，从而卸载旧的任务，并加载新的任务</li>
-</ul>
-<p>另外一块属于扩展方面的插件体系，目前并没有给与实现，若将本框架继承在Spring生态体系中运行时，这些插件的支持就特别简单了</p>
-<ul>
-<li>RedisTemplate</li>
-<li>RestTemplate</li>
-<li>AmqpTemplate</li>
-<li>xxxTemplate</li>
-</ul>
-<h2> III. 其他</h2>
-<h3> 0. 相关</h3>
-<p><strong>博文：</strong></p>
-<ul>
-<li><a href="https://liuyueyi.github.io/hexblog/2018/06/28/180628-%E5%8A%A8%E6%80%81%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E6%A1%86%E6%9E%B6%E6%83%B3%E6%B3%95%E7%AF%87/" target="_blank" rel="noopener noreferrer">180628-动态任务执行框架想法篇</a></li>
-</ul>
-<p><strong>项目：</strong></p>
-<ul>
-<li><a href="https://github.com/liuyueyi/quick-task" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/quick-task</a></li>
-</ul>
-<h3> 1. <a href="https://liuyueyi.github.io/hexblog" target="_blank" rel="noopener noreferrer">一灰灰Blog</a>： <a href="https://liuyueyi.github.io/hexblog" target="_blank" rel="noopener noreferrer">https://liuyueyi.github.io/hexblog</a></h3>
-<p>一灰灰的个人博客，记录所有学习和工作中的博文，欢迎大家前去逛逛</p>
-<h3> 2. 声明</h3>
-<p>尽信书则不如，已上内容，纯属一家之言，因个人能力有限，难免有疏漏和错误之处，如发现bug或者有更好的建议，欢迎批评指正，不吝感激</p>
-<ul>
-<li>微博地址: <a href="https://weibo.com/p/1005052169825577/home" target="_blank" rel="noopener noreferrer">小灰灰Blog</a></li>
-<li>QQ： 一灰灰/3302797840</li>
-</ul>
-<h3> 3. 扫描关注</h3>
-<figure><img src="https://raw.githubusercontent.com/liuyueyi/Source/master/img/info/blogInfoV2.png" alt="QrCode" tabindex="0" loading="lazy"><figcaption>QrCode</figcaption></figure>
-]]></content:encoded>
-      <enclosure url="https://upload-images.jianshu.io/upload_images/1405936-b9a62b4b97a7e477.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" type="image/"/>
     </item>
   </channel>
 </rss>
