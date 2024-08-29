@@ -9,11 +9,12 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2024-08-28T11:53:44.251Z</updated>
+  <updated>2024-08-29T14:12:48.410Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
   <category term="技术组件"/>
+  <category term="Quick系列"/>
   <category term="开源"/>
   <category term="ElasticSearch"/>
   <category term="运维"/>
@@ -21,7 +22,6 @@
   <category term="Shell"/>
   <category term="环境搭建"/>
   <category term="Redis"/>
-  <category term="Quick系列"/>
   <category term="Maven"/>
   <category term="Java"/>
   <category term="其他"/>
@@ -736,6 +736,23 @@ ans <span class="token operator">=</span> traceWatch<span class="token punctuati
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2024-08-14T14:17:36.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">1. 简繁转换原理分析</title>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html"/>
+    <updated>2024-08-02T10:41:58.000Z</updated>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="Quick系列"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2022-08-11T07:26:49.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
   <entry>
@@ -1757,23 +1774,6 @@ ans <span class="token operator">=</span> traceWatch<span class="token punctuati
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2020-01-15T15:28:06.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">1. 简繁转换原理分析</title>
-    <id>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Quick系列"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2022-08-11T07:26:49.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
   <entry>

@@ -6,8 +6,8 @@
     <link>https://liuyueyi.github.io/tutorial/</link>
     <description>一灰灰的全网知识站点</description>
     <language>zh-CN</language>
-    <pubDate>Wed, 28 Aug 2024 11:53:44 GMT</pubDate>
-    <lastBuildDate>Wed, 28 Aug 2024 11:53:44 GMT</lastBuildDate>
+    <pubDate>Thu, 29 Aug 2024 14:12:48 GMT</pubDate>
+    <lastBuildDate>Thu, 29 Aug 2024 14:12:48 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 一灰灰blog</copyright>
@@ -17,6 +17,7 @@
       <link>https://liuyueyi.github.io/tutorial/</link>
     </image>
     <category>技术组件</category>
+    <category>Quick系列</category>
     <category>开源</category>
     <category>ElasticSearch</category>
     <category>运维</category>
@@ -24,7 +25,6 @@
     <category>Shell</category>
     <category>环境搭建</category>
     <category>Redis</category>
-    <category>Quick系列</category>
     <category>Maven</category>
     <category>Java</category>
     <category>其他</category>
@@ -588,6 +588,14 @@
 <div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>基础核心使用，可应用非Spring应用场景</p>
 <div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>对于SpringBoot的应用场景下，可以引入下面的依赖，支持基于AOP的埋点方式</p>
 <div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content:encoded>
+    </item>
+    <item>
+      <title>1. 简繁转换原理分析</title>
+      <link>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</link>
+      <guid>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">1. 简繁转换原理分析</source>
+      <category>Quick系列</category>
+      <pubDate>Thu, 11 Aug 2022 07:26:49 GMT</pubDate>
     </item>
     <item>
       <title>1. Centos 安装ElasticSearch</title>
@@ -1444,14 +1452,6 @@
 <p>第二行返回的是配置信息，对应配置文件中的</p>
 <div class="language-conf line-numbers-mode" data-ext="conf"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>我们可以修改一下，将60s的策略扔掉，如下</p>
 <div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content:encoded>
-    </item>
-    <item>
-      <title>1. 简繁转换原理分析</title>
-      <link>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</link>
-      <guid>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">1. 简繁转换原理分析</source>
-      <category>Quick系列</category>
-      <pubDate>Thu, 11 Aug 2022 07:26:49 GMT</pubDate>
     </item>
     <item>
       <title>1. Maven打包可项目执行的Jar</title>
