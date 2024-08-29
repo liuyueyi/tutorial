@@ -65,7 +65,7 @@ export const zhSidebar = sidebar({
         },
         {
           text: "trace-watch-dog",
-          icon: "app",
+          icon: "relation",
           prefix: "trace-watch-dog/",
           collapsible: true,
           children: "structure",
