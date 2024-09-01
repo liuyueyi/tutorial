@@ -9,7 +9,7 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2024-08-29T14:12:48.410Z</updated>
+  <updated>2024-09-01T14:06:20.246Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
@@ -50,6 +50,83 @@
     <name>一灰灰blog</name>
     <uri>https://hhui.top</uri>
   </contributor>
+  <entry>
+    <title type="text">9.耗时输出重定向</title>
+    <id>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/09.%E8%80%97%E6%97%B6%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/09.%E8%80%97%E6%97%B6%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91.html"/>
+    <updated>2024-09-01T13:53:03.000Z</updated>
+    <summary type="html"><![CDATA[<p>前面实现的耗时分布输出直接以日志的方式进行打印，在实际的业务场景中，可能希望以其他的方式（比如Prometheus）来收集耗时，基于这种场景，我们的组件又可以怎么进行演进呢？</p>
+<h3> 1. 控制日志是否输出</h3>
+<p>首先我们来看一下，若我不希望输出日志，最简单的实现方式就是直接在<code>TraceRecoder</code>中添加变量，用于控制是否进行输出日志</p>
+<p>首先改造一下<code>DefaultTraceRecoder</code>，新增<code>logEnable</code>变量</p>
+<div class="language-java line-numbers-mode" data-ext="java"><pre class="language-java"><code><span class="token doc-comment comment">/**
+ * 控制是否打印日志的条件
+ */</span>
+<span class="token keyword">private</span> <span class="token keyword">boolean</span> logEnable<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token class-name">DefaultTraceRecoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">(</span><span class="token class-name">AsyncUtil</span><span class="token punctuation">.</span>executorService<span class="token punctuation">,</span> <span class="token string">"TraceDog"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token class-name">DefaultTraceRecoder</span><span class="token punctuation">(</span><span class="token class-name">ExecutorService</span> executorService<span class="token punctuation">,</span> <span class="token class-name">String</span> task<span class="token punctuation">,</span> <span class="token keyword">boolean</span> logEnable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>traceName <span class="token operator">=</span> task<span class="token punctuation">;</span>
+    list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CopyOnWriteArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 支持排序的耗时记录</span>
+    cost <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcurrentSkipListMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>executorService <span class="token operator">=</span> <span class="token class-name">TtlExecutors</span><span class="token punctuation">.</span><span class="token function">getTtlExecutorService</span><span class="token punctuation">(</span>executorService<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>markExecuteOver <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>logEnable <span class="token operator">=</span> logEnable<span class="token punctuation">;</span>
+    <span class="token function">start</span><span class="token punctuation">(</span>task<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">MdcUtil</span><span class="token punctuation">.</span><span class="token function">setGlobalTraceId</span><span class="token punctuation">(</span><span class="token class-name">MdcUtil</span><span class="token punctuation">.</span><span class="token function">fetchGlobalMsgIdForTraceRecoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></summary>
+    <content type="html"><![CDATA[<p>前面实现的耗时分布输出直接以日志的方式进行打印，在实际的业务场景中，可能希望以其他的方式（比如Prometheus）来收集耗时，基于这种场景，我们的组件又可以怎么进行演进呢？</p>
+<h3> 1. 控制日志是否输出</h3>
+<p>首先我们来看一下，若我不希望输出日志，最简单的实现方式就是直接在<code>TraceRecoder</code>中添加变量，用于控制是否进行输出日志</p>
+<p>首先改造一下<code>DefaultTraceRecoder</code>，新增<code>logEnable</code>变量</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>接着是输出日志的时候，加一个判断</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>除此之外，我们还需要改造一下 <code>trace-watch-dog-spring</code> 工程中的 <code>@TraceDog</code> 注解，需要新增一个是否输入日志的逻辑</p>
+<p>考虑到适用的场景，我们新增两个属性来判定是否输出日志</p>
+<ul>
+<li><code>boolean logEnable() default true</code>: 简单版，控制是否输出日志</li>
+<li><code>String logSpEL() default "";</code> SpEL版，根据动态参数来判断是否输出日志</li>
+</ul>
+<p>上面两个属性搭配使用；当不存在 <code>logSpEL</code> 时，我们直接以 <code>logEnable</code> 来判断是否要打印日志；若存在 <code>logSpEL</code>，那么我们就要要求上面两个同时为<code>true</code>才能输出日志;</p>
+<p>核心的实现就是<code>logSpEL</code>的执行</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>从上面的实际实现来看，控制是否打印日志比较简单，那么这个真的有用么？</p>
+<p>下面给出几个应用场景：</p>
+<ul>
+<li>某个执行链路，我们希望测试环境打印日志，生产环境不打印日志（根据运行环境判断是否需要打印日志）</li>
+<li>某个执行链路，我们通过一个动态的配置来控制是否需要打印日志，当需要进行排查耗时情况分析时，打开配置输出日志；其他情况则进行关闭</li>
+</ul>
+<h3> 2. 日志输出重定向</h3>
+<p>到目前为止，我们所有的耗时输出都是基于控制台/日志文件，当我们的项目集成了类似Prometheus监控系统时，我们可能更希望将耗时上报到Prometheus，因此就有了输出重定向的诉求</p>
+<p>为了支持输出重定向，我们新增一个扩展，在<code>prettyPrint</code>方法中，根据用户自定义的实现来处理</p>
+<p>先定义一个函数方法</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>接入两个参数，其中 <code>cost</code> 记录总耗时 + 各子任务的耗时，traceName 表示入口任务名，主要用于获取总耗时</p>
+<p>然后调整一下 <code>DefaultTraceRecoder</code></p>
+<ol>
+<li>新增<code>private List&lt;CostOutput&gt; output;</code> 保存输出重定向的规则</li>
+<li>添加默认的<code>log.info</code>输出规则</li>
+<li>支持传入自定义的输出重定向规则</li>
+</ol>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>调整下 <code>prettyPrint</code> 方法的实现</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后就是默认的日志输出</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>在 <code>TraceWatch</code> 中维持全局的重定向规则</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>我们在输出重定向的实现中，主要是借助函数方法来提供能力增强，由于<code>TraceRecoder</code>都是以实例的方式来运行的，如果一个自定义的重定向，需要在每个使用地方都手动注册，显然对使用者极不友好，因此我们提供了全局的注册逻辑，这样就可以实现一次注册，全局生效；同时单个实例也可以有自己的个性化逻辑</p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="技术组件"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2024-08-31T18:19:48.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
   <entry>
     <title type="text">8.借助AOP提供非侵入的使用姿势</title>
     <id>https://liuyueyi.github.io/tutorial/column/app/trace-watch-dog/08.%E5%80%9F%E5%8A%A9AOP%E6%8F%90%E4%BE%9B%E9%9D%9E%E4%BE%B5%E5%85%A5%E7%9A%84%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF.html</id>
@@ -6586,106 +6663,6 @@ worker_processes auto<span class="token punctuation">;</span>
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2019-03-15T21:51:30.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">6. 通过反射执行任意类目标方法的实现全程实录（下篇）</title>
-    <id>https://liuyueyi.github.io/tutorial/column/app/fix/190317-Quick-Fix-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%89%A7%E8%A1%8C%E4%BB%BB%E6%84%8F%E7%B1%BB%E7%9B%AE%E6%A0%87%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%A8%8B%E5%AE%9E%E5%BD%95%EF%BC%88%E4%B8%8B%E7%AF%87%EF%BC%89.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/column/app/fix/190317-Quick-Fix-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%89%A7%E8%A1%8C%E4%BB%BB%E6%84%8F%E7%B1%BB%E7%9B%AE%E6%A0%87%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%A8%8B%E5%AE%9E%E5%BD%95%EF%BC%88%E4%B8%8B%E7%AF%87%EF%BC%89.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>前面两篇反射，分别介绍了如何封装参数和定位方法，对于最终的反射调用，还缺少的是目标类的确定和方法执行；本篇博文将目标集中在这最后一块</p>
-<p>链上上两篇文章地址</p>
-<ul>
-<li><a href="https://blog.hhui.top/hexblog/2019/03/11/190311-Quick-Fix-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%89%A7%E8%A1%8C%E4%BB%BB%E6%84%8F%E7%B1%BB%E7%9B%AE%E6%A0%87%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%A8%8B%E5%AE%9E%E5%BD%95%EF%BC%88%E4%B8%8A%E7%AF%87%EF%BC%89/" target="_blank" rel="noopener noreferrer">190311-Quick-Fix 通过反射执行任意类目标方法的实现全程实录（上篇）</a></li>
-<li><a href="https://blog.hhui.top/hexblog/2019/03/15/190315-Quick-Fix-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%89%A7%E8%A1%8C%E4%BB%BB%E6%84%8F%E7%B1%BB%E7%9B%AE%E6%A0%87%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%A8%8B%E5%AE%9E%E5%BD%95%EF%BC%88%E4%B8%AD%E7%AF%87%EF%BC%89/" target="_blank" rel="noopener noreferrer">190315-Quick-Fix 通过反射执行任意类目标方法的实现全程实录（中篇）</a></li>
-</ul>
-]]></summary>
-    <content type="html"><![CDATA[<p>前面两篇反射，分别介绍了如何封装参数和定位方法，对于最终的反射调用，还缺少的是目标类的确定和方法执行；本篇博文将目标集中在这最后一块</p>
-<p>链上上两篇文章地址</p>
-<ul>
-<li><a href="https://blog.hhui.top/hexblog/2019/03/11/190311-Quick-Fix-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%89%A7%E8%A1%8C%E4%BB%BB%E6%84%8F%E7%B1%BB%E7%9B%AE%E6%A0%87%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%A8%8B%E5%AE%9E%E5%BD%95%EF%BC%88%E4%B8%8A%E7%AF%87%EF%BC%89/" target="_blank" rel="noopener noreferrer">190311-Quick-Fix 通过反射执行任意类目标方法的实现全程实录（上篇）</a></li>
-<li><a href="https://blog.hhui.top/hexblog/2019/03/15/190315-Quick-Fix-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%89%A7%E8%A1%8C%E4%BB%BB%E6%84%8F%E7%B1%BB%E7%9B%AE%E6%A0%87%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%A8%8B%E5%AE%9E%E5%BD%95%EF%BC%88%E4%B8%AD%E7%AF%87%EF%BC%89/" target="_blank" rel="noopener noreferrer">190315-Quick-Fix 通过反射执行任意类目标方法的实现全程实录（中篇）</a></li>
-</ul>
-<!-- more -->
-<h2> I. 目标对象确定</h2>
-<p>对于找到我们的目标对象，这个就与我们最终的应用的运行方式有关系了。如果是一个Spring应用，我们知道所有的bean都会放在<code>ApplicationContext</code>上下文中，可以通过beanName或者Class来找到目标对象；如果我们的应用就是一个单纯的jar包，没有引入第三方容器管理，这个要获取目标类就与具体的实现有关系了</p>
-<p>下面我们将进行分别说到</p>
-<h3> 1. 目标对象分类</h3>
-<p>分类是个啥意思，为什么要分类了？</p>
-<ul>
-<li>这个主要是从我们的目标出发，我们最终的目的是通过反射调用我们的目标方法，那么方法的调用执行，通常分为两种，一个是静态类的调用；一个是实例的调用</li>
-</ul>
-<p>这两个的区别在哪里？</p>
-<ul>
-<li>最终的反射执行<code>java.lang.reflect.Method#invoke(object, args)</code>
-<ul>
-<li>静态类调用方式，传入null</li>
-<li>实例调用方式，传入实例对象s</li>
-</ul>
-</li>
-</ul>
-<p>从上面的区别可以看出，对于静态类方式，找到方法和参数就行了，不需要再额外的去找对应的实例了</p>
-<h3> 2. 目标对象类型判断</h3>
-<p>同样我们可以通过反射的方式判断方法是否属于静态方法</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>在QuickFix（&lt;=1.1）的实现中，并没有采用这种方式，而是直接选择了通过外部传参的方式来确定目标对象是否为静态类；原因在于实现简单，所以这里有个优化点，完全可以直接自动化判断</p>
-<h3> 3. 获取目标对象</h3>
-<p>前面说到了，不同的运行环境，获取目标对象的方式不一样，所以让我们直接覆盖所有的场景时不太现实的。一个可选的方案就是预留接口，让接入方自己来选择，如何根据传入的参数，来选择对应的目标对象，所以我们定义了一个接口</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面接口中，三个方法，先看第二个，因为我们前面进行了分类，所以我们必然会有一个<code>StaticServerLoader</code>，专门用来加载静态目标对象，而这个loader对于普通对象获取就无法满足了</p>
-<p>第二个需要注意的就是<code>order()</code>方法，用来指定ServerLoader的优先级，特别是当我们的系统中存在多个ServerLoader可以返回我们想要的结构时，这个时候设置优先级就是一个较好的方案了</p>
-<p>看到源码的同学会发现，我们的实现类并不是直接实现<code>ServerLoader</code>接口，而是继承自模板类<code>ServerLoaderTemplate</code>，抽象了公共的业务逻辑</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>从模板类的中，可以发现一个有意思的地方，我们传入的Service可能并不是最终要执行的目标对象</p>
-<p>怎么理解呢？举一个简单的例子</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>我们现在希望执行的是A对象中成员b的print方法，所以这种case下我们的目标对象是b，因此上面的实现中，添加了方法 <code>loadFieldPair</code></p>
-<p>接下来给出两个具体获取目标对象的实现，一个是静态类的，一个是Spring容器的</p>
-<p><code>StaticServerLoader</code>实现相对简单，直接使用<code>ClassLoader.load()</code></p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><code>spring</code>的获取方式，则主要是借助<code>SprintContext</code></p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>关于ServerLoader的更多设计理念，会放在QuickFix的后续博文中进行说明</p>
-<h3> 4. 执行目标方法</h3>
-<p>当我们获取到了目标对象，目标方法，传参之后，调用就简单了</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 5. other</h3>
-<p>至此，QuickFix项目中关于反射的相关技能点已经说完了，可以说QuickFix项目，整个都是依托于反射来玩耍的，如果希望了解下java反射相关知识点和使用姿势的话，这个项目也是一个很好的选择（简单、轻量）</p>
-<p>QuickFix项目中另外一个我个人认为有意思的点在于支持扩展的设计理念，如何让这个简单的框架适用于各种不同的应用中，也是一个很有意思的挑战，后续博文将带来这方面的介绍</p>
-<h2> II. 其他</h2>
-<h3> 0. 项目相关</h3>
-<p><strong>项目地址：</strong></p>
-<ul>
-<li><a href="https://github.com/liuyueyi/quick-fix" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/quick-fix</a></li>
-</ul>
-<p><strong>博文地址：</strong></p>
-<ul>
-<li><a href="https://blog.hhui.top/hexblog/2019/01/08/190108-Quick-Fix-%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%BA%94%E7%94%A8%E5%86%85%E5%A4%96%E4%BA%A4%E4%BA%92%E4%B9%8B%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E7%AF%87/" target="_blank" rel="noopener noreferrer">190108-Quick-Fix 如何优雅的实现应用内外交互之接口设计篇</a></li>
-<li><a href="https://blog.hhui.top/hexblog/2019/01/04/190104-Quick-Fix-%E7%BA%AFJar%E5%BA%94%E7%94%A8%E5%8F%8A%E6%89%A9%E5%B1%95%E6%89%8B%E5%86%8C/" target="_blank" rel="noopener noreferrer">190104-Quick-Fix 纯Jar应用及扩展手册</a></li>
-<li><a href="https://blog.hhui.top/hexblog/2019/01/02/190102-Quick-Fix-%E4%BB%8E0%E5%88%B01%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8%E5%86%85%E6%9C%8D%E5%8A%A1-%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E8%AE%A2%E6%AD%A3%E5%B7%A5%E5%85%B7%E5%8C%85/" target="_blank" rel="noopener noreferrer">190102-Quick-Fix 从0到1构建一个应用内服务/数据访问订正工具包 </a></li>
-<li><a href="https://blog.hhui.top/hexblog/2019/03/11/190311-Quick-Fix-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%89%A7%E8%A1%8C%E4%BB%BB%E6%84%8F%E7%B1%BB%E7%9B%AE%E6%A0%87%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%A8%8B%E5%AE%9E%E5%BD%95%EF%BC%88%E4%B8%8A%E7%AF%87%EF%BC%89/" target="_blank" rel="noopener noreferrer">190311-Quick-Fix 通过反射执行任意类目标方法的实现全程实录（上篇）</a></li>
-<li><a href="https://blog.hhui.top/hexblog/2019/03/15/190315-Quick-Fix-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%89%A7%E8%A1%8C%E4%BB%BB%E6%84%8F%E7%B1%BB%E7%9B%AE%E6%A0%87%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%A8%8B%E5%AE%9E%E5%BD%95%EF%BC%88%E4%B8%AD%E7%AF%87%EF%BC%89/" target="_blank" rel="noopener noreferrer">190315-Quick-Fix 通过反射执行任意类目标方法的实现全程实录（中篇）</a></li>
-<li><a href="https://blog.hhui.top/hexblog/2019/03/17/190317-Quick-Fix-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E6%89%A7%E8%A1%8C%E4%BB%BB%E6%84%8F%E7%B1%BB%E7%9B%AE%E6%A0%87%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%A8%8B%E5%AE%9E%E5%BD%95%EF%BC%88%E4%B8%8B%E7%AF%87%EF%BC%89/" target="_blank" rel="noopener noreferrer">190317-Quick-Fix 通过反射执行任意类目标方法的实现全程实录（下篇）</a></li>
-</ul>
-<h3> 1. <a href="https://liuyueyi.github.io/hexblog" target="_blank" rel="noopener noreferrer">一灰灰Blog</a>： <a href="https://liuyueyi.github.io/hexblog" target="_blank" rel="noopener noreferrer">https://liuyueyi.github.io/hexblog</a></h3>
-<p>一灰灰的个人博客，记录所有学习和工作中的博文，欢迎大家前去逛逛</p>
-<h3> 2. 声明</h3>
-<p>尽信书则不如，已上内容，纯属一家之言，因个人能力有限，难免有疏漏和错误之处，如发现bug或者有更好的建议，欢迎批评指正，不吝感激</p>
-<ul>
-<li>微博地址: <a href="https://weibo.com/p/1005052169825577/home" target="_blank" rel="noopener noreferrer">小灰灰Blog</a></li>
-<li>QQ： 一灰灰/3302797840</li>
-</ul>
-<h3> 3. 扫描关注</h3>
-<p><strong>一灰灰blog</strong></p>
-<figure><img src="https://raw.githubusercontent.com/liuyueyi/Source/master/img/info/blogInfoV2.png" alt="QrCode" tabindex="0" loading="lazy"><figcaption>QrCode</figcaption></figure>
-<p><strong>知识星球</strong></p>
-<figure><img src="https://raw.githubusercontent.com/liuyueyi/Source/master/img/info/goals.png" alt="goals" tabindex="0" loading="lazy"><figcaption>goals</figcaption></figure>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Quick系列"/>
-    <category term="QuickFix"/>
-    <category term="方案设计"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2019-03-17T16:13:20.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
 </feed>
