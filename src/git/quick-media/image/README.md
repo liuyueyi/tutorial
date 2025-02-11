@@ -2,7 +2,7 @@
 title: image-plugin
 orer: 1
 index: true
-icon: creative
+icon: animation
 ---
 
 图片合成/处理相关工具包
@@ -25,7 +25,8 @@ icon: creative
 5. 图片像素化：`com.github.hui.quick.plugin.image.wrapper.pixel`
 	- 图片转像素单元格
 	- 图片转字符
-	- 对图片边框进行渲染
+	- 线框图转二维字符图
+
 
 6. 图片转svg：`com.github.hui.quick.plugin.image.wrapper.svg`
 	
