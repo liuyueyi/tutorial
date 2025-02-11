@@ -9,7 +9,7 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2025-02-05T10:55:28.883Z</updated>
+  <updated>2025-02-11T09:08:13.730Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
@@ -41,19 +41,15 @@
   <category term="基本功系列"/>
   <category term="Nginx"/>
   <category term="开发工具"/>
-  <category term="Bugfix"/>
-  <category term="IDEA"/>
-  <category term="QuickFix"/>
-  <category term="方案设计"/>
   <contributor>
     <name>一灰灰blog</name>
     <uri>https://hhui.top</uri>
   </contributor>
   <entry>
     <title type="text">1.图片合成原理</title>
-    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/1.%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/1.%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90.html"/>
-    <updated>2025-02-05T10:38:12.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/01.%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/01.%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90.html"/>
+    <updated>2025-02-11T08:53:41.000Z</updated>
     <summary type="html"><![CDATA[<h1> 图片合成</h1>
 <blockquote>
 <p>利用Java的绘图方法，实现图片合成</p>
@@ -180,9 +176,9 @@
   </entry>
   <entry>
     <title type="text">2.Java实现长图文生成</title>
-    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/2.Java%E5%AE%9E%E7%8E%B0%E9%95%BF%E5%9B%BE%E6%96%87%E5%90%88%E6%88%90.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/2.Java%E5%AE%9E%E7%8E%B0%E9%95%BF%E5%9B%BE%E6%96%87%E5%90%88%E6%88%90.html"/>
-    <updated>2025-02-05T10:38:12.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/02.Java%E5%AE%9E%E7%8E%B0%E9%95%BF%E5%9B%BE%E6%96%87%E5%90%88%E6%88%90.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/02.Java%E5%AE%9E%E7%8E%B0%E9%95%BF%E5%9B%BE%E6%96%87%E5%90%88%E6%88%90.html"/>
+    <updated>2025-02-11T08:53:41.000Z</updated>
     <summary type="html"><![CDATA[<h1> Java实现长图文生成</h1>
 <blockquote>
 <p>很久很久以前，就觉得微博的长图文实现得非常有意思，将排版直接以最终的图片输出，收藏查看分享都很方便，现在则自己动手实现一个简单版本的</p>
@@ -318,18 +314,18 @@
   </entry>
   <entry>
     <title type="text">3.Java实现竖排长图文生成</title>
-    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/3.Java%E5%AE%9E%E7%8E%B0%E7%AB%96%E6%8E%92%E9%95%BF%E5%9B%BE%E6%96%87%E7%94%9F%E6%88%90.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/3.Java%E5%AE%9E%E7%8E%B0%E7%AB%96%E6%8E%92%E9%95%BF%E5%9B%BE%E6%96%87%E7%94%9F%E6%88%90.html"/>
-    <updated>2025-02-05T10:38:12.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/03.Java%E5%AE%9E%E7%8E%B0%E7%AB%96%E6%8E%92%E9%95%BF%E5%9B%BE%E6%96%87%E7%94%9F%E6%88%90.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/03.Java%E5%AE%9E%E7%8E%B0%E7%AB%96%E6%8E%92%E9%95%BF%E5%9B%BE%E6%96%87%E7%94%9F%E6%88%90.html"/>
+    <updated>2025-02-11T08:53:41.000Z</updated>
     <summary type="html"><![CDATA[<h2> 背景</h2>
-<p>前面<a href="/tutorial/git/quick-media/image/2.Java%E5%AE%9E%E7%8E%B0%E9%95%BF%E5%9B%BE%E6%96%87%E5%90%88%E6%88%90.html" target="blank">2.Java实现长图文生成</a> 中实现了一个基本的长图文生成工具，但遗留了一些问题</p>
+<p>前面<a href="/tutorial/git/quick-media/image/02.Java%E5%AE%9E%E7%8E%B0%E9%95%BF%E5%9B%BE%E6%96%87%E5%90%88%E6%88%90.html" target="blank">2.Java实现长图文生成</a> 中实现了一个基本的长图文生成工具，但遗留了一些问题</p>
 <ul>
 <li>文字中包含英文字符时，分行计算问题</li>
 <li>暂不支持竖排文字展示</li>
 </ul>
 <p>其中英文字符的计算已经修复，主要是通过<code>FontMetric</code>来计算字符串实际占用绘制的长度，这一块不做多讲，本篇主要集中在竖排文字的支持</p>]]></summary>
     <content type="html"><![CDATA[<h2> 背景</h2>
-<p>前面<a href="/tutorial/git/quick-media/image/2.Java%E5%AE%9E%E7%8E%B0%E9%95%BF%E5%9B%BE%E6%96%87%E5%90%88%E6%88%90.html" target="blank">2.Java实现长图文生成</a> 中实现了一个基本的长图文生成工具，但遗留了一些问题</p>
+<p>前面<a href="/tutorial/git/quick-media/image/02.Java%E5%AE%9E%E7%8E%B0%E9%95%BF%E5%9B%BE%E6%96%87%E5%90%88%E6%88%90.html" target="blank">2.Java实现长图文生成</a> 中实现了一个基本的长图文生成工具，但遗留了一些问题</p>
 <ul>
 <li>文字中包含英文字符时，分行计算问题</li>
 <li>暂不支持竖排文字展示</li>
@@ -439,11 +435,11 @@
   </entry>
   <entry>
     <title type="text">4.图片合成使用示例</title>
-    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/4.%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/4.%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html"/>
-    <updated>2025-02-05T10:38:12.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/04.%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/04.%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html"/>
+    <updated>2025-02-11T08:53:41.000Z</updated>
     <summary type="html"><![CDATA[<blockquote>
-<p>本文为 <a href="https://github.com/liuyueyi/quick-media/tree/master/plugins/image-plugin" target="_blank" rel="noopener noreferrer">image-plugin</a> 的使用参考示例</p>
+<p>本文为 <a href="https://github.com/liuyueyi/quick-media/tree/master/plugins/image-plugin" target="_blank" rel="noopener noreferrer">image-plugin</a> 图片合成的使用参考示例</p>
 </blockquote>
 <h2> 1. 项目依赖</h2>
 <p>直接从中央仓库，导入最新依赖</p>
@@ -456,7 +452,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></summary>
     <content type="html"><![CDATA[<blockquote>
-<p>本文为 <a href="https://github.com/liuyueyi/quick-media/tree/master/plugins/image-plugin" target="_blank" rel="noopener noreferrer">image-plugin</a> 的使用参考示例</p>
+<p>本文为 <a href="https://github.com/liuyueyi/quick-media/tree/master/plugins/image-plugin" target="_blank" rel="noopener noreferrer">image-plugin</a> 图片合成的使用参考示例</p>
 </blockquote>
 <h2> 1. 项目依赖</h2>
 <p>直接从中央仓库，导入最新依赖</p>
@@ -598,7 +594,670 @@
       <name>一灰灰blog</name>
       <uri>https://hhui.top</uri>
     </contributor>
-    <published>2015-02-05T18:19:49.000Z</published>
+    <published>2025-02-05T18:19:49.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">5.图片转SVG使用示例</title>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/05.%E5%9B%BE%E7%89%87%E8%BD%ACSVG%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/05.%E5%9B%BE%E7%89%87%E8%BD%ACSVG%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html"/>
+    <updated>2025-02-11T08:53:41.000Z</updated>
+    <summary type="html"><![CDATA[<blockquote>
+<p>本文为 <a href="https://github.com/liuyueyi/quick-media/tree/master/plugins/image-plugin" target="_blank" rel="noopener noreferrer">image-plugin</a> 中图转SVG的使用参考示例</p>
+</blockquote>
+<h2> 1. 基本原理</h2>
+<p>我们知道图片是由一个一个的像素点组成的，将图片转换为svg的一个思路就是将图片中的每个像素点直接转换为svg中的矩形颜色块，这样就可以直接生成一个对应的svg文本了</p>]]></summary>
+    <content type="html"><![CDATA[<blockquote>
+<p>本文为 <a href="https://github.com/liuyueyi/quick-media/tree/master/plugins/image-plugin" target="_blank" rel="noopener noreferrer">image-plugin</a> 中图转SVG的使用参考示例</p>
+</blockquote>
+<h2> 1. 基本原理</h2>
+<p>我们知道图片是由一个一个的像素点组成的，将图片转换为svg的一个思路就是将图片中的每个像素点直接转换为svg中的矩形颜色块，这样就可以直接生成一个对应的svg文本了</p>
+<p>一个基本的转换实现可以参见 <a href="https://github.com/liuyueyi/quick-media/blob/master/plugins/image-plugin/src/test/java/com/github/hui/quick/plugin/test/feat/svg/SvgParseTest.java" target="_blank" rel="noopener noreferrer">SvgParseTest.java</a></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/imgs/column/quick-media/image/parseSvg-out1.svg" alt="输出图" tabindex="0" loading="lazy"><figcaption>输出图</figcaption></figure>
+<p>上面实现就是基本的像素块的替换了，可以看到输出的svg文本较大；接下来我们可以再优化一下，首先利用<code>ImgPixelWrapper</code>将图片转换为像素块（降低精度），然后再将像素块的图片转换为svg</p>
+<p>因此可以对上面的实现进行一个微调</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>比如上面设置<code>size = 8</code>，相当于将原图精度损失8倍，对应生成的svg如下</p>
+<figure><img src="/imgs/column/quick-media/image/parseSvg-out2.svg" alt="输出图" tabindex="0" loading="lazy"><figcaption>输出图</figcaption></figure>
+<h2> 2. 使用示例</h2>
+<h3> 2.1 参数说明</h3>
+<p>核心参数四个，其中source传图为必填</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>说明</th>
+<th>是否必填</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source</code></td>
+<td><code>BufferedImage</code></td>
+<td>原始图</td>
+<td>是</td>
+</tr>
+<tr>
+<td><code>blockSize</code></td>
+<td><code>int</code></td>
+<td>对于转字符图时，它控制字符大小；对于灰度/像素处理时，这个表示像素化的处理操作</td>
+<td>非必填，默认 <code>4</code></td>
+</tr>
+<tr>
+<td><code>scaleRate</code></td>
+<td><code>Double</code></td>
+<td>缩放比例，1 表示输出的图不缩放； &gt; 1，表示生成的图，按倍数扩大</td>
+<td>非必填，默认 <code>1</code></td>
+</tr>
+<tr>
+<td><code>bgPredicate</code></td>
+<td><code>Predicate&lt;Color&gt;</code></td>
+<td>背景色判断方式，传参为 <code>intColor</code>，如果返回<code>true</code>，表示认定为背景色；否则不是</td>
+<td>非必填，默认纯白色为背景</td>
+</tr>
+</tbody>
+</table>
+<h3> 2.2 使用示例</h3>
+<p>使用姿势形如</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>下面是一个简单的使用示例</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><table>
+<thead>
+<tr>
+<th>原图</th>
+<th>svg图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/imgs/column/quick-media/image/d5137769-1836-cc20-c1eb-20af1109dc7a.jpg" height="500px"></td>
+<td><img src="/imgs/column/quick-media/image/dlam.svg" height="500px"></td>
+</tr>
+</tbody>
+</table>
+<p>接下来再看一个真实人像的转换过程，如下</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><blockquote>
+<p>说明：原图来自网上 <a href="https://fc.sinaimg.cn/large/ea98bce0gy1h6u8ge7y66j22q55wi4qs.jpg" target="_blank" rel="noopener noreferrer">https://www.5youqu.com/bizhi/124906.html</a>，做了背景剔除</p>
+</blockquote>
+<p>对比结果如下</p>
+<table>
+<thead>
+<tr>
+<th>原图</th>
+<th>svg图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/imgs/column/quick-media/image/lyf.png" height="500px"></td>
+<td><img src="/imgs/column/quick-media/image/lyf.svg" height="500px"></td>
+</tr>
+<tr>
+<td><img src="/imgs/column/quick-media/image/lyf.png" height="500px"></td>
+<td><img src="/imgs/column/quick-media/image/lyf2.svg" height="500px"></td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-02-06T10:19:49.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">6.像素图片-图片灰度化</title>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/06.%E5%9B%BE%E7%89%87%E7%81%B0%E5%BA%A6%E5%8C%96.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/06.%E5%9B%BE%E7%89%87%E7%81%B0%E5%BA%A6%E5%8C%96.html"/>
+    <updated>2025-02-11T08:53:41.000Z</updated>
+    <summary type="html"><![CDATA[<p>本文通过一个简单的实例，演示如何使用java来实现图片灰度化处理，主要借助下面两种策略来处理颜色</p>
+<p><strong>灰度化公式</strong></p>
+<div class="language-java line-numbers-mode" data-ext="java"><pre class="language-java"><code>avgColor <span class="token operator">=</span> red <span class="token operator">*</span> <span class="token number">0.299f</span> <span class="token operator">+</span> green <span class="token operator">*</span> <span class="token number">0.587f</span> <span class="token operator">+</span> blue <span class="token operator">*</span> <span class="token number">0.114f</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div>]]></summary>
+    <content type="html"><![CDATA[<p>本文通过一个简单的实例，演示如何使用java来实现图片灰度化处理，主要借助下面两种策略来处理颜色</p>
+<p><strong>灰度化公式</strong></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>均值方式</strong></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>基于上面两种方式，我们要实现一个图片灰度化的处理，无非就是获取图片的每个像素点的颜色，然后计算avgColor，再用新的颜色填充即可</p>
+<p>一个基础的实现演示如下</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>生成原图与灰度图的对比如下</p>
+<figure><img src="/imgs/211112/00.jpg" alt="输出图" tabindex="0" loading="lazy"><figcaption>输出图</figcaption></figure>
+<p>注意上面的实现，其中加载网络图片的具体实现，之前的博文有介绍，有兴趣的小伙伴可以参考: 封装一个根据路径获取文件资源的工具类</p>
+<p>此外介绍一个更好用的姿势，直接使用开源项目 <a href="https://github.com/liuyueyi/quick-media" target="_blank" rel="noopener noreferrer">quick-media/image-plugins</a> 来实现灰度处理</p>
+<p>使用这个项目的 image-plugins 之后，生成一个灰度图就很简单了</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><table>
+<thead>
+<tr>
+<th>原图</th>
+<th>svg图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/imgs/column/quick-media/image/20180916175034_Gr2hk.jpeg" target="_blank" rel="noopener noreferrer">20180916175034_Gr2hk.jpeg</a></td>
+<td><a href="/imgs/column/quick-media/image/gray.png" target="_blank" rel="noopener noreferrer"></a></td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2021-11-12T10:19:49.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">7.像素图片-图片转字符图</title>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/07.%E5%9B%BE%E7%89%87%E8%BD%AC%E5%AD%97%E7%AC%A6%E5%9B%BE.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/07.%E5%9B%BE%E7%89%87%E8%BD%AC%E5%AD%97%E7%AC%A6%E5%9B%BE.html"/>
+    <updated>2025-02-11T08:53:41.000Z</updated>
+    <summary type="html"><![CDATA[<p>前面介绍了一篇java实现图片灰度化处理的小demo，接下来再介绍一个有意思的东西，将一个图片转换成字符图片</p>
+<p>借助前面图片灰度化处理的知识点，若我们希望将一张图片转成字符图片，同样可以遍历每个像素点，然后将像素点由具体的字符来替换，从而实现字符化处理</p>
+<p>基于上面这个思路，具体的实现就很清晰了</p>
+<div class="language-java line-numbers-mode" data-ext="java"><pre class="language-java"><code><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testRender</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+    <span class="token class-name">String</span> file <span class="token operator">=</span> <span class="token string">"http://i0.download.fd.52shubiao.com/t_960x600/g1/M00/10/17/oYYBAFWvR5-IeXHuAAd5kPb8eSgAACm0QF50xIAB3mo414.jpg"</span><span class="token punctuation">;</span>
+    <span class="token comment">// 从网络上下载图片</span>
+    <span class="token class-name">BufferedImage</span> img <span class="token operator">=</span> <span class="token class-name">ImageIO</span><span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token class-name">FileReadUtil</span><span class="token punctuation">.</span><span class="token function">getStreamByFileName</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    <span class="token keyword">int</span> w <span class="token operator">=</span> img<span class="token punctuation">.</span><span class="token function">getWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> h <span class="token operator">=</span> img<span class="token punctuation">.</span><span class="token function">getHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 创建新的字符图片画板</span>
+    <span class="token class-name">BufferedImage</span> gray <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedImage</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> h<span class="token punctuation">,</span> img<span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Graphics2D</span> g2d <span class="token operator">=</span> gray<span class="token punctuation">.</span><span class="token function">createGraphics</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    g2d<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    g2d<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">Font</span> font <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Font</span><span class="token punctuation">(</span><span class="token string">"宋体"</span><span class="token punctuation">,</span> <span class="token class-name">Font</span><span class="token punctuation">.</span><span class="token constant">BOLD</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    g2d<span class="token punctuation">.</span><span class="token function">setFont</span><span class="token punctuation">(</span>font<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> w<span class="token punctuation">;</span> x <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> y <span class="token operator">&lt;</span> h<span class="token punctuation">;</span> y <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      g2d<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span><span class="token class-name">ColorUtil</span><span class="token punctuation">.</span><span class="token function">int2color</span><span class="token punctuation">(</span>img<span class="token punctuation">.</span><span class="token function">getRGB</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            g2d<span class="token punctuation">.</span><span class="token function">drawString</span><span class="token punctuation">(</span><span class="token string">"灰"</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    g2d<span class="token punctuation">.</span><span class="token function">dispose</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"渲染完成"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></summary>
+    <content type="html"><![CDATA[<p>前面介绍了一篇java实现图片灰度化处理的小demo，接下来再介绍一个有意思的东西，将一个图片转换成字符图片</p>
+<p>借助前面图片灰度化处理的知识点，若我们希望将一张图片转成字符图片，同样可以遍历每个像素点，然后将像素点由具体的字符来替换，从而实现字符化处理</p>
+<p>基于上面这个思路，具体的实现就很清晰了</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>注意上面的实现，在会字符的时候，先取出源像素点的色彩，然后重新设置给g2d，这个int转color也比较简单，实现如下</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>这样就实现了一个基础版的转字符图了，实际跑一下看看效果</p>
+<figure><img src="/imgs/211116/00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>这下尴尬了，输出的并不是我们预期的字符图，那么问题出在哪呢？</p>
+<p>仔细看上面的文字大小为1，文字太小，导致即使是有字符组件的图，最终肉眼看起来和原图也没啥区别</p>
+<p>那么我们就试一下将这个文字搞大点，将<code>n*n</code>个像素点作为一个文字渲染区域，这样我们需要调整一下遍历的步长；其次就是这个区域的颜色怎么定
+直接取均值</p>
+<ul>
+<li>直接取均值</li>
+</ul>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>另外的就是改一下遍历的步长</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>再次执行之后结果如下，实现了我们的预期效果</p>
+<figure><img src="/imgs/211116/01.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>最后再介绍一个更好用的姿势，直接使用开源项目 <a href="https://github.com/liuyueyi/quick-media" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/quick-media/image-plugins</a> 来实现图片字符画</p>
+<p>使用这个项目的 image-plugins 之后，生成一个字符图就很简单了</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2021-11-16T11:19:49.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">8.像素图片-GIF图片转字符动图</title>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/08.GIF%E5%9B%BE%E7%89%87%E8%BD%AC%E5%AD%97%E7%AC%A6%E5%8A%A8%E5%9B%BE.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/08.GIF%E5%9B%BE%E7%89%87%E8%BD%AC%E5%AD%97%E7%AC%A6%E5%8A%A8%E5%9B%BE.html"/>
+    <updated>2025-02-11T08:53:41.000Z</updated>
+    <summary type="html"><![CDATA[<p>前面介绍了两篇基于jdk实现图片灰度处理、转字符图片的操作，接下来我们在将之前的能力扩展一下，支持将一个gif图灰度化或者转gif字符图</p>
+<p>本文的实现主要在前面两篇文章的基础上来实现，推荐没有看过的小伙伴也可以瞅一眼</p>
+<ul>
+<li><a href="/tutorial/git/quick-media/image/06.%E5%9B%BE%E7%89%87%E7%81%B0%E5%BA%A6%E5%8C%96.html" target="blank">像素图片-图片灰度化</a></li>
+<li><a href="/tutorial/git/quick-media/image/07.%E5%9B%BE%E7%89%87%E8%BD%AC%E5%AD%97%E7%AC%A6%E5%9B%BE.html" target="blank">像素图片-图片转字符图</a></li>
+</ul>]]></summary>
+    <content type="html"><![CDATA[<p>前面介绍了两篇基于jdk实现图片灰度处理、转字符图片的操作，接下来我们在将之前的能力扩展一下，支持将一个gif图灰度化或者转gif字符图</p>
+<p>本文的实现主要在前面两篇文章的基础上来实现，推荐没有看过的小伙伴也可以瞅一眼</p>
+<ul>
+<li><a href="/tutorial/git/quick-media/image/06.%E5%9B%BE%E7%89%87%E7%81%B0%E5%BA%A6%E5%8C%96.html" target="blank">像素图片-图片灰度化</a></li>
+<li><a href="/tutorial/git/quick-media/image/07.%E5%9B%BE%E7%89%87%E8%BD%AC%E5%AD%97%E7%AC%A6%E5%9B%BE.html" target="blank">像素图片-图片转字符图</a></li>
+</ul>
+<p>单张图的灰度化与转字符实现之后，gif图的实现就简单多了；gif图无非是多张图组合而成，将每一张图转换之后，再重新组装成gif图就完事了</p>
+<p>这里我们使用的gif工具类来自于 <a href="https://github.com/liuyueyi/quick-media/tree/master/plugins/base-plugin/src/main/java/com/github/hui/quick/plugin/base/gif" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/quick-media/tree/master/plugins/base-plugin/src/main/java/com/github/hui/quick/plugin/base/gif</a></p>
+<p>核心关键类为GifEncode与GifDecode；借助它来实现gif图的加载与保存</p>
+<p>首先我们将上篇博文中的转字符图的方法抽取一下</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>接着就是Gif的操作了</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上图转换成功之后，输出如下</p>
+<figure><img src="/imgs/211120/00.gif" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>如果希望输出图片更像原图，可以修改上面的fontSize，比如上面用的是12，可以调整成8，6等值，根据实际情况进行选择</p>
+<p>有的小伙伴可能会说了，动漫的gif图转换之后相似度还可以，那么真实人物图转换之后呢？</p>
+<p>接下来我们借助开源项目 <a href="https://github.com/liuyueyi/quick-media" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/quick-media</a> 来迅速的实现一个gif图转换</p>
+<blockquote>
+<p>下图来自网络，有兴趣的自己打开查看，就不贴上了😏）
+<a href="http://n.sinaimg.cn/sinacn/w390h219/20171231/0ac1-fyqefvw5238474.gif" target="_blank" rel="noopener noreferrer">http://n.sinaimg.cn/sinacn/w390h219/20171231/0ac1-fyqefvw5238474.gif</a></p>
+</blockquote>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/imgs/211120/01.gif" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>最后提个小问题，gif图都能生成字符图了，那么视频也可以生成字符视频么？</p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2021-11-20T11:19:49.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">9.像素图片-位图转矢量图</title>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/09.%E4%BD%8D%E5%9B%BE%E8%BD%AC%E7%9F%A2%E9%87%8F%E5%9B%BE.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/09.%E4%BD%8D%E5%9B%BE%E8%BD%AC%E7%9F%A2%E9%87%8F%E5%9B%BE.html"/>
+    <updated>2025-02-11T08:53:41.000Z</updated>
+    <summary type="html"><![CDATA[<p>通过前面几篇图片转字符、灰度图的文章介绍之后，接下来我们再来看一个有意思的东西，基于前文的基础，实现位图转矢量图的功能</p>
+<p>关于位图与矢量图的简单理解如下：</p>
+<ul>
+<li>位图：如Jpg/png，放大之后会失真，看到像素块</li>
+<li>矢量图：如svg，放大图片也不会失真</li>
+</ul>
+<h3> 1. 实现策略</h3>
+<p>要实现位图转矢量图，可不是一个简单的活；当然我们这里也不追求完美实现，在前文的基础上，可以想到一个实现策略</p>
+<ul>
+<li>首先根据位图输出字符画</li>
+<li>然后通过字符画，来生成矢量图</li>
+</ul>
+]]></summary>
+    <content type="html"><![CDATA[<p>通过前面几篇图片转字符、灰度图的文章介绍之后，接下来我们再来看一个有意思的东西，基于前文的基础，实现位图转矢量图的功能</p>
+<p>关于位图与矢量图的简单理解如下：</p>
+<ul>
+<li>位图：如Jpg/png，放大之后会失真，看到像素块</li>
+<li>矢量图：如svg，放大图片也不会失真</li>
+</ul>
+<h3> 1. 实现策略</h3>
+<p>要实现位图转矢量图，可不是一个简单的活；当然我们这里也不追求完美实现，在前文的基础上，可以想到一个实现策略</p>
+<ul>
+<li>首先根据位图输出字符画</li>
+<li>然后通过字符画，来生成矢量图</li>
+</ul>
+<p>基于上面这个策略，第一步生成字符前一篇博文已经介绍过了；接下来重点就是如何根据输出的字符数组，来生成svg呢？</p>
+<h3> 2. 实现方法</h3>
+<p>第一步位图输出字符画的代码就不贴了，有兴趣的小伙伴可以参考前文</p>
+<ul>
+<li><a href="/tutorial/git/quick-media/image/07.%E5%9B%BE%E7%89%87%E8%BD%AC%E5%AD%97%E7%AC%A6%E5%9B%BE.html" target="blank">像素图片-图片转字符图</a></li>
+</ul>
+<p>接下来我们重点看一下如何根据生成的<code>List&lt;String&gt;</code>来生成svg图</p>
+<p>首先我们定义一个svg模板，用于来表示基于字符输出的矢量图，如下</p>
+<div class="language-svg line-numbers-mode" data-ext="svg"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>对于上面的模板中，有几个关键值需要替换</p>
+<ul>
+<li>svg 标签中
+<ul>
+<li><code>{width}</code>: 生成矢量图的宽度</li>
+<li><code>{height}</code>: 生成矢量图的高度</li>
+<li><code>{BG_COLOR}</code>: 背景颜色</li>
+</ul>
+</li>
+<li>style 样式设置
+<ul>
+<li><code>{FONT_COLOR}</code>: 字符渲染颜色</li>
+</ul>
+</li>
+</ul>
+<p>其次<code>tspan</code>标签内容就是我们需要输出的字符，一行字符对应一个<code>tspan</code>标签</p>
+<p>因此我们的实现逻辑就是上面这个模板的关键字替换输出了</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>注意上面的实现逻辑中的几个变量就是上面模板的关键值，就不重复输出了；详情看文末的源码查看</p>
+<ul>
+<li>SVG_START</li>
+<li>SVG_END</li>
+</ul>
+<h3> 3. 实测演示</h3>
+<p>上面已经贴出了核心的实现代码，接下来我们根据成品来看一下输出效果如何；下面是直接使用封装好的方法来调用测试</p>
+<p>项目源码：<a href="https://github.com/liuyueyi/quick-media/tree/master/plugins/image-plugin" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/quick-media/tree/master/plugins/image-plugin</a></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>输出的svg文件如下</p>
+<ul>
+<li><a href="/imgs/211126/pkq.svg" target="_blank" rel="noopener noreferrer">皮卡丘.svg</a></li>
+<li><a href="/imgs/211126/queen.svg" target="_blank" rel="noopener noreferrer">冰雪女王.svg</a></li>
+</ul>
+<p>实例图:</p>
+<figure><img src="/imgs/211126/00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2021-11-26T21:44:26.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">10.图片像素化使用示例</title>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/10.%E5%9B%BE%E7%89%87%E5%83%8F%E7%B4%A0%E5%8C%96%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-media/image/10.%E5%9B%BE%E7%89%87%E5%83%8F%E7%B4%A0%E5%8C%96%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html"/>
+    <updated>2025-02-11T08:53:41.000Z</updated>
+    <summary type="html"><![CDATA[<blockquote>
+<p>本文为 <a href="https://github.com/liuyueyi/quick-media/tree/master/plugins/image-plugin" target="_blank" rel="noopener noreferrer">image-plugin</a> 中土拍你像素化相关操作的使用参考示例</p>
+</blockquote>
+<h2> 1. 项目依赖</h2>
+<p>直接从中央仓库，导入最新依赖</p>
+<div class="language-xml line-numbers-mode" data-ext="xml"><pre class="language-xml"><code><span class="token comment">&lt;!-- https://mvnrepository.com/artifact/com.github.liuyueyi.media/image-plugin --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.github.liuyueyi.media<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>image-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- 请使用最新版本号替换下面的版本 --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.1.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></summary>
+    <content type="html"><![CDATA[<blockquote>
+<p>本文为 <a href="https://github.com/liuyueyi/quick-media/tree/master/plugins/image-plugin" target="_blank" rel="noopener noreferrer">image-plugin</a> 中土拍你像素化相关操作的使用参考示例</p>
+</blockquote>
+<h2> 1. 项目依赖</h2>
+<p>直接从中央仓库，导入最新依赖</p>
+<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 2. 参数说明</h2>
+<p>相关参数配置由<code>com.github.hui.quick.plugin.image.wrapper.pixel.ImgPixelOptions</code>实体类进行装载，对应的参数说明如下</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>说明</th>
+<th>是否必要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source</code></td>
+<td><code>BufferedImage</code></td>
+<td>原图</td>
+<td>与下面的gifSource必须有一个存在</td>
+</tr>
+<tr>
+<td><code>gifSource</code></td>
+<td><code>GifDecoder</code></td>
+<td>gif 图</td>
+<td>于上的source必须有一个存在</td>
+</tr>
+<tr>
+<td><code>pixelType</code></td>
+<td><code>IPixelStyle</code></td>
+<td>转换类型</td>
+<td>否，默认为<code>CHAR_COLOR</code></td>
+</tr>
+<tr>
+<td><code>blockSize</code></td>
+<td><code>int</code></td>
+<td>对于转字符图时，它控制字符大小；对于灰度/像素处理时，这个表示像素化的处理操作</td>
+<td>否 1</td>
+</tr>
+<tr>
+<td><code>fontSize</code></td>
+<td><code>int</code></td>
+<td>字体大小</td>
+<td>否</td>
+</tr>
+<tr>
+<td><code>chars</code></td>
+<td><code>String</code></td>
+<td>字符图时，用于渲染的字符集</td>
+<td><code>$@B%8&amp;WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~&lt;&gt;i!lI;:,\"^'. </code></td>
+</tr>
+<tr>
+<td><code>font</code></td>
+<td><code>Font</code></td>
+<td>字符字体</td>
+<td>否，默认黑色字体</td>
+</tr>
+<tr>
+<td><code>rate</code></td>
+<td><code>Double</code></td>
+<td>缩放比例，1 表示输出的图不缩放； &gt; 1，表示生成的图，按倍数扩大</td>
+<td>否，默认1</td>
+</tr>
+<tr>
+<td><code>picType</code></td>
+<td><code>String</code></td>
+<td>输出图片类型</td>
+<td>否，默认<code>png</code></td>
+</tr>
+<tr>
+<td><code>bgChar</code></td>
+<td><code>Character</code></td>
+<td>背景字符，默认值为空格</td>
+<td>否，默认为空格</td>
+</tr>
+<tr>
+<td><code>bgColor</code></td>
+<td><code>Color</code></td>
+<td>字符图/svg 图的背景色</td>
+<td>否，默认白色</td>
+</tr>
+<tr>
+<td><code>fontColor</code></td>
+<td><code>Color</code></td>
+<td>字符图/svg 图的字体色</td>
+<td>否，默认黑色</td>
+</tr>
+<tr>
+<td><code>bgPredicate</code></td>
+<td><code>Predicate&lt;Integer&gt;</code></td>
+<td>背景色判断方式，传参为 intColor，如果返回 true，表示认定为背景色；否则不是</td>
+<td>否，默认颜色rbga == 0时为背景</td>
+</tr>
+</tbody>
+</table>
+<p>上面的配置参数中，重点关注一下 <code>PixelType</code>，它表明了具体的转换策略</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>示例图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GRAY_ALG</td>
+<td>基于灰度公式将图片灰度化</td>
+<td><img src="/imgs/column/quick-media/image/gray_alg.png" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td>GRAY_AVG</td>
+<td>基于灰度均值将图片灰度化</td>
+<td><img src="/imgs/column/quick-media/image/gray_avg.png" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td>PIXEL_COLOR_AVG</td>
+<td>图片像素化时，采用颜色均值</td>
+<td><img src="/imgs/column/quick-media/image/pixelColorAvg.png" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td>CHAR_COLOR</td>
+<td>图片转字符图</td>
+<td><img src="/imgs/column/quick-media/image/charColor.png" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td>CHAR_GRAY</td>
+<td>图片转灰度字符图</td>
+<td><img src="/imgs/column/quick-media/image/charGray.png" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td>CHAR_BLACK</td>
+<td>图片转纯黑白字符，常用于svg输出</td>
+<td><img src="/imgs/column/quick-media/image/charGray.svg" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td>CHAR_SEQ_SCALE_UP</td>
+<td>图片转文字图，根据字符顺序绘画，且支持按比例放大</td>
+<td><img src="/imgs/column/quick-media/image/charSeq.png" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td>BLACK_CHAR_BORDER</td>
+<td>只针对有颜色的边框进行渲染，常用于文本输出</td>
+<td><img src="/imgs/column/quick-media/image/charBorder.jpg" alt="" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+<h2> 3. 使用示例</h2>
+<blockquote>
+<p>所有的使用姿势，可以在源码对应的test工程中获取 <a href="https://github.com/liuyueyi/quick-media/blob/master/plugins/image-plugin/src/test/java/com/github/hui/quick/plugin/test/pixel/BasicPixelTest.java" target="_blank" rel="noopener noreferrer">BasicPixelTest.java</a></p>
+</blockquote>
+<p>根据实际需要，选择不同的处理枚举，如</p>
+<h3> case1: 希望对图片进行灰度处理时：</h3>
+<ul>
+<li><code>PixelStyleEnum.GRAY_ALG</code></li>
+<li><code>PixelStyleEnum.GRAY_AVG</code></li>
+</ul>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>输出如下:</p>
+<table>
+<thead>
+<tr>
+<th>样式</th>
+<th>原图</th>
+<th>转换图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GRAY_ALG</td>
+<td><img src="/imgs/column/quick-media/image/nezha.jpeg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/quick-media/image/gray_alg.png" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td>GRAY_AVG</td>
+<td><img src="/imgs/column/quick-media/image/nezha.jpeg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/quick-media/image/gray_avg.png" alt="" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+<h3> case2: 希望将图片转换像素块图时</h3>
+<p>主要需要设置 <code>blockSize</code> 参数，将其设置&gt;1，此时可使用的转换类型方式为</p>
+<ul>
+<li><code>PixelStyleEnum.GRAY_ALG</code></li>
+<li><code>PixelStyleEnum.GRAY_AVG</code></li>
+<li><code>PixelStyleEnum.PIXEL_COLOR_AVG</code></li>
+</ul>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>输出如下:</p>
+<table>
+<thead>
+<tr>
+<th>样式</th>
+<th>原图</th>
+<th>转换图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PIXEL_COLOR_AVG</td>
+<td><img src="/imgs/column/quick-media/image/nezha.jpeg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/quick-media/image/pixelColorAvg.png" alt="" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+<h3> case3: 将图转换为字符图时</h3>
+<p>可以输出图片也可以输出svg，常用的转换类型方式为</p>
+<ul>
+<li><code>PixelStyleEnum.CHAR_COLOR</code></li>
+<li><code>PixelStyleEnum.CHAR_GRAY</code></li>
+<li><code>PixelStyleEnum.CHAR_BLACK</code>：常用于输出svg字符图、二维字符数组</li>
+<li><code>PixelStyleEnum.CHAR_SEQ_SCALE_UP</code>: 它于上面三个的区别在于根据传入的文字进行顺序渲染，且对输出图片会按照文字的大小进行等比例放大、以确保文字可见</li>
+</ul>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><table>
+<thead>
+<tr>
+<th>样式</th>
+<th>原图</th>
+<th>转换图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CHAR_COLOR</td>
+<td><img src="/imgs/column/quick-media/image/nezha.jpeg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/quick-media/image/charColor.png" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td>CHAR_GRAY</td>
+<td><img src="/imgs/column/quick-media/image/nezha.jpeg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/quick-media/image/charGray.png" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td>CHAR_BLACK</td>
+<td><img src="/imgs/column/quick-media/image/nezha.jpeg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/quick-media/image/charGray.svg" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td>CHAR_SEQ_SCALE_UP</td>
+<td><img src="/imgs/column/quick-media/image/nezha.png" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/quick-media/image/charSeq.png" alt="" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+<h3> case4: 输出字符画</h3>
+<p>将图片转换为ascii或者特定的字符画，可用</p>
+<ul>
+<li><code>PixelStyleEnum.CHAR_BLACK</code></li>
+<li><code>PixelStyleEnum.BLACK_CHAR_BORDER</code>: 与上面的区别在于它希望输入的是线图</li>
+</ul>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><table>
+<thead>
+<tr>
+<th>样式</th>
+<th>原图</th>
+<th>转换图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BLACK_CHAR_BORDER</td>
+<td><img src="/imgs/column/quick-media/image/slake.jpeg" width="600px"></td>
+<td><img src="/imgs/column/quick-media/image/charBorder.jpg" alt="" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+<h3> case5: GIF图转换</h3>
+<p>上面除了给出对静态图的处理之外，我们还额外支持gif图的转换，需要注意的是gif图时，只支持输出为gif，不支持输出svg格式</p>
+<p>基本使用姿势与前面一致，区别在于传入的图片为gif格式</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><table>
+<thead>
+<tr>
+<th>原图</th>
+<th>v1</th>
+<th>v2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/imgs/column/quick-media/image/xhr.gif" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/quick-media/image/outV1.gif" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/quick-media/image/outV2.gif" alt="" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-02-11T11:44:26.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
   <entry>
@@ -6256,380 +6915,6 @@ worker_processes auto<span class="token punctuation">;</span>
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2024-07-31T09:27:46.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">2. IDEA编译Groovy脚本失败记录</title>
-    <id>https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/02.IDEA%E7%BC%96%E8%AF%91Groovy%E8%84%9A%E6%9C%AC%E5%A4%B1%E8%B4%A5%E8%AE%B0%E5%BD%95.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/02.IDEA%E7%BC%96%E8%AF%91Groovy%E8%84%9A%E6%9C%AC%E5%A4%B1%E8%B4%A5%E8%AE%B0%E5%BD%95.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>在做 <code>https://github.com/liuyueyi/quick-task</code> 项目时，遇到了一个蛋疼的问题，不知道什么时候加了个Groovy脚本之后，整个项目就编译不过了，特此记录一下</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>在做 <code>https://github.com/liuyueyi/quick-task</code> 项目时，遇到了一个蛋疼的问题，不知道什么时候加了个Groovy脚本之后，整个项目就编译不过了，特此记录一下</p>
-<!-- more -->
-<p>在启动时，提示下面的编译信息</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>根据上面的提示，说的是数组越界，只支持255个长度，结果有388个参数，然而蛋疼的是上面的堆栈信息中，可供参考的真心不多，也看不出什么原因</p>
-<p>通过这篇文章才算知道原因</p>
-<ul>
-<li><a href="https://blog.csdn.net/Fhaohaizi/article/details/82414864" target="_blank" rel="noopener noreferrer">groovy数组长度支持最大数字限制255
-</a></li>
-</ul>
-<p>看标题也就知道了，在Groovy脚本中，不能有数组的长度超过255，然后开始蛋疼的监测写的Groovy脚本，是不是有数组的赋值超过了上限，果不其然....</p>
-<p>特此记录下，这个蛋疼的问题</p>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Java"/>
-    <category term="Bugfix"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2018-09-07T15:50:45.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">3. IDEA依赖类标红问题fix</title>
-    <id>https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/03.IDEA%E4%BE%9D%E8%B5%96%E7%B1%BB%E6%A0%87%E7%BA%A2%E9%97%AE%E9%A2%98fix.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/03.IDEA%E4%BE%9D%E8%B5%96%E7%B1%BB%E6%A0%87%E7%BA%A2%E9%97%AE%E9%A2%98fix.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>idea内部类，导入标红，提示找不到对应的依赖，解决办法</p>
-<p><code>file -&gt; Invalidate Caches/ Restart</code></p>
-]]></summary>
-    <content type="html"><![CDATA[<p>idea内部类，导入标红，提示找不到对应的依赖，解决办法</p>
-<p><code>file -&gt; Invalidate Caches/ Restart</code></p>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="工具"/>
-    <category term="IDEA"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2020-07-22T10:48:43.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">4. IDEA项目module无法导入问题记录</title>
-    <id>https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/04.IDEA-%E9%A1%B9%E7%9B%AEmodule%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/04.IDEA-%E9%A1%B9%E7%9B%AEmodule%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>idea一个项目有多个module，忽然发现一个module显示不太正常，如</p>
-<figure><img src="/hexblog/imgs/210512/00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>一般有两种方法，基本的如：</p>
-<ul>
-<li>选中pom.xml，右键</li>
-<li>maven</li>
-<li>unignore Projects</li>
-</ul>
-]]></summary>
-    <content type="html"><![CDATA[<p>idea一个项目有多个module，忽然发现一个module显示不太正常，如</p>
-<figure><img src="/hexblog/imgs/210512/00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>一般有两种方法，基本的如：</p>
-<ul>
-<li>选中pom.xml，右键</li>
-<li>maven</li>
-<li>unignore Projects</li>
-</ul>
-<!-- more -->
-<figure><img src="/hexblog/imgs/210512/01.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>除了上面的姿势之外，可以通过设置栏进行批量处理</p>
-<ul>
-<li>Settings</li>
-<li>Build, Extention, Deployment</li>
-<li>Maven</li>
-<li>ignore files</li>
-<li>取消勾选的即可</li>
-</ul>
-<figure><img src="/hexblog/imgs/210512/02.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Java"/>
-    <category term="问题记录"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2021-05-12T12:39:34.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">5. IDEA代码修改不生效,需要mvn install问题记录</title>
-    <id>https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/05.IDEA%E4%BB%A3%E7%A0%81%E4%BF%AE%E6%94%B9%E4%B8%8D%E7%94%9F%E6%95%88-%E9%9C%80%E8%A6%81mvn-install%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/05.IDEA%E4%BB%A3%E7%A0%81%E4%BF%AE%E6%94%B9%E4%B8%8D%E7%94%9F%E6%95%88-%E9%9C%80%E8%A6%81mvn-install%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>最近用idea开发一个项目，遇到一个鬼畜的问题，代码修改之后，启动测试发现不生效，只有重新<code>mvn clean install</code>之后才能加载到改动的代码</p>
-<p>这就有点过分了，怀疑是idea的配置问题导致的，没有什么特别好的办法，只能删配置重新导入</p>
-<ul>
-<li>删除 <code>.idea</code>文件夹</li>
-<li>删除 <code>*.iml</code>文件</li>
-<li>重新导入项目</li>
-</ul>
-]]></summary>
-    <content type="html"><![CDATA[<p>最近用idea开发一个项目，遇到一个鬼畜的问题，代码修改之后，启动测试发现不生效，只有重新<code>mvn clean install</code>之后才能加载到改动的代码</p>
-<p>这就有点过分了，怀疑是idea的配置问题导致的，没有什么特别好的办法，只能删配置重新导入</p>
-<ul>
-<li>删除 <code>.idea</code>文件夹</li>
-<li>删除 <code>*.iml</code>文件</li>
-<li>重新导入项目</li>
-</ul>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Java"/>
-    <category term="问题记录"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2021-05-13T20:31:17.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">6. IDEA resin配置</title>
-    <id>https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/06.IDEA-resin%E9%85%8D%E7%BD%AE.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/06.IDEA-resin%E9%85%8D%E7%BD%AE.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<blockquote>
-<p>Resin是CAUCHO公司（<a href="http://www.caucho.com/%EF%BC%89%E7%9A%84%E4%BA%A7%E5%93%81%EF%BC%8C%E6%98%AF%E4%B8%80%E4%B8%AA%E9%9D%9E%E5%B8%B8%E6%B5%81%E8%A1%8C%E7%9A%84%E6%94%AF%E6%8C%81servlets" target="_blank" rel="noopener noreferrer">http://www.caucho.com/）的产品，是一个非常流行的支持servlets</a> 和jsp的引擎，速度非常快。Resin本身包含了一个支持HTTP/1.1的WEB服务器。虽然它可以显示动态内容，但是它显示静态内容的能力也非常强，速度直逼APACHE SERVER</p>
-</blockquote>
-<p>简单把resin理解为一个类似tomcat的web服务器就好，下面介绍一下IDEA如何配置resin，从而快速启动</p>
-]]></summary>
-    <content type="html"><![CDATA[<blockquote>
-<p>Resin是CAUCHO公司（<a href="http://www.caucho.com/%EF%BC%89%E7%9A%84%E4%BA%A7%E5%93%81%EF%BC%8C%E6%98%AF%E4%B8%80%E4%B8%AA%E9%9D%9E%E5%B8%B8%E6%B5%81%E8%A1%8C%E7%9A%84%E6%94%AF%E6%8C%81servlets" target="_blank" rel="noopener noreferrer">http://www.caucho.com/）的产品，是一个非常流行的支持servlets</a> 和jsp的引擎，速度非常快。Resin本身包含了一个支持HTTP/1.1的WEB服务器。虽然它可以显示动态内容，但是它显示静态内容的能力也非常强，速度直逼APACHE SERVER</p>
-</blockquote>
-<p>简单把resin理解为一个类似tomcat的web服务器就好，下面介绍一下IDEA如何配置resin，从而快速启动</p>
-<!-- more -->
-<h3> 1. 插件安装</h3>
-<p>进入idea的设置，找到plugins, 选中 Marketplace，输入resin，选择下面这个插件安装，注意安装完毕之后需要重启idea</p>
-<figure><img src="/hexblog/imgs/210104/00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 2. resin下载</h3>
-<p>直接到官网下载(<a href="https://caucho.com/" target="_blank" rel="noopener noreferrer">https://caucho.com/</a>)，本地解压</p>
-<p>请记住这个地址</p>
-<h3> 3. 启动配置</h3>
-<p>首先需要添加一个启动配置项</p>
-<figure><img src="/hexblog/imgs/210104/01.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>点击+号，查找Resin -&gt; Local</p>
-<ul>
-<li>首次配置时，需要指定本地安装的resin服务目录</li>
-<li>项目的端口号根据实际进行填写</li>
-</ul>
-<figure><img src="/hexblog/imgs/210104/02.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>Server配置完毕之后，选中Deployment</p>
-<ul>
-<li>点击下面的+</li>
-<li>在弹窗中，选择后缀为 exploded 的，点击确认</li>
-</ul>
-<figure><img src="/hexblog/imgs/210104/03.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>配置完毕之后，启动选项中，会有一个配置项，选中之后启动即可</p>
-<figure><img src="/hexblog/imgs/210104/04.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="工具"/>
-    <category term="IDEA"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2021-01-04T19:22:29.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">1. 从0到1构建一个应用内服务/数据访问订正工具包</title>
-    <id>https://liuyueyi.github.io/tutorial/column/app/fix/190102-Quick-Fix-%E4%BB%8E0%E5%88%B01%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8%E5%86%85%E6%9C%8D%E5%8A%A1-%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E8%AE%A2%E6%AD%A3%E5%B7%A5%E5%85%B7%E5%8C%85.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/column/app/fix/190102-Quick-Fix-%E4%BB%8E0%E5%88%B01%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8%E5%86%85%E6%9C%8D%E5%8A%A1-%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E8%AE%A2%E6%AD%A3%E5%B7%A5%E5%85%B7%E5%8C%85.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<h2> I. 背景说明</h2>
-<figure><a href="https://travis-ci.org/liuyueyi/quick-fix" target="_blank" rel="noopener noreferrer"><img src="https://travis-ci.org/liuyueyi/quick-fix.svg?branch=master" alt="Builder" tabindex="0" loading="lazy"></a><figcaption>Builder</figcaption></figure>
-<h3> case1: 程序出bug了</h3>
-<p>在我们的实际工作中，当我们遇到别人反馈代码出问题了吧，怎么返回的数据不对？</p>
-<p>当应用持续跑了一段时间之后，这个时候我们的第一个反应基本是确认能复现么？如果能复现，那么调用的姿势是不是对的？如果确认姿势没问题，那么就是请求参数不对了!!! 如果请求参数还没有问题，卧槽，这下完了，真可能有bug了，这下怎么办？</p>
-<p>接下来，一般的讨论是在测试环境复现一下，如果能复现，那么开启debug（或者远程debug），一行行调试，相信很快就能搞定了；</p>
-<p>但是，最怕的就是但是，测试环境没法复现，至于线上环境才有问题，这下怎么搞？</p>
-<h3> case2: 缓存数据有问题</h3>
-<p>另外一个场景就是为了提升服务性能，缓存基本上会被大量的使用在各个系统之间；有缓存，那么就会有缓存不一致的问题，如果缓存用的是外部的如(redis/memcache)之类的，那么缓存数据的查询和订正，就相对简单了；但是，如果我们使用了内存作为数据的缓存，比如（hashmap, guava)，这种时候，我想知道这个内存中的数据怎么办？我想修改这个内存的中的数据怎么办？</p>
-<h3> 3. 小结</h3>
-<p>上面两个场景，归纳一下主要是两个问题</p>
-<ul>
-<li>如何知道线上应用中，某个服务的方法的执行结果；</li>
-<li>如何知道线上应用中，某些内存数据的结果</li>
-</ul>
-]]></summary>
-    <content type="html"><![CDATA[<h2> I. 背景说明</h2>
-<figure><a href="https://travis-ci.org/liuyueyi/quick-fix" target="_blank" rel="noopener noreferrer"><img src="https://travis-ci.org/liuyueyi/quick-fix.svg?branch=master" alt="Builder" tabindex="0" loading="lazy"></a><figcaption>Builder</figcaption></figure>
-<h3> case1: 程序出bug了</h3>
-<p>在我们的实际工作中，当我们遇到别人反馈代码出问题了吧，怎么返回的数据不对？</p>
-<p>当应用持续跑了一段时间之后，这个时候我们的第一个反应基本是确认能复现么？如果能复现，那么调用的姿势是不是对的？如果确认姿势没问题，那么就是请求参数不对了!!! 如果请求参数还没有问题，卧槽，这下完了，真可能有bug了，这下怎么办？</p>
-<p>接下来，一般的讨论是在测试环境复现一下，如果能复现，那么开启debug（或者远程debug），一行行调试，相信很快就能搞定了；</p>
-<p>但是，最怕的就是但是，测试环境没法复现，至于线上环境才有问题，这下怎么搞？</p>
-<h3> case2: 缓存数据有问题</h3>
-<p>另外一个场景就是为了提升服务性能，缓存基本上会被大量的使用在各个系统之间；有缓存，那么就会有缓存不一致的问题，如果缓存用的是外部的如(redis/memcache)之类的，那么缓存数据的查询和订正，就相对简单了；但是，如果我们使用了内存作为数据的缓存，比如（hashmap, guava)，这种时候，我想知道这个内存中的数据怎么办？我想修改这个内存的中的数据怎么办？</p>
-<h3> 3. 小结</h3>
-<p>上面两个场景，归纳一下主要是两个问题</p>
-<ul>
-<li>如何知道线上应用中，某个服务的方法的执行结果；</li>
-<li>如何知道线上应用中，某些内存数据的结果</li>
-</ul>
-<!-- more -->
-<h2> II. 方案设计</h2>
-<p>为了解决上面抛出的两个问题，我们要怎么做呢？</p>
-<h3> 1. 设计</h3>
-<p>如何访问应用中的方法、数据，首先想到的就是反射；通过反射来执行某个实例的方法，或者获取实例的属性值，并没有太多的难度，有问题的是如何做到无侵入，如何与外部通信，如何做到通用</p>
-<p>首先我们需要注入一个EndPoint，用于实现应用于外界的通信，这个是一切开始的基本条件，Fixer的Endpoint负责接收外部请求，并将请求转发给内部的解析器，执行应用内服务访问，并将结果输出给外部使用者</p>
-<figure><img src="http://blog.hhui.top/hexblog/imgs/190102/00.jpg" alt="IMAGE" tabindex="0" loading="lazy"><figcaption>IMAGE</figcaption></figure>
-<p>上图给出了EndPoint的结构设计，因为目前的java应用，直接以jar方式跑的不太多了，更常见的是将服务跑在其他的容器中，比如我们常见的tomcat应用，Spring应用等；不同的容器，对外暴露的方式不一样，怎么样才可以做到在不同的容器中，进行优雅的支持呢？</p>
-<p>接下来请求到应用内之后，首先定位到访问的服务，其次则进行服务调用执行，其实现流程如下</p>
-<figure><img src="https://blog.hhui.top/hexblog/imgs/190102/01.jpg" alt="IMAGE" tabindex="0" loading="lazy"><figcaption>IMAGE</figcaption></figure>
-<h3> 2. 技术</h3>
-<p>从上面的结构设计出发，找到这个项目实现的关键点，然后看下可以怎么实现</p>
-<h4> a. 服务定位</h4>
-<p>如何通过传入的请求参数来定位需要执行的服务方法，一般来将，应用中提供的服务可以分为两种情况</p>
-<ul>
-<li>以实例的形式提供服务
-<ul>
-<li>如Spring中以Bean的形式，一个Service就是一个Bean；我们可以借助Spring的ApplicationContext获取对应的bean</li>
-<li>这种类型的服务，要求应用本身持有所有服务，然后我们可以通过这个ServiceHolder来定位具体的服务</li>
-</ul>
-</li>
-<li>一个类对应一个服务
-<ul>
-<li>这种常见的是静态类或者单例，这个是以ClassLoader维度进行区分的；</li>
-<li>因此我们可以直接通过ClassLoader方式来加载对应的类</li>
-</ul>
-</li>
-</ul>
-<p>然后我们主要目标需要集中在第一种方式，不同的应用方式，获取ServiceHolder不一样，让我们自己去全部支持，显然是不太现实的，因此我们需要设计一个方案，让使用者，自己来根据应用中的ServiceHolder，来选择具体的Service方法</p>
-<p>这种，就可以通过SPI机制来支持</p>
-<h4> b. EndPoint支持</h4>
-<p>提供与外部的交互，最常见的方案就是暴露一个http接口，然后接收外部的请求；非web服务怎么办？也可以开一个socket走tcp通信，那么问题来了</p>
-<ul>
-<li>对于web服务
-<ul>
-<li>直接在已有的web服务上新增一个端点，并加上权限控制？</li>
-<li>另开一个端口提供服务</li>
-</ul>
-</li>
-<li>对于非web服务
-<ul>
-<li>新开端口提供服务</li>
-</ul>
-</li>
-</ul>
-<p>所以再具体的实现中，我们需要考虑以下几点</p>
-<ul>
-<li>如何复用已有的web服务？</li>
-<li>没有web服务时，自己怎么支持web服务？</li>
-<li>如何支持绑定端口的配置？</li>
-<li>当项目中引入了多种EndPoint支持方式时，怎么保证只有一个生效？</li>
-</ul>
-<p>针对上面的问题，具体实现时，会用到下面一些机制</p>
-<ul>
-<li>引入优先级</li>
-<li>通过SPI来实现自定义扩展</li>
-<li>解析JVM参数，来获取对应的配置</li>
-</ul>
-<h2> III. 相关博文</h2>
-<p>从设计到实现，下面博文分别进行详细介绍说明</p>
-<p>... （待补齐）</p>
-<h2> IV. 使用说明</h2>
-<h3> 1. 依赖管理</h3>
-<p>首先添加仓库，两种方式，一个是github的release版本的引入，优势是稳定；确定是更新及时问题；</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>另一个是我个人的仓库</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2. 引入依赖包</h3>
-<p>根据实际的应用场景，引入对应的依赖包，</p>
-<h4> a. 纯jar应用</h4>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>注意事项：</p>
-<ul>
-<li>fix-core 内置了一个http服务器，默认绑定端口号 9999, 可以通过jvm参数 <code>-Dquick.fix.port</code> 来覆盖</li>
-<li>在应用的入口出，需要主动执行 <code>FixEngine.instance();</code> 进行初始化</li>
-<li>因为fix-core 只提供了静态类的ServerLoader, 对于实例的加载，需要业务方自己来实现</li>
-</ul>
-<p>使用姿势如下：</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>实例demo:</p>
-<p><a href="https://github.com/liuyueyi/quick-fix/tree/master/examples/jar-example" target="_blank" rel="noopener noreferrer">jar-example</a></p>
-<h4> b. 纯Spring应用</h4>
-<p>如我是一个纯Spring应用，没有使用SpringMVC，可以引入</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>注意事项：</p>
-<p>spring-fixer提供了访问Spring容器内bean的服务方式，因此除了获取默认提供的静态类之外，还可以访问bean；</p>
-<ul>
-<li>使用默认的http服务器，端口号为 9999, 通过jvm参数 <code>-Dquick.fix.port</code> 来覆盖</li>
-<li>与前面不同，不需要主动调用<code>FixEngine.instance()</code></li>
-<li>内部提供bean的加载ServerLoader，可以直接通过beanName或者Bean的完整类名访问其内部方法/数据</li>
-</ul>
-<p>使用姿势如下:</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>实例demo:</p>
-<ul>
-<li><a href="https://github.com/liuyueyi/quick-fix/tree/master/examples/spring-example" target="_blank" rel="noopener noreferrer">spring-example</a></li>
-</ul>
-<h4> c. SpringMVC应用</h4>
-<p>如是一个SpringMVC应用，可以引入</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>使用说明：</p>
-<ul>
-<li>利用mvc本身提供的http服务，访问路径为<code>/inject-fixer-endpoint/call</code>； 因此需要做好安全校验</li>
-</ul>
-<p>使用姿势&amp;实例：</p>
-<ul>
-<li>使用和前面的类似</li>
-<li><a href="https://github.com/liuyueyi/quick-fix/tree/master/examples/spring-mvc-example" target="_blank" rel="noopener noreferrer">spring-mvc-example</a></li>
-</ul>
-<h4> d. SpringCloud应用</h4>
-<p>如果是一个SpringCloud服务，且开启了 actuator 应用监测，可以引入</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>使用说明：</p>
-<ul>
-<li>将FixEndPoint端口集成在SpringCloud的Actuator中，因此在实际使用时，需要在配置中开启，设置参数 <code>management.endpoints.web.exposure.include</code></li>
-<li>访问路径为：<code>/actuator/inject-fixer-endpoint/call</code>， 前面的 <code>actuator</code>路径与应用监测配置的路径一致</li>
-</ul>
-<p>使用姿势&amp;实例:</p>
-<ul>
-<li><a href="https://github.com/liuyueyi/quick-fix/tree/master/examples/spring-cloud-example" target="_blank" rel="noopener noreferrer">spring-cloud-example</a></li>
-</ul>
-<h2> V. 其他</h2>
-<h3> 项目</h3>
-<ul>
-<li><a href="https://github.com/liuyueyi/quick-fix" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/quick-fix</a></li>
-</ul>
-<h3> 其他</h3>
-<p>拒绝单机，欢迎start或者加好友支持</p>
-<h3> 声明</h3>
-<p>尽信书则不如，已上内容，一家之言，因个人能力有限，难免有疏漏和错误之处，如发现bug或者有更好的建议，欢迎批评指正，不吝感激</p>
-<ul>
-<li>微博地址: 小灰灰Blog</li>
-<li>QQ： 一灰灰/3302797840</li>
-<li>WeChat: 一灰/liuyueyi25</li>
-</ul>
-<h3> 扫描关注</h3>
-<p><strong>公众号&amp;博客</strong></p>
-<figure><img src="https://gitee.com/liuyueyi/Source/raw/master/img/info/blogInfoV2.png" alt="QrCode" tabindex="0" loading="lazy"><figcaption>QrCode</figcaption></figure>
-<p><strong>打赏码</strong></p>
-<figure><img src="https://gitee.com/liuyueyi/Source/raw/master/img/pay/pay.png" alt="pay" tabindex="0" loading="lazy"><figcaption>pay</figcaption></figure>
-<p><strong>知识星球</strong></p>
-<figure><img src="https://raw.githubusercontent.com/liuyueyi/Source/master/img/info/goals.png" alt="goals" tabindex="0" loading="lazy"><figcaption>goals</figcaption></figure>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Quick系列"/>
-    <category term="QuickFix"/>
-    <category term="方案设计"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2019-01-02T22:01:23.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
 </feed>
