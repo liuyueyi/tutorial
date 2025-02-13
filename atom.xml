@@ -9,10 +9,12 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2025-02-11T09:08:13.730Z</updated>
+  <updated>2025-02-13T09:14:25.626Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
+  <category term="Java"/>
+  <category term="JDK21"/>
   <category term="技术组件"/>
   <category term="开源"/>
   <category term="ElasticSearch"/>
@@ -23,7 +25,6 @@
   <category term="Redis"/>
   <category term="Quick系列"/>
   <category term="Maven"/>
-  <category term="Java"/>
   <category term="其他"/>
   <category term="JDK"/>
   <category term="并发"/>
@@ -40,11 +41,813 @@
   <category term="Git"/>
   <category term="基本功系列"/>
   <category term="Nginx"/>
-  <category term="开发工具"/>
   <contributor>
     <name>一灰灰blog</name>
     <uri>https://hhui.top</uri>
   </contributor>
+  <entry>
+    <title type="text">01.JDK21新特性及示例说明</title>
+    <id>https://liuyueyi.github.io/tutorial/java/jdk/jdk21/01.JDK21%E6%96%B0%E7%89%B9%E6%80%A7%E5%8F%8A%E7%A4%BA%E4%BE%8B%E8%AF%B4%E6%98%8E.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/java/jdk/jdk21/01.JDK21%E6%96%B0%E7%89%B9%E6%80%A7%E5%8F%8A%E7%A4%BA%E4%BE%8B%E8%AF%B4%E6%98%8E.html"/>
+    <updated>2025-02-13T08:59:24.000Z</updated>
+    <summary type="html"><![CDATA[<p>JDK 21 在 JDK 8 的基础上引入了许多新特性，下面详细介绍一些主要特性并给出相应的示例代码：</p>
+<h3> 1. 虚拟线程（Virtual Threads）</h3>
+<p>虚拟线程是 JDK 21 引入的轻量级线程，能够以较低的开销处理大量并发任务。与传统的平台线程相比，虚拟线程由 Java 运行时管理，不需要操作系统内核线程的支持，从而可以创建数百万个虚拟线程而不会耗尽系统资源。</p>
+<p><strong>示例代码</strong>：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">ExecutorService</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">Executors</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VirtualThreadsExample</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 创建一个虚拟线程执行器</span>
+        <span class="token keyword">try</span> <span class="token punctuation">(</span><span class="token class-name">ExecutorService</span> executor <span class="token operator">=</span> <span class="token class-name">Executors</span><span class="token punctuation">.</span><span class="token function">newVirtualThreadPerTaskExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">final</span> <span class="token keyword">int</span> taskId <span class="token operator">=</span> i<span class="token punctuation">;</span>
+                <span class="token comment">// 提交任务到执行器</span>
+                executor<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Task "</span> <span class="token operator">+</span> taskId <span class="token operator">+</span> <span class="token string">" is running on thread: "</span> <span class="token operator">+</span> <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                        <span class="token comment">// 模拟任务执行</span>
+                        <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">interrupt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Task "</span> <span class="token operator">+</span> taskId <span class="token operator">+</span> <span class="token string">" is completed."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></summary>
+    <content type="html"><![CDATA[<p>JDK 21 在 JDK 8 的基础上引入了许多新特性，下面详细介绍一些主要特性并给出相应的示例代码：</p>
+<h3> 1. 虚拟线程（Virtual Threads）</h3>
+<p>虚拟线程是 JDK 21 引入的轻量级线程，能够以较低的开销处理大量并发任务。与传统的平台线程相比，虚拟线程由 Java 运行时管理，不需要操作系统内核线程的支持，从而可以创建数百万个虚拟线程而不会耗尽系统资源。</p>
+<p><strong>示例代码</strong>：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2. 结构化并发（Structured Concurrency）</h3>
+<p>结构化并发是一种新的并发编程模型，它将一组相关的任务视为一个单一的工作单元，使得任务的管理和错误处理更加简单和直观。通过使用 <code>StructuredTaskScope</code>，可以方便地启动和等待多个并发任务的完成。</p>
+<p><strong>示例代码</strong>：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 记录模式（Record Patterns）</h3>
+<p>记录模式允许在模式匹配中解构记录类型，使得代码更加简洁和易读。结合 <code>instanceof</code> 和 <code>switch</code> 表达式，可以更方便地处理记录类型的数据。</p>
+<p><strong>示例代码</strong>：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 4. 字符串模板（String Templates）</h3>
+<p>字符串模板是一种新的字符串构建机制，它允许在字符串中嵌入表达式，使得字符串的拼接更加直观和方便。</p>
+<p><strong>示例代码</strong>：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 5. 增强的模式匹配（Enhanced Pattern Matching）</h3>
+<p>JDK 21 进一步增强了模式匹配的功能，支持更复杂的模式匹配，如嵌套模式匹配和类型测试模式。</p>
+<p><strong>示例代码</strong>：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="Java"/>
+    <category term="JDK21"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-02-13T09:48:09.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">02.JDK21虚拟线程：重新定义Java高并发编程</title>
+    <id>https://liuyueyi.github.io/tutorial/java/jdk/jdk21/02.%E8%99%9A%E6%8B%9F%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/java/jdk/jdk21/02.%E8%99%9A%E6%8B%9F%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html"/>
+    <updated>2025-02-13T08:59:24.000Z</updated>
+    <summary type="html"><![CDATA[<h2> 1. 背景：为什么需要虚拟线程？</h2>
+<p>在传统Java并发模型中，每个<code>java.lang.Thread</code>都直接对应一个操作系统线程（称为<strong>平台线程</strong>）。虽然这种1:1的模型保证了可靠的并发执行，但存在两个关键瓶颈：</p>
+<ol>
+<li><strong>资源限制</strong>：操作系统线程创建成本高（默认1MB栈空间），难以支持百万级并发</li>
+<li><strong>上下文切换开销</strong>：线程数量激增时，CPU时间大量消耗在切换线程上下文上</li>
+</ol>
+<p>开发者通常通过线程池和异步编程（如CompletableFuture）缓解这些问题，但这导致了代码复杂度上升。<strong>Project Loom</strong>应运而生，其核心成果<strong>虚拟线程</strong>在JDK19中首次预览，最终在JDK21正式发布。</p>]]></summary>
+    <content type="html"><![CDATA[<h2> 1. 背景：为什么需要虚拟线程？</h2>
+<p>在传统Java并发模型中，每个<code>java.lang.Thread</code>都直接对应一个操作系统线程（称为<strong>平台线程</strong>）。虽然这种1:1的模型保证了可靠的并发执行，但存在两个关键瓶颈：</p>
+<ol>
+<li><strong>资源限制</strong>：操作系统线程创建成本高（默认1MB栈空间），难以支持百万级并发</li>
+<li><strong>上下文切换开销</strong>：线程数量激增时，CPU时间大量消耗在切换线程上下文上</li>
+</ol>
+<p>开发者通常通过线程池和异步编程（如CompletableFuture）缓解这些问题，但这导致了代码复杂度上升。<strong>Project Loom</strong>应运而生，其核心成果<strong>虚拟线程</strong>在JDK19中首次预览，最终在JDK21正式发布。</p>
+<h2> 2. 原理：虚拟线程如何工作？</h2>
+<h3> 2.1 传统线程模型 vs 虚拟线程模型</h3>
+<h4> 传统线程模型（平台线程）</h4>
+<ul>
+<li><strong>1:1 模型</strong>：每个Java线程直接映射到一个操作系统线程。</li>
+<li><strong>资源开销大</strong>：每个线程默认占用1MB栈空间，创建和销毁成本高。</li>
+<li><strong>上下文切换依赖内核</strong>：线程切换需要内核介入，开销较大。</li>
+<li><strong>并发限制</strong>：受限于操作系统线程数（通常数千个）。</li>
+</ul>
+<h4> 虚拟线程模型</h4>
+<ul>
+<li><strong>M:N 模型</strong>：大量虚拟线程（M）复用在少量平台线程（N）上运行。</li>
+<li><strong>轻量级</strong>：虚拟线程的栈空间按需分配，初始内存占用仅几百字节。</li>
+<li><strong>协作式调度</strong>：虚拟线程在阻塞操作（如I/O）时自动让出执行权，由JVM调度器管理。</li>
+<li><strong>高并发支持</strong>：可轻松创建数百万个虚拟线程。</li>
+</ul>
+<h3> 虚拟线程的核心机制</h3>
+<ol>
+<li>
+<p><strong>Continuation（延续体）</strong></p>
+<ul>
+<li>虚拟线程的核心是一个可暂停和恢复的任务单元（Continuation）。</li>
+<li>当虚拟线程执行阻塞操作时，JVM会保存当前状态并挂起任务，切换到其他虚拟线程。</li>
+<li>阻塞操作完成后，JVM恢复任务状态并继续执行。</li>
+</ul>
+</li>
+<li>
+<p><strong>调度器</strong></p>
+<ul>
+<li>默认使用<code>ForkJoinPool</code>作为调度器，将虚拟线程分配到平台线程上执行。</li>
+<li>调度器负责在虚拟线程阻塞时将其从平台线程上卸载，并在就绪时重新调度。</li>
+</ul>
+</li>
+<li>
+<p><strong>栈管理</strong></p>
+<ul>
+<li>虚拟线程的栈空间是动态分配的，按需增长和收缩。</li>
+<li>通过<strong>Stack Chunk</strong>技术，JVM可以高效地管理虚拟线程的栈内存。</li>
+</ul>
+</li>
+<li>
+<p><strong>阻塞操作优化</strong></p>
+<ul>
+<li>虚拟线程在执行I/O、锁等待等阻塞操作时，会自动让出平台线程。</li>
+<li>这种机制避免了平台线程的浪费，提高了资源利用率。</li>
+</ul>
+</li>
+</ol>
+<h4> 对比总结</h4>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>平台线程</th>
+<th>虚拟线程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线程模型</td>
+<td>1:1（Java线程:OS线程）</td>
+<td>M:N（虚拟线程:平台线程）</td>
+</tr>
+<tr>
+<td>内存开销</td>
+<td>默认1MB/线程</td>
+<td><strong>~200字节/线程</strong></td>
+</tr>
+<tr>
+<td>上下文切换</td>
+<td>内核参与，开销大</td>
+<td><strong>JVM管理，开销小</strong></td>
+</tr>
+<tr>
+<td>阻塞操作</td>
+<td>占用平台线程</td>
+<td><strong>自动让出平台线程</strong></td>
+</tr>
+<tr>
+<td>并发能力</td>
+<td>数千级</td>
+<td><strong>百万级</strong></td>
+</tr>
+</tbody>
+</table>
+<h3> 2.2 虚拟线程调度</h3>
+<p>虚拟现成的调度主要包含三个核心部分：虚拟线程（Virtual Threads）、平台线程（Platform Threads）和调度器（Scheduler）。</p>
+<ol>
+<li><strong>虚拟线程池：</strong></li>
+</ol>
+<ul>
+<li>这是一个包含大量虚拟线程的集合。每个虚拟线程代表一个轻量级的执行单元，它们可以由用户代码创建并提交到执行器中等待执行。虚拟线程之间是平等的，它们的栈空间较小，创建和销毁的开销也很低。</li>
+</ul>
+<ol start="2">
+<li><strong>平台线程池：</strong></li>
+</ol>
+<ul>
+<li>平台线程是与操作系统内核线程一一对应的线程，数量相对较少。平台线程负责执行虚拟线程中的实际任务，它们是系统资源的实际使用者。</li>
+</ul>
+<ol start="3">
+<li><strong>调度器：</strong></li>
+</ol>
+<ul>
+<li>调度器是整个系统的核心，负责将虚拟线程分配到可用的平台线程上执行。</li>
+<li>调度器会根据虚拟线程的状态（如就绪、阻塞等）和平台线程的负载情况进行智能调度。</li>
+<li>当一个虚拟线程遇到阻塞操作（如 I/O 操作）时，调度器会将该虚拟线程暂停，并将平台线程分配给其他就绪的虚拟线程；当阻塞操作完成后，调度器会将该虚拟线程重新加入到就绪队列中，等待再次分配到平台线程执行。</li>
+</ul>
+<ol start="4">
+<li><strong>阻塞与唤醒机制：</strong></li>
+</ol>
+<ul>
+<li>当虚拟线程进行 I/O 等阻塞操作时，会触发阻塞信号，调度器将其标记为阻塞状态并让出平台线程；</li>
+<li>当阻塞操作完成，会有唤醒信号，调度器将其重新标记为就绪状态等待调度。</li>
+</ul>
+<p>虚拟线程调度的基本流程：</p>
+<p>虚拟线程进入调度器，调度器将其分配到平台线程执行，当平台线程上的虚拟线程遇到阻塞操作时通知调度器，调度器再去唤醒其他就绪的虚拟线程执行。</p>
+<figure><img src="/imgs/column/java/jdk21_virtual_thread_00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 2.3 优势：为什么选择虚拟线程？</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>平台线程</th>
+<th>虚拟线程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建数量</td>
+<td>数千级</td>
+<td><strong>百万级</strong></td>
+</tr>
+<tr>
+<td>内存消耗</td>
+<td>默认1MB/线程</td>
+<td><strong>~200字节/线程</strong></td>
+</tr>
+<tr>
+<td>上下文切换</td>
+<td>内核参与</td>
+<td><strong>JVM优化</strong></td>
+</tr>
+<tr>
+<td>编程模型</td>
+<td>回调地狱风险</td>
+<td><strong>同步代码风格</strong></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>高吞吐</strong>：轻松支撑10万+并发连接</li>
+<li><strong>低资源消耗</strong>：创建百万虚拟线程仅需几百MB内存</li>
+<li><strong>代码简化</strong>：用同步代码实现异步性能，避免回调地狱</li>
+<li><strong>兼容性</strong>：与现有Thread API、调试工具（如jstack）完全兼容</li>
+</ol>
+<h2> 3. 使用示例</h2>
+<h3> 示例1：创建虚拟线程</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例2：HTTP服务器对比</h3>
+<p><strong>传统线程池（20线程）：</strong></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>虚拟线程版：</strong></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例3：使用虚拟线程实现归并排序</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>说明：</strong></p>
+<ul>
+<li>使用虚拟线程并行化归并排序的递归任务。</li>
+<li>每个子任务（<code>mergeSort</code>）都在独立的虚拟线程中执行。</li>
+<li>通过<code>Future</code>获取子任务结果，并合并（<code>merge</code>）排序后的数组。</li>
+</ul>
+<h2> 4.小结</h2>
+<h3> 4.1 注意事项</h3>
+<ol>
+<li><strong>阻塞操作仍影响平台线程</strong></li>
+</ol>
+<p>在<code>synchronized</code>块或native方法中阻塞会占用平台线程</p>
+<ol start="2">
+<li><strong>避免在虚拟线程中：</strong></li>
+</ol>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="3">
+<li><strong>正确关闭ExecutorService</strong></li>
+</ol>
+<p>使用try-with-resources确保自动关闭</p>
+<ol start="4">
+<li><strong>不要池化虚拟线程</strong></li>
+</ol>
+<p>每个任务应新建虚拟线程（JVM已优化创建成本）</p>
+<ol start="5">
+<li><strong>性能考虑</strong></li>
+</ol>
+<p>虚拟线程适合处理 I/O 密集型任务，而传统线程更适合处理 CPU 密集型任务。在设计系统时，需要根据任务的特点合理分配线程类型，以充分发挥各自的优势。</p>
+<ol start="6">
+<li><strong>资源管理：</strong></li>
+</ol>
+<p>无论是虚拟线程还是传统线程，都需要注意资源的合理使用和释放，避免出现资源泄漏的问题。</p>
+<h3> 4.2 小结</h3>
+<p>JDK21虚拟线程通过以下革新重塑Java并发：</p>
+<ul>
+<li>✅ 使高并发应用的代码复杂度降低50%+</li>
+<li>✅ 吞吐量提升10倍（Tomcat基准测试数据）</li>
+<li>✅ 完全兼容现有代码和监控工具</li>
+</ul>
+<p><strong>适用场景</strong>：高并发服务、微服务架构、异步IO处理等</p>
+<p>尽管虚拟线程并非万能（CPU密集型任务仍需平台线程），但它无疑是Java在云原生时代的重要进化。 有兴趣的小伙伴快尝试下吧，<a href="https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html" target="_blank" rel="noopener noreferrer">更多使用相关推荐参考官方指导</a></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div>]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="Java"/>
+    <category term="JDK21"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-02-13T11:48:09.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">03.JDK21结构化并发：重新定义并发任务的生命周期管理</title>
+    <id>https://liuyueyi.github.io/tutorial/java/jdk/jdk21/03.%E7%BB%93%E6%9E%84%E5%8C%96%E5%B9%B6%E5%8F%91%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/java/jdk/jdk21/03.%E7%BB%93%E6%9E%84%E5%8C%96%E5%B9%B6%E5%8F%91%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html"/>
+    <updated>2025-02-13T08:59:24.000Z</updated>
+    <summary type="html"><![CDATA[<h2> 1. 背景：为什么需要结构化并发？</h2>
+<p>在传统Java并发编程中，开发者通过<code>ExecutorService</code>、<code>Future</code>或<code>CompletableFuture</code>管理多线程任务。然而，这些方式存在显著问题：</p>
+<ol>
+<li><strong>生命周期管理困难</strong>：子任务可能脱离父任务独立运行，导致“线程泄漏”</li>
+<li><strong>错误处理复杂</strong>：异常可能被静默吞噬，难以追踪问题根源</li>
+<li><strong>资源浪费</strong>：未及时关闭的线程池可能持续占用系统资源</li>
+</ol>]]></summary>
+    <content type="html"><![CDATA[<h2> 1. 背景：为什么需要结构化并发？</h2>
+<p>在传统Java并发编程中，开发者通过<code>ExecutorService</code>、<code>Future</code>或<code>CompletableFuture</code>管理多线程任务。然而，这些方式存在显著问题：</p>
+<ol>
+<li><strong>生命周期管理困难</strong>：子任务可能脱离父任务独立运行，导致“线程泄漏”</li>
+<li><strong>错误处理复杂</strong>：异常可能被静默吞噬，难以追踪问题根源</li>
+<li><strong>资源浪费</strong>：未及时关闭的线程池可能持续占用系统资源</li>
+</ol>
+<p><strong>结构化并发</strong>（Structured Concurrency）的概念源自结构化编程，核心思想是<strong>任务的生命周期应与其创建者的作用域严格绑定</strong>。JDK21通过JEP 453引入结构化并发API（第二次预览），旨在以同步代码风格实现可靠的异步任务管理。</p>
+<hr>
+<h2> 2. 原理：结构化并发如何工作？</h2>
+<h3> 2.1 传统并发 vs 结构化并发</h3>
+<h4> 传统并发模型</h4>
+<ul>
+<li><strong>松散的任务关系</strong>：父任务与子任务之间无强制绑定</li>
+<li><strong>手动管理关闭</strong>：需显式调用<code>shutdown()</code>或<code>cancel()</code></li>
+<li><strong>错误传播困难</strong>：子任务异常无法自动传递到父任务</li>
+</ul>
+<h4> 结构化并发模型</h4>
+<ul>
+<li><strong>任务作用域</strong>：所有子任务必须在父任务的作用域内执行</li>
+<li><strong>自动关闭保证</strong>：作用域退出时自动取消未完成子任务</li>
+<li><strong>异常冒泡机制</strong>：子任务异常会直接中断父任务执行</li>
+</ul>
+<h3> 核心机制</h3>
+<ol>
+<li>
+<p><strong>作用域（Scope）</strong><br>
+通过<code>StructuredTaskScope</code>定义一个任务作用域，所有子任务必须在此作用域内创建和执行。作用域关闭时，自动清理所有子任务。</p>
+</li>
+<li>
+<p><strong>关闭顺序控制</strong></p>
+<ul>
+<li>父任务作用域关闭时，首先取消所有未完成的子任务</li>
+<li>等待所有子任务终止后才继续执行后续代码</li>
+</ul>
+</li>
+<li>
+<p><strong>错误传播</strong><br>
+任一子任务抛出异常时，自动终止作用域内所有任务，并将异常传递给父任务。</p>
+</li>
+<li>
+<p><strong>结果聚合</strong><br>
+支持通过<code>ShutdownOnSuccess</code>（任一成功即返回）或<code>ShutdownOnFailure</code>（任一失败即终止）策略聚合结果。</p>
+</li>
+</ol>
+<h3> 2.2 架构示意图</h3>
+<div class="language-plaintext line-numbers-mode" data-ext="plaintext"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><em>所有子任务的生命周期严格限定在父作用域内</em></p>
+<hr>
+<h2> 3. 优势：为什么选择结构化并发？</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>传统并发</th>
+<th>结构化并发</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务关系</td>
+<td>松散</td>
+<td><strong>严格层级化</strong></td>
+</tr>
+<tr>
+<td>生命周期管理</td>
+<td>手动</td>
+<td><strong>自动管理</strong></td>
+</tr>
+<tr>
+<td>异常传播</td>
+<td>需显式处理</td>
+<td><strong>自动冒泡</strong></td>
+</tr>
+<tr>
+<td>代码可读性</td>
+<td>回调嵌套复杂</td>
+<td><strong>线性流程</strong></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>可靠性提升</strong>：避免线程泄漏，确保资源及时释放</li>
+<li><strong>调试简化</strong>：通过线程转储（jstack）可清晰查看任务关系树</li>
+<li><strong>错误处理统一</strong>：集中处理所有子任务的异常</li>
+<li><strong>资源利用率优化</strong>：自动回收未完成任务占用的资源</li>
+</ol>
+<hr>
+<h2> 4. 使用示例</h2>
+<p>结构化并发的核心思想是将一组相关的并发任务视为一个单一的工作单元，这个工作单元有明确的开始和结束。在这个工作单元中，所有的子任务都在一个统一的作用域内执行，当工作单元完成或其中一个子任务失败时，整个工作单元会被正确地关闭，所有未完成的子任务也会被取消。这种方式使得并发代码的结构更加清晰，错误处理更加统一，从而提高了代码的可维护性和可靠性。</p>
+<p>结构化并发通过 <code>StructuredTaskScope</code> 类来实现。<code>StructuredTaskScope</code> 提供了两种主要的模式：<code>ShutdownOnFailure</code> 和 <code>ShutdownOnSuccess</code></p>
+<ul>
+<li><code>ShutdownOnFailure：</code>当任何一个子任务失败时，会立即取消所有其他未完成的子任务，并抛出失败任务的异常。</li>
+<li><code>ShutdownOnSuccess：</code>当任何一个子任务成功完成时，会立即取消所有其他未完成的子任务，并返回成功任务的结果。</li>
+</ul>
+<h3> 示例1：基本使用</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例2：订单处理（超时控制+异常处理）</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例3：并行聚合数据</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><hr>
+<h2> 5. 小结</h2>
+<h3> 5.1 注意事项</h3>
+<ol>
+<li>
+<p><strong>作用域必须关闭</strong><br>
+始终使用try-with-resources确保作用域关闭：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+<li>
+<p><strong>避免跨作用域传递结果</strong><br>
+子任务的结果应在同一作用域内消费：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+<li>
+<p><strong>合理选择关闭策略</strong></p>
+<ul>
+<li><code>ShutdownOnSuccess</code>：适合快速获取首个成功结果（如多CDN择优）</li>
+<li><code>ShutdownOnFailure</code>：适合所有子任务必须成功的场景（如支付验证）</li>
+</ul>
+</li>
+<li>
+<p><strong>与虚拟线程协同</strong><br>
+结构化并发通常与虚拟线程配合使用：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+</ol>
+<h3> 5.2 小结</h3>
+<p>JDK21结构化并发通过以下革新提升Java并发可靠性：</p>
+<ul>
+<li>✅ 将并发任务组织为可维护的树形结构</li>
+<li>✅ 自动生命周期管理减少资源泄漏风险</li>
+<li>✅ 异常传播机制提升调试效率</li>
+<li>✅ 与虚拟线程协同实现高并发+高可靠</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>微服务中的并行API调用</li>
+<li>批量数据处理任务</li>
+<li>需要严格资源管理的长期运行任务</li>
+</ul>
+<p>目前结构化并发API仍处于预览阶段，可通过<code>--enable-preview</code>启用。 建议结合<a href="https://openjdk.org/jeps/453" target="_blank" rel="noopener noreferrer">官方指南</a>进行实践，这将为Java并发编程带来前所未有的代码清晰度与可靠性。</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="Java"/>
+    <category term="JDK21"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-02-13T15:48:09.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">04.JDK21记录模式：简化数据解构与模式匹配</title>
+    <id>https://liuyueyi.github.io/tutorial/java/jdk/jdk21/04.%E8%AE%B0%E5%BD%95%E6%A8%A1%E5%BC%8F%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/java/jdk/jdk21/04.%E8%AE%B0%E5%BD%95%E6%A8%A1%E5%BC%8F%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html"/>
+    <updated>2025-02-13T08:59:24.000Z</updated>
+    <summary type="html"><![CDATA[<h2> 1. 背景：为什么需要记录模式？</h2>
+<p>在Java中，处理复杂数据结构（如嵌套对象或记录类）时，通常需要编写大量样板代码来提取和验证数据。例如：</p>
+<ul>
+<li>手动解构嵌套对象</li>
+<li>使用<code>instanceof</code>和类型转换</li>
+<li>编写冗长的条件分支</li>
+</ul>
+<p><strong>记录模式</strong>（Record Patterns）是Java模式匹配的进一步扩展，旨在简化数据解构和模式匹配的代码。它结合了<strong>记录类</strong>（Record）和<strong>模式匹配</strong>的特性，使开发者能够以声明式的方式提取和处理数据。</p>]]></summary>
+    <content type="html"><![CDATA[<h2> 1. 背景：为什么需要记录模式？</h2>
+<p>在Java中，处理复杂数据结构（如嵌套对象或记录类）时，通常需要编写大量样板代码来提取和验证数据。例如：</p>
+<ul>
+<li>手动解构嵌套对象</li>
+<li>使用<code>instanceof</code>和类型转换</li>
+<li>编写冗长的条件分支</li>
+</ul>
+<p><strong>记录模式</strong>（Record Patterns）是Java模式匹配的进一步扩展，旨在简化数据解构和模式匹配的代码。它结合了<strong>记录类</strong>（Record）和<strong>模式匹配</strong>的特性，使开发者能够以声明式的方式提取和处理数据。</p>
+<p>JDK19首次引入记录模式作为预览特性，JDK21进一步优化并正式发布。</p>
+<h2> 2. 原理：记录模式如何工作？</h2>
+<p>记录类是一种特殊的类，它主要用于封装不可变的数据，自动生成构造函数、equals()、hashCode() 和 toString() 等方法。</p>
+<p>记录模式利用记录类的这种特性，使得在进行类型检查和数据提取时可以一步完成，避免了传统方式下繁琐的属性访问操作</p>
+<h3> 2.1 传统数据解构 vs 记录模式</h3>
+<h4> 传统方式</h4>
+<ul>
+<li><strong>手动解构</strong>：通过getter方法或字段访问提取数据</li>
+<li><strong>类型检查</strong>：使用<code>instanceof</code>和类型转换</li>
+<li><strong>冗长代码</strong>：需要多行代码完成简单操作</li>
+</ul>
+<h4> 记录模式</h4>
+<ul>
+<li><strong>声明式解构</strong>：直接匹配记录类的结构并提取字段</li>
+<li><strong>类型推断</strong>：自动推断字段类型，无需显式类型转换</li>
+<li><strong>模式嵌套</strong>：支持嵌套记录类的解构</li>
+</ul>
+<h3> 核心机制</h3>
+<ol>
+<li>
+<p><strong>模式匹配</strong><br>
+记录模式扩展了<code>instanceof</code>和<code>switch</code>的模式匹配能力，允许直接匹配记录类的结构。</p>
+</li>
+<li>
+<p><strong>解构绑定</strong><br>
+在匹配成功后，自动将记录类的字段绑定到变量中。</p>
+</li>
+<li>
+<p><strong>嵌套支持</strong><br>
+支持嵌套记录类的解构，简化复杂数据结构的处理。</p>
+</li>
+<li>
+<p><strong>类型推断</strong><br>
+编译器自动推断字段类型，减少显式类型转换。</p>
+</li>
+</ol>
+<h3> 2.2 架构示意图</h3>
+<div class="language-plaintext line-numbers-mode" data-ext="plaintext"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 3. 优势：为什么选择记录模式？</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>传统方式</th>
+<th>记录模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码简洁性</td>
+<td>冗长</td>
+<td><strong>简洁</strong></td>
+</tr>
+<tr>
+<td>类型安全性</td>
+<td>需显式类型转换</td>
+<td><strong>自动推断</strong></td>
+</tr>
+<tr>
+<td>嵌套支持</td>
+<td>手动逐层解构</td>
+<td><strong>自动解构</strong></td>
+</tr>
+<tr>
+<td>可读性</td>
+<td>低</td>
+<td><strong>高</strong></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>代码简洁</strong>：减少样板代码，提升开发效率</li>
+<li><strong>类型安全</strong>：编译器自动检查类型，减少运行时错误</li>
+<li><strong>嵌套解构</strong>：轻松处理复杂数据结构</li>
+<li><strong>可读性高</strong>：声明式语法更符合直觉</li>
+</ol>
+<h2> 4. 使用示例</h2>
+<p>记录模式的基本语法是在 instanceof 或 switch 表达式中使用记录类的名称，并在括号内指定要解构的组件变量。例如：</p>
+<h3> 示例1：基本使用</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例2：嵌套记录类</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例3：在<code>switch</code>中使用记录模式</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例4：结合泛型使用</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 5. 小结</h2>
+<h3> 5.1 注意事项</h3>
+<ol>
+<li>
+<p><strong>记录类要求</strong><br>
+记录模式仅适用于记录类（Record），普通类需转换为记录类才能使用。</p>
+</li>
+<li>
+<p><strong>模式顺序</strong><br>
+在<code>switch</code>中，更具体的模式应放在前面：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+<li>
+<p><strong>空值处理</strong><br>
+记录模式不支持<code>null</code>值匹配，需额外检查：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></li>
+<li>
+<p><strong>性能影响</strong><br>
+记录模式在运行时可能引入额外开销，需在性能敏感场景中测试。</p>
+</li>
+</ol>
+<h2> 5.2 总结</h2>
+<p>JDK21记录模式通过以下革新提升Java数据处理的效率：</p>
+<ul>
+<li>✅ 简化数据解构代码</li>
+<li>✅ 提升类型安全性和可读性</li>
+<li>✅ 支持嵌套记录类的解构</li>
+<li>✅ 与模式匹配无缝集成</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>处理复杂数据结构</li>
+<li>实现模式匹配逻辑</li>
+<li>简化数据验证和提取</li>
+</ul>
+<p>记录模式是Java模式匹配的重要扩展，建议有兴趣的小伙伴可以参考<a href="https://openjdk.org/jeps/440" target="_blank" rel="noopener noreferrer">官方文档</a>来实际体验一下它的魅力</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="Java"/>
+    <category term="JDK21"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-02-13T16:48:09.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">05.JDK21字符串模板：更安全、更强大的字符串拼接</title>
+    <id>https://liuyueyi.github.io/tutorial/java/jdk/jdk21/05.%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/java/jdk/jdk21/05.%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF.html"/>
+    <updated>2025-02-13T08:59:24.000Z</updated>
+    <summary type="html"><![CDATA[<h2> 1. 背景：为什么需要字符串模板？</h2>
+<p>在Java中，字符串拼接是常见的操作，但传统方式存在诸多问题：</p>
+<ol>
+<li><strong>可读性差</strong>：使用<code>+</code>或<code>StringBuilder</code>拼接字符串时，代码冗长且难以维护</li>
+<li><strong>安全性低</strong>：直接拼接用户输入可能导致SQL注入或XSS攻击</li>
+<li><strong>性能开销</strong>：频繁拼接字符串可能产生大量临时对象，影响性能</li>
+</ol>
+<p><strong>字符串模板</strong>（String Templates）是JDK21引入的一项新特性（预览），旨在提供一种更安全、更直观的字符串构建方式。它结合了<strong>模板引擎</strong>的灵活性和<strong>Java类型系统</strong>的安全性。</p>]]></summary>
+    <content type="html"><![CDATA[<h2> 1. 背景：为什么需要字符串模板？</h2>
+<p>在Java中，字符串拼接是常见的操作，但传统方式存在诸多问题：</p>
+<ol>
+<li><strong>可读性差</strong>：使用<code>+</code>或<code>StringBuilder</code>拼接字符串时，代码冗长且难以维护</li>
+<li><strong>安全性低</strong>：直接拼接用户输入可能导致SQL注入或XSS攻击</li>
+<li><strong>性能开销</strong>：频繁拼接字符串可能产生大量临时对象，影响性能</li>
+</ol>
+<p><strong>字符串模板</strong>（String Templates）是JDK21引入的一项新特性（预览），旨在提供一种更安全、更直观的字符串构建方式。它结合了<strong>模板引擎</strong>的灵活性和<strong>Java类型系统</strong>的安全性。</p>
+<p><strong>基本概念</strong></p>
+<p>字符串模板是一种允许在字符串字面量中嵌入表达式的机制。传统的 Java 字符串拼接通常使用 + 运算符或 String.format 方法，这在处理复杂的字符串拼接时会使代码变得冗长且不易阅读。而字符串模板通过将表达式直接嵌入到字符串中，使代码更加简洁和直观。</p>
+<h2> 2. 原理：字符串模板如何工作？</h2>
+<h3> 2.1 传统字符串拼接 vs 字符串模板</h3>
+<h4> 传统方式</h4>
+<ul>
+<li><strong><code>+</code>操作符</strong>：简单但性能较差，可读性低</li>
+<li><strong><code>StringBuilder</code></strong>：性能较好，但代码冗长</li>
+<li><strong><code>String.format</code></strong>：可读性较高，但类型安全性差</li>
+</ul>
+<h4> 字符串模板</h4>
+<ul>
+<li><strong>嵌入式表达式</strong>：在字符串中直接嵌入变量或表达式</li>
+<li><strong>类型安全</strong>：编译器检查表达式类型，避免运行时错误</li>
+<li><strong>自定义处理器</strong>：支持通过处理器（Processor）自定义字符串生成逻辑</li>
+</ul>
+<h3> 核心机制</h3>
+<ol>
+<li>
+<p><strong>模板语法</strong><br>
+使用<code>\{...}</code>嵌入表达式，例如：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div></li>
+<li>
+<p><strong>模板处理器</strong><br>
+字符串模板支持自定义处理器，例如：</p>
+<ul>
+<li><code>STR</code>：标准处理器，直接拼接字符串</li>
+<li><code>FMT</code>：格式化处理器，支持格式化字符串</li>
+<li>自定义处理器：实现<code>StringTemplate.Processor</code>接口</li>
+</ul>
+</li>
+<li>
+<p><strong>类型安全</strong><br>
+编译器会检查嵌入表达式的类型，确保其与模板兼容。</p>
+</li>
+<li>
+<p><strong>性能优化</strong><br>
+字符串模板在编译时生成高效的字节码，减少运行时开销。</p>
+</li>
+</ol>
+<h3> 2.2 优势：为什么选择字符串模板？</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>传统方式</th>
+<th>字符串模板</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可读性</td>
+<td>低</td>
+<td><strong>高</strong></td>
+</tr>
+<tr>
+<td>类型安全性</td>
+<td>无</td>
+<td><strong>有</strong></td>
+</tr>
+<tr>
+<td>性能</td>
+<td>较差</td>
+<td><strong>优化</strong></td>
+</tr>
+<tr>
+<td>灵活性</td>
+<td>有限</td>
+<td><strong>高</strong></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>代码简洁</strong>：减少样板代码，提升开发效率</li>
+<li><strong>类型安全</strong>：编译器检查表达式类型，减少运行时错误</li>
+<li><strong>性能优化</strong>：编译时生成高效字节码，减少运行时开销</li>
+<li><strong>灵活扩展</strong>：支持自定义处理器，满足多样化需求</li>
+</ol>
+<h2> 3. 使用示例</h2>
+<h3> 语法</h3>
+<p>字符串模板主要有两种形式：简单字符串模板和带标签的字符串模板。</p>
+<p><strong>简单字符串模板</strong></p>
+<p>使用 STR 标签来标识字符串模板，在字符串中使用 <code>\{}</code> 语法嵌入表达式。</p>
+<p><strong>带标签的字符串模板</strong></p>
+<p>除了 STR 标签，我们还可以自定义标签来处理字符串模板。</p>
+<ul>
+<li>自定义标签是一个方法，它接收一个 TemplateContext 对象和一个 Object[] 数组作为参数。</li>
+</ul>
+<p>如</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例1：基本使用</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例2：多行字符串</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例3：格式化字符串</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例4：自定义处理器</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 4. 应用场景探索</h2>
+<p>字符串模板的特性可以有效的应用在我们实际的业务场景中，如</p>
+<h3> 4.1 构建动态消息</h3>
+<p>在生成包含动态数据的消息时，字符串模板非常有用。比如生成用户欢迎消息、日志记录信息等。</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 4.2 SQL拼接</h3>
+<p>在构建 SQL 查询语句时，经常需要将变量值插入到 SQL 字符串中。使用字符串模板可以使代码更加清晰。</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 5. 小结</h2>
+<h3> 4.1 注意事项</h3>
+<ol>
+<li>
+<p><strong>语法兼容性</strong><br>
+字符串模板使用<code>\{...}</code>语法，需确保与现有代码无冲突。</p>
+</li>
+<li>
+<p><strong>处理器选择</strong><br>
+根据需求选择合适的处理器，例如：</p>
+<ul>
+<li><code>STR</code>：普通字符串拼接</li>
+<li><code>FMT</code>：格式化字符串</li>
+<li>自定义处理器：复杂逻辑处理</li>
+</ul>
+</li>
+<li>
+<p><strong>性能测试</strong><br>
+在性能敏感场景中，需测试字符串模板的性能表现。对于性能要求较高的场景，建议使用<code>StringBuilder</code>进行手动拼接</p>
+</li>
+<li>
+<p><strong>安全性</strong><br>
+使用自定义处理器时，确保对用户输入进行验证和转义，避免安全漏洞。</p>
+</li>
+<li>
+<p><strong>表达式复杂度</strong>
+嵌入的表达式应尽量保持简单，避免使用过于复杂的表达式，以免影响代码的可读性。</p>
+</li>
+<li>
+<p><strong>转义字符</strong>
+在字符串模板中，需要注意转义字符的使用。如果需要在字符串中包含 <code>\{</code> 或 <code>}</code>，需要进行适当的转义。</p>
+</li>
+</ol>
+<h3> 4.2 总结</h3>
+<p>JDK21字符串模板通过以下革新提升Java字符串处理的效率：</p>
+<ul>
+<li>✅ 简化字符串拼接代码</li>
+<li>✅ 提升类型安全性和可读性</li>
+<li>✅ 支持多行字符串和格式化</li>
+<li>✅ 灵活扩展自定义处理器</li>
+</ul>
+<p>字符串模板是Java字符串处理的重要扩展，有兴趣的小伙伴可参考<a href="https://openjdk.org/jeps/430" target="_blank" rel="noopener noreferrer">官方文档</a>以掌握最佳实践。</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div>]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="Java"/>
+    <category term="JDK21"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-02-13T17:48:09.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">jdk21</title>
+    <id>https://liuyueyi.github.io/tutorial/java/jdk/jdk21/</id>
+    <link href="https://liuyueyi.github.io/tutorial/java/jdk/jdk21/"/>
+    <updated>2025-02-13T08:59:24.000Z</updated>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-02-13T08:59:24.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
   <entry>
     <title type="text">1.图片合成原理</title>
     <id>https://liuyueyi.github.io/tutorial/git/quick-media/image/01.%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90.html</id>
@@ -3994,7 +4797,11 @@ ans <span class="token operator">=</span> traceWatch<span class="token punctuati
     <title type="text">基础知识点</title>
     <id>https://liuyueyi.github.io/tutorial/java/basic/</id>
     <link href="https://liuyueyi.github.io/tutorial/java/basic/"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
+    <updated>2025-02-13T08:59:24.000Z</updated>
+    <summary type="html"><![CDATA[<p>本目录下主要记录的是一些java相关的基本知识点，按需取用</p>
+]]></summary>
+    <content type="html"><![CDATA[<p>本目录下主要记录的是一些java相关的基本知识点，按需取用</p>
+]]></content>
     <author>
       <name>一灰灰blog</name>
       <uri>https://hhui.top</uri>
@@ -4010,7 +4817,7 @@ ans <span class="token operator">=</span> traceWatch<span class="token punctuati
     <title type="text">jdk</title>
     <id>https://liuyueyi.github.io/tutorial/java/jdk/</id>
     <link href="https://liuyueyi.github.io/tutorial/java/jdk/"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
+    <updated>2025-02-13T08:59:24.000Z</updated>
     <author>
       <name>一灰灰blog</name>
       <uri>https://hhui.top</uri>
@@ -4301,7 +5108,7 @@ ans <span class="token operator">=</span> traceWatch<span class="token punctuati
     <title type="text">安全</title>
     <id>https://liuyueyi.github.io/tutorial/java/%E5%AE%89%E5%85%A8/</id>
     <link href="https://liuyueyi.github.io/tutorial/java/%E5%AE%89%E5%85%A8/"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
+    <updated>2025-02-13T08:59:24.000Z</updated>
     <author>
       <name>一灰灰blog</name>
       <uri>https://hhui.top</uri>
@@ -5210,7 +6017,7 @@ ans <span class="token operator">=</span> traceWatch<span class="token punctuati
     <title type="text">Json序列化</title>
     <id>https://liuyueyi.github.io/tutorial/java/%E5%BA%8F%E5%88%97%E5%8C%96/</id>
     <link href="https://liuyueyi.github.io/tutorial/java/%E5%BA%8F%E5%88%97%E5%8C%96/"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
+    <updated>2025-02-13T08:59:24.000Z</updated>
     <author>
       <name>一灰灰blog</name>
       <uri>https://hhui.top</uri>
@@ -6723,198 +7530,6 @@ Nginx通过在客户端和后端服务器之间建立隧道来支持WebSockets�
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2023-06-30T19:48:26.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">4. 重写代理链接</title>
-    <id>https://liuyueyi.github.io/tutorial/tool/Nginx/04.Nginx%E9%87%8D%E5%86%99%E4%BB%A3%E7%90%86%E9%93%BE%E6%8E%A5.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/tool/Nginx/04.Nginx%E9%87%8D%E5%86%99%E4%BB%A3%E7%90%86%E9%93%BE%E6%8E%A5.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<blockquote>
-<p>本文参考自: <a href="https://xuexb.github.io/learn-nginx/example/proxy_pass.html#%E9%87%8D%E5%86%99%E4%BB%A3%E7%90%86%E9%93%BE%E6%8E%A5-url-rewrite" target="_blank" rel="noopener noreferrer">重写代理链接-url-rewrite</a></p>
-</blockquote>
-<p>使用nginx做发现代理，遇到一个场景，匹配 <code>/console/</code> 开头的域名，转发到目标端口号，但是希望转发过去的url，去掉 <code>/console/</code> 这个头</p>]]></summary>
-    <content type="html"><![CDATA[<blockquote>
-<p>本文参考自: <a href="https://xuexb.github.io/learn-nginx/example/proxy_pass.html#%E9%87%8D%E5%86%99%E4%BB%A3%E7%90%86%E9%93%BE%E6%8E%A5-url-rewrite" target="_blank" rel="noopener noreferrer">重写代理链接-url-rewrite</a></p>
-</blockquote>
-<p>使用nginx做发现代理，遇到一个场景，匹配 <code>/console/</code> 开头的域名，转发到目标端口号，但是希望转发过去的url，去掉 <code>/console/</code> 这个头</p>
-<p>针对这个，可以借助 <code>rewrite</code> + <code>proxy_pass</code>来实现</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Shell"/>
-    <category term="Nginx"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2020-06-04T08:58:20.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">5. 重定向的两种配置方式</title>
-    <id>https://liuyueyi.github.io/tutorial/tool/Nginx/05.Nginx%E9%87%8D%E5%AE%9A%E5%90%91%E7%9A%84%E4%B8%A4%E7%A7%8D%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/tool/Nginx/05.Nginx%E9%87%8D%E5%AE%9A%E5%90%91%E7%9A%84%E4%B8%A4%E7%A7%8D%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>一段时间没有配置过nginx，果不其然之前学到的又还回去了，下面给出基于rewrite/alias的两种重定向配置方式</p>
-<p>需求设置 <code>/ximg</code> 路径下的请求，访问 <code>/home/yihui/html</code> 下的html文件，应该怎么配置?</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>一段时间没有配置过nginx，果不其然之前学到的又还回去了，下面给出基于rewrite/alias的两种重定向配置方式</p>
-<p>需求设置 <code>/ximg</code> 路径下的请求，访问 <code>/home/yihui/html</code> 下的html文件，应该怎么配置?</p>
-<!-- more -->
-<h3> 1. root指定方式</h3>
-<p>最容易想到的就是直接指定root，如下</p>
-<div class="language-conf line-numbers-mode" data-ext="conf"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>直接使用上面这种方式，访问之后会发现404，此时若再路径 <code>/home/yihui/html/ximg/</code> 下存在文件 <code>index.html</code>，则可以正常访问</p>
-<p>即上面这种配置，再实际访问文件时，会再 root 配置的路径下 + url请求路径（即上面的ximg）</p>
-<p>所以单纯使用root时，我们需要额外处理的是将希望访问的所有文件，都放在 <code>ximg</code> 目录下</p>
-<h3> 2. root + rewrite 方式</h3>
-<p>当我们希望能直接访问到 <code>/home/yihui/html/</code> 目录下的文件时，可以考虑结合 rewrite 来重定向实现，如</p>
-<div class="language-conf line-numbers-mode" data-ext="conf"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面这个使用正则匹配，实现重定向，这样访问资源时，直接从 <code>/home/yihui/html</code> 下查找了；但是需要注意，若nginx中配置了一个<code>/tt</code> 的规则，此时若访问 <code>/ximg/tt</code> 时，会转到请求 <code>/tt</code>了</p>
-<h3> 3. alias 方式</h3>
-<p>直接使用alias来重置文件目录，这样在访问时，不需要补<code>ximg</code>目录</p>
-<div class="language-conf line-numbers-mode" data-ext="conf"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>总体来看，这种方式属于最简单的姿势了</p>
-<h3> 4.小结</h3>
-<p>主要针对root + alias两个进行说明</p>
-<ul>
-<li>root：设置根目录，在实际访问文件时，会在根目录下，查找匹配的path路径下的文件（即path路径需要作为资源的目录树层级）</li>
-<li>alias：重置当前文件的目录，不需要补path路径</li>
-</ul>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Shell"/>
-    <category term="Nginx"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2022-06-08T19:55:55.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">6. 配置502异常页面</title>
-    <id>https://liuyueyi.github.io/tutorial/tool/Nginx/06.Nginx%E9%85%8D%E7%BD%AE502%E5%BC%82%E5%B8%B8%E9%A1%B5%E9%9D%A2.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/tool/Nginx/06.Nginx%E9%85%8D%E7%BD%AE502%E5%BC%82%E5%B8%B8%E9%A1%B5%E9%9D%A2.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>使用nginx做SpringBoot应用的反向代理，然后每次重启就会出现默认的502错误页面，下面记录一下将设置专属的502异常页面的配置方式</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>使用nginx做SpringBoot应用的反向代理，然后每次重启就会出现默认的502错误页面，下面记录一下将设置专属的502异常页面的配置方式</p>
-<!-- more -->
-<p>在nginx.conf配置文件中，添加502异常页面</p>
-<div class="language-conf line-numbers-mode" data-ext="conf"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Shell"/>
-    <category term="Nginx"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2023-07-03T14:33:53.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">7. 文件访问权限问题failed(13:Permission denied)</title>
-    <id>https://liuyueyi.github.io/tutorial/tool/Nginx/07.nginx-%E6%8F%90%E7%A4%BA%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98failed-13-Permission-denied.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/tool/Nginx/07.nginx-%E6%8F%90%E7%A4%BA%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98failed-13-Permission-denied.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>nginx配置完毕之后，添加一个html页面，访问直接500错误，通过查看错误日志，显示 <code>failed (13: Permission denied)</code></p>
-<p>解决方法，修改配置文件中的<code>user</code>为<code>root</code></p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code><span class="token function">vim</span> /etc/nginx/nginx.conf
-
-user root<span class="token punctuation">;</span>
-worker_processes auto<span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></summary>
-    <content type="html"><![CDATA[<p>nginx配置完毕之后，添加一个html页面，访问直接500错误，通过查看错误日志，显示 <code>failed (13: Permission denied)</code></p>
-<p>解决方法，修改配置文件中的<code>user</code>为<code>root</code></p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>修改完之后，重启即可</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div>]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Shell"/>
-    <category term="Nginx"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2020-05-15T09:03:41.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">Nginx</title>
-    <id>https://liuyueyi.github.io/tutorial/tool/Nginx/</id>
-    <link href="https://liuyueyi.github.io/tutorial/tool/Nginx/"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2024-08-02T10:41:58.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">1. IDEA2024全家桶激活图文手册🔥</title>
-    <id>https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/01.IDEA2024%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%BF%80%E6%B4%BB%E8%87%AA%E5%8A%A9%E6%89%8B%E5%86%8C.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/01.IDEA2024%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%BF%80%E6%B4%BB%E8%87%AA%E5%8A%A9%E6%89%8B%E5%86%8C.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>jetbrain全家桶激活自助手册，适用于 2020-2024 版本的idea全家桶，win/linux/mac三系统通配</p>
-<h2> 使用姿势</h2>
-<h3> 1. 安装</h3>
-<p>首先下载安装jetbarin对应的工具</p>
-<p>官网地址： <a href="https://www.jetbrains.com/zh-cn/" target="_blank" rel="noopener noreferrer">https://www.jetbrains.com/zh-cn/</a></p>
-<p>下载企业版</p>
-<figure><img src="/imgs/240731/00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>]]></summary>
-    <content type="html"><![CDATA[<p>jetbrain全家桶激活自助手册，适用于 2020-2024 版本的idea全家桶，win/linux/mac三系统通配</p>
-<h2> 使用姿势</h2>
-<h3> 1. 安装</h3>
-<p>首先下载安装jetbarin对应的工具</p>
-<p>官网地址： <a href="https://www.jetbrains.com/zh-cn/" target="_blank" rel="noopener noreferrer">https://www.jetbrains.com/zh-cn/</a></p>
-<p>下载企业版</p>
-<figure><img src="/imgs/240731/00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>下载完毕之后，双击，本地直接默认安装</p>
-<h3> 2. 激活</h3>
-<p>下载破解脚本</p>
-<ul>
-<li>破解脚本链接: <a href="https://pan.baidu.com/s/1BjghBgpvUkhS6gccXkEYTQ?pwd=6a1k" target="_blank" rel="noopener noreferrer">https://pan.baidu.com/s/1BjghBgpvUkhS6gccXkEYTQ?pwd=6a1k</a></li>
-</ul>
-<figure><img src="/imgs/240731/01.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>下载到本地之后进行解压，根据自己的操作系统，选择进入不同的文件夹进行激活</p>
-<figure><img src="/imgs/240731/02.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>如以windows为例，进入 <code>win2020-2024(一键激活)</code></p>
-<figure><img src="/imgs/240731/03.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>然后双击你需要激活的软件对应的vbs脚本，如我现在想激活 <code>PyCharm</code> ，那么就双击 <code>PyCharm激活.vbs</code></p>
-<figure><img src="/imgs/240731/04.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>点击打开，然后回弹出一个提示框，告诉你已经激活成功</p>
-<figure><img src="/imgs/240731/05.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>接下来就可以打开PyCharm验证一下是否 已经激活成功</p>
-<ul>
-<li>菜单栏 -&gt; help -&gt; about</li>
-</ul>
-<figure><img src="/imgs/240731/06.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>当出现上面的提示，那么恭喜你，已经激活成功，可以开始愉快的使用JetBrain的全家桶进行编程了</p>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="开发工具"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2024-07-31T09:27:46.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
 </feed>

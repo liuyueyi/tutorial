@@ -1,0 +1,1 @@
+import{_ as e,V as t,W as n,X as _}from"./framework-23f3cf9b.js";const c={},o=_("p",null,"本目录下主要记录的是一些java相关的基本知识点，按需取用",-1),s=[o];function a(r,l){return t(),n("div",null,s)}const i=e(c,[["render",a],["__file","index.html.vue"]]);export{i as default};
