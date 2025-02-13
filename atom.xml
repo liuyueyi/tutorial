@@ -9,13 +9,14 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2025-02-13T09:14:25.626Z</updated>
+  <updated>2025-02-13T11:16:16.111Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
   <category term="Java"/>
   <category term="JDK21"/>
   <category term="技术组件"/>
+  <category term="Quick系列"/>
   <category term="开源"/>
   <category term="ElasticSearch"/>
   <category term="运维"/>
@@ -23,7 +24,6 @@
   <category term="Shell"/>
   <category term="环境搭建"/>
   <category term="Redis"/>
-  <category term="Quick系列"/>
   <category term="Maven"/>
   <category term="其他"/>
   <category term="JDK"/>
@@ -45,6 +45,153 @@
     <name>一灰灰blog</name>
     <uri>https://hhui.top</uri>
   </contributor>
+  <entry>
+    <title type="text">06.JDK21增强的模式匹配：更简洁、更强大的条件逻辑</title>
+    <id>https://liuyueyi.github.io/tutorial/java/jdk/jdk21/06.%E5%A2%9E%E5%BC%BA%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/java/jdk/jdk21/06.%E5%A2%9E%E5%BC%BA%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D.html"/>
+    <updated>2025-02-13T11:02:29.000Z</updated>
+    <summary type="html"><![CDATA[<h2> 1. 背景：为什么需要增强的模式匹配？</h2>
+<p>在Java中，条件逻辑通常通过<code>if-else</code>或<code>switch</code>语句实现，但这些方式存在以下问题：</p>
+<ol>
+<li><strong>冗长</strong>：需要显式类型检查和类型转换</li>
+<li><strong>易错</strong>：手动类型转换可能导致<code>ClassCastException</code></li>
+<li><strong>局限性</strong>：<code>switch</code>语句仅支持有限的数据类型</li>
+</ol>
+<p><strong>增强的模式匹配</strong>（Enhanced Pattern Matching）是Java模式匹配的进一步扩展，旨在简化条件逻辑的编写。它结合了<strong>类型检查</strong>、<strong>类型转换</strong>和<strong>模式匹配</strong>的特性，使开发者能够以声明式的方式处理复杂条件逻辑。</p>]]></summary>
+    <content type="html"><![CDATA[<h2> 1. 背景：为什么需要增强的模式匹配？</h2>
+<p>在Java中，条件逻辑通常通过<code>if-else</code>或<code>switch</code>语句实现，但这些方式存在以下问题：</p>
+<ol>
+<li><strong>冗长</strong>：需要显式类型检查和类型转换</li>
+<li><strong>易错</strong>：手动类型转换可能导致<code>ClassCastException</code></li>
+<li><strong>局限性</strong>：<code>switch</code>语句仅支持有限的数据类型</li>
+</ol>
+<p><strong>增强的模式匹配</strong>（Enhanced Pattern Matching）是Java模式匹配的进一步扩展，旨在简化条件逻辑的编写。它结合了<strong>类型检查</strong>、<strong>类型转换</strong>和<strong>模式匹配</strong>的特性，使开发者能够以声明式的方式处理复杂条件逻辑。</p>
+<p>JDK16首次引入模式匹配<code>instanceof</code>，JDK17扩展了<code>switch</code>的模式匹配能力，JDK21进一步优化并正式发布。</p>
+<h2> 2. 原理：增强的模式匹配如何工作？</h2>
+<h3> 2.1 传统条件逻辑 vs 增强的模式匹配</h3>
+<h4> 传统方式</h4>
+<ul>
+<li><strong>显式类型检查</strong>：使用<code>instanceof</code>检查类型</li>
+<li><strong>显式类型转换</strong>：手动进行类型转换</li>
+<li><strong>冗长代码</strong>：需要多行代码完成简单操作</li>
+</ul>
+<h4> 增强的模式匹配</h4>
+<ul>
+<li><strong>声明式匹配</strong>：直接匹配类型并绑定变量</li>
+<li><strong>自动类型转换</strong>：编译器自动推断类型，无需显式类型转换</li>
+<li><strong>简洁代码</strong>：减少样板代码，提升开发效率</li>
+</ul>
+<h3> 2.2 核心机制</h3>
+<ol>
+<li>
+<p><strong>模式匹配<code>instanceof</code></strong><br>
+在<code>instanceof</code>中直接绑定变量，例如：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+<li>
+<p><strong>模式匹配<code>switch</code></strong><br>
+在<code>switch</code>中支持类型匹配和模式解构，例如：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+<li>
+<p><strong>嵌套模式匹配</strong><br>
+支持嵌套模式匹配，简化复杂数据结构的处理。</p>
+</li>
+<li>
+<p><strong>类型推断</strong><br>
+编译器自动推断匹配类型，减少显式类型转换。</p>
+</li>
+</ol>
+<h3> 2.3 优势：为什么选择增强的模式匹配？</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>传统方式</th>
+<th>增强的模式匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码简洁性</td>
+<td>冗长</td>
+<td><strong>简洁</strong></td>
+</tr>
+<tr>
+<td>类型安全性</td>
+<td>需显式类型转换</td>
+<td><strong>自动推断</strong></td>
+</tr>
+<tr>
+<td>嵌套支持</td>
+<td>手动逐层匹配</td>
+<td><strong>自动解构</strong></td>
+</tr>
+<tr>
+<td>可读性</td>
+<td>低</td>
+<td><strong>高</strong></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>代码简洁</strong>：减少样板代码，提升开发效率</li>
+<li><strong>类型安全</strong>：编译器自动检查类型，减少运行时错误</li>
+<li><strong>嵌套支持</strong>：轻松处理复杂数据结构</li>
+<li><strong>可读性高</strong>：声明式语法更符合直觉</li>
+</ol>
+<h2> 3. 使用示例</h2>
+<h3> 示例1：模式匹配<code>instanceof</code></h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例2：模式匹配<code>switch</code></h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例3：嵌套模式匹配</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例4：结合<code>switch</code>表达式</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 3.小结</h2>
+<h3> 3.1 注意事项</h3>
+<ol>
+<li>
+<p><strong>类型检查顺序</strong><br>
+在<code>switch</code>中，更具体的模式应放在前面：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+<li>
+<p><strong>空值处理</strong><br>
+模式匹配不支持<code>null</code>值匹配，需额外检查：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></li>
+<li>
+<p><strong>性能影响</strong><br>
+模式匹配在运行时可能引入额外开销，需在性能敏感场景中测试。</p>
+</li>
+<li>
+<p><strong>兼容性</strong><br>
+增强的模式匹配需要JDK16及以上版本。</p>
+</li>
+</ol>
+<h3> 3.2 总结</h3>
+<p>JDK21增强的模式匹配通过以下革新提升Java条件逻辑的效率：</p>
+<ul>
+<li>✅ 简化条件逻辑代码</li>
+<li>✅ 提升类型安全性和可读性</li>
+<li>✅ 支持嵌套模式匹配</li>
+<li>✅ 与<code>switch</code>表达式无缝集成</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>处理复杂条件逻辑</li>
+<li>实现类型安全的模式匹配</li>
+<li>简化数据验证和提取</li>
+</ul>
+<p>增强的模式匹配是Java模式匹配的重要扩展，有兴趣的小伙伴可以参考<a href="https://openjdk.org/jeps/406" target="_blank" rel="noopener noreferrer">官方文档</a>以掌握最佳实践。</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="Java"/>
+    <category term="JDK21"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-02-13T17:58:09.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
   <entry>
     <title type="text">01.JDK21新特性及示例说明</title>
     <id>https://liuyueyi.github.io/tutorial/java/jdk/jdk21/01.JDK21%E6%96%B0%E7%89%B9%E6%80%A7%E5%8F%8A%E7%A4%BA%E4%BE%8B%E8%AF%B4%E6%98%8E.html</id>
@@ -2833,6 +2980,23 @@ ans <span class="token operator">=</span> traceWatch<span class="token punctuati
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
   <entry>
+    <title type="text">1. 简繁转换原理分析</title>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html"/>
+    <updated>2024-08-02T10:41:58.000Z</updated>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="Quick系列"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2022-08-11T07:26:49.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
     <title type="text">1. Centos 安装ElasticSearch</title>
     <id>https://liuyueyi.github.io/tutorial/db/es/200605-Centos-%E5%AE%89%E8%A3%85ElasticSearch.html</id>
     <link href="https://liuyueyi.github.io/tutorial/db/es/200605-Centos-%E5%AE%89%E8%A3%85ElasticSearch.html"/>
@@ -3851,23 +4015,6 @@ ans <span class="token operator">=</span> traceWatch<span class="token punctuati
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2020-01-15T15:28:06.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">1. 简繁转换原理分析</title>
-    <id>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Quick系列"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2022-08-11T07:26:49.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
   <entry>
@@ -7503,33 +7650,6 @@ keep the dependency version but define a mirror <span class="token keyword">in</
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2019-11-22T17:00:07.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">3. 配置websocket长连接</title>
-    <id>https://liuyueyi.github.io/tutorial/tool/Nginx/03.Nginx%E9%85%8D%E7%BD%AEwebsocket%E9%95%BF%E8%BF%9E%E6%8E%A5.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/tool/Nginx/03.Nginx%E9%85%8D%E7%BD%AEwebsocket%E9%95%BF%E8%BF%9E%E6%8E%A5.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>websocket使用wss连接时，同样也是需要证书的；当我们使用nginx做反向代理时，需要做一个简单的配置</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>websocket使用wss连接时，同样也是需要证书的；当我们使用nginx做反向代理时，需要做一个简单的配置</p>
-<!-- more -->
-<blockquote>
-<p>WebSockets应用程序会在客户端和服务器之间建立一个长连接，使得开发实时应用很容易。HTTP的Upgrade协议头机制用于将连接从HTTP连接升级到WebSocket连接，Upgrade机制使用了Upgrade协议头和Connection协议头。反向代理服务器在支持WebSocket协议方面面临着一些挑战。挑战之一是WebSocket是一个逐段转发（hop-by-hop）协议，因此当代理服务器拦截到来自客户端的Upgrade请求时，代理服务器需要将自己的Upgrade请求发送给后端服务器，包括适合的请求头。而且，由于WebSocket连接是长连接，与传统的HTTP端连接截然不同，故反向代理服务器还需要允许这些连接处于打开（Open）状态，而不能因为其空闲就关闭了连接。
-Nginx通过在客户端和后端服务器之间建立隧道来支持WebSockets通信。为了让Nginx可以将来自客户端的Upgrade请求发送到后端服务器，Upgrade和Connection的头信息必须被显式的设置</p>
-</blockquote>
-<div class="language-conf line-numbers-mode" data-ext="conf"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Shell"/>
-    <category term="Nginx"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2023-06-30T19:48:26.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
 </feed>
