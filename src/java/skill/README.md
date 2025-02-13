@@ -1,6 +1,7 @@
 ---
 title: 实战系列
 index: false
+icon: process
 ---
 
 # Java实战演练
