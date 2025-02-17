@@ -1,3 +1,4 @@
 ---
-title: Linux
+title: JVM
+index: false
 ---

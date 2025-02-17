@@ -1,7 +1,6 @@
 ---
-title: jdk8+迭代记录
+title: 00.jdk8+迭代记录
 index: true
-icon: java
 ---
 
 > 这里记录JDK8+之后的新的特性
