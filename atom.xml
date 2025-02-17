@@ -9,7 +9,7 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2025-02-14T11:12:32.838Z</updated>
+  <updated>2025-02-17T10:06:51.292Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
@@ -1198,10 +1198,10 @@
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
   <entry>
-    <title type="text">jdk8+迭代记录</title>
+    <title type="text">00.jdk8+迭代记录</title>
     <id>https://liuyueyi.github.io/tutorial/java/jdk/jdk8_/</id>
     <link href="https://liuyueyi.github.io/tutorial/java/jdk/jdk8_/"/>
-    <updated>2025-02-14T10:52:18.000Z</updated>
+    <updated>2025-02-17T09:51:00.000Z</updated>
     <summary type="html"><![CDATA[<blockquote>
 <p>这里记录JDK8+之后的新的特性</p>
 </blockquote>

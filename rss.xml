@@ -6,8 +6,8 @@
     <link>https://liuyueyi.github.io/tutorial/</link>
     <description>一灰灰的全网知识站点</description>
     <language>zh-CN</language>
-    <pubDate>Fri, 14 Feb 2025 11:12:32 GMT</pubDate>
-    <lastBuildDate>Fri, 14 Feb 2025 11:12:32 GMT</lastBuildDate>
+    <pubDate>Mon, 17 Feb 2025 10:06:51 GMT</pubDate>
+    <lastBuildDate>Mon, 17 Feb 2025 10:06:51 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 一灰灰blog</copyright>
@@ -1033,10 +1033,10 @@
 ]]></content:encoded>
     </item>
     <item>
-      <title>jdk8+迭代记录</title>
+      <title>00.jdk8+迭代记录</title>
       <link>https://liuyueyi.github.io/tutorial/java/jdk/jdk8_/</link>
       <guid>https://liuyueyi.github.io/tutorial/java/jdk/jdk8_/</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">jdk8+迭代记录</source>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">00.jdk8+迭代记录</source>
       <description>这里记录JDK8+之后的新的特性 Java 8（2014年发布）到 Java 21（2023年发布）经历了多次迭代，新增了大量特性和改进。以下是主要版本（Java 9 到 Java 21）中值得关注的新特性分类整理： 一、语言特性改进 模块化系统（Java 9） Jigsaw 项目：引入模块化（module-info.java），解决 JAR 依赖和封装问题，提升安全性和可维护性。 局部变量类型推断（Java 10） var 关键字：允许在局部变量声明时省略显式类型（如 var list = new ArrayList&amp;lt;String&amp;gt;();）。 文本块（Java 15 正式支持） 多行字符串：使用 &amp;quot;&amp;quot;&amp;quot; ... &amp;quot;&amp;quot;&amp;quot; 简化 HTML、JSON 等多行文本的编写。 模式匹配（逐步引入） instanceof 模式匹配（Java 16）：直接提取对象属性，如 if (obj instanceof String s) { ... }。 switch 表达式（Java 14）：支持箭头语法和返回值，避免 break 的繁琐。 模式匹配 switch（Java 21 正式）：支持类型匹配和复杂条件，例如：switch (obj) { case Integer i -&amp;gt; System.out.println(&amp;quot;Integer: &amp;quot; + i); case String s when s.length() &amp;gt; 5 -&amp;gt; System.out.println(&amp;quot;Long string&amp;quot;); default -&amp;gt; {} } 记录类（Record，Java 16 正式） 简化不可变数据类的定义，自动生成 equals()、hashCode() 等方法：record Point(int x, int y) {} 密封类（Sealed Classes，Java 17 正式） 限制类的继承关系，明确子类范围：public sealed class Shape permits Circle, Square {} 字符串模板（Java 21 预览） 类似其他语言的模板插值功能，例如：String name = &amp;quot;John&amp;quot;; String message = STR.&amp;quot;Hello \{name}!&amp;quot;;</description>
       <pubDate>Fri, 14 Feb 2025 10:52:18 GMT</pubDate>
       <content:encoded><![CDATA[<blockquote>
