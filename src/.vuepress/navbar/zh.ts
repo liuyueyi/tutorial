@@ -21,6 +21,19 @@ export const zhNavbar = navbar([
     ],
   },
   {
+    text: "编程语言",
+    icon: "box",
+    prefix: "/codelan/",
+    children: [
+      "",
+       {
+        text: "Kotlin",
+        prefix: "",
+        children: ["kotlin/"],
+      },
+    ],
+  },
+  {
     text: "专栏",
     icon: "diagram",
     prefix: "/column/",
@@ -160,6 +173,11 @@ export const zhNavbar = navbar([
       {
         text: "Quick-Chinese",
         prefix: "quick-chinese-transfer",
+        children: [""]
+      },
+      {
+        text: "MCP",
+        prefix: "mcp",
         children: [""]
       }
     ]

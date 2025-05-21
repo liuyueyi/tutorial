@@ -182,6 +182,16 @@ export const zhSidebar = sidebar({
       prefix: "安全/",
     },
   ],
+  "/codelan/": [
+    "",
+    {
+      text: "kotlin",
+      icon: "stack",
+      prefix: "kotlin/",
+      children: "structure",
+      collapsible: true,
+    },
+  ],
   "/git/": [
     {
       text: "quick-media",
@@ -193,6 +203,12 @@ export const zhSidebar = sidebar({
       text: "quick-chinese-transfer",
       icon: "github",
       prefix: "quick-chinese-transfer/",
+      children: "structure"
+    },
+    {
+      text: "MCP",
+      icon: "github",
+      prefix: "mcp/",
       children: "structure"
     },
   ],
