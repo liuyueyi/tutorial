@@ -6,8 +6,8 @@
     <link>https://liuyueyi.github.io/tutorial/</link>
     <description>一灰灰的全网知识站点</description>
     <language>zh-CN</language>
-    <pubDate>Mon, 17 Feb 2025 10:06:51 GMT</pubDate>
-    <lastBuildDate>Mon, 17 Feb 2025 10:06:51 GMT</lastBuildDate>
+    <pubDate>Wed, 21 May 2025 11:23:02 GMT</pubDate>
+    <lastBuildDate>Wed, 21 May 2025 11:23:02 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 一灰灰blog</copyright>
@@ -16,6 +16,8 @@
       <url>https://liuyueyi.github.io/tutorial/logo.svg</url>
       <link>https://liuyueyi.github.io/tutorial/</link>
     </image>
+    <category>Kotlin</category>
+    <category>QuickMCP</category>
     <category>Java</category>
     <category>JDK21</category>
     <category>技术组件</category>
@@ -40,7 +42,327 @@
     <category>Jackson</category>
     <category>Gson</category>
     <category>Json</category>
-    <category>Docker</category>
+    <item>
+      <title>编程语言</title>
+      <link>https://liuyueyi.github.io/tutorial/codelan/</link>
+      <guid>https://liuyueyi.github.io/tutorial/codelan/</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">编程语言</source>
+      <description>Kotlin专栏 kotlin编程语言</description>
+      <pubDate>Wed, 21 May 2025 11:07:19 GMT</pubDate>
+      <content:encoded><![CDATA[<h2> Kotlin专栏</h2>
+<p><a href="/tutorial/codelan/kotlin/" target="blank">kotlin编程语言</a></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>1. Kotlin基础语法的核心总结</title>
+      <link>https://liuyueyi.github.io/tutorial/codelan/kotlin/01.Kotlin%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%BB%E7%BB%93.html</link>
+      <guid>https://liuyueyi.github.io/tutorial/codelan/kotlin/01.Kotlin%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%BB%E7%BB%93.html</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">1. Kotlin基础语法的核心总结</source>
+      <description>1. 变量与数据类型 // 不可变变量（推荐优先使用） val name: String = &amp;quot;John&amp;quot; val age = 30 // 类型自动推断 // 可变变量 var score: Double = 95.5 var isActive = true // 布尔类型 // 空安全 var nullableStr: String? = null // 允许为 null val length = nullableStr?.length ?: 0 // 安全调用 + Elvis 操作符</description>
+      <category>Kotlin</category>
+      <pubDate>Wed, 21 May 2025 21:15:07 GMT</pubDate>
+      <content:encoded><![CDATA[<h3> 1. 变量与数据类型</h3>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2. 函数</h3>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 条件表达式</h3>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 4. 循环</h3>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 5. 集合</h3>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 6. 类与对象</h3>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 7. 空安全</h3>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 8. 扩展函数 / 属性</h3>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 9.高阶函数与 Lambda</h3>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 10. 异常处理</h3>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 11. 作用域函数</h3>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 12. main启动</h3>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 13. 其他特性</h3>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content:encoded>
+    </item>
+    <item>
+      <title>2. Kotlin协程</title>
+      <link>https://liuyueyi.github.io/tutorial/codelan/kotlin/02.Kotlin%E5%8D%8F%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93.html</link>
+      <guid>https://liuyueyi.github.io/tutorial/codelan/kotlin/02.Kotlin%E5%8D%8F%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93.html</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">2. Kotlin协程</source>
+      <description>以下是关于 Kotlin 协程的深度解析，包含核心概念、线程对比、使用方式、工作原理及最佳实践： 一、协程的本质与核心概念 定义：协程是一种轻量级的线程替代方案，由程序控制调度，而非操作系统。它允许代码暂停（suspend）和恢复执行，无需阻塞线程。 核心特性： 轻量级：单个线程可运行数千个协程，内存占用仅 ~1KB（对比线程的 MB 级）。 非阻塞：协程挂起时不阻塞线程，线程可执行其他任务。 结构化并发：通过作用域管理协程生命周期，避免内存泄漏。 挂起函数：使用 suspend 标记的函数，可暂停和恢复执行。</description>
+      <category>Kotlin</category>
+      <pubDate>Wed, 21 May 2025 22:15:07 GMT</pubDate>
+      <content:encoded><![CDATA[<p>以下是关于 Kotlin 协程的深度解析，包含核心概念、线程对比、使用方式、工作原理及最佳实践：</p>
+<h3> <strong>一、协程的本质与核心概念</strong></h3>
+<p><strong>定义</strong>：协程是一种轻量级的线程替代方案，由程序控制调度，而非操作系统。它允许代码暂停（<code>suspend</code>）和恢复执行，无需阻塞线程。</p>
+<p><strong>核心特性</strong>：</p>
+<ul>
+<li><strong>轻量级</strong>：单个线程可运行数千个协程，内存占用仅 ~1KB（对比线程的 MB 级）。</li>
+<li><strong>非阻塞</strong>：协程挂起时不阻塞线程，线程可执行其他任务。</li>
+<li><strong>结构化并发</strong>：通过作用域管理协程生命周期，避免内存泄漏。</li>
+<li><strong>挂起函数</strong>：使用 <code>suspend</code> 标记的函数，可暂停和恢复执行。</li>
+</ul>
+<h3> <strong>二、协程 vs 线程</strong></h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>协程（Coroutine）</th>
+<th>线程（Thread）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>调度</strong></td>
+<td>由程序（协程调度器）控制</td>
+<td>由操作系统内核调度</td>
+</tr>
+<tr>
+<td><strong>创建成本</strong></td>
+<td>极低（约 1KB 内存）</td>
+<td>高（约 1MB 内存，视平台而定）</td>
+</tr>
+<tr>
+<td><strong>切换开销</strong></td>
+<td>极小（纳秒级，仅涉及上下文切换）</td>
+<td>高（微秒级，涉及内核态切换）</td>
+</tr>
+<tr>
+<td><strong>并发性</strong></td>
+<td>单线程可运行数千个协程</td>
+<td>受限于系统资源（通常数百个）</td>
+</tr>
+<tr>
+<td><strong>阻塞影响</strong></td>
+<td>仅挂起当前协程，不影响线程</td>
+<td>阻塞整个线程，其他任务需等待</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>I/O 密集型任务（如网络请求）</td>
+<td>CPU 密集型任务（如计算）</td>
+</tr>
+</tbody>
+</table>
+<h3> <strong>三、协程的基本使用姿势</strong></h3>
+<h4> <strong>1. 启动协程的方式</strong></h4>
+<p>所有的协程必须在一个作用域内执行，使用方式为</p>
+<p><code>作用域.launch {}</code></p>
+<p>其中 launch 是一个函数，用于创建协程并将其函数主体的执行分派给相应的调度程序</p>
+<p><a href="http://Dispatchers.IO" target="_blank" rel="noopener noreferrer">Dispatchers.IO</a> 指示此协程应在为 I/O 操作预留的线程上执行。</p>
+<p>一个基础的使用示例：</p>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4> <strong>2. 挂起函数（Suspend Functions）</strong></h4>
+<p>在函数前添加关键字<code>suspend</code>，声明这个函数为挂起函数； 若我们希望两个挂起函数顺序调用，在协程中，按照正常的顺序书写即可，后面的挂起函数可以正常获取前面的挂起函数，即两者是顺序执行的</p>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4> <strong>3. 异步任务与结果获取</strong></h4>
+<p>若两个挂起函数之间没有依赖，我希望它们能并行调度，方便我快速获取结果，此时可以借助 <code>async</code> 来实现</p>
+<blockquote>
+<p>在概念上，async 就类似于 launch。它启动了一个单独的协程，这是一个轻量级的线程并与其它所有的协程一起并发的工作。不同之处在于 launch 返回一个 Job 并且不附带任何结果值，而 async 返回一个 Deferred —— 一个轻量级的非阻塞 future， 这代表了一个将会在稍后提供结果的 promise。你可以使用 .await() 在一个延期的值上得到它的最终结果， 但是 Deferred 也是一个 Job，所以如果需要的话，你可以取消它。</p>
+</blockquote>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> <strong>四、协程的核心组件</strong></h3>
+<h4> <strong>1. 协程作用域（CoroutineScope）</strong></h4>
+<p>管理协程的生命周期，确保资源正确释放：</p>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>在 Android 开发过程中，我们需要理解一些协程代码运行的范围。而所有的Scope 如 <code>GlobalScope</code> 都是 <code>CoroutineScope</code> 的子类，我们的协程创建都需要这样一个 <code>CoroutineScope</code> 来启动。</p>
+<p>一些常见的作用域 <code>CoroutineScope</code> 对象。</p>
+<ul>
+<li>GlobeScope：全局范围，不会自动结束执行。</li>
+<li>MainScope：主线程的作用域，全局范围</li>
+<li>lifecycleScope：生命周期范围，用于activity等有生命周期的组件，在DESTROYED的时候会自动结束。</li>
+<li>viewModelScope：viewModel范围，用于ViewModel中，在ViewModel被回收时会自动结束</li>
+</ul>
+<p>手动创建一个作用域</p>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h4> <strong>2. 协程调度器（Dispatchers）</strong></h4>
+<p>指定协程执行的线程池：</p>
+<ul>
+<li><code>Dispatchers.Main</code>：主线程（UI 线程），用于更新 UI。</li>
+<li><code>Dispatchers.IO</code>：适合 I/O 密集型任务（默认 64 线程）。</li>
+<li><code>Dispatchers.Default</code>：适合 CPU 密集型任务（默认线程数为 CPU 核心数）。</li>
+<li><code>newSingleThreadContext</code>：创建专用单线程。</li>
+</ul>
+<h4> <strong>3. Job 与协程生命周期</strong></h4>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> <strong>五、协程的工作原理</strong></h3>
+<ol>
+<li>
+<p><strong>挂起与恢复</strong>：</p>
+<ul>
+<li>协程通过状态机实现挂起，将局部变量保存在对象中。</li>
+<li>挂起时释放线程，恢复时从上次暂停处继续执行。</li>
+</ul>
+</li>
+<li>
+<p><strong>Continuation Passing Style (CPS)</strong>：</p>
+<ul>
+<li>
+<p>编译器将 <code>suspend</code> 函数转换为带 <code>Continuation</code> 参数的状态机。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+</ul>
+</li>
+<li>
+<p><strong>调度器工作流程</strong>：</p>
+<ul>
+<li>协程调度器管理线程池，将协程任务分发给空闲线程。</li>
+<li>非阻塞操作（如 <code>delay</code>）通过回调机制恢复执行。</li>
+</ul>
+</li>
+</ol>
+<h3> <strong>六、协程的异常处理</strong></h3>
+<h4> <strong>1. 结构化异常处理</strong></h4>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4> <strong>2. 全局异常处理器</strong></h4>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> <strong>七、协程的最佳实践</strong></h3>
+<h4> <strong>1. 避免使用 GlobalScope</strong></h4>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4> <strong>2. 选择合适的调度器</strong></h4>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4> <strong>3. 避免协程嵌套</strong></h4>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4> <strong>4. 处理背压（Backpressure）</strong></h4>
+<p>当生产者速度快于消费者时，使用 <code>Channel</code> 或 <code>Flow</code>：</p>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4> <strong>5. 资源管理</strong></h4>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> <strong>八、协程的性能优化</strong></h3>
+<ol>
+<li>
+<p><strong>减少协程创建开销</strong>：</p>
+<ul>
+<li>避免在循环中创建大量协程，使用 <code>map</code> + <code>awaitAll</code> 批量处理。</li>
+</ul>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></li>
+<li>
+<p><strong>复用调度器</strong>：</p>
+<ul>
+<li>避免频繁创建新的 <code>SingleThreadContext</code>，使用共享实例。</li>
+</ul>
+</li>
+<li>
+<p><strong>监控协程泄漏</strong>：</p>
+<ul>
+<li>使用 <code>DebugProbes</code>（测试环境）检测未完成的协程。</li>
+</ul>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+</ol>
+<h3> <strong>九、常见陷阱与注意事项</strong></h3>
+<ol>
+<li>
+<p><strong>阻塞 vs 挂起</strong>：</p>
+<ul>
+<li>避免在协程中使用 <code>Thread.sleep()</code>（阻塞线程），应使用 <code>delay()</code>（挂起协程）。</li>
+</ul>
+</li>
+<li>
+<p><strong>线程安全</strong>：</p>
+<ul>
+<li>协程不保证线程安全，共享可变状态时需同步（如使用 <code>Mutex</code>）。</li>
+</ul>
+</li>
+<li>
+<p><strong>内存泄漏</strong>：</p>
+<ul>
+<li>长生命周期协程引用短生命周期对象（如 Activity）时需谨慎。</li>
+</ul>
+</li>
+<li>
+<p><strong>测试协程代码</strong>：</p>
+<ul>
+<li>使用 <code>TestCoroutineDispatcher</code> 控制协程执行：</li>
+</ul>
+<div class="language-kotlin line-numbers-mode" data-ext="kt"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+</ol>
+<h3> <strong>十、协程的应用场景</strong></h3>
+<ol>
+<li>
+<p><strong>异步 I/O 操作</strong>：</p>
+<ul>
+<li>网络请求、文件读写等。</li>
+</ul>
+</li>
+<li>
+<p><strong>UI 响应性优化</strong>：</p>
+<ul>
+<li>将耗时操作放在后台协程，保持 UI 流畅。</li>
+</ul>
+</li>
+<li>
+<p><strong>并发任务处理</strong>：</p>
+<ul>
+<li>并行执行多个独立任务，合并结果。</li>
+</ul>
+</li>
+<li>
+<p><strong>数据流处理</strong>：</p>
+<ul>
+<li>使用 <code>Flow</code> 处理异步数据流。</li>
+</ul>
+</li>
+<li>
+<p><strong>状态机实现</strong>：</p>
+<ul>
+<li>通过协程实现复杂的状态流转逻辑。</li>
+</ul>
+</li>
+</ol>
+<h3> <strong>总结</strong></h3>
+<p>Kotlin 协程通过轻量级、非阻塞的特性，彻底改变了异步编程的体验。其核心优势在于：</p>
+<ul>
+<li><strong>高效资源利用</strong>：减少线程创建开销，提升系统吞吐量。</li>
+<li><strong>简洁代码结构</strong>：使用同步写法实现异步逻辑，避免回调地狱。</li>
+<li><strong>安全的并发模型</strong>：通过结构化并发和作用域管理，降低内存泄漏风险。</li>
+</ul>
+<p>掌握协程需要理解其核心概念（作用域、调度器、挂起函数）和最佳实践，避免常见陷阱。在实际项目中，协程特别适合处理 I/O 密集型任务和需要高响应性的应用场景。</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>1. MCP协议</title>
+      <link>https://liuyueyi.github.io/tutorial/git/mcp/01.MCP%E5%8D%8F%E8%AE%AE%E4%BB%8B%E7%BB%8D.html</link>
+      <guid>https://liuyueyi.github.io/tutorial/git/mcp/01.MCP%E5%8D%8F%E8%AE%AE%E4%BB%8B%E7%BB%8D.html</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">1. MCP协议</source>
+      <description>本文主要内容来自官方文档，按照更适合国人的阅读习惯进行重整，介绍一下MCP协议的具体的内容 官方文档 Introduction - Model Context Protocol 1. 整体介绍 1.1 MCP是什么 MCP （Model Context Protocol，模型上下文协议），它提供了一个通用的开放标准，用于将 AI 系统与数据源连接起来，用单一协议取代碎片化的集成。结果是一种更简单、更可靠的方法，使 AI 系统能够访问所需的数据。这是一种将 AI 助手连接到数据所在的系统（包括内容存储库、业务工具和开发环境）的新标准。其目的是帮助前沿模型产生更好、更相关的响应。</description>
+      <category>QuickMCP</category>
+      <pubDate>Tue, 13 May 2025 07:26:49 GMT</pubDate>
+      <content:encoded><![CDATA[<p>本文主要内容来自官方文档，按照更适合国人的阅读习惯进行重整，介绍一下MCP协议的具体的内容</p>
+<blockquote>
+<p>官方文档 <a href="https://modelcontextprotocol.io/introduction" target="_blank" rel="noopener noreferrer">Introduction - Model Context Protocol</a></p>
+</blockquote>
+<h2> 1. 整体介绍</h2>
+<h3> 1.1 MCP是什么</h3>
+<blockquote>
+<p>MCP （Model Context Protocol，模型上下文协议），它提供了一个通用的开放标准，用于将 AI 系统与数据源连接起来，用单一协议取代碎片化的集成。结果是一种更简单、更可靠的方法，使 AI 系统能够访问所需的数据。这是一种将 AI 助手连接到数据所在的系统（包括内容存储库、业务工具和开发环境）的新标准。其目的是帮助前沿模型产生更好、更相关的响应。</p>
+</blockquote>
+<p>简单来讲，mcp就是定义了标准，对于所有希望给大模型提供能力的小伙伴来说，只要按照这个标准完成能力封装，那么大模型就可以直接加载这些能力从而实现某些特定的功能。</p>
+<p>举一个例子，usb大家应该都不陌生，如果你只买一个台式机主机，这个时候你会发现我除了按它的开关按钮之外，好像什么也干不了。然后我买了键盘、鼠标、显示器、摄像头等外设，然后通过usb接口插上之后就可以操作电脑了，电脑是怎么识别这些外接设备（键盘、鼠标、摄像头等）的呢？ 这就是usb协议的作用了，外接设备和电脑，都遵循usb协议，然后大家就可以在同一个频道进行交流了；同样的MCP就是为了干这件事情，让大模型和给大模型提供增强能力的服务能同频进行交流</p>
+<figure><img src="/imgs/column/mcp/02-mcp协议类比.jpg" alt="mcp整体架构" tabindex="0" loading="lazy"><figcaption>mcp整体架构</figcaption></figure>
+<h3> 1.2 MCP总体架构</h3>
+<p>MCP遵循客户端-服务端（CS）的架构，一个主机可以连接多个MCP服务端</p>
+<figure><img src="/imgs/column/mcp/01-mcp整体架构.jpg" alt="mcp整体架构" tabindex="0" loading="lazy"><figcaption>mcp整体架构</figcaption></figure>
+<p>从上面的描述和整体架构图，可以看到在MCP的架构中，有三个重要的角色</p>
+<ul>
+<li>MCP Hosts(MCP主机)： 通过mcp协议获取数据的程序（比如 Claude Desktop, IDE 或者 ai工具）</li>
+<li>MCP Clients(MCP客户端): mcp协议客户端，作为调用者，通常与mcp服务端是成对出现，用于连接mcp server，实现双方通信</li>
+<li>MCP Servers(MCP服务端): mcp协议服务端，作为提供者，实现MCP协议提供特定的功能</li>
+</ul>
+<p>除了上面三个角色之外，在架构图中，还有两个</p>
+<ul>
+<li>Local Data Sources: MCPServer所在的计算机上本地的资源信息，如文件、数据库、应用服务等，即MCP通过操作(读取、访问、写入等)这些本地资源来提供特定能力</li>
+<li>Remote Service: MCPServer通过调用远程的服务来提供能力</li>
+</ul>
+<h3> 1.3 MCP工作原理</h3>
+<p>mcp只是一个协议，和http协议一样，本身不直接提供能力或者服务，我们能实际感知到的服务表现只是协议上层的应用封装</p>
+<p>比如http协议，常见的工作流程是我们打开浏览器，点开网页，通过http协议访问到对应的后台服务器，然后对方将网页信息传输到我们的浏览器上展示为可视化的网页内容，从而实现信息的曝光</p>
+<p>那么mcp协议是怎么工作的呢？</p>
+<ol>
+<li>用户通过客户端发起提问</li>
+<li>客户端将问题传递给 LLM</li>
+<li>LLM 分析并选择合适的工具</li>
+<li>通过 MCP 协议向服务端发送工具执行指令</li>
+<li>工具执行后结果返回给 LLM</li>
+<li>LLM 生成最终回复</li>
+<li>回复通过客户端展示给用户</li>
+</ol>
+<figure><img src="/imgs/column/mcp/03-mcp工作原理.jpg" alt="mcp工作原理" tabindex="0" loading="lazy"><figcaption>mcp工作原理</figcaption></figure>
+<h3> 1.4</h3>
+]]></content:encoded>
+      <enclosure url="https://liuyueyi.github.io/tutorial/imgs/column/mcp/02-mcp协议类比.jpg" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>MCP</title>
+      <link>https://liuyueyi.github.io/tutorial/git/mcp/</link>
+      <guid>https://liuyueyi.github.io/tutorial/git/mcp/</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">MCP</source>
+      <description>MCP协议 官方文档：modelcontextprotocol</description>
+      <pubDate>Wed, 21 May 2025 11:07:19 GMT</pubDate>
+      <content:encoded><![CDATA[<p>MCP协议</p>
+<p>官方文档：<a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener noreferrer">modelcontextprotocol</a></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>01.Java 9新集合工厂方法：开启高效编程新时代</title>
       <link>https://liuyueyi.github.io/tutorial/java/jdk/jdk8_/01.Java9%EF%BC%9A%E6%96%B0%E9%9B%86%E5%90%88%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95.html</link>
@@ -1481,7 +1803,7 @@
 </tbody>
 </table>
 <h3> 2.2 虚拟线程调度</h3>
-<p>虚拟现成的调度主要包含三个核心部分：虚拟线程（Virtual Threads）、平台线程（Platform Threads）和调度器（Scheduler）。</p>
+<p>虚拟线程的调度主要包含三个核心部分：虚拟线程（Virtual Threads）、平台线程（Platform Threads）和调度器（Scheduler）。</p>
 <ol>
 <li><strong>虚拟线程池：</strong></li>
 </ol>
@@ -6257,222 +6579,6 @@
 <p>测试并保存，然后配置面板即可</p>
 <p>至于grafana面板配置说明，下篇博文介绍</p>
 ]]></content:encoded>
-    </item>
-    <item>
-      <title>2. Grafana prometheus变量支持include all设置方法</title>
-      <link>https://liuyueyi.github.io/tutorial/tool/Devops/211026-Grafana-prometheus%E5%8F%98%E9%87%8F%E6%94%AF%E6%8C%81include-all%E8%AE%BE%E7%BD%AE%E6%96%B9%E6%B3%95.html</link>
-      <guid>https://liuyueyi.github.io/tutorial/tool/Devops/211026-Grafana-prometheus%E5%8F%98%E9%87%8F%E6%94%AF%E6%8C%81include-all%E8%AE%BE%E7%BD%AE%E6%96%B9%E6%B3%95.html</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">2. Grafana prometheus变量支持include all设置方法</source>
-      <description>使用Prometheus进行采样收集，借助Grafana进行大盘展示，可以说是系统监控层面的基本操作了，在grafana的大盘配置时，借助变量的灵活性，来展示不同维度的数据表盘比较常见 现在有这样一个场景，一个应用有多台机器，我们设置一个变量 instance 来表示具体的实例ip，支持通过ip来选择不同机器的监控，怎么操作？</description>
-      <category>开源</category>
-      <category>运维</category>
-      <pubDate>Tue, 26 Oct 2021 10:08:06 GMT</pubDate>
-      <content:encoded><![CDATA[<p>使用Prometheus进行采样收集，借助Grafana进行大盘展示，可以说是系统监控层面的基本操作了，在grafana的大盘配置时，借助变量的灵活性，来展示不同维度的数据表盘比较常见</p>
-<p>现在有这样一个场景，一个应用有多台机器，我们设置一个变量 instance 来表示具体的实例ip，支持通过ip来选择不同机器的监控，怎么操作？</p>
-<!-- more -->
-<h3> 1.变量配置</h3>
-<p>要实现上面这个case，第一步就是设置一个变量</p>
-<figure><img src="/hexblog/imgs/211026/00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>注意上面的变量配置，<code>label_values(instance)</code> 获取的是所有的实例ip，然而一般的情况下，我们需要针对应用维度进行区分，比如每个上报的metric，都包含application，现在我只希望查看<code>prometheus-example</code>应用的相关信息</p>
-<p>测试变量配置可以如下</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>注意<code>http_server_requests_seconds_count</code> 这个属于上报metric name，选一个实际有的即可，接下来配置大盘</p>
-<figure><img src="/hexblog/imgs/211026/01.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 2. include all配置</h3>
-<p>上面这个完成了一个基本的变量使用配置，但是有这么个问题，如果我想查这个应用所有机器的监控，该怎么办？</p>
-<figure><img src="/hexblog/imgs/211026/02.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>为了支持使用全部，我们的metrics的表达式，就不能使用之前的精确匹配了，需要改成正则方式</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="/hexblog/imgs/211026/03.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 3. 小结</h3>
-<p>借助Grafana的变量配置来实现大盘的条件筛选，其中变量配置关键点在于</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>其次在大盘的metric配置中，对于include all的支持，关键点在于promql的使用</p>
-<ul>
-<li><code>=</code> : 选择与提供的字符串完全相同的标签。</li>
-<li><code>!=</code> : 选择与提供的字符串不相同的标签。</li>
-<li><code>=~</code> : 选择正则表达式与提供的字符串（或子字符串）相匹配的标签。</li>
-<li><code>!~</code> : 选择正则表达式与提供的字符串（或子字符串）不匹配的标签。</li>
-</ul>
-]]></content:encoded>
-      <enclosure url="https://liuyueyi.github.io/tutorial/hexblog/imgs/211026/00.jpg" type="image/jpeg"/>
-    </item>
-    <item>
-      <title>Devops</title>
-      <link>https://liuyueyi.github.io/tutorial/tool/Devops/</link>
-      <guid>https://liuyueyi.github.io/tutorial/tool/Devops/</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">Devops</source>
-      <pubDate>Fri, 02 Aug 2024 10:41:58 GMT</pubDate>
-    </item>
-    <item>
-      <title>2. Centos使用docker构建ecs环境</title>
-      <link>https://liuyueyi.github.io/tutorial/tool/Docker/181207-Centos%E4%BD%BF%E7%94%A8docker%E6%9E%84%E5%BB%BAecs%E7%8E%AF%E5%A2%83.html</link>
-      <guid>https://liuyueyi.github.io/tutorial/tool/Docker/181207-Centos%E4%BD%BF%E7%94%A8docker%E6%9E%84%E5%BB%BAecs%E7%8E%AF%E5%A2%83.html</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">2. Centos使用docker构建ecs环境</source>
-      <description>本文主要介绍利用docker来构建一个java后端可用的开发运维环境</description>
-      <category>Shell</category>
-      <category>Docker</category>
-      <pubDate>Fri, 07 Dec 2018 17:22:09 GMT</pubDate>
-      <content:encoded><![CDATA[<p>本文主要介绍利用docker来构建一个java后端可用的开发运维环境</p>
-<!-- more -->
-<h2> I. java环境搭建</h2>
-<p>首先是jdk的安装，可以安装open-jdk，也可以从jdk官网下载jdk包进行配置，简单说明下两种使用方式</p>
-<h3> 1. open-jdk安装</h3>
-<p>基本安装过程如下</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2. jdk包安装</h3>
-<h4> a. 获取包</h4>
-<p><strong>官网下载</strong></p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>宿主机拷贝</strong></p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4> b. 安装</h4>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4> c. 配置</h4>
-<p>进入配置文件 <code>vi /etc/profile</code></p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>应用并查看是否配置ok</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 删除自带的openjdk</h3>
-<p>如果希望删除自带的jdk，可以执行下面的命令查看安装的版本</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>然后执行</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> II. Maven配置</h2>
-<p>maven的配置相对简单，下载好包之后，设置mvn的配置即可</p>
-<h3> 1. 获取包</h3>
-<p>下载maven包，推荐到官网下载，我这里是从宿主机拷贝</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3> 2. 解压</h3>
-<p>到docker中，解压并配置</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 配置</h3>
-<p>设置配置文件 <code>vi /etc/profile</code></p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>配置生效 <code>source /etc/profile</code> 并查看</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> III. tomcat安装</h2>
-<p>tomcat的安装基本上就是解压个包的事情了</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> IV. nginx安装</h2>
-<h3> 1. 直接使用 yum 安装</h3>
-<p>后面一个参数表示指定安装的位置</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>上面这种安装，在配置https时，会有问题，提示要安装ssl模块啥的，因此可以这么添加一下参数</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>如果你是先执行了上面的步骤，后面发现需要安装ssl模块，要怎么办 ？</p>
-<p>操作如下：</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2. 源码安装</h3>
-<p>上面其实已经包含了源码安装的步骤，下面简单的列一下</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 命令</h3>
-<p>nginx 命令</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>验证是否启动成功</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2> V. Redis安装</h2>
-<p>redis的安装，可以直接根据<code>yum</code>简单的进行安装，也可以下载安装包</p>
-<h3> 1. yum安装方式</h3>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>后台启动redis方式：</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>查看redis启动是否正常</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>客户端连接测试</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>关闭redis</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3> 2. 源码安装方式</h3>
-<p>下载源码并编译</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>设置下redis的相关配置文件，假设我们约定将数据文件存放在 <code>/home/data/redis</code> 目录下，则配置需要如下修改</p>
-<p>进入配置文件 redis.conf</p>
-<div class="language-conf line-numbers-mode" data-ext="conf"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>在启动redis之前，首先需要创建对应的目录</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>开始启动redis并测试</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> VI. Mysql环境安装</h2>
-<p>这里采用最简单的方式进行安装mysql，需要关注的是后面的默认配置的修改</p>
-<h3> 1. 安装</h3>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面安装完毕之后，可以开始启动服务</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>上面的命令在docker中执行时，会报错</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>可以如下操作</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面搞定之后，就可以继续启动mysql了</p>
-<p>如果登录需要密码时，如下确定</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2. 配置修改</h3>
-<h4> a. 端口号修改</h4>
-<p>默认的端口号为3306，如果需要修改端口号，则找到my.cnf文件，新加一个配置即可:</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>服务重启</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h4> 2. 密码修改</h4>
-<p>使用set password</p>
-<p><strong>格式：</strong></p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>例子：</strong></p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>update 方式</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>添加用户</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>授予权限</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content:encoded>
-    </item>
-    <item>
-      <title>3. docker非root用户可使用配置</title>
-      <link>https://liuyueyi.github.io/tutorial/tool/Docker/190703-docker%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E5%8F%AF%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html</link>
-      <guid>https://liuyueyi.github.io/tutorial/tool/Docker/190703-docker%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E5%8F%AF%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE.html</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">3. docker非root用户可使用配置</source>
-      <description>docker要求使用root权限进行启动，但是启动之后，普通的账号会发现没有访问docker的权限，然而每次都使用root进行访问过于麻烦，那么有办法让普通账号也能正常访问么?</description>
-      <category>Shell</category>
-      <category>Docker</category>
-      <pubDate>Wed, 03 Jul 2019 19:24:27 GMT</pubDate>
-      <content:encoded><![CDATA[<p>docker要求使用root权限进行启动，但是启动之后，普通的账号会发现没有访问docker的权限，然而每次都使用root进行访问过于麻烦，那么有办法让普通账号也能正常访问么?</p>
-<!-- more -->
-<p>docker安装完毕之后，启动</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>然后使用普通账号进行访问，提示如下</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>因为权限被拒绝，下面是解决办法</p>
-<p><strong>1. 创建docker组</strong></p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>2. 将用户加入docker组</strong></p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>3. 重启docker</strong></p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>4. 测试</strong></p>
-<p>可能在某些情况下，需要断开连接重新登录才有权限继续访问</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div>]]></content:encoded>
-    </item>
-    <item>
-      <title>1. Centos安装docker与使用说明</title>
-      <link>https://liuyueyi.github.io/tutorial/tool/Docker/191206-Centos%E5%AE%89%E8%A3%85docker%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html</link>
-      <guid>https://liuyueyi.github.io/tutorial/tool/Docker/191206-Centos%E5%AE%89%E8%A3%85docker%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">1. Centos安装docker与使用说明</source>
-      <description>本文主要介绍Centos下如何安装docker，并给出一些基本的使用case</description>
-      <category>Shell</category>
-      <category>Docker</category>
-      <pubDate>Fri, 06 Dec 2019 15:53:50 GMT</pubDate>
-      <content:encoded><![CDATA[<p>本文主要介绍Centos下如何安装docker，并给出一些基本的使用case</p>
-<!-- more -->
-<h3> 1. 安装说明</h3>
-<p>通过脚本进行docker安装，比较简单</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>执行完毕之后，启动docker</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>然后开始验证是否可以使用</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>如果安装正确，如下</p>
-<figure><img src="/hexblog/imgs/191206/00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 2. 使用相关</h3>
-<h4> 1. 安装centos镜像</h4>
-<p>在docker中安装一个centos的镜像，然后在docker中的centos里面搞事情</p>
-<p>安装命令: <code>docker pull 镜像名:版本</code></p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>在安装之前，如果我们不确定有哪些镜像，可以怎么办？可以简单的搜索一下</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>然后从上面的搜索结果中，挑选合适的镜像进行下载，然后可以查看本地镜像列表</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4> 2. 容器使用</h4>
-<p>这一小节，主要目的就是如何加载一个镜像，启动，关闭，删除容器等操作</p>
-<p><strong>加载镜像</strong></p>
-<p>主要就是run方式运行容器, 下面启动一个可交互的centos容器</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>上面执行完毕之后，会进入容器内的centos，通过 <code>exit</code>退出</p>
-<p><strong>查看容器</strong></p>
-<p>查看docker当前加载的容器列表</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>执行之后，可以看到刚才的centos对应的容器，状态为突出</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>那么我们能再次进入这个容器么？</p>
-<p><strong>启动容器</strong></p>
-<p>想进入上面这个容器，首先得让它跑起来,通过start命令</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>进入容器</strong></p>
-<p>通过 <code>docker exec</code> 方式进入容器，之前看到一个博文，说是有四种进入方式，这里选择exec方式进入</p>
-<ul>
-<li>原文：<a href="http://www.cnblogs.com/xhyan/p/6593075.html" target="_blank" rel="noopener noreferrer">Docker容器进入的4种方式</a></li>
-</ul>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>上面执行完毕之后，会发现又一次进入了容器内的centos系统</p>
-<figure><img src="/hexblog/imgs/191206/01.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>到这里就会有个疑问</p>
-<ul>
-<li>我在这个容器里面的修改是否会保留下来，我下次进来的时候，是不是这些东西还有没有</li>
-<li>每次退出之后，容器都会停止运行么？</li>
-</ul>
-<p>针对上面的两个疑问，实际的操作一下，结果如下图</p>
-<ul>
-<li>容器内的修改会保留</li>
-<li>exit退出之后，容器并不会停止，依然是运行的状态</li>
-</ul>
-<figure><img src="/hexblog/imgs/191206/02.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p><strong>停止容器</strong></p>
-<p>如果想要关闭容器，也比较简单</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>删除容器</strong></p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h4> 3. 定制镜像</h4>
-<p>以交互式运行centos镜像</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>然后就进入了docker中的centos操作系统了，然后可以在里面部署基本的环境，先做一个简单的演示，在home文件夹下初始化几个目录</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>执行过程如下</p>
-<figure><img src="/hexblog/imgs/191206/03.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>退出容器之后，将上面我们的修改保存</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/hexblog/imgs/191206/04.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>我们改的docker实际上是在原始docker的基础上改进而来，可以通过下面的命令查看演进过程</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="/hexblog/imgs/191206/05.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>接下来就是如何使用我们修改后的镜像了，首先是加载自定义的容器, 然后一番操作如下</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/hexblog/imgs/191206/06.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>保存后的镜像，还可以修改tag，命令如下</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div>]]></content:encoded>
-      <enclosure url="https://liuyueyi.github.io/tutorial/hexblog/imgs/191206/00.jpg" type="image/jpeg"/>
     </item>
   </channel>
 </rss>
