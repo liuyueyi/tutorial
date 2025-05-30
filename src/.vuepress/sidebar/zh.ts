@@ -92,6 +92,24 @@ export const zhSidebar = sidebar({
     },
   ],
 
+  "/column/ai/": [
+    "",
+    {
+      text: "AI",
+      icon: "symbol",
+      prefix: "",
+      collapsible: true,
+      children: [
+        {
+          text: "人人都是程序员",
+          icon: "tree",
+          prefix: "aicoding/",
+          children: "structure",
+        },
+      ],
+    },
+  ],
+
   "/db/": [
     "",
     {

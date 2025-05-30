@@ -29,6 +29,11 @@ features:
     details: 分布式设计模式与高可用详解
     link: /column/arch/distribute/
 
+  - title: AI专栏
+    icon: computer
+    details: 氛围编程，人人都是程序员
+    link: /column/ai/
+
   - title: Java专栏
     icon: java
     details: java 0基础进阶
