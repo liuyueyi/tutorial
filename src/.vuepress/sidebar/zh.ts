@@ -283,6 +283,12 @@ export const zhSidebar = sidebar({
       prefix: "实战/",
       children: "structure"
     },
+    {
+      text: "迭代记录",
+      collapsible: true,
+      prefix: "迭代/",
+      children: "structure"
+    },
   ],
   "/spring/db/": [
     "",
