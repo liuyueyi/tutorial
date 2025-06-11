@@ -6,8 +6,8 @@
     <link>https://liuyueyi.github.io/tutorial/</link>
     <description>一灰灰的全网知识站点</description>
     <language>zh-CN</language>
-    <pubDate>Fri, 30 May 2025 08:38:37 GMT</pubDate>
-    <lastBuildDate>Fri, 30 May 2025 08:38:37 GMT</lastBuildDate>
+    <pubDate>Wed, 11 Jun 2025 09:02:05 GMT</pubDate>
+    <lastBuildDate>Wed, 11 Jun 2025 09:02:05 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 一灰灰blog</copyright>
@@ -45,6 +45,72 @@
     <category>Jackson</category>
     <category>Gson</category>
     <category>Json</category>
+    <item>
+      <title>4. 不借助AI也可以实现图片转线稿</title>
+      <link>https://liuyueyi.github.io/tutorial/column/ai/aicoding/03.%E4%B8%8D%E5%80%9F%E5%8A%A9AI%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E7%BA%BF%E7%A8%BF.html</link>
+      <guid>https://liuyueyi.github.io/tutorial/column/ai/aicoding/03.%E4%B8%8D%E5%80%9F%E5%8A%A9AI%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E7%BA%BF%E7%A8%BF.html</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">4. 不借助AI也可以实现图片转线稿</source>
+      <description>最近准备实现一个根据图片生成简笔画的应用，研究了下现在的ai能力，在使用百度的图片提取线稿的时候发现AI处理能力是真的强，比如下面是几个提取case 从整体的实现效果来看，还是非常不错的，对于现实人物、3d图、2d卡通、建筑的线稿提取结果可以说几近完美了。唯一的小问题就是处理时间长了一点，也不免费... 那么有没有其他开源的工具可以直接使用呢，发现了两个有意思的开源项目，一个是基于机器学习训练结果的，另一个则是直接使用算法(代码行&amp;lt;50行)进行提取转换</description>
+      <category>AI</category>
+      <pubDate>Wed, 11 Jun 2025 10:15:07 GMT</pubDate>
+      <content:encoded><![CDATA[<p>最近准备实现一个根据图片生成简笔画的应用，研究了下现在的ai能力，在使用百度的图片提取线稿的时候发现AI处理能力是真的强，比如下面是几个提取case</p>
+<figure><img src="/imgs/column/ai/4-1.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>从整体的实现效果来看，还是非常不错的，对于现实人物、3d图、2d卡通、建筑的线稿提取结果可以说几近完美了。唯一的小问题就是处理时间长了一点，也不免费...</p>
+<p>那么有没有其他开源的工具可以直接使用呢，发现了两个有意思的开源项目，一个是基于机器学习训练结果的，另一个则是直接使用算法(代码行&lt;50行)进行提取转换</p>
+<h3> 基于训练模型 rocca/informative-drawings-line-art-onnx</h3>
+<p>模型地址-&gt; <a href="https://huggingface.co/rocca/informative-drawings-line-art-onnx" target="_blank" rel="noopener noreferrer">https://huggingface.co/rocca/informative-drawings-line-art-onnx</a></p>
+<p>项目源码：<a href="https://github.com/josephrocca/image-to-line-art-js" target="_blank" rel="noopener noreferrer">https://github.com/josephrocca/image-to-line-art-js</a></p>
+<p>使用约17兆的模型即可实现线图提取功能，下面是官方的demo表现情况</p>
+<figure><img src="/imgs/column/ai/4-2.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>从上面的处理结果也可以看出，对于卡通图像的转换效果还是可以的；但是对于显示人物、建筑之类的效果就一一般般了</p>
+<h3> 算法提取</h3>
+<p>项目源码：<a href="https://github.com/FlandreDaisuki/Outline-Extractor" target="_blank" rel="noopener noreferrer">Outline-Extractor</a></p>
+<p>核心算法</p>
+<div class="language-javascript line-numbers-mode" data-ext="js"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>在线体验地址: <a href="https://ai.hhui.top/app/imgline.html" target="_blank" rel="noopener noreferrer">https://ai.hhui.top/app/imgline.html</a></p>
+<p>整体表现效果如下:</p>
+<figure><img src="/imgs/column/ai/4-3.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>从实际的效果来看，和上面的训练模型的处理结果半斤八两，不过好处也很明显，处理效率明显更高，且无外部依赖</p>
+<h3> 小结</h3>
+<p>下面是具体的对照结果，对于卡通图片，如果希望提取线稿，会发现即便不使用大模型、机器学习的能力，借助最基础的算法处理，不超过50行的代码也可以实现相对理想的效果</p>
+<table>
+<thead>
+<tr>
+<th>原图</th>
+<th>百度提取线图</th>
+<th>训练模型处理</th>
+<th>算法提取</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/imgs/column/ai/4-4-0.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-b-0.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-t-0.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-s-0.jpg" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td><img src="/imgs/column/ai/4-4-1.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-b-1.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-t-1.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-s-1.jpg" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td><img src="/imgs/column/ai/4-4-2.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-b-2.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-t-2.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-s-2.jpg" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td><img src="/imgs/column/ai/4-4-3.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-b-3.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-t-3.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-s-3.jpg" alt="" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+]]></content:encoded>
+      <enclosure url="https://liuyueyi.github.io/tutorial/imgs/column/ai/4-1.webp" type="image/webp"/>
+    </item>
     <item>
       <title>AI专栏</title>
       <link>https://liuyueyi.github.io/tutorial/column/ai/</link>
@@ -7058,31 +7124,6 @@ Spring Boot 2.3+ 默认禁用末尾斜杠匹配，需手动启用。</p>
 </table>
 ]]></content:encoded>
       <enclosure url="https://liuyueyi.github.io/tutorial/hexblog/imgs/210715/00.jpg" type="image/jpeg"/>
-    </item>
-    <item>
-      <title>4. FastJson序列化对象中非字符串类型key输出非标准格式json串问题记录</title>
-      <link>https://liuyueyi.github.io/tutorial/java/%E5%BA%8F%E5%88%97%E5%8C%96/04.FastJson%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%B9%E8%B1%A1%E4%B8%AD%E9%9D%9E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8Bkey%E8%BE%93%E5%87%BA%E9%9D%9E%E6%A0%87%E5%87%86%E6%A0%BC%E5%BC%8Fjson%E4%B8%B2%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95.html</link>
-      <guid>https://liuyueyi.github.io/tutorial/java/%E5%BA%8F%E5%88%97%E5%8C%96/04.FastJson%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%B9%E8%B1%A1%E4%B8%AD%E9%9D%9E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8Bkey%E8%BE%93%E5%87%BA%E9%9D%9E%E6%A0%87%E5%87%86%E6%A0%BC%E5%BC%8Fjson%E4%B8%B2%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95.html</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">4. FastJson序列化对象中非字符串类型key输出非标准格式json串问题记录</source>
-      <description>采用fastjson作为项目的json序列化和反序列化工具，遇到一个蛋疼至极的问题, 如Map，key为int，则输出的字符串中，key没有被双引号括起来，导致前端解析失败</description>
-      <category>Java</category>
-      <category>问题记录</category>
-      <pubDate>Fri, 12 Apr 2019 14:22:40 GMT</pubDate>
-      <content:encoded><![CDATA[<p>采用fastjson作为项目的json序列化和反序列化工具，遇到一个蛋疼至极的问题, 如Map，key为int，则输出的字符串中，key没有被双引号括起来，导致前端解析失败</p>
-<!-- more -->
-<h3> 1. 问题复现</h3>
-<p><strong>环境相关</strong></p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>测试case</strong></p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>为了对比，把gson也加进来了，输出结果如下</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>针对fastjson的输出，js的序列化直接异常</p>
-<figure><img src="/hexblog/imgs/190412/00.jpg" alt="IMAGE" tabindex="0" loading="lazy"><figcaption>IMAGE</figcaption></figure>
-<h3> 2. 兼容方案</h3>
-<p>既然fastjson有这个问题，那有必要看一下有没有使用方式来避免这个问题了，看一下fastjson的常用序列化方法</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>我们常用的是上面的第一个方法，看到上面的第二个方法，自然可以想到，是不是可以通过传参来设置序列化的一些属性， <code>SerializerFeature</code> 是一个枚举，进去查看，会找到一些有意思的参数，如<code>SerializerFeature.WriteNonStringKeyAsString</code>将非字符串的key装换为String</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>输出结果如下</p>
-<figure><img src="/hexblog/imgs/190412/01.jpg" alt="IMAGE" tabindex="0" loading="lazy"><figcaption>IMAGE</figcaption></figure>
-]]></content:encoded>
-      <enclosure url="https://liuyueyi.github.io/tutorial/hexblog/imgs/190412/00.jpg" type="image/jpeg"/>
     </item>
   </channel>
 </rss>
