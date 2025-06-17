@@ -9,7 +9,7 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2025-06-13T10:46:21.169Z</updated>
+  <updated>2025-06-17T00:35:59.721Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
@@ -40,11 +40,95 @@
   <category term="问题记录"/>
   <category term="JNDI"/>
   <category term="Jackson"/>
-  <category term="Gson"/>
   <contributor>
     <name>一灰灰blog</name>
     <uri>https://hhui.top</uri>
   </contributor>
+  <entry>
+    <title type="text">6. 基于Trae开发android原生应用，顺利上架谷歌应用市场</title>
+    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/05.%E5%9F%BA%E4%BA%8ETrae%E5%BC%80%E5%8F%91android%E5%8E%9F%E7%94%9F%E5%BA%94%E7%94%A8%E5%B9%B6%E4%B8%8A%E6%9E%B6%E5%BA%94%E7%94%A8%E5%B8%82%E5%9C%BA.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/05.%E5%9F%BA%E4%BA%8ETrae%E5%BC%80%E5%8F%91android%E5%8E%9F%E7%94%9F%E5%BA%94%E7%94%A8%E5%B9%B6%E4%B8%8A%E6%9E%B6%E5%BA%94%E7%94%A8%E5%B8%82%E5%9C%BA.html"/>
+    <updated>2025-06-17T00:19:47.000Z</updated>
+    <summary type="html"><![CDATA[<p>之前使用Trae开发的项目主要是基于web技术栈来搭建的，借助uniapp的生态体系，来生成多端可运行的应用，整体实现链路还是很顺畅的。但是最近准备开发一个android的小部件，需要使用原生的kotlin进行开发，发现直接使用Trae做原生开发，也意外的顺利</p>
+<p>下来进行简单的记录一下，使用Trae进行原生开发的过程</p>
+<h2> 一、应用预览</h2>
+<p>需要开发的应用本身比较简单，主要是为用户提供两种类型的小组件，文本小组件  + 计时小组件</p>
+<p>支持用户在手机桌面上，添加一些豆腐块的文案/倒计时，用于装饰or提醒</p>
+<figure><img src="https://ai.hhui.top/static/textwidget/s0.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>]]></summary>
+    <content type="html"><![CDATA[<p>之前使用Trae开发的项目主要是基于web技术栈来搭建的，借助uniapp的生态体系，来生成多端可运行的应用，整体实现链路还是很顺畅的。但是最近准备开发一个android的小部件，需要使用原生的kotlin进行开发，发现直接使用Trae做原生开发，也意外的顺利</p>
+<p>下来进行简单的记录一下，使用Trae进行原生开发的过程</p>
+<h2> 一、应用预览</h2>
+<p>需要开发的应用本身比较简单，主要是为用户提供两种类型的小组件，文本小组件  + 计时小组件</p>
+<p>支持用户在手机桌面上，添加一些豆腐块的文案/倒计时，用于装饰or提醒</p>
+<figure><img src="https://ai.hhui.top/static/textwidget/s0.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>app体验地址： <a href="https://play.google.com/store/apps/details?id=com.github.hui.textwidget" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.github.hui.textwidget</a></p>
+<figure><img src="/imgs/column/ai/6-1.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h2> 二、原生开发流程</h2>
+<p>接下来我们看一下使用trae进行原生开发的流程，基本思路和之前介绍的 <a href="https://mp.weixin.qq.com/s/mu9l0y18mNE3PlI8EQhrYw" target="_blank" rel="noopener noreferrer">毫无技术难度：由0到1基于AI完成“垃圾消除小游戏”</a> 一致，只是部分具体的操作有些差异</p>
+<h3> 1. 新建项目</h3>
+<p>使用android studio创建一个空的项目</p>
+<figure><img src="/imgs/column/ai/6-2.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>在弹窗中，输入项目相关信息</p>
+<figure><img src="/imgs/column/ai/6-3.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 2. 使用Trae打开项目</h3>
+<p>使用trae打开刚才创建的项目，然后进行初始化</p>
+<figure><img src="/imgs/column/ai/6-4.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>首先声明项目类型，然后给出指令，让trae帮我们自动生成对应的界面；</p>
+<p>需要注意的时，首次进行kotlin开发时，trae对kotlin语言的支持不够友好，我们需要在插件市场中安装相关插件</p>
+<figure><img src="/imgs/column/ai/6-5.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 3. 基于对话的功能实现</h3>
+<p>因为这个app的设计非常简单，一个文本小部件、一个计时小部件；</p>
+<p>因此核心的功能实现分两块</p>
+<ul>
+<li>小部件设置相关</li>
+<li>小部件展示相关</li>
+</ul>
+<p>其中小部件的设置，主要是支持用户设置自己想要展示的文本、倒计时还是正计时，背景颜色、文字颜色、对齐方式等</p>
+<figure><img src="/imgs/column/ai/6-6.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>小部件因为有两种不同的类型：文本 + 计时，因此我们也需要实现两个小部件</p>
+<figure><img src="/imgs/column/ai/6-7.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<blockquote>
+<p>说明：由于原生开发不像页面开发可以直接浏览器实时预览效果；原生开发过程中，我们需要不断的使用android studio查看生成的代码是否存在语法问题，借助Android Studio的模拟器来预览生成的效果</p>
+</blockquote>
+<figure><img src="/imgs/column/ai/6-8.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 4. 打包上传</h3>
+<p>相比较于uniapp的打包，原生开发就简单很多了，无需额外操作；直接在原生项目中打包即可</p>
+<figure><img src="/imgs/column/ai/6-9.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h2> 三、上架应用市场</h2>
+<p>上架应用市场的流程之前介绍过，有兴趣的小伙伴可以翻一下</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/e3wZ7wMnKepm6R1Cz2DbAw?token=32118257&amp;lang=zh_CN" target="_blank" rel="noopener noreferrer">AI生成的垃圾小游戏-上架谷歌应用市场全流程-图文介绍</a></li>
+</ul>
+<p>我们在上架之前，先集成一下admob广告（赚一点是一点嘛），这里的广告集成与之前介绍的有一些区别，因为原生开发主要是基于Jetpack来实现的，因此我们的广告sdk的集成方式也需要相应的进行调整</p>
+<p>比如新增一个底部的banner广告 ，直接在官方的demo扣过来，让trae进行二次改造</p>
+<figure><img src="/imgs/column/ai/6-10.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h2> 四、小结</h2>
+<p>作为一个业余前端选手，借助热火朝天的“氛围编程”也实现了一些没什么鸟用的应用，没有太大障碍的完成了webapp、网页开发、浏览器插件、基于uniapp的跨端开发(小程序、h5、安卓应用)，现在也完成了基于原生kotlin的app开发全流程，整体感受就是只要你愿意折腾，技术的门槛是越来越低的</p>
+<p>下面是一些借助Trae进行开发的过程，有兴趣的小伙伴可以看看</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487677&amp;idx=1&amp;sn=3cb47b3c8d84c7f3d299174205bdaa07&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">首个完全由AI生成的APP上架啦 - ColorPicker</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487748&amp;idx=1&amp;sn=eac77c82547603cd19725260d1bb584a&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">毫无技术难度：由0到1基于AI完成“垃圾消除小游戏”</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487847&amp;idx=1&amp;sn=ee5bea7a986f364314c50f667bbe9dfb&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">AI生成的垃圾小游戏-上架谷歌应用市场全流程-图文介绍</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487868&amp;idx=1&amp;sn=2a80743e416a3b00e3c66421547c5c94&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">AI 生成 web 应用，如何通过广告变现 “钱” 景无限</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487901&amp;idx=1&amp;sn=d7130ffcb19fde9d7ac23cdc529c08df&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">AI生成APP-接入谷歌变现图文攻略</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487950&amp;idx=1&amp;sn=09a9823ebdee85fb2d5bf0331504b48b&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">借助AI赚美刀-谷歌广告收款攻略</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487936&amp;idx=1&amp;sn=eafd7f1c95e06fff4f5ed1092ae68508&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">借助Trae的智能体完成我的浏览器主页个性化改造图文全流程</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247488002&amp;idx=1&amp;sn=5400567e26ca17710b923b3fb119b873&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">AI生成插件上架Chrome应用商店全流程</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247488089&amp;idx=1&amp;sn=8c57c677237861f88f705918186b7b4c&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">浏览器里直接跑大模型抠图？试试这个借助transform.js搭建网页神器吧</a></li>
+</ul>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="AI"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-06-16T17:15:07.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
   <entry>
     <title type="text">5. 浏览器中跑大模型-搭建一个自动抠图服务</title>
     <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/04.%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%B7%91%E5%A4%A7%E6%A8%A1%E5%9E%8B-%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%8A%A8%E6%8A%A0%E5%9B%BE%E6%9C%8D%E5%8A%A1.html</id>
@@ -8151,83 +8235,6 @@ ans <span class="token operator">=</span> traceWatch<span class="token punctuati
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2021-08-07T09:48:00.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">2. Gson 简单使用姿势小结</title>
-    <id>https://liuyueyi.github.io/tutorial/java/%E5%BA%8F%E5%88%97%E5%8C%96/02.Gson-%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E5%B0%8F%E7%BB%93.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/java/%E5%BA%8F%E5%88%97%E5%8C%96/02.Gson-%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E5%B0%8F%E7%BB%93.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>关于Json序列化的框架可以说比较多了，比如Spring默认的Jackson，国内互联网用的比较多的FastJson，本文则主要介绍一下Gson的简单使用姿势，并不会涉及到不同的json框架的性能对比</p>
-<blockquote>
-<p>本文主要内容来源于官方教程: <a href="https://github.com/google/gson/blob/master/UserGuide.md" target="_blank" rel="noopener noreferrer">https://github.com/google/gson/blob/master/UserGuide.md</a></p>
-</blockquote>
-]]></summary>
-    <content type="html"><![CDATA[<p>关于Json序列化的框架可以说比较多了，比如Spring默认的Jackson，国内互联网用的比较多的FastJson，本文则主要介绍一下Gson的简单使用姿势，并不会涉及到不同的json框架的性能对比</p>
-<blockquote>
-<p>本文主要内容来源于官方教程: <a href="https://github.com/google/gson/blob/master/UserGuide.md" target="_blank" rel="noopener noreferrer">https://github.com/google/gson/blob/master/UserGuide.md</a></p>
-</blockquote>
-<!-- more -->
-<h3> 1. 依赖导入</h3>
-<p>首先我们借助maven来引入依赖包，按照自己的实际情况选择一个版本（简单的使用姿势与具体的版本并没有太大的关联性）</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2. 基本的序列化与反序列化</h3>
-<p>一般来讲，我们通过Gson对象来实现Json的序列化与反序列化，如下是几个简单的序列化与反序列化的case</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面的case中，主要就是借助<code>gson.toJson</code>来输出Json字符串，借助<code>gson.fromJson</code>返序列化得到对象</p>
-<h3> 3. 对象序列化</h3>
-<p>对象的序列化与反序列化可以说是最常见的，在Gson的使用过程中，推荐的对象写法</p>
-<ul>
-<li>filed：private 修饰</li>
-<li>不希望序列化的成员，添加<code>transient</code>修饰符</li>
-<li>默认无参构造方法(可选，这里跟人推荐保留，不同于FastJson的必须存在)</li>
-</ul>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面的使用姿势和前面并没有什么本质的区别，接下来看一下输出结果</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>请注意：</strong></p>
-<ul>
-<li>输出json串时，null和<code>transient</code>修饰的成员不会输出到json串中</li>
-<li>对象没有Get/Set方法，也依然可以反序列化(对象也没有继承自Serialize接口，当然我个人的观点是请继承Serialize接口)</li>
-</ul>
-<p>如果我希望将null的成员，也可以输出到json串，可以如下操作</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>输出结果如下</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>说明：如果希望扩展序列化方式，通过GsonBuilder来构建Gson对象是一个不错的选择</strong></p>
-<h3> 4. JsonObject与JsonArray</h3>
-<p>某些场景下我们可能并没有定义反序列化的数据对象，比如FastJson中的直接反序列化为<code>JSONObject/JSONArray</code>，然后手动获取数据进行业务处理，这种场景下，gson可以如何支持呢？</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>请注意，我们这里主要借助的是<code>JsonParser.parseString</code>方法，输入参数可以是String也可以是流，返回的是<code>JsonElement</code>对象，这个对象比较有意思，提供了一些基础的类型输出方法如</p>
-<ul>
-<li>getAsString: 返回String</li>
-<li>getAsInt: 返回int</li>
-<li>getAsJsonArray: 返回JsonArray（json数组）</li>
-<li>getAsJsonObject: 返回JsonObject (Json对象)</li>
-<li>...</li>
-</ul>
-<figure><img src="/hexblog/imgs/200826/00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 5. 泛型序列化</h3>
-<p>以上属于常规的基本使用姿势，实际的工作中，关于泛型的序列化和反序列化可以说非常常见了，那么应该如何处理呢</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/hexblog/imgs/200826/01.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>上面的核心在于Type的生成: <code>new TypeToken&lt;ResWrapper&lt;User&gt;&gt;() {}.getType();</code></p>
-<h3> 6. 进阶</h3>
-<p>以上内容基本上可以覆盖日常业务开发中90%的场景，当然gson也支持一些更高级的功能</p>
-<p><strong>如filed name映射</strong></p>
-<ul>
-<li><code>@SerializedName("custom_naming") </code></li>
-</ul>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>如版本支持</strong></p>
-<ul>
-<li><code>@Since(1.1)</code></li>
-</ul>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>自定义的类型转换</strong></p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>可视化的json输出</strong></p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div>]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="开源"/>
-    <category term="Gson"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2020-08-26T08:46:13.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
 </feed>
