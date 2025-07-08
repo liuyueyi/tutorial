@@ -9,7 +9,7 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2025-06-17T00:35:59.721Z</updated>
+  <updated>2025-07-08T09:30:34.261Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
@@ -39,279 +39,15 @@
   <category term="容器"/>
   <category term="问题记录"/>
   <category term="JNDI"/>
-  <category term="Jackson"/>
   <contributor>
     <name>一灰灰blog</name>
     <uri>https://hhui.top</uri>
   </contributor>
   <entry>
-    <title type="text">6. 基于Trae开发android原生应用，顺利上架谷歌应用市场</title>
-    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/05.%E5%9F%BA%E4%BA%8ETrae%E5%BC%80%E5%8F%91android%E5%8E%9F%E7%94%9F%E5%BA%94%E7%94%A8%E5%B9%B6%E4%B8%8A%E6%9E%B6%E5%BA%94%E7%94%A8%E5%B8%82%E5%9C%BA.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/05.%E5%9F%BA%E4%BA%8ETrae%E5%BC%80%E5%8F%91android%E5%8E%9F%E7%94%9F%E5%BA%94%E7%94%A8%E5%B9%B6%E4%B8%8A%E6%9E%B6%E5%BA%94%E7%94%A8%E5%B8%82%E5%9C%BA.html"/>
-    <updated>2025-06-17T00:19:47.000Z</updated>
-    <summary type="html"><![CDATA[<p>之前使用Trae开发的项目主要是基于web技术栈来搭建的，借助uniapp的生态体系，来生成多端可运行的应用，整体实现链路还是很顺畅的。但是最近准备开发一个android的小部件，需要使用原生的kotlin进行开发，发现直接使用Trae做原生开发，也意外的顺利</p>
-<p>下来进行简单的记录一下，使用Trae进行原生开发的过程</p>
-<h2> 一、应用预览</h2>
-<p>需要开发的应用本身比较简单，主要是为用户提供两种类型的小组件，文本小组件  + 计时小组件</p>
-<p>支持用户在手机桌面上，添加一些豆腐块的文案/倒计时，用于装饰or提醒</p>
-<figure><img src="https://ai.hhui.top/static/textwidget/s0.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>]]></summary>
-    <content type="html"><![CDATA[<p>之前使用Trae开发的项目主要是基于web技术栈来搭建的，借助uniapp的生态体系，来生成多端可运行的应用，整体实现链路还是很顺畅的。但是最近准备开发一个android的小部件，需要使用原生的kotlin进行开发，发现直接使用Trae做原生开发，也意外的顺利</p>
-<p>下来进行简单的记录一下，使用Trae进行原生开发的过程</p>
-<h2> 一、应用预览</h2>
-<p>需要开发的应用本身比较简单，主要是为用户提供两种类型的小组件，文本小组件  + 计时小组件</p>
-<p>支持用户在手机桌面上，添加一些豆腐块的文案/倒计时，用于装饰or提醒</p>
-<figure><img src="https://ai.hhui.top/static/textwidget/s0.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>app体验地址： <a href="https://play.google.com/store/apps/details?id=com.github.hui.textwidget" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.github.hui.textwidget</a></p>
-<figure><img src="/imgs/column/ai/6-1.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h2> 二、原生开发流程</h2>
-<p>接下来我们看一下使用trae进行原生开发的流程，基本思路和之前介绍的 <a href="https://mp.weixin.qq.com/s/mu9l0y18mNE3PlI8EQhrYw" target="_blank" rel="noopener noreferrer">毫无技术难度：由0到1基于AI完成“垃圾消除小游戏”</a> 一致，只是部分具体的操作有些差异</p>
-<h3> 1. 新建项目</h3>
-<p>使用android studio创建一个空的项目</p>
-<figure><img src="/imgs/column/ai/6-2.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>在弹窗中，输入项目相关信息</p>
-<figure><img src="/imgs/column/ai/6-3.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 2. 使用Trae打开项目</h3>
-<p>使用trae打开刚才创建的项目，然后进行初始化</p>
-<figure><img src="/imgs/column/ai/6-4.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>首先声明项目类型，然后给出指令，让trae帮我们自动生成对应的界面；</p>
-<p>需要注意的时，首次进行kotlin开发时，trae对kotlin语言的支持不够友好，我们需要在插件市场中安装相关插件</p>
-<figure><img src="/imgs/column/ai/6-5.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 3. 基于对话的功能实现</h3>
-<p>因为这个app的设计非常简单，一个文本小部件、一个计时小部件；</p>
-<p>因此核心的功能实现分两块</p>
-<ul>
-<li>小部件设置相关</li>
-<li>小部件展示相关</li>
-</ul>
-<p>其中小部件的设置，主要是支持用户设置自己想要展示的文本、倒计时还是正计时，背景颜色、文字颜色、对齐方式等</p>
-<figure><img src="/imgs/column/ai/6-6.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>小部件因为有两种不同的类型：文本 + 计时，因此我们也需要实现两个小部件</p>
-<figure><img src="/imgs/column/ai/6-7.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<blockquote>
-<p>说明：由于原生开发不像页面开发可以直接浏览器实时预览效果；原生开发过程中，我们需要不断的使用android studio查看生成的代码是否存在语法问题，借助Android Studio的模拟器来预览生成的效果</p>
-</blockquote>
-<figure><img src="/imgs/column/ai/6-8.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 4. 打包上传</h3>
-<p>相比较于uniapp的打包，原生开发就简单很多了，无需额外操作；直接在原生项目中打包即可</p>
-<figure><img src="/imgs/column/ai/6-9.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h2> 三、上架应用市场</h2>
-<p>上架应用市场的流程之前介绍过，有兴趣的小伙伴可以翻一下</p>
-<ul>
-<li><a href="https://mp.weixin.qq.com/s/e3wZ7wMnKepm6R1Cz2DbAw?token=32118257&amp;lang=zh_CN" target="_blank" rel="noopener noreferrer">AI生成的垃圾小游戏-上架谷歌应用市场全流程-图文介绍</a></li>
-</ul>
-<p>我们在上架之前，先集成一下admob广告（赚一点是一点嘛），这里的广告集成与之前介绍的有一些区别，因为原生开发主要是基于Jetpack来实现的，因此我们的广告sdk的集成方式也需要相应的进行调整</p>
-<p>比如新增一个底部的banner广告 ，直接在官方的demo扣过来，让trae进行二次改造</p>
-<figure><img src="/imgs/column/ai/6-10.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h2> 四、小结</h2>
-<p>作为一个业余前端选手，借助热火朝天的“氛围编程”也实现了一些没什么鸟用的应用，没有太大障碍的完成了webapp、网页开发、浏览器插件、基于uniapp的跨端开发(小程序、h5、安卓应用)，现在也完成了基于原生kotlin的app开发全流程，整体感受就是只要你愿意折腾，技术的门槛是越来越低的</p>
-<p>下面是一些借助Trae进行开发的过程，有兴趣的小伙伴可以看看</p>
-<ul>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487677&amp;idx=1&amp;sn=3cb47b3c8d84c7f3d299174205bdaa07&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">首个完全由AI生成的APP上架啦 - ColorPicker</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487748&amp;idx=1&amp;sn=eac77c82547603cd19725260d1bb584a&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">毫无技术难度：由0到1基于AI完成“垃圾消除小游戏”</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487847&amp;idx=1&amp;sn=ee5bea7a986f364314c50f667bbe9dfb&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">AI生成的垃圾小游戏-上架谷歌应用市场全流程-图文介绍</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487868&amp;idx=1&amp;sn=2a80743e416a3b00e3c66421547c5c94&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">AI 生成 web 应用，如何通过广告变现 “钱” 景无限</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487901&amp;idx=1&amp;sn=d7130ffcb19fde9d7ac23cdc529c08df&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">AI生成APP-接入谷歌变现图文攻略</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487950&amp;idx=1&amp;sn=09a9823ebdee85fb2d5bf0331504b48b&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">借助AI赚美刀-谷歌广告收款攻略</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487936&amp;idx=1&amp;sn=eafd7f1c95e06fff4f5ed1092ae68508&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">借助Trae的智能体完成我的浏览器主页个性化改造图文全流程</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247488002&amp;idx=1&amp;sn=5400567e26ca17710b923b3fb119b873&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">AI生成插件上架Chrome应用商店全流程</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247488089&amp;idx=1&amp;sn=8c57c677237861f88f705918186b7b4c&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">浏览器里直接跑大模型抠图？试试这个借助transform.js搭建网页神器吧</a></li>
-</ul>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="AI"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2025-06-16T17:15:07.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">5. 浏览器中跑大模型-搭建一个自动抠图服务</title>
-    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/04.%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%B7%91%E5%A4%A7%E6%A8%A1%E5%9E%8B-%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%8A%A8%E6%8A%A0%E5%9B%BE%E6%9C%8D%E5%8A%A1.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/04.%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%B7%91%E5%A4%A7%E6%A8%A1%E5%9E%8B-%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%8A%A8%E6%8A%A0%E5%9B%BE%E6%9C%8D%E5%8A%A1.html"/>
-    <updated>2025-06-13T10:31:13.000Z</updated>
-    <summary type="html"><![CDATA[<p>抠图的场景大家应该很熟悉了，使用大模型来抠图也属于很常见的功能了，但是在操作一些相对隐私的图片总会有一点点担心。那么在自己的电脑上跑一个大模型？ 电脑的性能够呛！ 难道就没有什么离线的大模型可以用嘛？</p>
-<p>相信很多小伙伴都听过<code>Transformers.js</code>，一个JavaScript库，它允许开发者在浏览器或Node.js环境中使用Hugging Face的预训练机器学习模型，无需服务器支持</p>
-<p>最近花了一点时间（主要是借助豆包）来写了一个网页，支持在浏览器本地直接跑RMBG V1.4模型，实现离线的智能抠图功能。 下来看看整体的表现情况</p>]]></summary>
-    <content type="html"><![CDATA[<p>抠图的场景大家应该很熟悉了，使用大模型来抠图也属于很常见的功能了，但是在操作一些相对隐私的图片总会有一点点担心。那么在自己的电脑上跑一个大模型？ 电脑的性能够呛！ 难道就没有什么离线的大模型可以用嘛？</p>
-<p>相信很多小伙伴都听过<code>Transformers.js</code>，一个JavaScript库，它允许开发者在浏览器或Node.js环境中使用Hugging Face的预训练机器学习模型，无需服务器支持</p>
-<p>最近花了一点时间（主要是借助豆包）来写了一个网页，支持在浏览器本地直接跑RMBG V1.4模型，实现离线的智能抠图功能。 下来看看整体的表现情况</p>
-<figure><img src="/imgs/column/ai/5-1.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>支持本地上传图片、粘贴上传图片、拖拽上传图片三种方式；首次访问网页时，会自动下载大模型(约40M)，下载成功之后会在提示区域显示“模型已加载完成”，之后所有的操作将基于用户的浏览器进行操作，无后端交互，隐私无忧</p>
-<figure><img src="/imgs/column/ai/5-2.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 实际体验</h3>
-<p>有兴趣的小伙伴可以实际体验，访问地址：<a href="https://ai.hhui.top/app/rmBg.html" target="_blank" rel="noopener noreferrer">https://ai.hhui.top/app/rmBg.html</a></p>
-<p>它的核心玩法很简单粗暴：</p>
-<ol>
-<li>打开网页。</li>
-<li>选择本地图片（或拖拽或粘贴一个图片）。</li>
-<li>点击开始处理图片</li>
-<li>几秒后（看图片大小和机器性能），抠好的图直接显示/下载。</li>
-</ol>
-<figure><img src="/imgs/column/ai/5-3.gif" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p><strong>这体验就丝滑了：</strong></p>
-<ul>
-<li><strong>速度起飞：</strong> 省了上传下载的大头时间，处理速度就看用户本机CPU/GPU了。</li>
-<li><strong>隐私拉满：</strong> 用户数据本地处理，安全感爆棚，合规风险骤降。</li>
-<li><strong>零成本调用：</strong> 对开发者/服务提供方来说，没有图片传输的带宽成本，没有按次调用的API费用，服务器压力？不存在的！</li>
-<li><strong>开箱即用：</strong> 用户不用装软件，不用注册，打开就用，用完就走。</li>
-</ul>
-<h3> 关键技术说明</h3>
-<p>怎么做到的？关键点在这儿（技术老铁们看过来）：</p>
-<ol>
-<li><strong>模型本地化：</strong> 这个网页背后，在首次加载时（或按需），把训练好的抠图模型（onnx）<strong>直接下载到了用户的浏览器缓存里</strong>。模型大小约40M，百兆网速的小伙伴也就是几秒的加载时间。</li>
-<li><strong>浏览器内推理引擎：</strong> 依靠的是强大的 <strong><code>transformers.js</code></strong> 。它们提供了在浏览器JavaScript环境中直接加载和运行AI模型的能力。</li>
-</ol>
-<p>对咱们开发者有啥启发？</p>
-<ol>
-<li><strong>边缘计算的魅力：</strong> 这就是“边缘计算”在Web端的生动体现啊！把计算负载从中心服务器下放到终端设备（浏览器），解决延迟、隐私、成本问题。想想看，除了抠图，像简单的图像分类、风格迁移、文本摘要、甚至轻量级的语音识别，是不是都有可能搬到浏览器里？</li>
-<li><strong>Web ML 生态成熟：</strong> <code>transformers.js</code>、ONNX Runtime Web、TensorFlow.js 这些工具链越来越成熟，让在Web端部署和运行（尤其是优化后的）模型不再是天方夜谭。前端工程师的武器库又丰富了！</li>
-<li><strong>用户体验新思路：</strong> 对于需要处理用户本地数据的应用（图片、文档、音视频片段），<strong>“本地优先”</strong> 的处理策略能极大提升用户体验和信任度。这个抠图工具就是个很好的样板。</li>
-<li><strong>模型优化是王道：</strong> 浏览器环境资源有限（内存、算力），模型必须<strong>轻量化、高效化</strong>。这倒逼我们在模型设计、剪枝、量化、格式转换上做更多优化工作。</li>
-</ol>
-<p><strong>值得一试吗？</strong></p>
-<p>当然！无论你是：</p>
-<ul>
-<li><strong>好奇宝宝：</strong> 想看看浏览器里跑模型到底啥感觉？</li>
-<li><strong>前端攻城狮：</strong> 想探索Web ML的可能性边界？</li>
-<li><strong>后端/全栈：</strong> 在琢磨如何降低服务端负载、优化成本结构？</li>
-<li><strong>产品经理：</strong> 在寻找提升用户体验、增强隐私卖点的方案？</li>
-</ul>
-<p>这个网页都值得你点开玩一玩：<strong><a href="https://ai.hhui.top/app/rmBg.html" target="_blank" rel="noopener noreferrer">https://ai.hhui.top/app/rmBg.html</a></strong></p>
-<p><strong>实际体验感受：</strong></p>
-<ul>
-<li>首次加载可能需要下载模型（40MB级别），有点耐心。</li>
-<li>抠图速度取决于你电脑性能，实测普通照片几秒到十几秒搞定，效果在浏览器里跑成这样相当不错了（当然不能和顶级桌面软件比）。</li>
-<li>最大的爽点：图片真的没上传！打开浏览器开发者工具 - 网络（Network）标签页，你会看到除了加载网页本身和模型文件，<strong>处理过程中没有任何图片上传的请求！</strong> 这感觉，踏实。</li>
-</ul>
-<p><strong>最后叨叨：</strong></p>
-<p>这个网页虽然是个工具，但它展示的思路非常有价值。随着Web ML技术的进步和终端设备算力的提升，<strong>把更多AI能力“沉”到浏览器端</strong>，会是优化用户体验、降低成本、保护隐私的一个重要方向。对于隐私优先的小伙伴，不妨收藏一波😊</p>
-<p><strong>链接再放一次，动手试试吧：</strong>
-<a href="https://ai.hhui.top/app/rmBg.html" target="_blank" rel="noopener noreferrer">https://ai.hhui.top/app/rmBg.html</a></p>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="AI"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2025-06-13T17:15:07.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">4. 不借助AI也可以实现图片转线稿</title>
-    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/03.%E4%B8%8D%E5%80%9F%E5%8A%A9AI%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E7%BA%BF%E7%A8%BF.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/03.%E4%B8%8D%E5%80%9F%E5%8A%A9AI%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E7%BA%BF%E7%A8%BF.html"/>
-    <updated>2025-06-11T08:44:39.000Z</updated>
-    <summary type="html"><![CDATA[<p>最近准备实现一个根据图片生成简笔画的应用，研究了下现在的ai能力，在使用百度的图片提取线稿的时候发现AI处理能力是真的强，比如下面是几个提取case</p>
-<figure><img src="/imgs/column/ai/4-1.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>从整体的实现效果来看，还是非常不错的，对于现实人物、3d图、2d卡通、建筑的线稿提取结果可以说几近完美了。唯一的小问题就是处理时间长了一点，也不免费...</p>
-<p>那么有没有其他开源的工具可以直接使用呢，发现了两个有意思的开源项目，一个是基于机器学习训练结果的，另一个则是直接使用算法(代码行&lt;50行)进行提取转换</p>]]></summary>
-    <content type="html"><![CDATA[<p>最近准备实现一个根据图片生成简笔画的应用，研究了下现在的ai能力，在使用百度的图片提取线稿的时候发现AI处理能力是真的强，比如下面是几个提取case</p>
-<figure><img src="/imgs/column/ai/4-1.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>从整体的实现效果来看，还是非常不错的，对于现实人物、3d图、2d卡通、建筑的线稿提取结果可以说几近完美了。唯一的小问题就是处理时间长了一点，也不免费...</p>
-<p>那么有没有其他开源的工具可以直接使用呢，发现了两个有意思的开源项目，一个是基于机器学习训练结果的，另一个则是直接使用算法(代码行&lt;50行)进行提取转换</p>
-<h3> 基于训练模型 rocca/informative-drawings-line-art-onnx</h3>
-<p>模型地址-&gt; <a href="https://huggingface.co/rocca/informative-drawings-line-art-onnx" target="_blank" rel="noopener noreferrer">https://huggingface.co/rocca/informative-drawings-line-art-onnx</a></p>
-<p>项目源码：<a href="https://github.com/josephrocca/image-to-line-art-js" target="_blank" rel="noopener noreferrer">https://github.com/josephrocca/image-to-line-art-js</a></p>
-<p>使用约17兆的模型即可实现线图提取功能，下面是官方的demo表现情况</p>
-<figure><img src="/imgs/column/ai/4-2.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>从上面的处理结果也可以看出，对于卡通图像的转换效果还是可以的；但是对于显示人物、建筑之类的效果就一一般般了</p>
-<h3> 算法提取</h3>
-<p>项目源码：<a href="https://github.com/FlandreDaisuki/Outline-Extractor" target="_blank" rel="noopener noreferrer">Outline-Extractor</a></p>
-<p>核心算法</p>
-<div class="language-javascript line-numbers-mode" data-ext="js"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>在线体验地址: <a href="https://ai.hhui.top/app/imgline.html" target="_blank" rel="noopener noreferrer">https://ai.hhui.top/app/imgline.html</a></p>
-<p>整体表现效果如下:</p>
-<figure><img src="/imgs/column/ai/4-3.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>从实际的效果来看，和上面的训练模型的处理结果半斤八两，不过好处也很明显，处理效率明显更高，且无外部依赖</p>
-<h3> 小结</h3>
-<p>下面是具体的对照结果，对于卡通图片，如果希望提取线稿，会发现即便不使用大模型、机器学习的能力，借助最基础的算法处理，不超过50行的代码也可以实现相对理想的效果</p>
-<table>
-<thead>
-<tr>
-<th>原图</th>
-<th>百度提取线图</th>
-<th>训练模型处理</th>
-<th>算法提取</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img src="/imgs/column/ai/4-4-0.jpg" alt="" loading="lazy"></td>
-<td><img src="/imgs/column/ai/4-4-b-0.jpg" alt="" loading="lazy"></td>
-<td><img src="/imgs/column/ai/4-4-t-0.jpg" alt="" loading="lazy"></td>
-<td><img src="/imgs/column/ai/4-4-s-0.jpg" alt="" loading="lazy"></td>
-</tr>
-<tr>
-<td><img src="/imgs/column/ai/4-4-1.jpg" alt="" loading="lazy"></td>
-<td><img src="/imgs/column/ai/4-4-b-1.jpg" alt="" loading="lazy"></td>
-<td><img src="/imgs/column/ai/4-4-t-1.jpg" alt="" loading="lazy"></td>
-<td><img src="/imgs/column/ai/4-4-s-1.jpg" alt="" loading="lazy"></td>
-</tr>
-<tr>
-<td><img src="/imgs/column/ai/4-4-2.jpg" alt="" loading="lazy"></td>
-<td><img src="/imgs/column/ai/4-4-b-2.jpg" alt="" loading="lazy"></td>
-<td><img src="/imgs/column/ai/4-4-t-2.jpg" alt="" loading="lazy"></td>
-<td><img src="/imgs/column/ai/4-4-s-2.jpg" alt="" loading="lazy"></td>
-</tr>
-<tr>
-<td><img src="/imgs/column/ai/4-4-3.jpg" alt="" loading="lazy"></td>
-<td><img src="/imgs/column/ai/4-4-b-3.jpg" alt="" loading="lazy"></td>
-<td><img src="/imgs/column/ai/4-4-t-3.jpg" alt="" loading="lazy"></td>
-<td><img src="/imgs/column/ai/4-4-s-3.jpg" alt="" loading="lazy"></td>
-</tr>
-</tbody>
-</table>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="AI"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2025-06-11T10:15:07.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">AI专栏</title>
-    <id>https://liuyueyi.github.io/tutorial/column/ai/</id>
-    <link href="https://liuyueyi.github.io/tutorial/column/ai/"/>
-    <updated>2025-05-30T08:22:22.000Z</updated>
-    <summary type="html"><![CDATA[<h1> AI专栏</h1>
-<ul class="task-list-container">
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-0" disabled="disabled"><label class="task-list-item-label" for="task-item-0"> <a href="/tutorial/column/ai/aicoding/" target="blank">氛围编程 | 人人都是程序员</a></label></li>
-</ul>]]></summary>
-    <content type="html"><![CDATA[<h1> AI专栏</h1>
-<ul class="task-list-container">
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-0" disabled="disabled"><label class="task-list-item-label" for="task-item-0"> <a href="/tutorial/column/ai/aicoding/" target="blank">氛围编程 | 人人都是程序员</a></label></li>
-</ul>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2025-05-30T08:22:22.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
     <title type="text">1. 首个完全由AI生成的APP-ColorPicker上架啦</title>
-    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/00.%E9%A6%96%E4%B8%AA%E5%AE%8C%E5%85%A8%E7%94%B1AI%E7%94%9F%E6%88%90%E7%9A%84APP%E4%B8%8A%E6%9E%B6%E5%95%A6.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/00.%E9%A6%96%E4%B8%AA%E5%AE%8C%E5%85%A8%E7%94%B1AI%E7%94%9F%E6%88%90%E7%9A%84APP%E4%B8%8A%E6%9E%B6%E5%95%A6.html"/>
-    <updated>2025-05-30T08:22:22.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/01.%E9%A6%96%E4%B8%AA%E5%AE%8C%E5%85%A8%E7%94%B1AI%E7%94%9F%E6%88%90%E7%9A%84APP%E4%B8%8A%E6%9E%B6%E5%95%A6.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/01.%E9%A6%96%E4%B8%AA%E5%AE%8C%E5%85%A8%E7%94%B1AI%E7%94%9F%E6%88%90%E7%9A%84APP%E4%B8%8A%E6%9E%B6%E5%95%A6.html"/>
+    <updated>2025-07-08T09:13:37.000Z</updated>
     <summary type="html"><![CDATA[<p>hello大家好，我是一灰灰，距离上一次和大家分享技术相关内容已经过去了两年多了；若不是最近AICoding的大火，估计也不会继续发文啦。最近这个月深度体验了ai coding的能力，也借助字节的Trae完成了几个产品，借着首个app上架一周的时间、并获得首个自然用户的评价（虽然是个差评）这个时机，给大家分享一下我最近在筹划的一个专栏 -- 《人人都是程序员》</p>
 <blockquote>
 <p>第一手原文：<a href="https://mp.weixin.qq.com/s/qtxF-vnUeKrp9BZZRaeeSw" target="_blank" rel="noopener noreferrer">首个完全由AI生成的APP-ColorPicker上架啦 | 一灰灰blog的公众号</a></p>
@@ -422,9 +158,9 @@
   </entry>
   <entry>
     <title type="text">2. 图文手把手教你由0到1基于AI完成“垃圾消除小游戏”</title>
-    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/01.%E4%BB%8E0%E5%88%B01%E5%9F%BA%E4%BA%8EAI%E7%94%9F%E6%88%90%E5%B0%8F%E6%B8%B8%E6%88%8F.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/01.%E4%BB%8E0%E5%88%B01%E5%9F%BA%E4%BA%8EAI%E7%94%9F%E6%88%90%E5%B0%8F%E6%B8%B8%E6%88%8F.html"/>
-    <updated>2025-05-30T08:22:22.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/02.%E4%BB%8E0%E5%88%B01%E5%9F%BA%E4%BA%8EAI%E7%94%9F%E6%88%90%E5%B0%8F%E6%B8%B8%E6%88%8F.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/02.%E4%BB%8E0%E5%88%B01%E5%9F%BA%E4%BA%8EAI%E7%94%9F%E6%88%90%E5%B0%8F%E6%B8%B8%E6%88%8F.html"/>
+    <updated>2025-07-08T09:13:37.000Z</updated>
     <summary type="html"><![CDATA[<p>上一篇文章  <a href="https://mp.weixin.qq.com/s/qtxF-vnUeKrp9BZZRaeeSw" target="_blank" rel="noopener noreferrer">首个完全由AI生成的APP上架啦 - ColorPicker</a>  被喷得有点惨，本来是想分享一下最近使用AiCoding的探索发现，结果被好些大佬说是 “毫无技术含量、全是生产互联网垃圾”。说实话，看到这些评论还有点伤心，毕竟八年技术分享无人问，一朝水文大众喷。</p>
 <p>虽然不被技术大咖认可，但我的初衷依然和上篇文章回复保持一致</p>
 <figure><img src="/imgs/column/ai/2-1.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>]]></summary>
@@ -571,9 +307,9 @@
   </entry>
   <entry>
     <title type="text">3. 图文教你打包基于AI完成“垃圾消除小游戏”</title>
-    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/02.%E4%BB%8E0%E5%88%B01%E6%95%99%E4%BD%A0%E6%89%93%E5%8C%85AI%E7%94%9F%E6%88%90%E7%9A%84%E5%B0%8F%E6%B8%B8%E6%88%8F.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/02.%E4%BB%8E0%E5%88%B01%E6%95%99%E4%BD%A0%E6%89%93%E5%8C%85AI%E7%94%9F%E6%88%90%E7%9A%84%E5%B0%8F%E6%B8%B8%E6%88%8F.html"/>
-    <updated>2025-05-30T08:22:22.000Z</updated>
+    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/03.%E4%BB%8E0%E5%88%B01%E6%95%99%E4%BD%A0%E6%89%93%E5%8C%85AI%E7%94%9F%E6%88%90%E7%9A%84%E5%B0%8F%E6%B8%B8%E6%88%8F.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/03.%E4%BB%8E0%E5%88%B01%E6%95%99%E4%BD%A0%E6%89%93%E5%8C%85AI%E7%94%9F%E6%88%90%E7%9A%84%E5%B0%8F%E6%B8%B8%E6%88%8F.html"/>
+    <updated>2025-07-08T09:13:37.000Z</updated>
     <summary type="html"><![CDATA[<p>上一篇使用图文的方式演示了如何从0到1借助ai生成一个可运行的小游戏，接下来我将通过图文的方式，手把手教你将上面生成的小游戏，打包出来供其他人玩耍</p>
 <p>接下来将分别介绍常见的三种打包发行方式</p>
 <blockquote>
@@ -794,6 +530,321 @@
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2025-03-29T21:15:07.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">4. 不借助AI也可以实现图片转线稿</title>
+    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/04.%E4%B8%8D%E5%80%9F%E5%8A%A9AI%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E7%BA%BF%E7%A8%BF.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/04.%E4%B8%8D%E5%80%9F%E5%8A%A9AI%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%BD%AC%E7%BA%BF%E7%A8%BF.html"/>
+    <updated>2025-07-08T09:13:37.000Z</updated>
+    <summary type="html"><![CDATA[<p>最近准备实现一个根据图片生成简笔画的应用，研究了下现在的ai能力，在使用百度的图片提取线稿的时候发现AI处理能力是真的强，比如下面是几个提取case</p>
+<figure><img src="/imgs/column/ai/4-1.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>从整体的实现效果来看，还是非常不错的，对于现实人物、3d图、2d卡通、建筑的线稿提取结果可以说几近完美了。唯一的小问题就是处理时间长了一点，也不免费...</p>
+<p>那么有没有其他开源的工具可以直接使用呢，发现了两个有意思的开源项目，一个是基于机器学习训练结果的，另一个则是直接使用算法(代码行&lt;50行)进行提取转换</p>]]></summary>
+    <content type="html"><![CDATA[<p>最近准备实现一个根据图片生成简笔画的应用，研究了下现在的ai能力，在使用百度的图片提取线稿的时候发现AI处理能力是真的强，比如下面是几个提取case</p>
+<figure><img src="/imgs/column/ai/4-1.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>从整体的实现效果来看，还是非常不错的，对于现实人物、3d图、2d卡通、建筑的线稿提取结果可以说几近完美了。唯一的小问题就是处理时间长了一点，也不免费...</p>
+<p>那么有没有其他开源的工具可以直接使用呢，发现了两个有意思的开源项目，一个是基于机器学习训练结果的，另一个则是直接使用算法(代码行&lt;50行)进行提取转换</p>
+<h3> 基于训练模型 rocca/informative-drawings-line-art-onnx</h3>
+<p>模型地址-&gt; <a href="https://huggingface.co/rocca/informative-drawings-line-art-onnx" target="_blank" rel="noopener noreferrer">https://huggingface.co/rocca/informative-drawings-line-art-onnx</a></p>
+<p>项目源码：<a href="https://github.com/josephrocca/image-to-line-art-js" target="_blank" rel="noopener noreferrer">https://github.com/josephrocca/image-to-line-art-js</a></p>
+<p>使用约17兆的模型即可实现线图提取功能，下面是官方的demo表现情况</p>
+<figure><img src="/imgs/column/ai/4-2.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>从上面的处理结果也可以看出，对于卡通图像的转换效果还是可以的；但是对于显示人物、建筑之类的效果就一一般般了</p>
+<h3> 算法提取</h3>
+<p>项目源码：<a href="https://github.com/FlandreDaisuki/Outline-Extractor" target="_blank" rel="noopener noreferrer">Outline-Extractor</a></p>
+<p>核心算法</p>
+<div class="language-javascript line-numbers-mode" data-ext="js"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>在线体验地址: <a href="https://ai.hhui.top/app/imgline.html" target="_blank" rel="noopener noreferrer">https://ai.hhui.top/app/imgline.html</a></p>
+<p>整体表现效果如下:</p>
+<figure><img src="/imgs/column/ai/4-3.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>从实际的效果来看，和上面的训练模型的处理结果半斤八两，不过好处也很明显，处理效率明显更高，且无外部依赖</p>
+<h3> 小结</h3>
+<p>下面是具体的对照结果，对于卡通图片，如果希望提取线稿，会发现即便不使用大模型、机器学习的能力，借助最基础的算法处理，不超过50行的代码也可以实现相对理想的效果</p>
+<table>
+<thead>
+<tr>
+<th>原图</th>
+<th>百度提取线图</th>
+<th>训练模型处理</th>
+<th>算法提取</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/imgs/column/ai/4-4-0.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-b-0.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-t-0.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-s-0.jpg" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td><img src="/imgs/column/ai/4-4-1.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-b-1.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-t-1.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-s-1.jpg" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td><img src="/imgs/column/ai/4-4-2.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-b-2.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-t-2.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-s-2.jpg" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td><img src="/imgs/column/ai/4-4-3.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-b-3.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-t-3.jpg" alt="" loading="lazy"></td>
+<td><img src="/imgs/column/ai/4-4-s-3.jpg" alt="" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="AI"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-06-11T10:15:07.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">5. 浏览器中跑大模型-搭建一个自动抠图服务</title>
+    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/05.%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%B7%91%E5%A4%A7%E6%A8%A1%E5%9E%8B-%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%8A%A8%E6%8A%A0%E5%9B%BE%E6%9C%8D%E5%8A%A1.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/05.%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%B7%91%E5%A4%A7%E6%A8%A1%E5%9E%8B-%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%8A%A8%E6%8A%A0%E5%9B%BE%E6%9C%8D%E5%8A%A1.html"/>
+    <updated>2025-07-08T09:13:37.000Z</updated>
+    <summary type="html"><![CDATA[<p>抠图的场景大家应该很熟悉了，使用大模型来抠图也属于很常见的功能了，但是在操作一些相对隐私的图片总会有一点点担心。那么在自己的电脑上跑一个大模型？ 电脑的性能够呛！ 难道就没有什么离线的大模型可以用嘛？</p>
+<p>相信很多小伙伴都听过<code>Transformers.js</code>，一个JavaScript库，它允许开发者在浏览器或Node.js环境中使用Hugging Face的预训练机器学习模型，无需服务器支持</p>
+<p>最近花了一点时间（主要是借助豆包）来写了一个网页，支持在浏览器本地直接跑RMBG V1.4模型，实现离线的智能抠图功能。 下来看看整体的表现情况</p>]]></summary>
+    <content type="html"><![CDATA[<p>抠图的场景大家应该很熟悉了，使用大模型来抠图也属于很常见的功能了，但是在操作一些相对隐私的图片总会有一点点担心。那么在自己的电脑上跑一个大模型？ 电脑的性能够呛！ 难道就没有什么离线的大模型可以用嘛？</p>
+<p>相信很多小伙伴都听过<code>Transformers.js</code>，一个JavaScript库，它允许开发者在浏览器或Node.js环境中使用Hugging Face的预训练机器学习模型，无需服务器支持</p>
+<p>最近花了一点时间（主要是借助豆包）来写了一个网页，支持在浏览器本地直接跑RMBG V1.4模型，实现离线的智能抠图功能。 下来看看整体的表现情况</p>
+<figure><img src="/imgs/column/ai/5-1.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>支持本地上传图片、粘贴上传图片、拖拽上传图片三种方式；首次访问网页时，会自动下载大模型(约40M)，下载成功之后会在提示区域显示“模型已加载完成”，之后所有的操作将基于用户的浏览器进行操作，无后端交互，隐私无忧</p>
+<figure><img src="/imgs/column/ai/5-2.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 实际体验</h3>
+<p>有兴趣的小伙伴可以实际体验，访问地址：<a href="https://ai.hhui.top/app/rmBg.html" target="_blank" rel="noopener noreferrer">https://ai.hhui.top/app/rmBg.html</a></p>
+<p>它的核心玩法很简单粗暴：</p>
+<ol>
+<li>打开网页。</li>
+<li>选择本地图片（或拖拽或粘贴一个图片）。</li>
+<li>点击开始处理图片</li>
+<li>几秒后（看图片大小和机器性能），抠好的图直接显示/下载。</li>
+</ol>
+<figure><img src="/imgs/column/ai/5-3.gif" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p><strong>这体验就丝滑了：</strong></p>
+<ul>
+<li><strong>速度起飞：</strong> 省了上传下载的大头时间，处理速度就看用户本机CPU/GPU了。</li>
+<li><strong>隐私拉满：</strong> 用户数据本地处理，安全感爆棚，合规风险骤降。</li>
+<li><strong>零成本调用：</strong> 对开发者/服务提供方来说，没有图片传输的带宽成本，没有按次调用的API费用，服务器压力？不存在的！</li>
+<li><strong>开箱即用：</strong> 用户不用装软件，不用注册，打开就用，用完就走。</li>
+</ul>
+<h3> 关键技术说明</h3>
+<p>怎么做到的？关键点在这儿（技术老铁们看过来）：</p>
+<ol>
+<li><strong>模型本地化：</strong> 这个网页背后，在首次加载时（或按需），把训练好的抠图模型（onnx）<strong>直接下载到了用户的浏览器缓存里</strong>。模型大小约40M，百兆网速的小伙伴也就是几秒的加载时间。</li>
+<li><strong>浏览器内推理引擎：</strong> 依靠的是强大的 <strong><code>transformers.js</code></strong> 。它们提供了在浏览器JavaScript环境中直接加载和运行AI模型的能力。</li>
+</ol>
+<p>对咱们开发者有啥启发？</p>
+<ol>
+<li><strong>边缘计算的魅力：</strong> 这就是“边缘计算”在Web端的生动体现啊！把计算负载从中心服务器下放到终端设备（浏览器），解决延迟、隐私、成本问题。想想看，除了抠图，像简单的图像分类、风格迁移、文本摘要、甚至轻量级的语音识别，是不是都有可能搬到浏览器里？</li>
+<li><strong>Web ML 生态成熟：</strong> <code>transformers.js</code>、ONNX Runtime Web、TensorFlow.js 这些工具链越来越成熟，让在Web端部署和运行（尤其是优化后的）模型不再是天方夜谭。前端工程师的武器库又丰富了！</li>
+<li><strong>用户体验新思路：</strong> 对于需要处理用户本地数据的应用（图片、文档、音视频片段），<strong>“本地优先”</strong> 的处理策略能极大提升用户体验和信任度。这个抠图工具就是个很好的样板。</li>
+<li><strong>模型优化是王道：</strong> 浏览器环境资源有限（内存、算力），模型必须<strong>轻量化、高效化</strong>。这倒逼我们在模型设计、剪枝、量化、格式转换上做更多优化工作。</li>
+</ol>
+<p><strong>值得一试吗？</strong></p>
+<p>当然！无论你是：</p>
+<ul>
+<li><strong>好奇宝宝：</strong> 想看看浏览器里跑模型到底啥感觉？</li>
+<li><strong>前端攻城狮：</strong> 想探索Web ML的可能性边界？</li>
+<li><strong>后端/全栈：</strong> 在琢磨如何降低服务端负载、优化成本结构？</li>
+<li><strong>产品经理：</strong> 在寻找提升用户体验、增强隐私卖点的方案？</li>
+</ul>
+<p>这个网页都值得你点开玩一玩：<strong><a href="https://ai.hhui.top/app/rmBg.html" target="_blank" rel="noopener noreferrer">https://ai.hhui.top/app/rmBg.html</a></strong></p>
+<p><strong>实际体验感受：</strong></p>
+<ul>
+<li>首次加载可能需要下载模型（40MB级别），有点耐心。</li>
+<li>抠图速度取决于你电脑性能，实测普通照片几秒到十几秒搞定，效果在浏览器里跑成这样相当不错了（当然不能和顶级桌面软件比）。</li>
+<li>最大的爽点：图片真的没上传！打开浏览器开发者工具 - 网络（Network）标签页，你会看到除了加载网页本身和模型文件，<strong>处理过程中没有任何图片上传的请求！</strong> 这感觉，踏实。</li>
+</ul>
+<p><strong>最后叨叨：</strong></p>
+<p>这个网页虽然是个工具，但它展示的思路非常有价值。随着Web ML技术的进步和终端设备算力的提升，<strong>把更多AI能力“沉”到浏览器端</strong>，会是优化用户体验、降低成本、保护隐私的一个重要方向。对于隐私优先的小伙伴，不妨收藏一波😊</p>
+<p><strong>链接再放一次，动手试试吧：</strong>
+<a href="https://ai.hhui.top/app/rmBg.html" target="_blank" rel="noopener noreferrer">https://ai.hhui.top/app/rmBg.html</a></p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="AI"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-06-13T17:15:07.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">6. 基于Trae开发android原生应用，顺利上架谷歌应用市场</title>
+    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/06.%E5%9F%BA%E4%BA%8ETrae%E5%BC%80%E5%8F%91android%E5%8E%9F%E7%94%9F%E5%BA%94%E7%94%A8%E5%B9%B6%E4%B8%8A%E6%9E%B6%E5%BA%94%E7%94%A8%E5%B8%82%E5%9C%BA.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/06.%E5%9F%BA%E4%BA%8ETrae%E5%BC%80%E5%8F%91android%E5%8E%9F%E7%94%9F%E5%BA%94%E7%94%A8%E5%B9%B6%E4%B8%8A%E6%9E%B6%E5%BA%94%E7%94%A8%E5%B8%82%E5%9C%BA.html"/>
+    <updated>2025-07-08T09:13:37.000Z</updated>
+    <summary type="html"><![CDATA[<p>之前使用Trae开发的项目主要是基于web技术栈来搭建的，借助uniapp的生态体系，来生成多端可运行的应用，整体实现链路还是很顺畅的。但是最近准备开发一个android的小部件，需要使用原生的kotlin进行开发，发现直接使用Trae做原生开发，也意外的顺利</p>
+<p>下来进行简单的记录一下，使用Trae进行原生开发的过程</p>
+<h2> 一、应用预览</h2>
+<p>需要开发的应用本身比较简单，主要是为用户提供两种类型的小组件，文本小组件  + 计时小组件</p>
+<p>支持用户在手机桌面上，添加一些豆腐块的文案/倒计时，用于装饰or提醒</p>
+<figure><img src="https://ai.hhui.top/static/textwidget/s0.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>]]></summary>
+    <content type="html"><![CDATA[<p>之前使用Trae开发的项目主要是基于web技术栈来搭建的，借助uniapp的生态体系，来生成多端可运行的应用，整体实现链路还是很顺畅的。但是最近准备开发一个android的小部件，需要使用原生的kotlin进行开发，发现直接使用Trae做原生开发，也意外的顺利</p>
+<p>下来进行简单的记录一下，使用Trae进行原生开发的过程</p>
+<h2> 一、应用预览</h2>
+<p>需要开发的应用本身比较简单，主要是为用户提供两种类型的小组件，文本小组件  + 计时小组件</p>
+<p>支持用户在手机桌面上，添加一些豆腐块的文案/倒计时，用于装饰or提醒</p>
+<figure><img src="https://ai.hhui.top/static/textwidget/s0.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>app体验地址： <a href="https://play.google.com/store/apps/details?id=com.github.hui.textwidget" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.github.hui.textwidget</a></p>
+<figure><img src="/imgs/column/ai/6-1.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h2> 二、原生开发流程</h2>
+<p>接下来我们看一下使用trae进行原生开发的流程，基本思路和之前介绍的 <a href="https://mp.weixin.qq.com/s/mu9l0y18mNE3PlI8EQhrYw" target="_blank" rel="noopener noreferrer">毫无技术难度：由0到1基于AI完成“垃圾消除小游戏”</a> 一致，只是部分具体的操作有些差异</p>
+<h3> 1. 新建项目</h3>
+<p>使用android studio创建一个空的项目</p>
+<figure><img src="/imgs/column/ai/6-2.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>在弹窗中，输入项目相关信息</p>
+<figure><img src="/imgs/column/ai/6-3.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 2. 使用Trae打开项目</h3>
+<p>使用trae打开刚才创建的项目，然后进行初始化</p>
+<figure><img src="/imgs/column/ai/6-4.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>首先声明项目类型，然后给出指令，让trae帮我们自动生成对应的界面；</p>
+<p>需要注意的时，首次进行kotlin开发时，trae对kotlin语言的支持不够友好，我们需要在插件市场中安装相关插件</p>
+<figure><img src="/imgs/column/ai/6-5.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 3. 基于对话的功能实现</h3>
+<p>因为这个app的设计非常简单，一个文本小部件、一个计时小部件；</p>
+<p>因此核心的功能实现分两块</p>
+<ul>
+<li>小部件设置相关</li>
+<li>小部件展示相关</li>
+</ul>
+<p>其中小部件的设置，主要是支持用户设置自己想要展示的文本、倒计时还是正计时，背景颜色、文字颜色、对齐方式等</p>
+<figure><img src="/imgs/column/ai/6-6.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>小部件因为有两种不同的类型：文本 + 计时，因此我们也需要实现两个小部件</p>
+<figure><img src="/imgs/column/ai/6-7.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<blockquote>
+<p>说明：由于原生开发不像页面开发可以直接浏览器实时预览效果；原生开发过程中，我们需要不断的使用android studio查看生成的代码是否存在语法问题，借助Android Studio的模拟器来预览生成的效果</p>
+</blockquote>
+<figure><img src="/imgs/column/ai/6-8.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 4. 打包上传</h3>
+<p>相比较于uniapp的打包，原生开发就简单很多了，无需额外操作；直接在原生项目中打包即可</p>
+<figure><img src="/imgs/column/ai/6-9.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h2> 三、上架应用市场</h2>
+<p>上架应用市场的流程之前介绍过，有兴趣的小伙伴可以翻一下</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/e3wZ7wMnKepm6R1Cz2DbAw?token=32118257&amp;lang=zh_CN" target="_blank" rel="noopener noreferrer">AI生成的垃圾小游戏-上架谷歌应用市场全流程-图文介绍</a></li>
+</ul>
+<p>我们在上架之前，先集成一下admob广告（赚一点是一点嘛），这里的广告集成与之前介绍的有一些区别，因为原生开发主要是基于Jetpack来实现的，因此我们的广告sdk的集成方式也需要相应的进行调整</p>
+<p>比如新增一个底部的banner广告 ，直接在官方的demo扣过来，让trae进行二次改造</p>
+<figure><img src="/imgs/column/ai/6-10.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h2> 四、小结</h2>
+<p>作为一个业余前端选手，借助热火朝天的“氛围编程”也实现了一些没什么鸟用的应用，没有太大障碍的完成了webapp、网页开发、浏览器插件、基于uniapp的跨端开发(小程序、h5、安卓应用)，现在也完成了基于原生kotlin的app开发全流程，整体感受就是只要你愿意折腾，技术的门槛是越来越低的</p>
+<p>下面是一些借助Trae进行开发的过程，有兴趣的小伙伴可以看看</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487677&amp;idx=1&amp;sn=3cb47b3c8d84c7f3d299174205bdaa07&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">首个完全由AI生成的APP上架啦 - ColorPicker</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487748&amp;idx=1&amp;sn=eac77c82547603cd19725260d1bb584a&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">毫无技术难度：由0到1基于AI完成“垃圾消除小游戏”</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487847&amp;idx=1&amp;sn=ee5bea7a986f364314c50f667bbe9dfb&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">AI生成的垃圾小游戏-上架谷歌应用市场全流程-图文介绍</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487868&amp;idx=1&amp;sn=2a80743e416a3b00e3c66421547c5c94&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">AI 生成 web 应用，如何通过广告变现 “钱” 景无限</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487901&amp;idx=1&amp;sn=d7130ffcb19fde9d7ac23cdc529c08df&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">AI生成APP-接入谷歌变现图文攻略</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487950&amp;idx=1&amp;sn=09a9823ebdee85fb2d5bf0331504b48b&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">借助AI赚美刀-谷歌广告收款攻略</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247487936&amp;idx=1&amp;sn=eafd7f1c95e06fff4f5ed1092ae68508&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">借助Trae的智能体完成我的浏览器主页个性化改造图文全流程</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247488002&amp;idx=1&amp;sn=5400567e26ca17710b923b3fb119b873&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">AI生成插件上架Chrome应用商店全流程</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU3MTAzNTMzMQ==&amp;mid=2247488089&amp;idx=1&amp;sn=8c57c677237861f88f705918186b7b4c&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">浏览器里直接跑大模型抠图？试试这个借助transform.js搭建网页神器吧</a></li>
+</ul>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="AI"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-06-16T17:15:07.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">7. 基于AI开发三端产品-原型设计</title>
+    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/07.%E5%9F%BA%E4%BA%8EAI%E5%BC%80%E5%8F%91%E4%BA%A7%E5%93%81-%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/07.%E5%9F%BA%E4%BA%8EAI%E5%BC%80%E5%8F%91%E4%BA%A7%E5%93%81-%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1.html"/>
+    <updated>2025-07-08T09:13:37.000Z</updated>
+    <summary type="html"><![CDATA[<p>一恍惚25年就已经过了一半，上半年借助AI开发工具也做了不少小玩具；在下半年，给自己订一个小目标，做一个完整功能更完整的产品，计划做三端（PC、小程序、APP），并且包含独立的后端服务能力。</p>
+<p>实际上我个人也没有特别想做的东西，正好小朋友最近开始学习识字、背诗，那就做一个中华文化知识相关的产品得了</p>
+<h2> 一、 前置准备</h2>
+<p>有想法之后，第一件事情，当然是全网搜一下，有没有类似的可以学习致敬（抄袭）的竞品</p>
+<p>知乎上有一个挺好的话题，- <a href="https://www.zhihu.com/question/21528388" target="_blank" rel="noopener noreferrer">有没有公认比较好的诗词APP推荐？ - 知乎</a></p>]]></summary>
+    <content type="html"><![CDATA[<p>一恍惚25年就已经过了一半，上半年借助AI开发工具也做了不少小玩具；在下半年，给自己订一个小目标，做一个完整功能更完整的产品，计划做三端（PC、小程序、APP），并且包含独立的后端服务能力。</p>
+<p>实际上我个人也没有特别想做的东西，正好小朋友最近开始学习识字、背诗，那就做一个中华文化知识相关的产品得了</p>
+<h2> 一、 前置准备</h2>
+<p>有想法之后，第一件事情，当然是全网搜一下，有没有类似的可以学习致敬（抄袭）的竞品</p>
+<p>知乎上有一个挺好的话题，- <a href="https://www.zhihu.com/question/21528388" target="_blank" rel="noopener noreferrer">有没有公认比较好的诗词APP推荐？ - 知乎</a></p>
+<p>推荐的产品还挺多，app/网站/小程序均有，下面是摘抄目录</p>
+<figure><img src="/imgs/column/ai/7-1.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>产品有一些可以学习的对象；接下来再看看开源社区上是否有可以拿来当“基座”的原型😊</p>
+<p>比如一些数据源：</p>
+<ul>
+<li><a href="https://github.com/caoxingyu/chinese-gushiwen" target="_blank" rel="noopener noreferrer">caoxingyu/chinese-gushiwen: 中华古诗文数据库和API。包含10000首古文(诗、词、歌、赋以及其它形式的文言文)，近4000名作者，10000名句</a></li>
+<li><a href="https://github.com/chanind/hanzi-writer-data" target="_blank" rel="noopener noreferrer">chanind/hanzi-writer-data: The data used by Hanzi Writer</a></li>
+</ul>
+<p>一些可用的产品：</p>
+<ul>
+<li><a href="https://github.com/hefengbao/jingmo/tree/main" target="_blank" rel="noopener noreferrer">hefengbao/jingmo: 『京墨』开源的中华文化宝典 APP，诗（词）文（名句）、汉字、成语、词语、歇后语、绕口令、传统节日、传统色、节气、人物等。</a></li>
+<li><a href="https://github.com/a2636340559/YaFeng" target="_blank" rel="noopener noreferrer">a2636340559/YaFeng: “雅风”古诗词APP</a></li>
+<li><a href="https://github.com/SongC1229/song" target="_blank" rel="noopener noreferrer">SongC1229/song: 基于Flutter框架的诗词app,采用sqlite数据库</a></li>
+</ul>
+<h2> 二、 原型设计</h2>
+<p>基于上面的过程我们大概知道自己想做些啥，但是具体的产品设计这块由于并不专业不知道该怎么做，既然我不会，那就借助一下AI来帮我整一下</p>
+<p>直接大力出奇迹，对于小白完全不考虑什么提示词</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/imgs/column/ai/7-2.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>省略调整的过程，看看AI生成的原型方案</p>
+<div class="language-markdown line-numbers-mode" data-ext="md"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>当然对于一个研发而言，上面的这套设计方案仅使用参考，我还是更喜欢可视化的交互页面</p>
+<h2> 三、快速原型实现</h2>
+<p>使用AI体验最好的就在这里了，我可以直接让它快速将上面的设计实现一个demo出来看看效果</p>
+<figure><img src="/imgs/column/ai/7-3.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>这个生成的网页效果实际上超出了我的预期，至少我自己是设计不出来的。 接下来我们就是基于这个原型进行丰富补全</p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="AI"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-07-08T07:15:07.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">AI专栏</title>
+    <id>https://liuyueyi.github.io/tutorial/column/ai/</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/ai/"/>
+    <updated>2025-05-30T08:22:22.000Z</updated>
+    <summary type="html"><![CDATA[<h1> AI专栏</h1>
+<ul class="task-list-container">
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-0" disabled="disabled"><label class="task-list-item-label" for="task-item-0"> <a href="/tutorial/column/ai/aicoding/" target="blank">氛围编程 | 人人都是程序员</a></label></li>
+</ul>]]></summary>
+    <content type="html"><![CDATA[<h1> AI专栏</h1>
+<ul class="task-list-container">
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-0" disabled="disabled"><label class="task-list-item-label" for="task-item-0"> <a href="/tutorial/column/ai/aicoding/" target="blank">氛围编程 | 人人都是程序员</a></label></li>
+</ul>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-05-30T08:22:22.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
   <entry>
@@ -8119,122 +8170,6 @@ ans <span class="token operator">=</span> traceWatch<span class="token punctuati
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2024-08-02T10:41:58.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">1. Jackson 实用姿势小结</title>
-    <id>https://liuyueyi.github.io/tutorial/java/%E5%BA%8F%E5%88%97%E5%8C%96/01.Jackson-%E5%AE%9E%E7%94%A8%E5%A7%BF%E5%8A%BF%E5%B0%8F%E7%BB%93.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/java/%E5%BA%8F%E5%88%97%E5%8C%96/01.Jackson-%E5%AE%9E%E7%94%A8%E5%A7%BF%E5%8A%BF%E5%B0%8F%E7%BB%93.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>使用json进行数据交互可以说是非常常见的常见，在java侧，常用的json解析框架也不少，比如gson, fastjson以及spring mvc中默认使用的jackson；本文将主要介绍一下jackson的基本使用姿势，比如常见的</p>
-<ul>
-<li>普通对象转json字符串</li>
-<li>json字符串转POJO，转Map/List</li>
-<li>泛型支持</li>
-<li>驼峰/下划线互转，自定义映射关系</li>
-</ul>
-]]></summary>
-    <content type="html"><![CDATA[<p>使用json进行数据交互可以说是非常常见的常见，在java侧，常用的json解析框架也不少，比如gson, fastjson以及spring mvc中默认使用的jackson；本文将主要介绍一下jackson的基本使用姿势，比如常见的</p>
-<ul>
-<li>普通对象转json字符串</li>
-<li>json字符串转POJO，转Map/List</li>
-<li>泛型支持</li>
-<li>驼峰/下划线互转，自定义映射关系</li>
-</ul>
-<!-- more -->
-<h3> 1. 项目依赖</h3>
-<p>使用maven来构建项目，需要使用Jackson进行序列化操作，核心引入下面的包</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2. 基本使用姿势</h3>
-<p>在Jackson中，若希望实现序列化/反序列化，都离不开<code>ObjectMapper</code></p>
-<p>比如将对象转Json String</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>反序列化</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>注意</strong></p>
-<ul>
-<li>jackson与gson/fastjson的一个显著区别在于它的序列化/反序列化有声明异常，使用时需要声明或者主动catch（这一点感觉不太友好）</li>
-<li>其次，不推荐每次都创建一个ObjectMapper对象，可以考虑复用</li>
-</ul>
-<h3> 3. 泛型反序列化</h3>
-<p>对于泛型的反序列化，直接使用上面，传入一个class对象，并不能很好的工作，和Gson/FastJson一样，Jackson也支持根据Type来返序列化</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>重点关注上面的传参，通过<code>objectMapper.getTypeFactory().constructType(type)</code>来创建需要的JavaType对象</p>
-<p>一个demo使用姿势如下</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 4. 转Map/List</h3>
-<p>转普通的Map/List没有什么特殊的</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 5. JsonNode</h3>
-<p>JsonNode为Jackson定义的节点对象，有些类似Gson的<code>JsonObject/JsonArray</code> 和 FastJson的<code>JSONObject/JSONArray</code>，使用它可以更友好的操作json对象（当然更推荐的是直接转JAVA bean）</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>使用demo如下</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 6. 驼峰与下划线</h3>
-<p>常见的一个case，json字符串key为下划线，Java bean为驼峰命名，针对这种场景，jackson可以很方便的支持</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>从上面的代码也可以看出，驼峰与下划线的互转支持，主要是通过设置<code>PropertyNamingStrategies</code>来实现的，在jackson中，支持下面几种配置</p>
-<ul>
-<li><code>LOWER_CAMEL_CASE</code></li>
-<li><code>UPPER_CAMEL_CASE</code></li>
-<li><code>SNAKE_CASE</code></li>
-<li><code>LOWER_CASE</code></li>
-<li><code>KEBAB_CASE</code></li>
-<li><code>LOWER_DOT_CASE</code></li>
-</ul>
-<p>使用上面这种方式适用于全局的下划线与驼峰的转换方式，如果我只希望针对单独某个类进行这样的设置呢？</p>
-<p>可以借助注解<code>@JsonNaming</code>来实现</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面这个case中，如果我们将SimpleBean对象序列化为json串，即便调用的是前面最基础的使用姿势 <code>new ObjectMapper().writeValueAsString(simpleBean)</code>，输出的也是下划线格式的json串；同理反序列化时，也是将下划线转为驼峰</p>
-<h3> 7. 字段别名</h3>
-<p>上面介绍的是驼峰与下划线命名方式，当然也会有一些其他特殊的场景，针对某个字段进行别名设置，可以通过注解<code>@JsonProperties</code>来标注</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>上面这个表示序列化为json字符串时，userName对应的key为<code>user</code></p>
-<h3> 8. 字段忽略</h3>
-<p>在序列化时，难免会遇到某些字段不进行序列化/反序列化的场景，这里有两种常用的方式</p>
-<h4> 8.1 @JsonIgnore注解</h4>
-<p>直接在希望忽略的字段上添加注解<code>@JsonIgnore</code>即可，如</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4> 8.2 transient关键字</h4>
-<p>除了使用上面的注解之外，也可以使用jdk原生提供的关键字<code>transient</code>来声明需要忽略的字段</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>重点注意：</strong></p>
-<ul>
-<li>在jackson中，默认的场景下，即便字段上修饰有<code>transient</code>关键字，也不会忽略还需要如下处理</li>
-</ul>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面两种方式，都可以实现忽略<code>transient</code>关键字修饰的对象序列化</p>
-<h3> 9. Java Bean约定</h3>
-<h4> 9.1 get/set方法必须有</h4>
-<p>Java Bean的get/set方法必须存在，否则额序列化与反序列化只会处理public修饰的成员</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>序列化后输出为 <code>{"desc":"hello world"}</code>； 反序列化也不会更新 <code>name</code>, <code>userId</code>；</p>
-<p>特别的，当Java Bean对象，所有的成员都是private，又没有get方法时，在序列化时，会抛异常，提示信息如下</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h4> 9.2 无参构造函数必须有</h4>
-<p>如果java bean没有默认无参构造方法，那么在反序列化时，会抛出异常，无法实例化</p>
-<p>一个如下的异常提示信息</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3> 10. Json串存在Bean未定义字段忽略设置</h3>
-<p>默认的使用姿势下，若json串中存在一个bean未定义的kv，会抛异常，一个示例如下</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>如果希望忽略这种场景，那么就需要禁用<code>FAIL_ON_UNKNOWN_PROPERTIES</code>配置</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>扩展知识点</strong></p>
-<ul>
-<li>对于Spring MVC而言，默认使用的是Jackson序列化框架，如果我们定义接收参数为json串，那么当前端传参多了一个未定义的字段，会直接抛异常么？</li>
-</ul>
-<h3> 11. 序列化输出时忽略null</h3>
-<p>默认场景下，将一个bean对象序列化为json串，即便成员变量为null，也会输出，如下</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>这种case某些场景下是合适的，比如生成接口文档示例时，更关心的是参数说明，即便为null，也是希望有这个；但是另外一些场景下则希望忽略，毕竟可以节省对象大小</p>
-<p>需要忽略null字段时，可以如下设置</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>关键点就是配置 <code>setSerializationInclusion(JsonInclude.Include.NON_NULL)</code></p>
-<h3> 12. key为null场景兼容</h3>
-<p>对于普通的Java bean而言，不存在key为null的场景，但是如果是将一个Map对象，输出为json串时，那么就可能出现这种场景了，如</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面这个执行，直接抛异常</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>如果希望兼容这个场景，则可以如下处理</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面这个做法，就是将key为null的，以<code>null</code>字符串来替代</p>
-<p><strong>说明</strong></p>
-<ul>
-<li>既然key可能为null，当然也为其他类型，但是在序列化输出时，会转String</li>
-</ul>
-<p>如下面这个case</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>输出的字符串为</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3> 13 其他</h3>
-<p>以上的知识点，基本上可以覆盖我们日常在使用Jackson进行序列化和反序列化中95%的场景，至于其他的比如自定义Name策略，反序列化的默认值类型，类型转换，json注释的支持与否等相对少见的姿势，看后续是否有空补上</p>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="开源"/>
-    <category term="Jackson"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2021-08-07T09:48:00.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
 </feed>
