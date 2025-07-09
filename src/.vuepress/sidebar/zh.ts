@@ -106,6 +106,12 @@ export const zhSidebar = sidebar({
           prefix: "aicoding/",
           children: "structure",
         },
+        {
+          text: "AI游戏开发",
+          icon: "tree",
+          prefix: "aigame/",
+          children: "structure",
+        },
       ],
     },
   ],
