@@ -9,7 +9,7 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2025-07-08T09:30:34.261Z</updated>
+  <updated>2025-07-09T10:07:51.408Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
@@ -43,6 +43,149 @@
     <name>一灰灰blog</name>
     <uri>https://hhui.top</uri>
   </contributor>
+  <entry>
+    <title type="text">7. 基于AI开发三端产品-文渊阁原型设计</title>
+    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/07.%E5%9F%BA%E4%BA%8EAI%E5%BC%80%E5%8F%91%E4%BA%A7%E5%93%81-%E6%96%87%E6%B8%8A%E9%98%81%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/07.%E5%9F%BA%E4%BA%8EAI%E5%BC%80%E5%8F%91%E4%BA%A7%E5%93%81-%E6%96%87%E6%B8%8A%E9%98%81%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1.html"/>
+    <updated>2025-07-09T09:51:04.000Z</updated>
+    <summary type="html"><![CDATA[<p>一恍惚25年就已经过了一半，上半年借助AI开发工具也做了不少小玩具；在下半年，给自己订一个小目标，做一个完整功能更完整的产品，计划做三端（PC、小程序、APP），并且包含独立的后端服务能力。</p>
+<p>实际上我个人也没有特别想做的东西，正好小朋友最近开始学习识字、背诗，那就做一个中华文化知识相关的产品得了</p>
+<h2> 一、 前置准备</h2>
+<p>有想法之后，第一件事情，当然是全网搜一下，有没有类似的可以学习致敬（抄袭）的竞品</p>
+<p>知乎上有一个挺好的话题，- <a href="https://www.zhihu.com/question/21528388" target="_blank" rel="noopener noreferrer">有没有公认比较好的诗词APP推荐？ - 知乎</a></p>]]></summary>
+    <content type="html"><![CDATA[<p>一恍惚25年就已经过了一半，上半年借助AI开发工具也做了不少小玩具；在下半年，给自己订一个小目标，做一个完整功能更完整的产品，计划做三端（PC、小程序、APP），并且包含独立的后端服务能力。</p>
+<p>实际上我个人也没有特别想做的东西，正好小朋友最近开始学习识字、背诗，那就做一个中华文化知识相关的产品得了</p>
+<h2> 一、 前置准备</h2>
+<p>有想法之后，第一件事情，当然是全网搜一下，有没有类似的可以学习致敬（抄袭）的竞品</p>
+<p>知乎上有一个挺好的话题，- <a href="https://www.zhihu.com/question/21528388" target="_blank" rel="noopener noreferrer">有没有公认比较好的诗词APP推荐？ - 知乎</a></p>
+<p>推荐的产品还挺多，app/网站/小程序均有，下面是摘抄目录</p>
+<figure><img src="/imgs/column/ai/7-1.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>产品有一些可以学习的对象；接下来再看看开源社区上是否有可以拿来当“基座”的原型😊</p>
+<p>比如一些数据源：</p>
+<ul>
+<li><a href="https://github.com/caoxingyu/chinese-gushiwen" target="_blank" rel="noopener noreferrer">caoxingyu/chinese-gushiwen: 中华古诗文数据库和API。包含10000首古文(诗、词、歌、赋以及其它形式的文言文)，近4000名作者，10000名句</a></li>
+<li><a href="https://github.com/chanind/hanzi-writer-data" target="_blank" rel="noopener noreferrer">chanind/hanzi-writer-data: The data used by Hanzi Writer</a></li>
+</ul>
+<p>一些可用的产品：</p>
+<ul>
+<li><a href="https://github.com/hefengbao/jingmo/tree/main" target="_blank" rel="noopener noreferrer">hefengbao/jingmo: 『京墨』开源的中华文化宝典 APP，诗（词）文（名句）、汉字、成语、词语、歇后语、绕口令、传统节日、传统色、节气、人物等。</a></li>
+<li><a href="https://github.com/a2636340559/YaFeng" target="_blank" rel="noopener noreferrer">a2636340559/YaFeng: “雅风”古诗词APP</a></li>
+<li><a href="https://github.com/SongC1229/song" target="_blank" rel="noopener noreferrer">SongC1229/song: 基于Flutter框架的诗词app,采用sqlite数据库</a></li>
+</ul>
+<h2> 二、 原型设计</h2>
+<p>基于上面的过程我们大概知道自己想做些啥，但是具体的产品设计这块由于并不专业不知道该怎么做，既然我不会，那就借助一下AI来帮我整一下</p>
+<p>直接大力出奇迹，对于小白完全不考虑什么提示词</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/imgs/column/ai/7-2.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>省略调整的过程，看看AI生成的原型方案</p>
+<div class="language-markdown line-numbers-mode" data-ext="md"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>当然对于一个研发而言，上面的这套设计方案仅使用参考，我还是更喜欢可视化的交互页面</p>
+<h2> 三、快速原型实现</h2>
+<p>使用AI体验最好的就在这里了，我可以直接让它快速将上面的设计实现一个demo出来看看效果</p>
+<figure><img src="/imgs/column/ai/7-3.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>这个生成的网页效果实际上超出了我的预期，至少我自己是设计不出来的。 接下来我们就是基于这个原型进行丰富补全</p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="AI"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-07-08T07:15:07.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">1. “绝对色感”的闯关游戏（一）</title>
+    <id>https://liuyueyi.github.io/tutorial/column/ai/aigame/01.%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%84%9F%E7%9A%84%E9%97%AF%E5%85%B3%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/ai/aigame/01.%E7%BB%9D%E5%AF%B9%E8%89%B2%E6%84%9F%E7%9A%84%E9%97%AF%E5%85%B3%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89.html"/>
+    <updated>2025-07-09T09:51:04.000Z</updated>
+    <summary type="html"><![CDATA[<p>作为一个游戏开发门外汉，接下来我将挑战一下，从0到1，完整记录一下如何借助AI来生成一个完整的可上架的游戏APP</p>
+<h2> 一、游戏产品设计</h2>
+<p>首先明确一下我们要做什么，产品的核心玩法：</p>
+<p>一个简单的闯关游戏，每一关中由系统自动生成一些色块，其中只要一个色块的颜色与其他的不一样，只有选中不一样颜色的色块才会进入下一关</p>
+<ul>
+<li>关卡难度设计：随着关卡的增加，色块数变多； 不同颜色的色块与其他颜色的rgb差值更小</li>
+</ul>
+<p>关卡本身功能比较简单，我们需要为它添加一个排行榜竞技/或者在线PK的功能，增加互动性</p>
+<p>接下来就是确定研发路线</p>]]></summary>
+    <content type="html"><![CDATA[<p>作为一个游戏开发门外汉，接下来我将挑战一下，从0到1，完整记录一下如何借助AI来生成一个完整的可上架的游戏APP</p>
+<h2> 一、游戏产品设计</h2>
+<p>首先明确一下我们要做什么，产品的核心玩法：</p>
+<p>一个简单的闯关游戏，每一关中由系统自动生成一些色块，其中只要一个色块的颜色与其他的不一样，只有选中不一样颜色的色块才会进入下一关</p>
+<ul>
+<li>关卡难度设计：随着关卡的增加，色块数变多； 不同颜色的色块与其他颜色的rgb差值更小</li>
+</ul>
+<p>关卡本身功能比较简单，我们需要为它添加一个排行榜竞技/或者在线PK的功能，增加互动性</p>
+<p>接下来就是确定研发路线</p>
+<p>借助trae/cursor来实现代码编程，技术栈选择uniapp来实现实现一次编写，多端运行</p>
+<h2> 二、项目初始化与快速原型设计</h2>
+<h3> 2.1 项目初始化</h3>
+<p>使用uniapp进行开发，首先需要安装HBuilder，这里省略安装步骤；接下来我们创建一个空的项目</p>
+<figure><img src="/imgs/column/aigame/1-01.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>使用Cursor打开项目，快速实现一个应用原型</p>
+<figure><img src="/imgs/column/aigame/1-02.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 2.2 快速原型设计</h3>
+<p>首次提交信息时，cursor只会帮我们输出一个空的架子，接下来我们回复确认让它补全具体的游戏逻辑，快速实现一个基础可运行的原型</p>
+<figure><img src="/imgs/column/aigame/1-03.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>全部接受之后，我们通过uniapp体验一下实际的效果</p>
+<figure><img src="/imgs/column/aigame/1-04.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>然后一个核心游戏玩法的应用基本算是完成了</p>
+<figure><img src="/imgs/column/aigame/1-05.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h2> 三、验证可行性、制定迭代计划</h2>
+<p>从上面的流程也可以看出，借助cursor快速设计一个原型用于我们的想法验证，成本非常低；现在ai对于普通人的一个友好点在于可以快速的让我们脑子里的想法先落地，不管它靠不靠谱</p>
+<p>接下来就是实际体验一下，看看我们的想法是否靠谱，以及这个原型还有哪些需要改进和优化的地方</p>
+<p>从原型的交互体验来看，核心玩法没问题，生成色块、选择、进入下一关；但是从实际体验来看，玩法比较单调、且后面关卡的色块rgb差异太小了，肉眼太难识别了</p>
+<p>因此后面的迭代方向可以分为两块：</p>
+<ol>
+<li>游戏策略</li>
+</ol>
+<ul>
+<li>设计更优雅的难度升级策略</li>
+</ul>
+<ol start="2">
+<li>游戏可玩性</li>
+</ol>
+<ul>
+<li>增加游戏的可玩性/竞技性 - 比如排行榜，在线PK，每一关添加倒计时增加紧迫感，当思考方式太久/闯关失败时输出一些嘲讽意味强的弹幕？闯过一些特定关卡时，增加一些喝彩的氛围</li>
+<li>单纯的色块可能吸引力不够，那么是否可以在色块中放一些漂亮的小姐姐图片？</li>
+</ul>
+<p>前期准备工作就绪，接下来我们开始进入游戏的调教正文</p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="AI"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-07-09T07:15:07.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">AI游戏开发</title>
+    <id>https://liuyueyi.github.io/tutorial/column/ai/aigame/</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/ai/aigame/"/>
+    <updated>2025-07-09T09:51:04.000Z</updated>
+    <summary type="html"><![CDATA[<h1> 氛围编程</h1>
+<p>借助AiCoding（如cursor windsurf trae copilot）来实现低门槛的编程</p>
+]]></summary>
+    <content type="html"><![CDATA[<h1> 氛围编程</h1>
+<p>借助AiCoding（如cursor windsurf trae copilot）来实现低门槛的编程</p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-07-09T09:51:04.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
   <entry>
     <title type="text">1. 首个完全由AI生成的APP-ColorPicker上架啦</title>
     <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/01.%E9%A6%96%E4%B8%AA%E5%AE%8C%E5%85%A8%E7%94%B1AI%E7%94%9F%E6%88%90%E7%9A%84APP%E4%B8%8A%E6%9E%B6%E5%95%A6.html</id>
@@ -768,58 +911,6 @@
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2025-06-16T17:15:07.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">7. 基于AI开发三端产品-原型设计</title>
-    <id>https://liuyueyi.github.io/tutorial/column/ai/aicoding/07.%E5%9F%BA%E4%BA%8EAI%E5%BC%80%E5%8F%91%E4%BA%A7%E5%93%81-%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/column/ai/aicoding/07.%E5%9F%BA%E4%BA%8EAI%E5%BC%80%E5%8F%91%E4%BA%A7%E5%93%81-%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1.html"/>
-    <updated>2025-07-08T09:13:37.000Z</updated>
-    <summary type="html"><![CDATA[<p>一恍惚25年就已经过了一半，上半年借助AI开发工具也做了不少小玩具；在下半年，给自己订一个小目标，做一个完整功能更完整的产品，计划做三端（PC、小程序、APP），并且包含独立的后端服务能力。</p>
-<p>实际上我个人也没有特别想做的东西，正好小朋友最近开始学习识字、背诗，那就做一个中华文化知识相关的产品得了</p>
-<h2> 一、 前置准备</h2>
-<p>有想法之后，第一件事情，当然是全网搜一下，有没有类似的可以学习致敬（抄袭）的竞品</p>
-<p>知乎上有一个挺好的话题，- <a href="https://www.zhihu.com/question/21528388" target="_blank" rel="noopener noreferrer">有没有公认比较好的诗词APP推荐？ - 知乎</a></p>]]></summary>
-    <content type="html"><![CDATA[<p>一恍惚25年就已经过了一半，上半年借助AI开发工具也做了不少小玩具；在下半年，给自己订一个小目标，做一个完整功能更完整的产品，计划做三端（PC、小程序、APP），并且包含独立的后端服务能力。</p>
-<p>实际上我个人也没有特别想做的东西，正好小朋友最近开始学习识字、背诗，那就做一个中华文化知识相关的产品得了</p>
-<h2> 一、 前置准备</h2>
-<p>有想法之后，第一件事情，当然是全网搜一下，有没有类似的可以学习致敬（抄袭）的竞品</p>
-<p>知乎上有一个挺好的话题，- <a href="https://www.zhihu.com/question/21528388" target="_blank" rel="noopener noreferrer">有没有公认比较好的诗词APP推荐？ - 知乎</a></p>
-<p>推荐的产品还挺多，app/网站/小程序均有，下面是摘抄目录</p>
-<figure><img src="/imgs/column/ai/7-1.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>产品有一些可以学习的对象；接下来再看看开源社区上是否有可以拿来当“基座”的原型😊</p>
-<p>比如一些数据源：</p>
-<ul>
-<li><a href="https://github.com/caoxingyu/chinese-gushiwen" target="_blank" rel="noopener noreferrer">caoxingyu/chinese-gushiwen: 中华古诗文数据库和API。包含10000首古文(诗、词、歌、赋以及其它形式的文言文)，近4000名作者，10000名句</a></li>
-<li><a href="https://github.com/chanind/hanzi-writer-data" target="_blank" rel="noopener noreferrer">chanind/hanzi-writer-data: The data used by Hanzi Writer</a></li>
-</ul>
-<p>一些可用的产品：</p>
-<ul>
-<li><a href="https://github.com/hefengbao/jingmo/tree/main" target="_blank" rel="noopener noreferrer">hefengbao/jingmo: 『京墨』开源的中华文化宝典 APP，诗（词）文（名句）、汉字、成语、词语、歇后语、绕口令、传统节日、传统色、节气、人物等。</a></li>
-<li><a href="https://github.com/a2636340559/YaFeng" target="_blank" rel="noopener noreferrer">a2636340559/YaFeng: “雅风”古诗词APP</a></li>
-<li><a href="https://github.com/SongC1229/song" target="_blank" rel="noopener noreferrer">SongC1229/song: 基于Flutter框架的诗词app,采用sqlite数据库</a></li>
-</ul>
-<h2> 二、 原型设计</h2>
-<p>基于上面的过程我们大概知道自己想做些啥，但是具体的产品设计这块由于并不专业不知道该怎么做，既然我不会，那就借助一下AI来帮我整一下</p>
-<p>直接大力出奇迹，对于小白完全不考虑什么提示词</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/imgs/column/ai/7-2.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>省略调整的过程，看看AI生成的原型方案</p>
-<div class="language-markdown line-numbers-mode" data-ext="md"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>当然对于一个研发而言，上面的这套设计方案仅使用参考，我还是更喜欢可视化的交互页面</p>
-<h2> 三、快速原型实现</h2>
-<p>使用AI体验最好的就在这里了，我可以直接让它快速将上面的设计实现一个demo出来看看效果</p>
-<figure><img src="/imgs/column/ai/7-3.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>这个生成的网页效果实际上超出了我的预期，至少我自己是设计不出来的。 接下来我们就是基于这个原型进行丰富补全</p>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="AI"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2025-07-08T07:15:07.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
   <entry>
@@ -8069,107 +8160,6 @@ ans <span class="token operator">=</span> traceWatch<span class="token punctuati
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2021-12-16T19:04:00.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">3. JDNI注入：RMI之绕过trustURLCodebase配置的注入实例演示</title>
-    <id>https://liuyueyi.github.io/tutorial/java/%E5%AE%89%E5%85%A8/211220-JDNI%E6%B3%A8%E5%85%A5%EF%BC%9ARMI%E4%B9%8B%E7%BB%95%E8%BF%87trustURLCodebase%E9%85%8D%E7%BD%AE%E7%9A%84%E6%B3%A8%E5%85%A5%E5%AE%9E%E4%BE%8B%E6%BC%94%E7%A4%BA.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/java/%E5%AE%89%E5%85%A8/211220-JDNI%E6%B3%A8%E5%85%A5%EF%BC%9ARMI%E4%B9%8B%E7%BB%95%E8%BF%87trustURLCodebase%E9%85%8D%E7%BD%AE%E7%9A%84%E6%B3%A8%E5%85%A5%E5%AE%9E%E4%BE%8B%E6%BC%94%E7%A4%BA.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>上一篇博文介绍了RMI绑定一个Reference，导致加载远程class文件时导致的注入问题，当时有提到对于高级的版本，对于默认的配置为<code>java.rmi.server.useCodebaseOnly=false</code>，对于远程的class文件做了安全校验的，但是即便如此，也并没能完全限制住注入</p>
-<p>接下来我们来实例演示一下</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>上一篇博文介绍了RMI绑定一个Reference，导致加载远程class文件时导致的注入问题，当时有提到对于高级的版本，对于默认的配置为<code>java.rmi.server.useCodebaseOnly=false</code>，对于远程的class文件做了安全校验的，但是即便如此，也并没能完全限制住注入</p>
-<p>接下来我们来实例演示一下</p>
-<!-- more -->
-<h3> 1. 注入思路</h3>
-<p>按照之前的case，RMI服务端提供的是一个远程的class文件，在客户端访问之后，去加载远程Class并实例化，从而导致静态代码块的执行，就带来了注入问题；现在因为<code>useCodebaseOnly=false</code>,不支持加载远程class文件，那应该怎么处理呢？</p>
-<p>接下来的思路就是既然远程的class不让加载，那么就加载客户端本身的class类，然后通过覆盖其某些方法来实现；</p>
-<p>从客户端访问的姿势进行debug，我们可以找到关键的代码节点</p>
-<ul>
-<li>com.sun.jndi.rmi.registry.RegistryContext#lookup(<a href="http://javax.naming.Name" target="_blank" rel="noopener noreferrer">javax.naming.Name</a>)</li>
-<li>com.sun.jndi.rmi.registry.RegistryContext#decodeObject</li>
-</ul>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面这个方法，就是加载class文件并实例化的核心代码，重点关注下面两段</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>从上面的逻辑可以看到，为了不抛出异常，Reference中的factoryClassLocation设置为空；这样就可以继续走下面的<code>NamingManager.getObjectInstance</code>流程；最终核心点在下面的实例创建中，获取Factory，创建实例</p>
-<ul>
-<li>javax.naming.spi.NamingManager#createObjectFromFactories</li>
-</ul>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>从上面的核心实现上，可以看到两个关键信息：</p>
-<ul>
-<li><code>javax.naming.spi.ObjectFactory</code>: 对象工厂类，在客户端找一个这样的工厂类出来，用来创建入侵对象</li>
-<li><code>factory.getObjectInstance</code>: 实例化时，注入我们希望执行的代码</li>
-</ul>
-<h3> 2. 注入服务端</h3>
-<p>首先需要找一个ObjectFactory，我们这里选中的目标是tomcat中的<code>org.apache.naming.factory.BeanFactory</code></p>
-<p>接下来看一下它的<code>getObjectInstance</code>实现</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面减去了一些不重要的代码，重点可以看到下面这个逻辑</p>
-<ul>
-<li>找到一个jvm中存在的类beanClass</li>
-<li>对于<code>key = forceString</code> 的RefAddr，会做一个特殊处理
-<ul>
-<li>value形如 <code>argVal = rename</code></li>
-<li>基于上面的形式，会从beanClass中找到一个名为<code>methodName = rename</code>，参数有一个，且为<code>String</code>的方法</li>
-</ul>
-</li>
-<li>在对象实例化时，会调用上面的方法，其中具体的参数值，从 <code>RefAddr</code>中查找key = <code>argVal</code> 的取值</li>
-</ul>
-<p>举一个实例如下</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面三行，最终直接的结果就是在创建实例对象时，有下面三步</p>
-<ul>
-<li>从ElProcessor中找到eval方法</li>
-</ul>
-<figure><img src="/hexblog/imgs/211220/00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<ul>
-<li>实例化时，调用eval方法，传参为x对应的值</li>
-</ul>
-<figure><img src="/hexblog/imgs/211220/01.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>即在实例化时，相当于执行下面这个方法</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>因此我们最终的服务端代码可以如下</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>注意，服务端也需要依赖tomcat，对于SpringBoot项目，可以引入下面这个依赖</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3.实例演示</h3>
-<p>客户端访问姿势与之前没有什么区别，我们这里基于SpringBoot起一个，主要是方便tomcat服务器的指定</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>客户端代码如下</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/hexblog/imgs/211220/02.gif" alt="a.gif" tabindex="0" loading="lazy"><figcaption>a.gif</figcaption></figure>
-<h3> 4.小结</h3>
-<p>本文通过实例演示介绍了如何绕过<code>trustURLCodebase=false</code>的场景，从客户端执行逻辑出发，主要思路就是既然远程的class不可性，那就从目标服务器中去找一个满足条件的class，来执行注入代码</p>
-<p>要满足我们注入条件的class，需要有下面这个关键要素</p>
-<ul>
-<li><code>javax.naming.spi.ObjectFactory</code>的子类</li>
-<li><code>getObjectInstance</code>实现类中存在执行目标代码的场景</li>
-</ul>
-<p>此外就是借助脚本引擎来动态执行代码，本文是借助js，当然也可以考虑Groovy，如下</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>看到这里其实就会有个疑问点，常见的注入代码执行有哪些case呢？除了上面的脚本执行，还有别的么？且看下文</p>
-<p><strong>相关博文</strong></p>
-<p>本文主要思路来自于，欢迎有兴趣的小伙伴查看原文 * <a href="https://www.veracode.com/blog/research/exploiting-jndi-injections-java" target="_blank" rel="noopener noreferrer">Exploiting JNDI Injections in Java | Veracode blog</a></p>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Java"/>
-    <category term="JNDI"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2021-12-20T20:31:55.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">安全</title>
-    <id>https://liuyueyi.github.io/tutorial/java/%E5%AE%89%E5%85%A8/</id>
-    <link href="https://liuyueyi.github.io/tutorial/java/%E5%AE%89%E5%85%A8/"/>
-    <updated>2025-02-13T08:59:24.000Z</updated>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2024-08-02T10:41:58.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
 </feed>
