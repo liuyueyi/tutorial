@@ -1,0 +1,1 @@
+import{_ as e,V as t,W as n,Y as _}from"./framework-094145d2.js";const c={},o=_("p",null,"一些InfluxDB的使用过程中，您可能会用到的实战小技巧，推荐按需获取",-1),s=[o];function l(r,a){return t(),n("div",null,s)}const i=e(c,[["render",l],["__file","index.html.vue"]]);export{i as default};

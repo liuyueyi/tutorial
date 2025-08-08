@@ -1,0 +1,13 @@
+import{_ as a,V as n,W as d,X as o,Y as e,Z as i,a1 as l}from"./framework-094145d2.js";const r={},c=e("p",null,"一段时间没有配置过nginx，果不其然之前学到的又还回去了，下面给出基于rewrite/alias的两种重定向配置方式",-1),t=e("p",null,[i("需求设置 "),e("code",null,"/ximg"),i(" 路径下的请求，访问 "),e("code",null,"/home/yihui/html"),i(" 下的html文件，应该怎么配置?")],-1),s=l(`<h3 id="_1-root指定方式" tabindex="-1"><a class="header-anchor" href="#_1-root指定方式" aria-hidden="true">#</a> 1. root指定方式</h3><p>最容易想到的就是直接指定root，如下</p><div class="language-conf line-numbers-mode" data-ext="conf"><pre class="language-conf"><code>location /ximg {
+  root /home/yihui/html/;
+  index index.html;
+}
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>直接使用上面这种方式，访问之后会发现404，此时若再路径 <code>/home/yihui/html/ximg/</code> 下存在文件 <code>index.html</code>，则可以正常访问</p><p>即上面这种配置，再实际访问文件时，会再 root 配置的路径下 + url请求路径（即上面的ximg）</p><p>所以单纯使用root时，我们需要额外处理的是将希望访问的所有文件，都放在 <code>ximg</code> 目录下</p><h3 id="_2-root-rewrite-方式" tabindex="-1"><a class="header-anchor" href="#_2-root-rewrite-方式" aria-hidden="true">#</a> 2. root + rewrite 方式</h3><p>当我们希望能直接访问到 <code>/home/yihui/html/</code> 目录下的文件时，可以考虑结合 rewrite 来重定向实现，如</p><div class="language-conf line-numbers-mode" data-ext="conf"><pre class="language-conf"><code>location /ximg/ {
+  root /home/yihui/html/;
+  rewrite ^/ximg/(.*)$ /$1 break;
+}
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面这个使用正则匹配，实现重定向，这样访问资源时，直接从 <code>/home/yihui/html</code> 下查找了；但是需要注意，若nginx中配置了一个<code>/tt</code> 的规则，此时若访问 <code>/ximg/tt</code> 时，会转到请求 <code>/tt</code>了</p><h3 id="_3-alias-方式" tabindex="-1"><a class="header-anchor" href="#_3-alias-方式" aria-hidden="true">#</a> 3. alias 方式</h3><p>直接使用alias来重置文件目录，这样在访问时，不需要补<code>ximg</code>目录</p><div class="language-conf line-numbers-mode" data-ext="conf"><pre class="language-conf"><code>location /ximg {
+    alias /home/yihui/html/;
+    index index.html;
+}
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>总体来看，这种方式属于最简单的姿势了</p><h3 id="_4-小结" tabindex="-1"><a class="header-anchor" href="#_4-小结" aria-hidden="true">#</a> 4.小结</h3><p>主要针对root + alias两个进行说明</p><ul><li>root：设置根目录，在实际访问文件时，会在根目录下，查找匹配的path路径下的文件（即path路径需要作为资源的目录树层级）</li><li>alias：重置当前文件的目录，不需要补path路径</li></ul>`,17);function h(m,u){return n(),d("div",null,[c,t,o(" more "),s])}const _=a(r,[["render",h],["__file","05.Nginx重定向的两种配置方式.html.vue"]]);export{_ as default};

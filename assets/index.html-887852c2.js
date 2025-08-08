@@ -1,0 +1,1 @@
+import{_ as e,V as n,W as t,Y as _}from"./framework-094145d2.js";const c={},o=_("p",null,"消息事件大量应用在Spring中，传说中的解耦神器；当然这里的消息事件是jvm级别的，本系列将带你了解Spring容器的哪些事件，以及如何自定义生产消费事件",-1),s=[o];function r(a,i){return n(),t("div",null,s)}const d=e(c,[["render",r],["__file","index.html.vue"]]);export{d as default};
