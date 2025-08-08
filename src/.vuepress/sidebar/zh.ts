@@ -236,6 +236,33 @@ export const zhSidebar = sidebar({
       children: "structure"
     },
   ],
+  "/spring/springai/": [
+     "",
+    {
+      text: "基础篇",
+      collapsible: true,
+      prefix: "基础篇/",
+      children: "structure",
+    },
+    {
+      text: "进阶篇",
+      collapsible: true,
+      prefix: "进阶篇/",
+      children: "structure",
+    },
+    {
+      text: "应用篇",
+      collapsible: true,
+      prefix: "应用篇/",
+      children: "structure",
+    },
+    {
+      text: "源码篇",
+      collapsible: true,
+      prefix: "源码篇/",
+      children: "structure",
+    }
+  ],
   "/spring/extend/": [
     "",
     {

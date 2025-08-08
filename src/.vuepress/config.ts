@@ -32,7 +32,7 @@ export default defineUserConfig({
       {
         name: "keywords",
         content:
-          "Java基础, 多线程, JVM, 虚拟机, 数据库, MySQL, Spring, Redis, MyBatis, 系统设计, 分布式, RPC, 高可用, 高并发, 面试, 开源, GitHub",
+          "Java基础, 多线程, JVM, 虚拟机, 数据库, MySQL, Spring, Redis, MyBatis, 系统设计, 分布式, RPC, 高可用, 高并发, 面试, 开源, GitHub, SpringAI, 大模型, LLM, 人工智能, AI",
       },
     ],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
@@ -54,8 +54,13 @@ export default defineUserConfig({
       {
          "data-ad-client": "ca-pub-5592000528061748",
         async: true,
-        src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+        src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5592000528061748"
       },
+    ],
+    [
+      "script",
+      {},
+      `(adsbygoogle = window.adsbygoogle || []).push({});`
     ],
     [
       "link",

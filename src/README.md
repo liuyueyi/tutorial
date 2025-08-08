@@ -34,6 +34,11 @@ features:
     details: 氛围编程，人人都是程序员
     link: /column/ai/
 
+  - title: SpringAI专栏
+    icon: material
+    details: SpringAI实现AI应用开发，由基础知识到高阶应用，从应用实例到源码解析，全套教程
+    link: /column/ai/
+
   - title: Java专栏
     icon: java
     details: java 0基础进阶
@@ -96,7 +101,13 @@ footer: ©2017 - present @一灰灰Blog 保留所有权利 | <a href="https://be
        data-ad-client="ca-pub-5592000528061748"
        data-ad-slot="6935280996"></ins>
 </div>
-
+<!-- hhui.top 主站 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5592000528061748"
+     data-ad-slot="9219792501"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
 
 ## 🔥 精选资料
 
