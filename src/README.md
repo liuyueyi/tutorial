@@ -37,7 +37,7 @@ features:
   - title: SpringAI专栏
     icon: material
     details: SpringAI实现AI应用开发，由基础知识到高阶应用，从应用实例到源码解析，全套教程
-    link: /column/ai/
+    link: /spring/springai/
 
   - title: Java专栏
     icon: java
