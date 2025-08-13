@@ -9,7 +9,7 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2025-08-08T03:09:11.300Z</updated>
+  <updated>2025-08-13T04:22:31.007Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
@@ -31,24 +31,338 @@
   <category term="Redis"/>
   <category term="Quick系列"/>
   <category term="Maven"/>
-  <category term="其他"/>
-  <category term="JDK"/>
   <contributor>
     <name>一灰灰blog</name>
     <uri>https://hhui.top</uri>
   </contributor>
   <entry>
+    <title type="text">14.创建一个Langgraph4j实例工程</title>
+    <id>https://liuyueyi.github.io/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/14.%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AALanggraph4j%E5%AE%9E%E4%BE%8B%E5%B7%A5%E7%A8%8B.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/14.%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AALanggraph4j%E5%AE%9E%E4%BE%8B%E5%B7%A5%E7%A8%8B.html"/>
+    <updated>2025-08-13T04:04:22.000Z</updated>
+    <summary type="html"><![CDATA[<h1> 14.创建一个Langgraph4j实例工程</h1>
+<p>沿用阿里的智能体定义，我们将基于<code>SpringAI ChatClient</code>开发的AI应用叫做单智能体应用；对于更复杂的应用场景，比如需要多个工具辅助工作，存在工作流切换的场景（举一个例子：输入一段评价，判断是好评还是差评，如果是好评，则自动回复多谢好评；如果是差评，则提取关键信息，将评价信息转发给人工客服，进行后续的售后维护等）称为多智能体应用</p>
+<p>对于多智能体应用，使用python开发的小伙伴，更常接触的是<code>LangGraph</code>；对于java的生态下，目前也有两个替代的选择项</p>]]></summary>
+    <content type="html"><![CDATA[<h1> 14.创建一个Langgraph4j实例工程</h1>
+<p>沿用阿里的智能体定义，我们将基于<code>SpringAI ChatClient</code>开发的AI应用叫做单智能体应用；对于更复杂的应用场景，比如需要多个工具辅助工作，存在工作流切换的场景（举一个例子：输入一段评价，判断是好评还是差评，如果是好评，则自动回复多谢好评；如果是差评，则提取关键信息，将评价信息转发给人工客服，进行后续的售后维护等）称为多智能体应用</p>
+<p>对于多智能体应用，使用python开发的小伙伴，更常接触的是<code>LangGraph</code>；对于java的生态下，目前也有两个替代的选择项</p>
+<ul>
+<li><a href="https://github.com/langgraph4j/langgraph4j" target="_blank" rel="noopener noreferrer">LangGraphJ</a></li>
+<li><a href="https://java2ai.com/docs/1.0.0.2/get-started/agent/" target="_blank" rel="noopener noreferrer">阿里智能体</a></li>
+</ul>
+<p>接下来我们来体验一下如何使用<code>LangGraph4J</code>来进行多智能体的开发</p>
+<h2> 一、项目创建</h2>
+<h3> 1. 创建一个SpringAI项目</h3>
+<p>创建一个SpringAI项目，基本流程同 <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/01.%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AASpringAI-Demo%E5%B7%A5%E7%A8%8B.html" target="blank">创建一个SpringAI-Demo工程</a></p>
+<h3> 2. 添加Langgraph4j依赖</h3>
+<p>我们这里以智普大模型作为底层的LLM，因此对应的依赖除了langgraph4j之外就是智普的starter</p>
+<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 参数配置</h3>
+<p>在配置文件中 <code>application.yml</code>，设置大模型的访问密钥</p>
+<div class="language-yaml line-numbers-mode" data-ext="yml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 4. 创建工具</h3>
+<p>我们这里创建一个工具类，内部提供两个工具，分别获取当前的时间和天气</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 5. 创建智能体</h3>
+<p>我们直接沿用官方的demo示例，来创建一个采用<code>langGraph4j</code>实现的基于智普大模型的智能体</p>
+<figure><img src="/imgs/column/springai/14-1.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 6. 测试验证</h3>
+<p>在上面的Controller中，定义一个访问端点，实现智能体的访问</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/imgs/column/springai/14-2.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>从上面的输出也可以看出，大模型有四次的工具调用，一次是获取北京当前时间，一次是获取北京当前天气，一次是获取伦敦当前时间，一次是获取伦敦当前天气</p>
+<p>直接使用<code>langGraph4j</code>实现多轮对话，虽然效果是实现了，从直观感觉上和SpringAI的ChatClient好像没有太大的差别</p>
+<p>对<code>langGraph4j</code>不太了解的小伙伴，可能会有很多疑问，工作流体现在什么地方呢，条件决策又该如何使用呢？这个框架是怎么工作的呢？又该如何使用它来开发Agent呢？</p>
+<h2> 二、总结</h2>
+<p><code>LangGraph4j</code> 是一个 Java 库，用于构建基于大型语言模型 (LLM) 的有状态多代理应用程序。它受 <code>Python</code> 库 <code>LangGraph</code> 的启发，旨在与 <code>Langchain4j</code> 和 <code>Spring AI</code> 等流行的 <code>Java LLM</code> 框架无缝协作。</p>
+<p>LangGraph4j 的核心功能是定义循环图，使不同的组件（代理、工具或自定义逻辑）能够以有状态的方式进行交互</p>
+<p>本文只能算是初步看了一眼<code>LangGraph4j</code>，演示了如何创建一个智能体开发的项目，接下来我们将逐渐深入探究一下这个框架的使用理念</p>
+<p>文中所有涉及到的代码，可以到项目中获取 <a href="https://github.com/liuyueyi/spring-ai-demo/tree/master/advance-projects/A05-agent-langgraph-simple" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/spring-ai-demo</a></p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="SpringAI"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-08-12T17:24:07.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">01.从0到1创建一个基于天气的旅游美食推荐智能体</title>
+    <id>https://liuyueyi.github.io/tutorial/spring/springai/%E5%BA%94%E7%94%A8%E7%AF%87/D01.%E4%BB%8E0%E5%88%B01%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%E5%A4%A9%E6%B0%94%E7%9A%84%E6%97%85%E6%B8%B8%E7%BE%8E%E9%A3%9F%E6%8E%A8%E8%8D%90%E6%99%BA%E8%83%BD%E4%BD%93.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/springai/%E5%BA%94%E7%94%A8%E7%AF%87/D01.%E4%BB%8E0%E5%88%B01%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%E5%A4%A9%E6%B0%94%E7%9A%84%E6%97%85%E6%B8%B8%E7%BE%8E%E9%A3%9F%E6%8E%A8%E8%8D%90%E6%99%BA%E8%83%BD%E4%BD%93.html"/>
+    <updated>2025-08-13T04:04:22.000Z</updated>
+    <summary type="html"><![CDATA[<h1> 01.从0到1创建一个基于天气的旅游美食推荐智能体</h1>
+<p>本文将演示如何借助LangGraph4j + SpringAI来开发一个完整的智能体应用，实现用户传入地址、大模型通过Function Calling来获取地址天气，调用大模型的旅游项目推荐能力、美食推荐能力，给用返回一个旅游攻略</p>
+<h2> 一、项目创建</h2>
+<h3> 1. 工程创建</h3>
+<p>首先我们需要创建一个 LangGraph4j + SpringAI的项目，对这块不熟悉的小伙伴，请参考 <a href="../%E5%9F%BA%E7%A1%80%E7%AF%87/14.%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AALanggraph4j%E5%AE%9E%E4%BE%8B%E5%B7%A5%E7%A8%8B">创建一个Langgraph4j示例工程</a></p>]]></summary>
+    <content type="html"><![CDATA[<h1> 01.从0到1创建一个基于天气的旅游美食推荐智能体</h1>
+<p>本文将演示如何借助LangGraph4j + SpringAI来开发一个完整的智能体应用，实现用户传入地址、大模型通过Function Calling来获取地址天气，调用大模型的旅游项目推荐能力、美食推荐能力，给用返回一个旅游攻略</p>
+<h2> 一、项目创建</h2>
+<h3> 1. 工程创建</h3>
+<p>首先我们需要创建一个 LangGraph4j + SpringAI的项目，对这块不熟悉的小伙伴，请参考 <a href="../%E5%9F%BA%E7%A1%80%E7%AF%87/14.%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AALanggraph4j%E5%AE%9E%E4%BE%8B%E5%B7%A5%E7%A8%8B">创建一个Langgraph4j示例工程</a></p>
+<h3> 2. 核心依赖</h3>
+<p>本工程主要使用框架为 <code>SpringAI1.0.1</code> + <code>LangGraph4j1.6.0-rc4</code> + <code>SpringBoot3.5.4</code></p>
+<p>对应的大模型为： <code>zhipu</code>，通过SpringMVC提供访问接口</p>
+<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 配置文件</h3>
+<p>我们在配置文件<code>application.yml</code>中配置大模型密钥，使用其他大模型的小伙伴，请自行替换</p>
+<div class="language-yaml line-numbers-mode" data-ext="yml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>注意：大模型的选择时，需要判断是否支持FunctionCalling，如果不支持，则会影响本项目的实际运行效果</p>
+<p>我们的密钥以启动参数的方式传递，方便测试（当然也可以直接写入配置文件、或者系统环境变量，大家按照自己的喜好即可）</p>
+<h2> 二、智能体开发</h2>
+<h3> 1. 核心功能描述</h3>
+<p>智能体的主要功能为：</p>
+<ol>
+<li>用户传入地址</li>
+<li>设计一个WeatherAgent，用于获取给定地方的实时天气情况</li>
+<li>若不需要进行旅游推荐，则直接返回</li>
+<li>若需要进行旅游推荐
+<ul>
+<li>调用 TravelAgent，获取给定地址的附近旅游项目推荐</li>
+<li>根据选定的旅游项目，调用 FoodAgent，获取给定地址的附近美食推荐</li>
+</ul>
+</li>
+<li>将上面的结果进行整合，以博文的方式返回给用户</li>
+</ol>
+<figure><img src="/imgs/column/springai/D01-1.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 2. 实现通用的AgentService</h3>
+<p>上面的几个Agent都需要与大模型进行交互，因此我们这里可以抽象出一个通用的AgentService，用于处理Agent与大模型的交互</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>因为大模型本身是无法获取天气信息的，因此我们这里使用FunctionCalling的方式，给大家装配上天气查询的能力（当然这里也可以直接使用天气相关的McpServer）</p>
+<p>我们这里简单的实现一个 WeatherTools 来模拟天气的查询（真实场景中，可以实现第三方天气服务查询API）</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 定义TravelState存储上下文</h3>
+<p>我们这里定义一个 <code>TravelState</code> 继承自 <code>AgentState</code> 来实现多智能体之间的数据共享，由于我们这里存在4个智能体，我们为每个智能体的返回都定义一个对应的参数进行承接</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面定义了五个常量，其中 <code>INPUT</code> 为最开始的输入参数， <code>WEATHER</code> 为 WeatherAgent执行后的返回的天气信息， <code>TRAVEL</code> 为 TravelRecommendAgent 执行后返回推荐游玩项目， <code>FOOD</code> 为 FoodRecommendAgent 执行后返回推荐美食， <code>BLOG</code> 为 XhsBlogGenerateAgent 执行后汇总生成的小红书风格的博文内容</p>
+<p>不同的Agent返回的数据内容并不相同，可以是基本类型、字符串，也可以是集合、Java POJO对象，由于<code>LangGraphJ</code>自己实现了一套序列化协议，因此我们这里先提供一个JsonSerializer，用于非简单的对象的序列化处理</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 4. 实现天气智能体 WeatherAgent</h3>
+<p>接下来我们实现第一个智能体，用于获取给定地方的天气</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面的整体实现比较简单，核心的在于方法 <code>callWeatherAgent</code>，我们会将它包装为<code>LangGraph4J</code>的Node，这个方法你可以理解为 <code>NodeAction</code> 的实现，对应的使用层Node的注册如下</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>同样的，我们可以在 <code>TravelState</code> 中，提供一个直接获取天气的方法，返回的类型为String字符串</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 5. 实现推荐项目智能体 TravelRecommendAgent</h3>
+<p>接下来我们实现第二个智能体，用于推荐给定地点的游玩项目，具体的实现方式可以参照上面天气智能体的实现</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>在旅游项目推荐的实现中，使用了前面返回的天气信息，作为提示词的输入，将大模型的返回结果保存到State中给后续的节点使用；同样的，我们可以在 <code>TravelState</code> 中，提供获取推荐项目的方法</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 6. 实现美食智能体 FoodAgent</h3>
+<p>接下来我们实现第三个智能体，基于旅游项目的美食推荐（如果条件允许，当然是推荐借助百度/高德地图的MCPServer来实现），具体的实现方式可以参照上面天气智能体的实现</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>这个实现，相比于前面的旅游项目Agent的实现会更复杂一点，利用了前面返回的天气和旅游项目，借助了SpringAI的提示词模板 + 结构化输出来实现美食推荐，我们可以在 <code>TravelState</code> 中，提供获取美食推荐列表的方法</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 7. 实现小红书博文智能体 XhsBlogGenerateAgent</h3>
+<p>最后我们实现第四个智能体，基于美食推荐，生成小红书的博文；我们这里做一个分支处理，如果是直接由WeatherAgent转过来的，那么我们作为一个天气预报的Agent；如果是由FoodAgent转过来的，那么我们作为一个小红书的旅游美食推荐Agent</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>两个不同的分支，返回的内容稍有区别，定义如下</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>同样的，我们可以在 <code>TravelState</code> 中，提供获取最终博文数据的方法</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 8. TravelState序列化</h3>
+<p>当上面四个智能体实现完毕之后，<code>TravelState</code>中存储的上下文也都可以确定了，接下来我们定义它的序列化方式</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 9. 实现多智能体调用的 AgentExecutor</h3>
+<p>上面的智能体实现之后，我们接下来需要实现 <code>AgentExecutor</code>，在这里定义<code>StateGraph</code>，执行多智能体的调用</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面的核心在与<code>GraphBuilder.build()</code>的实现，在这个实现中，定义了AgentState、Node、Edge、ConditionEdge，通过他们构建了一个有向图，我们可以通过下面这个方法打印下这个多智能体执行的PantUML</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>输出</p>
+<div class="language-plantuml line-numbers-mode" data-ext="plantuml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/imgs/column/springai/D01-2.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 10. 测试验证</h3>
+<p>接下来我们实现一个端点，用于用户的推荐交互</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>小红书生成风格博文生成（传参中包含推荐二字）:</p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="/imgs/column/springai/D01-3.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>天气预报的信息生成（传参中不包含推荐二字）</p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="/imgs/column/springai/D01-4.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h2> 三、小结</h2>
+<p>本文通过逐步拆解的方式，给大家演示了如何借助 <code>SpringAI</code> + <code>LangGraphJ</code> + <code>智普大模型</code> 从0到1创建一个多智能体应用，虽然现在的效果还一般，这个主要还是我的提示词和响应还不够优雅，整个业务的流程还是完整流畅的。有兴趣的小伙伴也可以实际的体验一下</p>
+<p>上文虽然实现步骤相对清晰，但是内中原理和知识点，还是比较多的，对于上面实现的步骤有疑问的小伙伴，可以仔细阅读一下我的 <a href="https://hhui.top/tutorial/spring/springai/" target="_blank" rel="noopener noreferrer">SpringAI系列博文</a> 相信能解决你的大部分疑问</p>
+<p>文中所有涉及到的代码，可以到项目中获取 <a href="https://github.com/liuyueyi/spring-ai-demo/tree/master/app-projects/D01-travel-recommend-agent" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/spring-ai-demo</a></p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="SpringAI"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-08-13T10:15:07.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">04.使用LangGraph4J实现多轮对话</title>
+    <id>https://liuyueyi.github.io/tutorial/spring/springai/%E8%BF%9B%E9%98%B6%E7%AF%87/A04.%E4%BD%BF%E7%94%A8LangGraph4J%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BD%AE%E5%AF%B9%E8%AF%9D.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/springai/%E8%BF%9B%E9%98%B6%E7%AF%87/A04.%E4%BD%BF%E7%94%A8LangGraph4J%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BD%AE%E5%AF%B9%E8%AF%9D.html"/>
+    <updated>2025-08-13T04:04:22.000Z</updated>
+    <summary type="html"><![CDATA[<h1> 04.使用LangGraph4J实现多轮对话</h1>
+<p>之前介绍的多轮对话，上下文存储主要是SpringAI提供的能力支持；接下来我们看一下，在agent开发时推荐使用的框架LangGraphJ，如何实现多轮对话</p>
+<h2> 一、LangGraphJ实现多轮对话</h2>
+<h3> 1. 创建项目</h3>
+<p>创建一个SpringAI项目，基本流程同  <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/01.%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AASpringAI-Demo%E5%B7%A5%E7%A8%8B.html" target="blank">创建一个SpringAI-Demo工程</a></p>]]></summary>
+    <content type="html"><![CDATA[<h1> 04.使用LangGraph4J实现多轮对话</h1>
+<p>之前介绍的多轮对话，上下文存储主要是SpringAI提供的能力支持；接下来我们看一下，在agent开发时推荐使用的框架LangGraphJ，如何实现多轮对话</p>
+<h2> 一、LangGraphJ实现多轮对话</h2>
+<h3> 1. 创建项目</h3>
+<p>创建一个SpringAI项目，基本流程同  <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/01.%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AASpringAI-Demo%E5%B7%A5%E7%A8%8B.html" target="blank">创建一个SpringAI-Demo工程</a></p>
+<h3> 2. 添加依赖</h3>
+<p>在pom.xml中添加关键依赖</p>
+<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>我们这里直接依赖的是 <code>langgraph4j-springai-agentexecutor</code> 模块，该模块提供了基于SpringAI的AgentExecutor实现；使用的版本为当前(25/08/08)的最新版本，有需要的小伙伴根据实际情况进行调整</p>
+<h3> 3. 配置</h3>
+<p>在配置文件 <code>application.yml</code> 文件中，添加大模型配置，我们这里依然是使用ZhipuAI的模型进行演示</p>
+<div class="language-yaml line-numbers-mode" data-ext="yml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 4. MemAgent实现</h3>
+<p>实现一个MemAgent，用于获取对话的<code>CompileGraph</code></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>注意上面的实现， <code>MemorySaver</code> 是一个 <code>BaseCheckpointSaver</code> 的实现，用于实现 Checkpoint 的保存，对话历史保存到jvm内存中；使用<code>org.bsc.langgraph4j.RunnableConfig.threadId</code>来实现不同身份的会话隔离</p>
+<h3> 5. 多轮对话端点</h3>
+<p>提供一个聊天接口，第一个参数为用户标识，用于区分用户的聊天记录</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/imgs/column/springai/A04-1.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h2> 二、小结</h2>
+<p>本文演示了通过 LangGraphJ 实现多轮对话的实现，虽然效果是实现了，但是对LangGraphJ不太了解的小伙伴，估计会有很多疑问，这个框架是怎么工作的呢？又该如何使用它来开发Agent呢？</p>
+<p>文中所有涉及到的代码，可以到项目中获取 <a href="https://github.com/liuyueyi/spring-ai-demo/tree/master/advance-projects/A04-memory-agent-langgraph" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/spring-ai-demo</a></p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="SpringAI"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-08-11T17:15:07.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">05.使用LangGraph4J实现Agent路由选择</title>
+    <id>https://liuyueyi.github.io/tutorial/spring/springai/%E8%BF%9B%E9%98%B6%E7%AF%87/A05.%E4%BD%BF%E7%94%A8LangGraph4J%E5%AE%9E%E7%8E%B0Agent%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/spring/springai/%E8%BF%9B%E9%98%B6%E7%AF%87/A05.%E4%BD%BF%E7%94%A8LangGraph4J%E5%AE%9E%E7%8E%B0Agent%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9.html"/>
+    <updated>2025-08-13T04:04:22.000Z</updated>
+    <summary type="html"><![CDATA[<h1> 05.使用LangGraph4J实现Agent路由选择</h1>
+<p>在 <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/14.%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AALanggraph4j%E5%AE%9E%E4%BE%8B%E5%B7%A5%E7%A8%8B.html" target="blank">创建一个Langgraph4j示例工程</a> 这一篇文章中，我们介绍了如何创建一个 LangGraph4j 的示例工程；</p>
+<p>在上文中介绍到 <code>LangGraph4j</code> 时，就提到了它有一个重要的特性，就是可以定义循环图，使不同的组件（代理、工具或自定义逻辑）能够以有状态的方式进行交互</p>]]></summary>
+    <content type="html"><![CDATA[<h1> 05.使用LangGraph4J实现Agent路由选择</h1>
+<p>在 <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/14.%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AALanggraph4j%E5%AE%9E%E4%BE%8B%E5%B7%A5%E7%A8%8B.html" target="blank">创建一个Langgraph4j示例工程</a> 这一篇文章中，我们介绍了如何创建一个 LangGraph4j 的示例工程；</p>
+<p>在上文中介绍到 <code>LangGraph4j</code> 时，就提到了它有一个重要的特性，就是可以定义循环图，使不同的组件（代理、工具或自定义逻辑）能够以有状态的方式进行交互</p>
+<p>接下来我们来实际感受一下，上面这个重要的特性是如何表现的</p>
+<h2> 一、项目创建</h2>
+<h3> 1. 创建LangGraph4j + SpringAI项目</h3>
+<p>具体的创建过程，与上文一致，有兴趣的小伙伴请关注 <a href="../%E5%9F%BA%E7%A1%80%E7%AF%87/14.%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AALanggraph4j%E5%AE%9E%E4%BE%8B%E5%B7%A5%E7%A8%8B">创建一个Langgraph4j示例工程</a></p>
+<h3> 2. 配置大模型密钥</h3>
+<p>这里依然使用智谱的免费大模型，使用其他的模型时，请自行替换<code>start</code>和下面的配置</p>
+<div class="language-yaml line-numbers-mode" data-ext="yml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 二、创建一个地点的旅游推荐Agent</h2>
+<h3> 1. 工作流程</h3>
+<p>在这里，我们设计一个简单的业务流程，开发一个旅游推荐的Agent，在这个agent中，我们需要结合旅游地点的天气，来选择不同的推荐项目</p>
+<figure><img src="/imgs/column/springai/A05-1.webp" alt="由LangGraph4j生成的流程图" tabindex="0" loading="lazy"><figcaption>由LangGraph4j生成的流程图</figcaption></figure>
+<p>注意上面这个流程图，虽然它是事后由<code>LangGraph4j</code>生成的，实际也是呈现我们的旅游推荐Agent的核心工作流程</p>
+<ol>
+<li>Weather: 根据传入的地方，获取当前的天气</li>
+<li>Router: 作为一个路由节点（实际上啥也没干）
+<ul>
+<li>当天气为晴天时，路由到 outdoor，推荐一些室外的旅游项目</li>
+<li>当天气为雨天时，路由到 indoor，推荐一些室内的旅游项目</li>
+<li>当天气为其他情况时，路由到 default，直接结束</li>
+</ul>
+</li>
+</ol>
+<h3> 2. 基本概念科普</h3>
+<p>在<code>LangGraph</code>中，有几个核心的概念，我们现简单来看一下；后面的实现中，会针对性的实现这些</p>
+<blockquote>
+<p>以下内容，来自于: <a href="https://github.com/langgraph4j/langgraph4j" target="_blank" rel="noopener noreferrer">langgraph4j</a></p>
+</blockquote>
+<h4> AgentState</h4>
+<p>AgentState（或其扩展类）表示图的共享状态。它本质上是一个映射 (<code>Map&lt;String, Object&gt;</code>)，会在各个节点之间传递。每个节点都可以读取此状态并返回更新。</p>
+<ul>
+<li><code>Schema</code>：状态的结构由“Schema”定义，它是一个 <code>Map&lt;String, Channel.Reducer&gt;</code> 类型的对象。Map 中的每个键都对应状态中的一个属性。</li>
+<li><code>Channel.Reducer</code>：Reducer 定义了如何处理状态属性的更新。例如，新值可能会覆盖旧值，或者添加到现有值列表中。</li>
+<li><code>Channel.Default&lt;T&gt;</code>：如果状态属性尚未设置，则为其提供默认值。</li>
+<li><code>Channel.Appender&lt;T&gt;</code> <code>/</code> <code>MessageChannel.Appender&lt;M&gt;</code>：一种常见的 Reducer 类型，它将新值附加到与状态属性关联的列表中。这对于累积消息、工具调用或其他数据序列非常有用。MessageChannel.Appender 专为聊天消息而设计，还可以处理通过 ID 删除消息的操作。</li>
+</ul>
+<h4> Nodes</h4>
+<p>节点是构成图的执行操作的基石。节点通常是一个函数（或一个实现 <code>NodeAction&lt;S&gt;</code> 或 <code>AsyncNodeAction&lt;S&gt;</code> 的类），它：</p>
+<ul>
+<li>接收当前 <code>AgentState</code> 作为输入。</li>
+<li>执行某些计算（例如，调用 LLM、执行工具、运行自定义业务逻辑）。</li>
+<li>返回一个表示状态更新的 <code>Map&lt;String, Object&gt;</code> 对象。这些更新随后会根据架构的 <code>Reducer</code> 应用于 <code>AgentState</code>。</li>
+</ul>
+<p>节点可以是同步的，也可以是异步的（CompletableFuture）。</p>
+<h4> Edges</h4>
+<p>边定义节点之间的控制流。</p>
+<ul>
+<li>普通边：从一个节点到另一个节点的无条件转换。节点 A 完成后，控制权始终传递给节点 B。您可以使用 <code>addEdge(sourceNodeName, destinationNodeName)</code> 定义普通边。</li>
+<li>条件边：下一个节点根据当前 <code>AgentState</code> 动态确定。
+<ul>
+<li>源节点完成后，将执行 <code>EdgeAction&lt;S&gt;</code>（或 <code>AsyncEdgeAction&lt;S&gt;</code>）函数。</li>
+<li>该函数接收当前状态并返回下一个要执行的节点的名称。</li>
+<li>这允许分支逻辑（例如，如果代理决定使用某个工具，则转到<code>execute_tool</code>节点；否则，转到<code>respond_to_user</code>节点）。</li>
+<li>条件边使用 <code>addConditionalEdges(...)</code> 定义。</li>
+</ul>
+</li>
+<li>入口点：您还可以使用 <code>addConditionalEntryPoint(...)</code> 为图定义条件入口点。</li>
+</ul>
+<h4> Compilation</h4>
+<p>在 <code>StateGraph</code> 中定义好所有节点和边后，可以使用 <code>compile()</code> 将其编译为 <code>CompiledGraph&lt;S extends AgentState&gt;</code>。</p>
+<p>这个编译后的图是你的逻辑的不可变且可运行的表示。编译过程会验证图的结构（例如，检查是否存在孤立节点）。</p>
+<h4> Checkpoints (Persistence)</h4>
+<p><code>LangGraph4j</code> 允许您在任何步骤保存（检查点）图的状态。这在以下情况下非常有用：</p>
+<ul>
+<li>调试：检查各个点的状态以了解发生了什么。</li>
+<li>恢复：将图恢复到之前的状态并继续执行。</li>
+<li>长时间运行的进程：持久化长时间运行的代理交互的状态。您通常会使用 <code>CheckpointSaver</code> 实现（例如，使用 <code>MemorySaver</code> 进行内存存储，或者您也可以自己实现持久化存储）。</li>
+</ul>
+<h3> 3. Node实现</h3>
+<p>从上面的流程图中我们也可以看出，这里定义了四个<code>Node</code>，接下来我们分别给于实现</p>
+<p><strong>WeatherNode：用于获取地区的天气</strong></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>RouterNode: 路由节点</strong></p>
+<p>这个路由节点实际上啥也没干，不要也行，这里主要是用它打印了一下 WeatherNode 的输出</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>OutdoorNode: 室外推荐节点</strong></p>
+<p>在这个节点中，我们使用大模型来推荐外出旅游的项目</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>IndoorNode: 室内推荐节点</strong></p>
+<p>在这个节点中，我们使用大模型来推荐适合室内游玩的项目</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>到这里，我们的四个节点已经定义完成，接下来进行节点的连接</p>
+<h3> 4. 节点连接</h3>
+<p>节点连接，就是将节点通过<code>addEdge</code>方法进行连接，这里我们连接了四个节点，并且定义了条件边，用于判断当前节点是否需要执行</p>
+<p>首先实现路由的条件边判定</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后是完成完整的节点、边定义</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 5. 输出PlantUML</h3>
+<p>在上面的节点定义完成后，我们可以通过<code>graph.getGraph()</code>方法，将节点定义转换为PlantUML格式，方便我们查看节点定义</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>运行结果如下：</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>当我们拿到上面的内容之后，可以在 <a href="https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa700001" target="_blank" rel="noopener noreferrer">在线plantuml工具</a> 中查看，会生成对应的流程图</p>
+<figure><img src="/imgs/column/springai/A05-2.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 6. Agent封装</h3>
+<p>接下来就是将上面的实现，封装为一个完整的，对外直接使用的Agent，源码可以在最后的项目链接中获取，类名为 <code>WeatherRecommendAgent</code></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 7. 测试验证</h3>
+<p>接下来我们进行实例验证，创建一个Controller，调用<code>WeatherRecommendAgent</code>的<code>recommendByLocation</code>方法，传入地区参数，返回结果</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/imgs/column/springai/A05-3.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>从上面实际的表现结果也可以看出和我们前面定义的流程图表现一致</p>
+<h2> 三、小结</h2>
+<p>本文通过实现一个简单的基于地点的天气实现旅游项目推荐，演示了多个单Agent联合组装成一个更复杂、功能更强大Agent示例。</p>
+<p>在这个实现过程中，我们实现或者应用了<code>LangGraph4j</code> 框架中定义的Node、边（条件边）、State等，通过这些来生成了一个 <code>CompiledGraph</code>， 通过<code>CompiledGraph</code>来实现多Agent的组合</p>
+<p>虽然这个项目实现了一个多Agent的组合，但是善于思考的我们，依然会有一些疑问</p>
+<ul>
+<li>这里使用的是默认的<code>AgentState</code>，内部是使用Map来传递共享参数，是否有更结构化的方式?</li>
+<li><code>addConditionalEdges</code> 条件边定义的具体用法说明</li>
+<li><code>GraphRepresentation</code> 节点定义的输出格式，是否可以自定义？ 是否可以结构化输出？</li>
+<li>上面整体的实现更多的是借助<code>langgraph4j-core</code>，对于<code>langgraph4j-springai</code>是否会有更简单的使用姿势？</li>
+</ul>
+<p>接下来我们将努力尝试对上面这些问题进行逐步回答，有兴趣的小伙伴可以持续关注一波</p>
+<p>文中所有涉及到的代码，可以到项目中获取 <a href="https://github.com/liuyueyi/spring-ai-demo/tree/master/advance-projects/A04-memory-agent-langgraph" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/spring-ai-demo</a></p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="SpringAI"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2025-08-12T11:15:07.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
     <title type="text">SpringAI</title>
     <id>https://liuyueyi.github.io/tutorial/spring/springai/</id>
     <link href="https://liuyueyi.github.io/tutorial/spring/springai/"/>
-    <updated>2025-08-08T02:51:24.000Z</updated>
+    <updated>2025-08-13T04:04:22.000Z</updated>
     <summary type="html"><![CDATA[<p>这里主要介绍的是SpringAI进行AI应用开发的系列教程</p>
 <p>注意：在使用SpringAI时，对jdk和springboot有最低的版本要求</p>
 <ul>
 <li>jdk: 17+</li>
 <li>SpringBoot: 3+</li>
 </ul>
-<p>本篇专栏将从三个系列出发</p>
+<p>核心技术栈：</p>
+<ul>
+<li>SpringAI 1.0.1</li>
+<li>LangGraph4J</li>
+</ul>
+<p>本篇专栏将从四个系列出发</p>
 <h3> 1.基础教程</h3>
 <p>主要介绍SpringAI的基础使用，对应的项目工程以 <code>Sxx-</code> 开头，通过这些实例，您将掌握SpringAI的基础知识（如提示词、上下文、架构化输出、tool calling, MCP, advise, ChatClient, 多模型等），并开始使用SpringAI进行大模型应用开发</p>]]></summary>
     <content type="html"><![CDATA[<p>这里主要介绍的是SpringAI进行AI应用开发的系列教程</p>
@@ -57,7 +371,12 @@
 <li>jdk: 17+</li>
 <li>SpringBoot: 3+</li>
 </ul>
-<p>本篇专栏将从三个系列出发</p>
+<p>核心技术栈：</p>
+<ul>
+<li>SpringAI 1.0.1</li>
+<li>LangGraph4J</li>
+</ul>
+<p>本篇专栏将从四个系列出发</p>
 <h3> 1.基础教程</h3>
 <p>主要介绍SpringAI的基础使用，对应的项目工程以 <code>Sxx-</code> 开头，通过这些实例，您将掌握SpringAI的基础知识（如提示词、上下文、架构化输出、tool calling, MCP, advise, ChatClient, 多模型等），并开始使用SpringAI进行大模型应用开发</p>
 <ul class="task-list-container">
@@ -66,26 +385,32 @@
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-2" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-2"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/03.%E7%BB%93%E6%9E%84%E5%8C%96%E8%BF%94%E5%9B%9E.html" target="blank">03.结构化返回</a></label></li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-3" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-3"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/04.%E8%81%8A%E5%A4%A9%E4%B8%8A%E4%B8%8B%E6%96%87.html" target="blank">04.聊天上下文实现多轮对话</a></label></li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-4" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-4"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/05.%E8%87%AA%E5%AE%9A%E4%B9%89%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A5%E5%85%A5.html" target="blank">05.自定义大模型接入</a></label></li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-5" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-5"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/06.%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8.html" target="blank">06.Function Tool工具调用</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-5" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-5"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/06.%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8FunctionCalling.html" target="blank">06.Function Tool工具调用</a></label></li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-6" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-6"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/07.%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84McpServer.html" target="blank">07.实现一个简单的McpServer</a></label></li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-7" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-7"> [08.MCP Server简单鉴权的实现](基础篇/08.MCP <a href="http://xn--Server-gg5jl16cswy5r1arrgo6ptm4e.md" target="_blank" rel="noopener noreferrer">Server简单鉴权的实现.md</a>)]</label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-7" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-7"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/08.MCP%20Server%E7%AE%80%E5%8D%95%E9%89%B4%E6%9D%83%E7%9A%84%E5%AE%9E%E7%8E%B0.html" target="blank">08.MCP Server简单鉴权的实现</a>]</label></li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-8" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-8"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/09.ChatClient%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html" target="blank">09.ChatClient使用说明</a>]</label></li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-9" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-9"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/10.Advisor%E5%AE%9E%E7%8E%B0SpringAI%E4%BA%A4%E4%BA%92%E5%A2%9E%E5%BC%BA.html" target="blank">10.Advisor实现SpringAI交互增强</a>]</label></li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-10" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-10"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/11.%E5%9B%BE%E5%83%8F%E6%A8%A1%E5%9E%8B.html" target="blank">11.图像模型-生成图片</a></label></li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-11" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-11"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/12.%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AE%9E%E7%8E%B0%E9%A3%9F%E6%9D%90%E5%9B%BE%E7%89%87%E5%8D%A1%E8%B7%AF%E9%87%8C%E8%AF%86%E5%88%AB%E7%A4%BA%E4%BE%8B.html" target="blank">12.多模态实现食材图片卡路里识别示例</a></label></li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-12" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-12"> [13.支持MCP Client的AI对话实现](基础篇/13.支持MCP <a href="http://xn--ClientAI-mn5on2ac22qddh7n6e.md" target="_blank" rel="noopener noreferrer">Client的AI对话实现.md</a>)</label></li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-13" disabled="disabled"><label class="task-list-item-label" for="task-item-13"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/12.%E9%9F%B3%E9%A2%91%E6%A8%A1%E5%9E%8B.html" target="blank">14.音频模型</a></label></li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-14" disabled="disabled"><label class="task-list-item-label" for="task-item-14"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/08.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90RAG.html" target="blank">15.检索增强生成RAG</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-12" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-12"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/13.%E6%94%AF%E6%8C%81MCP%20Client%E7%9A%84AI%E5%AF%B9%E8%AF%9D%E5%AE%9E%E7%8E%B0.html" target="blank">13.支持MCP Client的AI对话实现</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-13" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-13"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/14.%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AALanggraph4j%E5%AE%9E%E4%BE%8B%E5%B7%A5%E7%A8%8B.html" target="blank">14.创建一个LangGraph4J示例工程</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-14" disabled="disabled"><label class="task-list-item-label" for="task-item-14"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/12.%E9%9F%B3%E9%A2%91%E6%A8%A1%E5%9E%8B.html" target="blank">音频模型</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-15" disabled="disabled"><label class="task-list-item-label" for="task-item-15"> <a href="/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/08.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90RAG.html" target="blank">检索增强生成RAG</a></label></li>
 </ul>
 <h3> 2.进阶教程</h3>
 <p>进阶相关将主要介绍如何更好的使用SpringAI进行大模型应用开发，对应的实例工程都放在 <a href="https://github.com/liuyueyi/spring-ai-demo/tree/master/advance-projects" target="_blank" rel="noopener noreferrer">advance-projects</a> 下</p>
 <ul class="task-list-container">
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-15" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-15"> <a href="/tutorial/spring/springai/%E8%BF%9B%E9%98%B6%E7%AF%87/A01.%E4%BD%BF%E7%94%A8MySql%E6%8C%81%E4%B9%85%E5%8C%96%E5%AF%B9%E8%AF%9D%E5%8E%86%E5%8F%B2.html" target="blank">01.使用MySql持久化对话历史</a></label></li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-16" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-16"> <a href="/tutorial/spring/springai/%E8%BF%9B%E9%98%B6%E7%AF%87/A02.%E4%BD%BF%E7%94%A8H2%E6%8C%81%E4%B9%85%E5%8C%96%E5%AF%B9%E8%AF%9D%E5%8E%86%E5%8F%B2.html" target="blank">02.使用H2持久化对话历史</a>]</label></li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-17" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-17"> <a href="/tutorial/spring/springai/%E8%BF%9B%E9%98%B6%E7%AF%87/A03.%E4%BD%BF%E7%94%A8Redis%E6%8C%81%E4%B9%85%E5%8C%96%E5%AF%B9%E8%AF%9D%E5%8E%86%E5%8F%B2.html" target="blank">03.使用Redis持久化对话历史</a>]</label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-16" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-16"> <a href="/tutorial/spring/springai/%E8%BF%9B%E9%98%B6%E7%AF%87/A01.%E4%BD%BF%E7%94%A8MySql%E6%8C%81%E4%B9%85%E5%8C%96%E5%AF%B9%E8%AF%9D%E5%8E%86%E5%8F%B2.html" target="blank">01.使用MySql持久化对话历史</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-17" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-17"> <a href="/tutorial/spring/springai/%E8%BF%9B%E9%98%B6%E7%AF%87/A02.%E4%BD%BF%E7%94%A8H2%E6%8C%81%E4%B9%85%E5%8C%96%E5%AF%B9%E8%AF%9D%E5%8E%86%E5%8F%B2.html" target="blank">02.使用H2持久化对话历史</a>]</label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-18" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-18"> <a href="/tutorial/spring/springai/%E8%BF%9B%E9%98%B6%E7%AF%87/A03.%E4%BD%BF%E7%94%A8Redis%E6%8C%81%E4%B9%85%E5%8C%96%E5%AF%B9%E8%AF%9D%E5%8E%86%E5%8F%B2.html" target="blank">03.使用Redis持久化对话历史</a>]</label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-19" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-19"> <a href="/tutorial/spring/springai/%E8%BF%9B%E9%98%B6%E7%AF%87/A04.%E4%BD%BF%E7%94%A8LangGraph4J%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BD%AE%E5%AF%B9%E8%AF%9D.html" target="blank">04.使用LangGraph4J实现多伦对话</a></label></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-20" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-20"> <a href="/tutorial/spring/springai/%E8%BF%9B%E9%98%B6%E7%AF%87/A05.%E4%BD%BF%E7%94%A8LangGraph4J%E5%AE%9E%E7%8E%B0Agent%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9.html" target="blank">05.使用LangGraph4J实现Agent路由选择</a></label></li>
 </ul>
 <h3> 3.应用教程</h3>
-<p>以搭建完整可用的SpringAI应用为目的，演示SpringAI的业务边界和表现，对应项目工程以 <code>Xxx-</code> 开头</p>
+<p>以搭建完整可用的SpringAI应用为目的，演示SpringAI的业务边界和表现，对应项目工都放在 <a href="https://github.com/liuyueyi/spring-ai-demo/tree/master/app-projects" target="_blank" rel="noopener noreferrer">app-projects</a> 下</p>
+<ul class="task-list-container">
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-21" checked="checked" disabled="disabled"><label class="task-list-item-label" for="task-item-21"> <a href="/tutorial/spring/springai/%E5%BA%94%E7%94%A8%E7%AF%87/D01.%E4%BB%8E0%E5%88%B01%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%E5%A4%A9%E6%B0%94%E7%9A%84%E6%97%85%E6%B8%B8%E7%BE%8E%E9%A3%9F%E6%8E%A8%E8%8D%90%E6%99%BA%E8%83%BD%E4%BD%93.html" target="blank">从0到1创建一个基于天气的旅游美食推荐智能体</a></label></li>
+</ul>
 <h3> 4.源码解读</h3>
 <p>以源码的视角，介绍SpringAI的核心实现，对应的项目工程以 <code>Yxx-</code> 开头</p>
 ]]></content>
@@ -1186,16 +1511,16 @@ Schema，完整记录历史聊天窗口，使用时添加 <code>org.springframew
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
   <entry>
-    <title type="text">11.图像模型</title>
+    <title type="text">11.图像模型生成图片</title>
     <id>https://liuyueyi.github.io/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/11.%E5%9B%BE%E5%83%8F%E6%A8%A1%E5%9E%8B.html</id>
     <link href="https://liuyueyi.github.io/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/11.%E5%9B%BE%E5%83%8F%E6%A8%A1%E5%9E%8B.html"/>
-    <updated>2025-08-08T02:51:24.000Z</updated>
-    <summary type="html"><![CDATA[<h1> 11.图像模型</h1>
+    <updated>2025-08-13T04:04:22.000Z</updated>
+    <summary type="html"><![CDATA[<h1> 11.图像模型生成图片</h1>
 <p>截止到目前为止，我们所有的体验的还仅限于聊天模型，一问一答，且都是基于文本的交互方式；现在主流的模型的应用场景，涉及图像识别、图像生成、图像检索、图像处理等等，SpringAI也提供了相应的模型接口，方便开发者进行图像模型应用的开发</p>
 <p>接下来我们通过一个实例，来看一下在SpringAI中，如何接入图像模型</p>
 <h2> 一、准备工作</h2>
 <p>首先还是得准备一个大模型的开发者账号，同样的为了简化大家的使用成本，我们依然采用免费的大模型 - <a href="https://www.bigmodel.cn/pricing" target="_blank" rel="noopener noreferrer">智谱</a> 来完成</p>]]></summary>
-    <content type="html"><![CDATA[<h1> 11.图像模型</h1>
+    <content type="html"><![CDATA[<h1> 11.图像模型生成图片</h1>
 <p>截止到目前为止，我们所有的体验的还仅限于聊天模型，一问一答，且都是基于文本的交互方式；现在主流的模型的应用场景，涉及图像识别、图像生成、图像检索、图像处理等等，SpringAI也提供了相应的模型接口，方便开发者进行图像模型应用的开发</p>
 <p>接下来我们通过一个实例，来看一下在SpringAI中，如何接入图像模型</p>
 <h2> 一、准备工作</h2>
@@ -1250,15 +1575,15 @@ Schema，完整记录历史聊天窗口，使用时添加 <code>org.springframew
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
   <entry>
-    <title type="text">12.多模态</title>
+    <title type="text">12.多模态实现图片卡路里识别</title>
     <id>https://liuyueyi.github.io/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/12.%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AE%9E%E7%8E%B0%E9%A3%9F%E6%9D%90%E5%9B%BE%E7%89%87%E5%8D%A1%E8%B7%AF%E9%87%8C%E8%AF%86%E5%88%AB%E7%A4%BA%E4%BE%8B.html</id>
     <link href="https://liuyueyi.github.io/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/12.%E5%A4%9A%E6%A8%A1%E6%80%81%E5%AE%9E%E7%8E%B0%E9%A3%9F%E6%9D%90%E5%9B%BE%E7%89%87%E5%8D%A1%E8%B7%AF%E9%87%8C%E8%AF%86%E5%88%AB%E7%A4%BA%E4%BE%8B.html"/>
-    <updated>2025-08-08T02:51:24.000Z</updated>
-    <summary type="html"><![CDATA[<h1> 12.多模态</h1>
+    <updated>2025-08-13T04:04:22.000Z</updated>
+    <summary type="html"><![CDATA[<h1> 12.多模态实现图片卡路里识别</h1>
 <p>现在大模型的快速发展，已经让其不仅只接受文本，也可以接受图像、音频、视频等多模态数据，SpringAI也提供了相应的模型接口，方便开发者进行多模态模型应用开发</p>
 <p>如如 OpenAI 的GPT-4o、Google 的Vertex AI Gemini 1.5、Anthropic 的 Claude3，以及开源模型 Llama3.2、LLaVA 和 BakLLaVA，都能接受文本、图像、音频和视频等多种输入，并通过整合这些输入生成文本响应。</p>
 <p>SpringAI提供了非常简单的多模态输入集成，接下来我们通过一个简单实例，来看一下在SpringAI中，如何接入多模态模型</p>]]></summary>
-    <content type="html"><![CDATA[<h1> 12.多模态</h1>
+    <content type="html"><![CDATA[<h1> 12.多模态实现图片卡路里识别</h1>
 <p>现在大模型的快速发展，已经让其不仅只接受文本，也可以接受图像、音频、视频等多模态数据，SpringAI也提供了相应的模型接口，方便开发者进行多模态模型应用开发</p>
 <p>如如 OpenAI 的GPT-4o、Google 的Vertex AI Gemini 1.5、Anthropic 的 Claude3，以及开源模型 Llama3.2、LLaVA 和 BakLLaVA，都能接受文本、图像、音频和视频等多种输入，并通过整合这些输入生成文本响应。</p>
 <p>SpringAI提供了非常简单的多模态输入集成，接下来我们通过一个简单实例，来看一下在SpringAI中，如何接入多模态模型</p>
@@ -1306,7 +1631,7 @@ Schema，完整记录历史聊天窗口，使用时添加 <code>org.springframew
     <title type="text">13.支持MCP Client的AI对话实现</title>
     <id>https://liuyueyi.github.io/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/13.%E6%94%AF%E6%8C%81MCP%20Client%E7%9A%84AI%E5%AF%B9%E8%AF%9D%E5%AE%9E%E7%8E%B0.html</id>
     <link href="https://liuyueyi.github.io/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/13.%E6%94%AF%E6%8C%81MCP%20Client%E7%9A%84AI%E5%AF%B9%E8%AF%9D%E5%AE%9E%E7%8E%B0.html"/>
-    <updated>2025-08-08T02:51:24.000Z</updated>
+    <updated>2025-08-13T04:04:22.000Z</updated>
     <summary type="html"><![CDATA[<h1> 13.支持MCP Client的AI对话实现</h1>
 <p>前面介绍了通过SpringAI来实现MCP Server，接下来我们再看一下，通过SpringAI来实现一个支持上次实现的<code>MCP Client</code>的<code>AI</code>对话</p>
 <h2> 一、项目初始化</h2>
@@ -1327,7 +1652,7 @@ Schema，完整记录历史聊天窗口，使用时添加 <code>org.springframew
 <h2> 二、MCP Client实现</h2>
 <p>SpringAI 对MCP Client 的实现封装的非常好了，对于上层应用而言，直接可以通过自定注入的 <code>ToolCallbackProvider</code>，将mcp client作为大模型的工具调用添加到模型中，然后通过模型调用，即可完成MCP的使用演示</p>
 <h3> 1. 初始化ChatClient</h3>
-<p>直接通过模型和<code>ToolCallbackProvider``，来创建支持mcp调用的 </code>ChatClient`</p>
+<p>直接通过模型和<code>ToolCallbackProvider</code>，来创建支持mcp调用的 <code>ChatClient</code></p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 2. 实现聊天对话</h3>
 <p>聊天对话的实现，非常简单，通过 <code>ChatClient</code> 调用模型，并返回结果</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 前端聊天页面实现</h3>
@@ -8711,200 +9036,6 @@ ans <span class="token operator">=</span> traceWatch<span class="token punctuati
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2018-07-17T21:15:07.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">2. jar包执行传参使用小结</title>
-    <id>https://liuyueyi.github.io/tutorial/java/basic/02.jar%E5%8C%85%E6%89%A7%E8%A1%8C%E4%BC%A0%E5%8F%82%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%BB%93.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/java/basic/02.jar%E5%8C%85%E6%89%A7%E8%A1%8C%E4%BC%A0%E5%8F%82%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%BB%93.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>虽说我们现在大多不太直接使用jar包运行方式，目前比较主流的是将自己的服务丢在某个容器中（如tomcat，jetty等）运行，比如我之前所属的电商公司，就是将项目打包为war包，丢到tomcat容器中运行的</p>
-<p>在使用SpringBoot时，可能会出现直接打包一个可执行的jar，然后运行，这种时候，通过java命令执行时，时可以传参的，那么问题来了，main方法可以如何优雅的解析这些传参呢？</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>虽说我们现在大多不太直接使用jar包运行方式，目前比较主流的是将自己的服务丢在某个容器中（如tomcat，jetty等）运行，比如我之前所属的电商公司，就是将项目打包为war包，丢到tomcat容器中运行的</p>
-<p>在使用SpringBoot时，可能会出现直接打包一个可执行的jar，然后运行，这种时候，通过java命令执行时，时可以传参的，那么问题来了，main方法可以如何优雅的解析这些传参呢？</p>
-<!-- more -->
-<h2> I. 简陋版本</h2>
-<p>最容易想到的，无非是自己直接解析main方法的传参，如我们知道的main方法的一般写法为</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>看到上面的写法，很容易就可以猜到，传入的参数最终都放到了args数组中，那么该怎么用就怎么用，一个<code>hello world</code>的实例如下</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>测试如下：</p>
-<figure><img src="https://upload-images.jianshu.io/upload_images/1405936-2d4f2e39d0bbaaf9.png" alt="image.png" tabindex="0" loading="lazy"><figcaption>image.png</figcaption></figure>
-<p>看到这里，真心感觉没有什么干货，上面这些过于小白了吧，估计连入门都算不上，那么参数处理仅止于此么？</p>
-<h2> II. 进阶版本</h2>
-<p>玩过shell的同学应该都知道man命令，可以用来查看很多shell命令的帮助，里面介绍了很多的shell命令的参数说明，而且这些参数一般有缩写和全拼，而且有些参数可以带传值，有些并不需要，可以说shell命令的传参方式，已经拥有自己独立的一套规范了，而且用起来非常的爽</p>
-<p>那么我们的jar包，能否支持这种传参方式呢？</p>
-<p>举一个简单的例子，上面的HelloWord接收一个简单用户名参数</p>
-<ul>
-<li>不传入时，默认输出 hello world</li>
-<li>短参方式: <code>-n xxx</code></li>
-<li>长参方式: <code>--name=xxx</code></li>
-</ul>
-<p>仅仅支持这一个场景，需要自己来解析的话，就得写一长串的代码，好在这种需求已经有轮子了</p>
-<h3> 1. commons-cli</h3>
-<p>首先引入依赖</p>
-<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>开始使用，官网已经给出了例子，完整的doc可以参考</p>
-<ul>
-<li><a href="http://commons.apache.org/proper/commons-cli/usage.html" target="_blank" rel="noopener noreferrer">commons-cli Usage Scenarios</a></li>
-</ul>
-<h3> 2. 实例演示</h3>
-<p>下面结合我的一个项目，给出实际的使用方式</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>对上面的使用姿势进行简单的说明，从逻辑上划分，可以分为下面几块</p>
-<ul>
-<li>定义传参，包括参数说明，缩写和全拼，是否有参数值，描述等</li>
-<li>解析传参数组，将具体的传参解析为<code>CommandLine</code>对象</li>
-<li>获取参数，执行相应的业务逻辑</li>
-</ul>
-<p>从源码角度来看，没什么复杂或者难以理解的地方，稍稍提一点，参数的定义，即<code>buildOption</code>方法中，上面指定了两个参数 <code>help, task</code>, 其中一个要求有参数值，一个不需要参数值，下面实际演示如下</p>
-<figure><img src="https://upload-images.jianshu.io/upload_images/1405936-f2e49d96af80d91b.png" alt="show" tabindex="0" loading="lazy"><figcaption>show</figcaption></figure>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Java"/>
-    <category term="其他"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2018-07-18T21:23:49.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">3. Jar文件提取与查看</title>
-    <id>https://liuyueyi.github.io/tutorial/java/basic/03.Jar%E6%96%87%E4%BB%B6%E6%8F%90%E5%8F%96%E4%B8%8E%E6%9F%A5%E7%9C%8B.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/java/basic/03.Jar%E6%96%87%E4%BB%B6%E6%8F%90%E5%8F%96%E4%B8%8E%E6%9F%A5%E7%9C%8B.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>最近遇到一个奇怪的问题，一个jar包无法解压，直接使用<code>jar xvf xxx.jar</code>没有任何响应</p>
-<p>因为实际想看的只是jar包中的某个class文件，基于此可以通过 <code>jar tf</code> 查看文件列表，在通过 <code>jar xf xxx.jar xxxfile</code>的方式来解压指定文件来实现目的</p>
-<p>接下来记录一下jar包的几个操作case</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>最近遇到一个奇怪的问题，一个jar包无法解压，直接使用<code>jar xvf xxx.jar</code>没有任何响应</p>
-<p>因为实际想看的只是jar包中的某个class文件，基于此可以通过 <code>jar tf</code> 查看文件列表，在通过 <code>jar xf xxx.jar xxxfile</code>的方式来解压指定文件来实现目的</p>
-<p>接下来记录一下jar包的几个操作case</p>
-<!-- more -->
-<h3> 1. jar包生成</h3>
-<p>直接通过jar命令可以非常简单的将class文件打包到一个jar中</p>
-<p>一个简单的java类</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>打包jar命令</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>直接使用上面这种打包，会有一个问题，当jar包中，有多个class文件存在main方法时，会提示没有主清单属性</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>主要原因就是在清单文件<code>MANIFEST.MF</code>中，没有指定主类</p>
-<p>指定主类</p>
-<div class="language-MF line-numbers-mode" data-ext="MF"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>打包命令如下（下面新增了一个Wel.java，源码就不说了）</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3> 2. jar文件列表查看</h3>
-<p>查看jar中有哪些文件，除了直接使用vim之外，还可考虑通过下面的命令</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>使用tf进行查看，就可以结合 grep 来过滤指定的文件</p>
-<h3> 3. 指定文件提取</h3>
-<p>对于jar文件整个解压，可以直接使用</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>当我们只希望提取jar包中的某个文件时，可以在后面添加需要提取的文件路径</p>
-<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2> 一灰灰的联系方式</h2>
-<p>尽信书则不如无书，以上内容，纯属一家之言，因个人能力有限，难免有疏漏和错误之处，如发现bug或者有更好的建议，欢迎批评指正，不吝感激</p>
-<ul>
-<li>个人站点：<a href="https://blog.hhui.top" target="_blank" rel="noopener noreferrer">https://blog.hhui.top</a></li>
-<li>微博地址: <a href="https://weibo.com/p/1005052169825577/home" target="_blank" rel="noopener noreferrer">小灰灰Blog</a></li>
-<li>QQ： 一灰灰/3302797840</li>
-<li>微信公众号：<strong>一灰灰blog</strong></li>
-</ul>
-<figure><img src="https://spring.hhui.top/spring-blog/imgs/info/info.png" alt="QrCode" tabindex="0" loading="lazy"><figcaption>QrCode</figcaption></figure>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Java"/>
-    <category term="JDK"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2021-12-28T19:00:56.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">4. 调用本地程序的几种姿势</title>
-    <id>https://liuyueyi.github.io/tutorial/java/basic/04.Java%E8%B0%83%E7%94%A8%E6%9C%AC%E5%9C%B0%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/java/basic/04.Java%E8%B0%83%E7%94%A8%E6%9C%AC%E5%9C%B0%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>作为一个后端同学，经常被安全的小伙伴盯上，找一找安全漏洞；除了常说的注入之外，还有比较吓人的执行远程命令，唤醒本地应用程序等；然后有意思的问题就来了，写了这么多年的代码，好像还真没有尝试过用java来唤醒本地应用程序的</p>
-<p>比如说一个最简单的，打开本地的计算器，应该怎么搞？</p>
-<p>接下来本文将介绍一下如何使用java打开本地应用，以及打开mac系统中特殊一点的处理方式（直白来说就是不同操作系统，使用姿势不一样）</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>作为一个后端同学，经常被安全的小伙伴盯上，找一找安全漏洞；除了常说的注入之外，还有比较吓人的执行远程命令，唤醒本地应用程序等；然后有意思的问题就来了，写了这么多年的代码，好像还真没有尝试过用java来唤醒本地应用程序的</p>
-<p>比如说一个最简单的，打开本地的计算器，应该怎么搞？</p>
-<p>接下来本文将介绍一下如何使用java打开本地应用，以及打开mac系统中特殊一点的处理方式（直白来说就是不同操作系统，使用姿势不一样）</p>
-<!-- more -->
-<h3> 1. Runtime使用方式</h3>
-<p>主要是基于<code>Runtime.getRuntime().exec()</code>来执行shell命令，来打开应用</p>
-<ul>
-<li>传参就是需要打开的应用名</li>
-</ul>
-<p>比如上面说到的打开计算器</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>从上面的传参也可以看出两者的区别，为什么mac会整一个 <code>open -n</code>， 这个其实可以理解为在终端执行命令，打开计算器</p>
-<p><strong>注意事项</strong></p>
-<p>对于mac系统而言，除了上面这种打开方式之外，还有下面这种姿势</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>在exec中指定计算器的路径，有个很容易采的坑，直接写成下面这种</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>上面这个直接执行之后会提示<code>权限错误</code>，其主要原因是mac系统的应用和win中的exe作为启动方式不太一样，对于mac而言，可以理解<code>xxx.app</code>为一个目录，真正执行文件是内部的<code>xxx/Contents/MacOS/xxx</code></p>
-<h3> 2. ProcessBuilder使用方式</h3>
-<p>除了Runtime唤起之外，使用ProcessBuilder也属于非常常见的case</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>使用上面这种姿势，特别需要注意的是内部传参不能是<code>open -n</code></p>
-<h3> 3. 小结</h3>
-<p>从上面介绍的方式来看，其实打开应用程序的思路主要就是利用java来执行脚本命令；内容比较简单，隐患却是比较大的；在自己的项目中，最好不要出现这种调用方式</p>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Java"/>
-    <category term="JDK"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2021-12-31T10:55:56.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">5. 输出异常堆栈信息</title>
-    <id>https://liuyueyi.github.io/tutorial/java/basic/05.Java%E4%B9%8B%E8%BE%93%E5%87%BA%E5%BC%82%E5%B8%B8%E5%A0%86%E6%A0%88%E4%BF%A1%E6%81%AF.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/java/basic/05.Java%E4%B9%8B%E8%BE%93%E5%87%BA%E5%BC%82%E5%B8%B8%E5%A0%86%E6%A0%88%E4%BF%A1%E6%81%AF.html"/>
-    <updated>2024-08-02T10:41:58.000Z</updated>
-    <summary type="html"><![CDATA[<p>在代码出现异常时，堆栈信息可以有效的辅助定位和排除问题，异常堆栈一般是怎么打印的呢</p>
-]]></summary>
-    <content type="html"><![CDATA[<p>在代码出现异常时，堆栈信息可以有效的辅助定位和排除问题，异常堆栈一般是怎么打印的呢</p>
-<!-- more -->
-<p>下面是一个简单的输出cas</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>直接使用 <code>System.out</code>输出时，看不到堆栈信息；使用<code>e.printStackTrace();</code>可以看到堆栈信息，输出如下</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>当然在我们实际的项目中，一般既不会使用<code>e.printStackTrace();</code>方式输出异常堆栈，也不会使用<code>System.out</code>方式输出；更常见的是通过专用的日志组件来处理，比如logback,slf4j2等</p>
-<p>前不久做支持一个java动态编译运行的项目时，遇到的一个问题是我们通过控制台来控制某块java代码的执行，如果出现异常时，我希望将异常堆栈返回给控制台来查看，所以我希望可以从<code>Throwable</code>中获取堆栈信息，并转成String，那么可以怎么做呢？</p>
-<p>主要的实现就是参考<code>e.printStackTrace</code>的实现，将输出到控制台的流，转换为我们自定义的额字符流</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后再次测试，结果如下</p>
-<figure><img src="/hexblog/imgs/190909/00.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h2> II. 其他</h2>
-<h3> 1. <a href="https://liuyueyi.github.io/hexblog" target="_blank" rel="noopener noreferrer">一灰灰Blog</a>： <a href="https://liuyueyi.github.io/hexblog" target="_blank" rel="noopener noreferrer">https://liuyueyi.github.io/hexblog</a></h3>
-<p>一灰灰的个人博客，记录所有学习和工作中的博文，欢迎大家前去逛逛</p>
-<h3> 2. 声明</h3>
-<p>尽信书则不如，已上内容，纯属一家之言，因个人能力有限，难免有疏漏和错误之处，如发现bug或者有更好的建议，欢迎批评指正，不吝感激</p>
-<ul>
-<li>微博地址: <a href="https://weibo.com/p/1005052169825577/home" target="_blank" rel="noopener noreferrer">小灰灰Blog</a></li>
-<li>QQ： 一灰灰/3302797840</li>
-</ul>
-<h3> 3. 扫描关注</h3>
-<p><strong>一灰灰blog</strong></p>
-<figure><img src="https://raw.githubusercontent.com/liuyueyi/Source/master/img/info/blogInfoV2.png" alt="QrCode" tabindex="0" loading="lazy"><figcaption>QrCode</figcaption></figure>
-<p><strong>知识星球</strong></p>
-<figure><img src="https://raw.githubusercontent.com/liuyueyi/Source/master/img/info/goals.png" alt="goals" tabindex="0" loading="lazy"><figcaption>goals</figcaption></figure>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Java"/>
-    <category term="JDK"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2019-09-09T19:11:32.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
 </feed>
