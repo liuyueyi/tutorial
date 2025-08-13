@@ -240,13 +240,13 @@ export const zhSidebar = sidebar({
      "",
     {
       text: "基础篇",
-      collapsible: false,
+      collapsible: true,
       prefix: "基础篇/",
       children: "structure",
     },
     {
       text: "进阶篇",
-      collapsible: false,
+      collapsible: true,
       prefix: "进阶篇/",
       children: "structure",
     },
