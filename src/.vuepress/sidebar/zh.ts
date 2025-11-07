@@ -261,6 +261,12 @@ export const zhSidebar = sidebar({
       collapsible: true,
       prefix: "源码篇/",
       children: "structure",
+    },
+    {
+      text: "Agent篇",
+      collapsible: true,
+      prefix: "Agent篇/",
+      children: "structure",
     }
   ],
   "/spring/extend/": [

@@ -126,7 +126,7 @@ export const zhNavbar = navbar([
     text: "SpringAI",
     icon: "material",
     prefix: "/spring/springai/",
-    children: [ "基础篇", "进阶篇", "应用篇", "源码篇"]
+    children: [ "基础篇", "进阶篇", "应用篇", "源码篇", "Agent篇"]
   },
   {
     text: "数据库",

@@ -29,14 +29,14 @@ features:
     details: 分布式设计模式与高可用详解
     link: /column/arch/distribute/
 
-  - title: AI专栏
+  - title: AI应用
     icon: computer
     details: 氛围编程，人人都是程序员
     link: /column/ai/
 
-  - title: SpringAI专栏
+  - title: SpringAI&Agent专栏
     icon: material
-    details: SpringAI实现AI应用开发，由基础知识到高阶应用，从应用实例到源码解析，全套教程
+    details: SpringAI实现AI应用开发，LangGraph进行Agent开发，由基础知识到高阶应用，从应用实例到源码解析，全套教程
     link: /spring/springai/
 
   - title: Java专栏
