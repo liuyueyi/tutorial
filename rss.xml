@@ -6,8 +6,8 @@
     <link>https://liuyueyi.github.io/tutorial/</link>
     <description>一灰灰的全网知识站点</description>
     <language>zh-CN</language>
-    <pubDate>Fri, 12 Dec 2025 07:33:11 GMT</pubDate>
-    <lastBuildDate>Fri, 12 Dec 2025 07:33:11 GMT</lastBuildDate>
+    <pubDate>Tue, 23 Dec 2025 06:47:01 GMT</pubDate>
+    <lastBuildDate>Tue, 23 Dec 2025 06:47:01 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 一灰灰blog</copyright>
@@ -16,6 +16,8 @@
       <url>https://liuyueyi.github.io/tutorial/logo.svg</url>
       <link>https://liuyueyi.github.io/tutorial/</link>
     </image>
+    <category>工具</category>
+    <category>Chrome</category>
     <category>SpringAI</category>
     <category>Agent</category>
     <category>AI</category>
@@ -29,6 +31,141 @@
     <category>开源</category>
     <category>ElasticSearch</category>
     <category>运维</category>
+    <item>
+      <title>7. Chrome插件Mybatis日志转SQL语句</title>
+      <link>https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/07.Myabtis%E6%97%A5%E5%BF%97%E5%90%88%E6%88%90SQL%E8%AF%AD%E5%8F%A5%E6%8F%92%E4%BB%B6.html</link>
+      <guid>https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/07.Myabtis%E6%97%A5%E5%BF%97%E5%90%88%E6%88%90SQL%E8%AF%AD%E5%8F%A5%E6%8F%92%E4%BB%B6.html</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">7. Chrome插件Mybatis日志转SQL语句</source>
+      <description>开发调试与生产分析的利器：MyBatis SQL日志合并插件，让复杂日志秒变可执行SQL 一、开篇 在Java开发的世界里，MyBatis作为最受欢迎的ORM框架之一，为我们提供了灵活的SQL操作能力。然而，伴随着这种灵活性，也带来了一个让人头疼的问题：当应用在开发或生产环境中遇到SQL相关问题时，如何快速定位和分析那些被参数化的SQL日志？ 相信各位javaer都会有类似的经历：面对控制台中输出的MyBatis日志，看到类似&amp;quot;Preparing: SELECT * FROM user WHERE id = ? AND status = ?&amp;quot;和&amp;quot;Parameters: 123(Long), active(String)&amp;quot;这样的信息，却需要手动将参数值代入SQL模板中，才能知道这条SQL实际执行的是什么？这个过程不仅繁琐，而且容易出错，尤其是在处理复杂查询时。</description>
+      <category>工具</category>
+      <category>Chrome</category>
+      <pubDate>Mon, 22 Dec 2025 19:22:29 GMT</pubDate>
+      <content:encoded><![CDATA[<h1> 开发调试与生产分析的利器：MyBatis SQL日志合并插件，让复杂日志秒变可执行SQL</h1>
+<h2> 一、开篇</h2>
+<p>在Java开发的世界里，MyBatis作为最受欢迎的ORM框架之一，为我们提供了灵活的SQL操作能力。然而，伴随着这种灵活性，也带来了一个让人头疼的问题：当应用在开发或生产环境中遇到SQL相关问题时，如何快速定位和分析那些被参数化的SQL日志？</p>
+<p>相信各位javaer都会有类似的经历：面对控制台中输出的MyBatis日志，看到类似"Preparing: SELECT * FROM user WHERE id = ? AND status = ?"和"Parameters: 123(Long), active(String)"这样的信息，却需要手动将参数值代入SQL模板中，才能知道这条SQL实际执行的是什么？这个过程不仅繁琐，而且容易出错，尤其是在处理复杂查询时。</p>
+<figure><img src="/imgs/251223/00.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>下面给大家推荐一个能彻底解决这个问题的神器——MyBatis SQL Log Merger插件，它不仅能大幅提升开发调试效率，更是生产环境SQL分析的得力助手。</p>
+<h2> 二、场景痛点分析</h2>
+<h3> 1. 开发阶段痛点</h3>
+<p>在开发过程中，我们经常需要验证SQL的正确性，分析查询性能，或者调试业务逻辑。传统的做法是：</p>
+<ol>
+<li>从日志中复制SQL模板和参数信息</li>
+<li>手动将参数值代入SQL模板中</li>
+<li>将完整的SQL粘贴到数据库客户端执行</li>
+<li>分析执行结果</li>
+</ol>
+<p>这个过程不仅耗时，而且容易出错，特别是当SQL包含大量参数或复杂条件时。</p>
+<h3> 2. 生产阶段痛点</h3>
+<p>在生产环境中，这个问题更加突出。当系统出现性能问题或异常时，比如现在出现了一个慢SQL，但是面对控制台上输出的SQL模板和传参，需要快速分析MyBatis日志，但：</p>
+<ol>
+<li>生产环境的SQL通常更加复杂，尤其是涉及多个表关联的场景</li>
+<li>不能直接在生产数据库中执行可能影响业务的SQL（业务重放可能加剧问题的影响面）</li>
+<li>需要将生产日志带回安全环境进行分析</li>
+<li>手动还原SQL既耗时又可能引入错误</li>
+</ol>
+<p>这些痛点严重影响了问题排查效率，延长了故障恢复时间；同时也极大的降低了程序员的幸福指数</p>
+<h2> 三、插件核心功能介绍</h2>
+<p>MyBatis SQL Log Merger插件正是为了解决这些痛点而生</p>
+<h3> 1. 一键将MyBatis日志转换为可执行SQL</h3>
+<p>只需将MyBatis日志复制到插件中，即可一键生成完整的、可直接执行的SQL语句。插件会自动识别SQL模板和参数信息，并将参数值正确地代入SQL中。</p>
+<p>如在监控的网页上，开启SQL提取功能，选中sql模板和sql传参，直接生成对应的sql；更能一键导航到您配置的sql管理工具站点</p>
+<figure><img src="/imgs/251223/00.gif" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 2. 独立的SQL合成工具页</h3>
+<p>除了上面的在目标网站上注入合成按钮之外，这个插件还提供了一个独立的页面，适用于从非浏览器场景获取Mybatis执行日志的场景，如 IDEA 的控制台日志：</p>
+<figure><img src="/imgs/251223/01.gif" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>在这个独立的SQL合成工具页中，提供了两种输入方式</p>
+<ul>
+<li><strong>单框模式</strong>：适用于完整的MyBatis日志，插件自动解析SQL模板和参数</li>
+<li><strong>双框模式</strong>：分别输入SQL模板和参数信息，提供更精确的控制</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>输入模式</th>
+<th>示例图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单框模式</td>
+<td><img src="/imgs/251223/02.webp" alt="" loading="lazy"> <br> <img src="/imgs/251223/03.webp" alt="" loading="lazy"></td>
+</tr>
+<tr>
+<td>双框模式</td>
+<td><img src="/imgs/251223/04.webp" alt="" loading="lazy"></td>
+</tr>
+</tbody>
+</table>
+<h3> 3. SQL格式化与语法高亮</h3>
+<p>生成的SQL支持进行格式化，提高可读性，并提供语法高亮功能，方便快速识别SQL结构和潜在问题；生成的SQL可以通过一键复制到剪贴板，方便粘贴到数据库客户端或其他工具中执行。</p>
+<figure><img src="/imgs/251223/05.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 4. 本地处理，保障数据安全</h3>
+<p>所有处理都在浏览器本地进行，无需上传任何数据到服务器，确保敏感的SQL信息不会泄露，特别适合处理生产环境日志。</p>
+<h3> 5. 插件优势</h3>
+<ul>
+<li>提升开发效率
+<ul>
+<li>通过自动化处理SQL日志，插件可以将原本需要几分钟的手动操作缩短到几秒钟，大幅提升开发效率。开发人员可以将更多时间专注于业务逻辑的实现，而不是繁琐的日志分析。</li>
+</ul>
+</li>
+<li>支持生产环境安全分析
+<ul>
+<li>插件的本地处理特性使其非常适合分析生产环境日志。无需将敏感数据上传到任何服务器，确保数据安全，同时又能高效地进行SQL分析。</li>
+</ul>
+</li>
+<li>数据本地处理，无泄漏风险
+<ul>
+<li>所有处理都在浏览器本地完成，没有任何数据传输，完全避免了敏感SQL信息泄露的风险，符合企业安全要求。</li>
+</ul>
+</li>
+<li>多语言支持
+<ul>
+<li>插件支持中英文界面，满足国际化团队的需求，让不同语言背景的开发人员都能方便使用。</li>
+</ul>
+</li>
+</ul>
+<h2> 四、使用方法详解</h2>
+<h3> 1. 开发场景应用</h3>
+<p>在开发环境中使用MyBatis SQL Log Merger非常简单：</p>
+<ol>
+<li><strong>安装插件</strong>：从Chrome应用商店安装 <a href="https://chromewebstore.google.com/detail/mybatis-sql-log-merger/ldlekpjpadmkfoohidfgjjcmegdbkbho" target="_blank" rel="noopener noreferrer">MyBatis SQL Log Merger</a></li>
+<li><strong>获取日志</strong>：从IDE控制台或日志文件中复制MyBatis的DEBUG级别日志</li>
+<li><strong>粘贴处理</strong>：打开插件界面，粘贴日志内容，点击"Process SQL/处理SQL"</li>
+<li><strong>验证结果</strong>：查看生成的完整SQL，如有需要可复制到数据库客户端执行</li>
+</ol>
+<p>这种方式可以大大加快SQL验证和调试的速度。</p>
+<figure><img src="/imgs/251223/06.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h3> 2. 生产场景应用</h3>
+<p>在生产环境中分析日志时，可以这样使用(对于有网页可以直接查看服务日志的场景)</p>
+<ol>
+<li><strong>SQL日志查询网页</strong>：安装插件之后，建议将插件固定到外部工具栏；然后导航到目标网站</li>
+<li><strong>激活提取SQL按钮</strong>：点击 Chrome 工具栏中的 <code>MyBatis SQL Log Merger</code> 图标，在弹出窗口中，点击非活动状态指示器旁边的"注入 SQL 提取按钮"切换开关</li>
+<li><strong>复制SQL</strong>：直接复制包含SQL模板和SQL参数的两行日志</li>
+<li><strong>提取SQL</strong>：点击右小角的提取SQL按钮，将自动得到可执行的SQL语句</li>
+</ol>
+<figure><img src="/imgs/251223/07.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<figure><img src="/imgs/251223/08.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<figure><img src="/imgs/251223/09.webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>这种方式既保证了生产数据的安全，又能高效地进行SQL分析。</p>
+<h3> 3. 不同日志格式的支持</h3>
+<p>插件支持多种MyBatis日志格式：</p>
+<ul>
+<li>标准MyBatis日志格式</li>
+<li>带"Preparing:"和"Parameters:"前缀的日志</li>
+<li>不同日志框架（Log4j、Logback等）的输出格式</li>
+<li>自定义日志格式</li>
+</ul>
+<h2> 五、小结</h2>
+<p>这个插件的优势还是比较明显的，MyBatis SQL Log Merger插件是一个真正解决开发和运维痛点的工具。它不仅在开发阶段能大幅提升调试效率，在生产环境中也能帮助快速定位和分析SQL相关问题。强烈推荐给每一个有需要的javer开发小伙伴🙂，有兴趣的小伙伴可以直接在谷歌浏览器上点进行下载体验</p>
+<ul>
+<li>主页：<a href="https://ai.hhui.top/mybatislog/index.html" target="_blank" rel="noopener noreferrer">MyBatis SQL 日志合并工具</a></li>
+<li>谷歌插件商店：<a href="https://chromewebstore.google.com/detail/mybatis-sql-log-merger/ldlekpjpadmkfoohidfgjjcmegdbkbho" target="_blank" rel="noopener noreferrer">Chrome商店下载地址</a></li>
+<li>项目源码： <a href="https://github.com/liuyueyi/ai-chrome-mysql-merge" target="_blank" rel="noopener noreferrer">ai-chrome-mysql-merge</a></li>
+</ul>
+]]></content:encoded>
+      <enclosure url="https://liuyueyi.github.io/tutorial/imgs/251223/00.webp" type="image/webp"/>
+    </item>
     <item>
       <title>15.接入OpenAI接口风格的大模型</title>
       <link>https://liuyueyi.github.io/tutorial/spring/springai/%E5%9F%BA%E7%A1%80%E7%AF%87/15.%E6%8E%A5%E5%85%A5OpenAI%E6%8E%A5%E5%8F%A3%E9%A3%8E%E6%A0%BC%E7%9A%84%E5%A4%A7%E6%A8%A1%E5%9E%8B.html</link>
@@ -8417,138 +8554,6 @@ Spring Boot 2.3+ 默认禁用末尾斜杠匹配，需手动启用。</p>
 <figure><img src="https://spring.hhui.top/spring-blog/imgs/info/info.png" alt="QrCode" tabindex="0" loading="lazy"><figcaption>QrCode</figcaption></figure>
 ]]></content:encoded>
       <enclosure url="https://spring.hhui.top/spring-blog/imgs/info/info.png" type="image/png"/>
-    </item>
-    <item>
-      <title>4. 基本使用姿势二</title>
-      <link>https://liuyueyi.github.io/tutorial/db/es/220412-ElasticSearch%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E4%BA%8C.html</link>
-      <guid>https://liuyueyi.github.io/tutorial/db/es/220412-ElasticSearch%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%E4%BA%8C.html</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">4. 基本使用姿势二</source>
-      <description>本文作为elasticsearch 基本使用姿势第二篇，包含以下内容 查询指定字段 限制返回条数 分页查询 分组查询 高亮 自动补全提示 排序 返回结果聚合，如统计文档数，某个field value的求和、平均值等 更多相关知识点请查看: * 210331-ElasticSearch 基本使用姿势 - 一灰灰Blog</description>
-      <category>开源</category>
-      <category>ElasticSearch</category>
-      <pubDate>Tue, 12 Apr 2022 21:43:49 GMT</pubDate>
-      <content:encoded><![CDATA[<p>本文作为elasticsearch 基本使用姿势第二篇，包含以下内容</p>
-<ul>
-<li>查询指定字段</li>
-<li>限制返回条数</li>
-<li>分页查询</li>
-<li>分组查询</li>
-<li>高亮</li>
-<li>自动补全提示</li>
-<li>排序</li>
-<li>返回结果聚合，如统计文档数，某个field value的求和、平均值等</li>
-</ul>
-<blockquote>
-<p>更多相关知识点请查看: * <a href="https://blog.hhui.top/hexblog/2021/03/31/210331-ElasticSearch-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF/" target="_blank" rel="noopener noreferrer">210331-ElasticSearch 基本使用姿势 - 一灰灰Blog</a></p>
-</blockquote>
-<!-- more -->
-<h3> 0. 数据准备</h3>
-<p>初始化一个索引，写入一些测试数据</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 1. 查询指定字段</h3>
-<p>比如我现在只关心url返回的状态码, 主要借助<code>_source</code>来指定需要查询的字段，查询的语法和之前介绍的一致</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/hexblog/imgs/220412/00.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 2. 返回条数限制</h3>
-<p>针对返回结果条数进行限制，属于比较常见的case了，在es中，直接通过<code>size</code>来指定</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/hexblog/imgs/220412/01.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 3. 分页查询</h3>
-<p>通过size限制返回的文档数，通过from来实现分页</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>(注意下面输出截图，与上面的对比，这里返回的是第二条数据)</p>
-<figure><img src="/hexblog/imgs/220412/02.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 4. 分组查询</h3>
-<p>相当于sql中的<code>group by</code>，常用于聚合操作中的统计计数的场景</p>
-<p>在es中，使用<code>aggs</code>来实现，语法如下</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>比如我们希望根据url统计访问计数，对应的查询可以是</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>但是在执行时，会发现并不能正常响应</p>
-<figure><img src="/hexblog/imgs/220412/03.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>右边返回的提示信息为<code>Text fields are not optimised for operations that require per-document field data like aggregations and sorting, so these operations are disabled by default. Please use a keyword field instead. Alternatively, set fielddata=true on [url] in order to load field data by uninverting the inverted index. Note that this can use significant memory</code>这个异常</p>
-<p>简单来说，就是url这个字段为text类型，默认情况下这种类型的不走索引，不支持聚合排序，如果需要则需要设置<code>fielddata=true</code>，或者使用url的分词<code>url.keyword</code></p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/hexblog/imgs/220412/04.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p><strong>注意</strong></p>
-<ul>
-<li>
-<p>虽然我们更注重的是分组后的结果，但是<code>hits</code>中依然会返回命中的文档，若是只想要分组后的统计结果，可以在查询条件中添加 <code>size:0</code></p>
-</li>
-<li>
-<p>聚合操作和查询条件是可以组合的，如只查询某个url对应的计数</p>
-</li>
-</ul>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/hexblog/imgs/220412/05.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>上面介绍了TEXT类型的field，根据分词进行聚合操作；还有一种方式就是设置<code>fielddata=true</code>，操作姿势如下</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>修改完毕之后，再根据url进行分组查询，就不会抛异常了</p>
-<figure><img src="/hexblog/imgs/220412/06.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 5. 全文搜索</h3>
-<ul>
-<li><a href="https://blog.hhui.top/hexblog/2021/10/18/211018-ElasticSearch%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2%E6%94%AF%E6%8C%81%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener noreferrer">211018-ElasticSearch全文搜索支持配置 - 一灰灰Blog</a></li>
-</ul>
-<p>通过配置一个动态索引模板，将所有的field构建一个用于全文检索的field，从而实现全文搜索</p>
-<h3> 6. 聚合操作</h3>
-<p>上面的分组也算是聚合操作中的一种，接下来仔细看一下es的聚合，可以支持哪些东西</p>
-<p><strong>聚合语法:</strong></p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>从聚合分类来看，可以划分为下面几种</p>
-<ul>
-<li>Metric Aggregation: 指标分析聚合</li>
-<li>Bucket Aggregation: 分桶聚合</li>
-<li>Pipeline: 管道分析类型</li>
-<li>Matrix: 矩阵分析类型</li>
-</ul>
-<h4> 5.1 Metric Aggregation: 指标分析聚合</h4>
-<p>常见的有 <code>min, max, avg, sum, cardinality,  value count</code></p>
-<p>通常是值查询一些需要通过计算获取到的值</p>
-<p>下面分别给出一些演示说明</p>
-<h5> 5.1.1 min最小值</h5>
-<p>获取请求耗时最小的case</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
-<li>size: 0  表示不需要返回原数据</li>
-<li>min_cost: 自定义的聚合名</li>
-<li>min: 表示聚合类型，为取最小值</li>
-<li><code>"field": "execute.cost"</code>:  表示取的是<code>Field: execute.cost</code>的最小值</li>
-</ul>
-<figure><img src="/hexblog/imgs/220412/07.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h5> 5.1.2 max 最大值</h5>
-<p>基本同上，下面中贴出请求代码，截图就省略掉了</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h5> 5.1.3 sum 求和</h5>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h5> 5.1.4 avg平均值</h5>
-<p>在监控平均耗时的统计中，这个还是比较能体现服务的整体性能的</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h5> 5.1.5 cardinality 去重统计计数</h5>
-<p>这个等同于我们常见的 <code>distinct count</code> 注意与后面的 <code>value count</code> 统计所有有值的文档数量之间的区别</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>去重统计url的计数，如下图，可以看到返回统计结果为3，但是实际的文档数有5个</p>
-<figure><img src="/hexblog/imgs/220412/08.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h5> 5.1.6 value count 计数统计</h5>
-<p>文档数量统计，区别于上面的去重统计，这里返回的是全量</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>输出结果配合cardinality的返回，做一个对比可以加强理解</p>
-<figure><img src="/hexblog/imgs/220412/09.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h5> 5.1.7 stats 多值计算</h5>
-<p>一个stats 可以返回上面<code>min,max,sum...</code>等的计算值</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/hexblog/imgs/220412/10.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h5> 5.1.8 extended_stats 多值扩展</h5>
-<p>在上面stats的基础上进行扩展，支持方差，标准差等返回</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/hexblog/imgs/220412/11.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h5> 5.1.9 percentile 百分位数统计</h5>
-<blockquote>
-<p>用于统计 xx% 的记录值，小于等于右边</p>
-</blockquote>
-<p>如下面截图，可知 99%的记录，耗时小于12</p>
-<figure><img src="/hexblog/imgs/220412/12.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>默认的百分比区间是: <code>[1, 45, 25, 50, 75, 95, 99]</code>， 可以手动修改</p>
-<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h5> 5.1.10 percentile rank统计值所在的区间</h5>
-<p>上面用于统计不同区间的占比，比如公司的人员年龄分布；而这一个则是我想知道18岁的我，在哪个占比里</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="/hexblog/imgs/220412/13.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h4> 5.2 Bucket Aggregation 分桶聚合</h4>
-<p>参考博文：</p>
-<p><a href="https://blog.csdn.net/qq_41063182/article/details/108944340" target="_blank" rel="noopener noreferrer">ElasticSearch：aggregations 聚合详解</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/107820698" target="_blank" rel="noopener noreferrer">Elasticsearch 聚合分析深入学习</a></p>
-<p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html" target="_blank" rel="noopener noreferrer">Elasticsearch: 权威指南-聚合</a></p>
-<h2> 一灰灰的联系方式</h2>
-<p>尽信书则不如无书，以上内容，纯属一家之言，因个人能力有限，难免有疏漏和错误之处，如发现bug或者有更好的建议，欢迎批评指正，不吝感激</p>
-<ul>
-<li>个人站点：<a href="https://blog.hhui.top" target="_blank" rel="noopener noreferrer">https://blog.hhui.top</a></li>
-<li>微博地址: <a href="https://weibo.com/p/1005052169825577/home" target="_blank" rel="noopener noreferrer">小灰灰Blog</a></li>
-<li>QQ： 一灰灰/3302797840</li>
-<li>微信公众号：<strong>一灰灰blog</strong></li>
-</ul>
-<figure><img src="https://spring.hhui.top/spring-blog/imgs/info/info.png" alt="QrCode" tabindex="0" loading="lazy"><figcaption>QrCode</figcaption></figure>
-]]></content:encoded>
-      <enclosure url="https://liuyueyi.github.io/tutorial/hexblog/imgs/220412/00.png" type="image/png"/>
     </item>
   </channel>
 </rss>
