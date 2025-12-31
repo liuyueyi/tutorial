@@ -96,20 +96,26 @@ export const zhSidebar = sidebar({
     "",
     {
       text: "AI",
-      icon: "symbol",
+      icon: "folder",
       prefix: "",
       collapsible: true,
       children: [
         {
           text: "人人都是程序员",
-          icon: "tree",
+          icon: "folder",
           prefix: "aicoding/",
           children: "structure",
         },
         {
           text: "AI游戏开发",
-          icon: "tree",
+          icon: "folder",
           prefix: "aigame/",
+          children: "structure",
+        },
+        {
+          text: "LLM应用开发",
+          icon: "folder",
+          prefix: "llmcoding/",
           children: "structure",
         },
       ],

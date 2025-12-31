@@ -1,6 +1,7 @@
 ---
 title: 人人都是程序员
 icon: computer
+index: false
 ---
 
 # 氛围编程

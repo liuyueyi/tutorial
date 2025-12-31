@@ -57,7 +57,7 @@ export const zhNavbar = navbar([
       {
         text: "AI",
         prefix: "ai/",
-        children: ["aicoding/", "aigame/"],
+        children: ["aicoding/", "aigame/", "llmcoding/"],
       },
     ],
   },

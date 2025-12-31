@@ -1,6 +1,7 @@
 ---
 title: AI游戏开发
 icon: exercise
+index: false
 ---
 
 # 氛围编程
