@@ -46,9 +46,6 @@ title: 关于我
 
 ![一灰灰的公众号](https://spring.hhui.top/spring-blog/imgs/info/info.png)
 
-我的小伙伴楼仔的公众号： "楼仔" 同时也推荐各位
-
-![楼仔的公众号](https://files.mdnice.com/user/13837/4b47ac79-8256-47cf-ac1a-036729635246.png)
 
 ## 6. 有什么学习的资料么
 
