@@ -1,1 +1,752 @@
 // place your custom styles here
+
+/* 自定义变量 */
+:root {
+    --color-primary: #3b82f6;
+    --color-secondary: #8b5cf6;
+    --color-dark: #1e293b;
+    --color-light: #f8fafc;
+    --color-gray-10: #ffebe733;
+    --color-gray-50: #f9fafb;
+    --color-gray-600: #4b5563;
+    --color-gray-400: #9ca3af;
+    --color-white: #ffffff;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --transition-default: all 0.3s ease;
+}
+
+/* 基础样式类 */
+.llm-container {
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+    .llm-container {
+        max-width: 768px;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .llm-container {
+        max-width: 1024px;
+    }
+}
+
+.bg-primary-div-10 {
+    background-color: rgb(59 130 246 / 0.1);
+}
+
+.llm-bg-gray-50 {
+    background-color: var(--color-gray-50);
+}
+
+.llm-bg-gray-10 {
+    background-color: var(--color-gray-10);
+}
+
+.llm-bg-white {
+    background-color: var(--color-white);
+}
+
+.llm-bg-dark {
+    background-color: var(--color-dark);
+}
+
+.llm-bg-gradient-blue-purple {
+    background: linear-gradient(to bottom right, #eff6ff, #f5f3ff);
+}
+
+.llm-text-gray-800 {
+    color: #1f2937;
+}
+
+.llm-text-gray-600 {
+    color: var(--color-gray-600);
+}
+
+.llm-text-gray-400 {
+    color: var(--color-gray-400);
+}
+
+.llm-text-white {
+    color: var(--color-white);
+}
+
+.llm-text-primary {
+    color: var(--color-primary);
+}
+
+.llm-text-secondary {
+    color: var(--color-secondary);
+}
+
+.llm-text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+}
+
+.llm-font-sans {
+    font-family: Inter, system-ui, sans-serif;
+}
+
+.llm-font-bold {
+    font-weight: 700;
+}
+
+.llm-font-semibold {
+    font-weight: 600;
+}
+
+.llm-font-medium {
+    font-weight: 500;
+}
+
+.llm-text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+.llm-text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.llm-text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.llm-text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.llm-text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.llm-text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.llm-text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.llm-text-responsive {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.2;
+}
+
+.llm-text-hero {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+}
+
+.llm-leading-tight {
+    line-height: 1.2;
+}
+
+/* 布局类 */
+.llm-flex {
+    display: flex;
+}
+
+.llm-grid {
+    display: grid;
+}
+
+.llm-inline-block {
+    display: inline-block;
+}
+
+.llm-hidden {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .llm-md-flex {
+        display: flex;
+    }
+
+    .llm-md-hidden {
+        display: none;
+    }
+
+    .llm-md-grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .llm-md-grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .llm-md-w-1-2 {
+        width: 50%;
+    }
+
+    .llm-md-flex-row {
+        flex-direction: row;
+    }
+
+    .llm-md-mb-0 {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .llm-lg-grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.llm-flex-col {
+    flex-direction: column;
+}
+
+.llm-items-center {
+    align-items: center;
+}
+
+.llm-justify-between {
+    justify-content: space-between;
+}
+
+.llm-justify-center {
+    justify-content: center;
+}
+
+.llm-gap-2 {
+    gap: 0.5rem;
+}
+
+.llm-gap-4 {
+    gap: 1rem;
+}
+
+.llm-gap-6 {
+    gap: 1.5rem;
+}
+
+.llm-gap-8 {
+    gap: 2rem;
+}
+
+.llm-gap-10 {
+    gap: 2.5rem;
+}
+
+.llm-space-y-6 {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.llm-flex-wrap {
+    flex-wrap: wrap;
+}
+
+.llm-max-w-xl {
+    max-width: 36rem;
+}
+
+.llm-max-w-3xl {
+    max-width: 48rem;
+}
+
+.llm-max-w-2xl {
+    max-width: 42rem;
+}
+
+.llm-mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 间距类 */
+.llm-p-6  {
+    padding: 1.5rem;
+}
+.llm-p-4 {
+    padding: 1rem;
+}
+.llm-p-2 {
+    padding: 0.5rem;
+}
+
+
+.llm-py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.llm-py-6 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.llm-py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.llm-py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.llm-py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.llm-px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.llm-px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.llm-pt-4 {
+    padding-top: 1rem;
+}
+
+.llm-mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.llm-mb-4 {
+    margin-bottom: 1rem;
+}
+
+.llm-mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.llm-mb-8 {
+    margin-bottom: 2rem;
+}
+
+.llm-mb-12 {
+    margin-bottom: 3rem;
+}
+
+.llm-mt-2 {
+    margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .llm-md-py-24 {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+}
+
+/* 边框和圆角 */
+.llm-rounded-full {
+    border-radius: 9999px;
+}
+
+.llm-rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.llm-rounded-xl {
+    border-radius: 0.75rem;
+}
+
+.llm-rounded {
+    border-radius: 0.25rem;
+}
+
+.llm-border-2 {
+    border-width: 2px;
+    border-style: solid;
+}
+
+.llm-border-4 {
+    border-width: 4px;
+    border-style: solid;
+}
+
+.llm-border-primary {
+    border-color: var(--color-primary);
+}
+
+.llm-border-white {
+    border-color: var(--color-white);
+}
+
+.llm-border {
+    border-width: 1px;
+    border-style: solid;
+}
+
+/* 尺寸类 */
+.llm-w-10 {
+    width: 2.5rem;
+}
+
+.llm-h-10 {
+    height: 2.5rem;
+}
+
+.llm-w-12 {
+    width: 3rem;
+}
+
+.llm-h-12 {
+    height: 3rem;
+}
+
+.llm-w-16 {
+    width: 4rem;
+}
+
+.llm-h-16 {
+    height: 4rem;
+}
+
+.llm-w-24 {
+    width: 6rem;
+}
+
+.llm-h-24 {
+    height: 6rem;
+}
+
+.llm-w-48 {
+    width: 12rem;
+}
+
+.llm-h-48 {
+    height: 12rem;
+}
+
+.llm-w-full {
+    width: 100%;
+}
+
+.llm-h-full {
+    height: 100%;
+}
+
+.llm-h-auto {
+    height: auto;
+}
+
+/* 阴影类 */
+.llm-shadow-sm {
+    box-shadow: var(--shadow-sm);
+}
+
+.llm-shadow-md {
+    box-shadow: var(--shadow-md);
+}
+
+.llm-shadow-lg {
+    box-shadow: var(--shadow-lg);
+}
+
+.llm-shadow-2xl {
+    box-shadow: var(--shadow-2xl);
+}
+
+.llm-shadow-primary-20 {
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2);
+}
+
+/* 定位类 */
+.llm-sticky {
+    position: sticky;
+}
+
+.llm-fixed {
+    position: fixed;
+}
+
+.llm-top-0 {
+    top: 0;
+}
+
+.llm-bottom-6 {
+    bottom: 1.5rem;
+}
+
+.llm-right-6 {
+    right: 1.5rem;
+}
+
+.llm-z-50 {
+    z-index: 50;
+}
+
+/* 交互类 */
+.llm-transition-colors {
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.llm-transition-all {
+    transition: all 0.3s ease;
+}
+
+.llm-card-hover {
+    transition: all 0.3s ease;
+}
+
+.llm-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.llm-backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.llm-opacity-0 {
+    opacity: 0;
+}
+
+.llm-opacity-100 {
+    opacity: 1;
+}
+
+.llm-invisible {
+    visibility: hidden;
+}
+
+.llm-visible {
+    visibility: visible;
+}
+
+.llm-duration-300 {
+    transition-duration: 300ms;
+}
+
+/* 文本对齐 */
+.llm-text-center {
+    text-align: center;
+}
+
+.llm-text-right {
+    text-align: right;
+}
+
+/* 特殊布局 */
+.llm-space-x-2 > * + * {
+    margin-left: -0.5rem;
+}
+
+.llm-object-cover {
+    object-fit: cover;
+}
+
+/* 按钮样式 */
+.llm-btn-primary {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.llm-btn-primary:hover {
+    background-color: rgba(59, 130, 246, 0.9);
+}
+
+.llm-btn-outline {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.llm-btn-outline:hover {
+    background-color: var(--color-gray-50);
+}
+
+/* 链接样式 */
+.llm-link {
+    color: var(--color-gray-600);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.llm-link:hover {
+    color: var(--color-primary);
+}
+
+.llm-link-primary {
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.llm-link-primary:hover {
+    text-decoration: underline;
+}
+
+.llm-social-link {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--color-white);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+}
+
+.llm-social-link:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.llm-footer-link {
+    color: var(--color-gray-400);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.llm-footer-link:hover {
+    color: var(--color-white);
+}
+
+/* 课程卡片渐变背景 */
+.llm-card-gradient {
+    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* 新增：案例演示区样式 */
+.llm-case-item {
+    background-color: var(--color-white);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.llm-case-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.llm-case-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.llm-case-item-content {
+    padding: 1.5rem;
+}
+
+/* 新增：资料类型切换样式 */
+.llm-tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.llm-tab-btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    background-color: var(--color-gray-50);
+    color: var(--color-gray-600);
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.llm-tab-btn.active {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.llm-tab-btn:hover:not(.active) {
+    background-color: var(--color-gray-100);
+}
+
+/* 新增：书籍小册列表样式 */
+.llm-book-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--color-gray-50);
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.llm-book-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+}
+
+.llm-book-cover {
+    width: 80px;
+    height: 100px;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    box-shadow: var(--shadow-md);
+}
+
+.llm-book-info {
+    flex: 1;
+}
+
+.llm-book-title {
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-gray-800);
+}
+
+.llm-book-desc {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+    margin-bottom: 0.75rem;
+}
+
+.llm-book-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    border-radius: 9999px;
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--color-primary);
+    margin-right: 0.5rem;
+}

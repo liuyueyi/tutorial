@@ -93,6 +93,157 @@ copyright: false
 footer: ©2017 - present @一灰灰Blog 保留所有权利 | <a href="https://beian.miit.gov.cn/" target="_blank"> 鄂ICP备18017282号</a> | 主题 @vuepress-theme-hope 
 ---
 
+<div>
+<section id="resources" class="llm-py-16 llm-bg-white">
+  <div class="llm-container">
+      <div class="llm-text-center llm-mb-12">
+          <h2 class="llm-text-responsive llm-font-bold">精选资料</h2>
+          <p class="llm-text-gray-600 llm-mt-2">最新技术干货与行业洞察</p>
+      </div>
+      <div class="llm-tab-nav">
+                <button class="llm-tab-btn active" data-tab="articles">技术博文</button>
+            </div>
+      <div id="articles-tab" class="llm-tab-content">
+              <div class="llm-grid llm-grid-cols-1 llm-md-grid-cols-2 llm-lg-grid-cols-3 llm-gap-6">
+                  <div class="llm-bg-gray-50 llm-p-4 llm-rounded-lg llm-flex llm-items-center llm-gap-4 llm-card-hover">
+                      <img src="https://ppai.top/ai-guides/imgs/info/home/llmBlog01.webp" alt="资料封面" class="llm-w-16 llm-h-16 llm-rounded llm-object-cover">
+                      <a href="https://mp.weixin.qq.com/s/qCn8x2XO2shA8MheYbHq0w" style="text-decoration: none;color:black;" target="_blank">
+                          <h4 class="llm-font-medium">LLM 应用开发是什么：零基础也可以读懂的科普文</h4>
+                          <p class="llm-text-xs llm-text-gray-500">发布于 2025-12-30</p>
+                      </a>
+                  </div>
+                  <div class="llm-bg-gray-50 llm-p-4 llm-rounded-lg llm-flex llm-items-center llm-gap-4 llm-card-hover">
+                      <img src="https://ppai.top/ai-guides/imgs/info/home/aiGame02.webp" alt="资料封面" class="llm-w-16 llm-h-16 llm-rounded llm-object-cover">
+                      <a style="text-decoration: none;color:black;" href="https://mp.weixin.qq.com/s/e3wZ7wMnKepm6R1Cz2DbAw" target="_blank">
+                          <h4 class="llm-font-medium">AI生成的垃圾小游戏-上架谷歌应用市场全流程-图文介绍</h4>
+                          <p class="llm-text-xs llm-text-gray-500">发布于 2025-04-06</p>
+                      </a>
+                  </div>
+                  <div class="llm-bg-gray-50 llm-p-4 llm-rounded-lg llm-flex llm-items-center llm-gap-4 llm-card-hover">
+                      <img src="https://ppai.top/ai-guides/imgs/info/home/aiGame01.webp" alt="资料封面" class="llm-w-16 llm-h-16 llm-rounded llm-object-cover">
+                      <a href="https://mp.weixin.qq.com/s/mu9l0y18mNE3PlI8EQhrYw" style="text-decoration: none;color:black;" target="_blank">
+                          <h4 class="llm-font-medium">图文手把手教你由0到1基于AI完成“垃圾消除小游戏”</h4>
+                          <p class="llm-text-xs llm-text-gray-500">发布于 2025-03-29</p>
+                      </a>
+                  </div>
+              </div>
+          </div>
+         <div class="llm-tab-nav" style="margin-top: 1rem;">
+              <button class="llm-tab-btn active" data-tab="books">书籍小册</button>
+          </div>
+          <div id="books-tab" class="llm-tab-content">
+              <div class="llm-grid llm-grid-cols-1 llm-md-grid-cols-2 llm-gap-6">
+                  <!-- 书籍2 -->
+                  <div class="llm-book-item">
+                      <img src="https://ppai.top/ai-guides/imgs/info/home/aiEngine.webp" alt="AI Engineering Guide Book" class="llm-book-cover">
+                      <div class="llm-book-info">
+                          <h4 class="llm-book-title">AI Engineering Guide Book</h4>
+                          <p class="llm-book-desc">LLMs, RAG and Agents设计范式（2025）</p>
+                          <div>
+                              <span class="llm-book-tag">Agent</span>
+                              <span class="llm-book-tag">LLM</span>
+                              <a href="https://drive.usercontent.google.com/download?id=1_s2UaD7tEPECjgC5YMOa1LIOB9HUWFO-&export=download&authuser=0&confirm=t&uuid=e7d73b62-7deb-44d9-93a1-20bff7c1d5ec&at=ANTm3cydWA8T5H0Jdu9YVKDnPDth%3A1767580584092" class="llm-link-primary llm-ml-2" target="_blank">查看详情</a>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- 书籍3 -->
+                  <div class="llm-book-item">
+                      <img src="https://book.heterocat.com.cn/images/hello-agents.png" alt="大模型私有化部署" class="llm-book-cover">
+                      <div class="llm-book-info">
+                          <h4 class="llm-book-title">Hello Agent</h4>
+                          <p class="llm-book-desc">从零开始构建智能体系统原理与实践教程</p>
+                          <div>
+                              <span class="llm-book-tag">LLM</span>
+                              <span class="llm-book-tag">Agent</span>
+                              <a href="https://book.heterocat.com.cn/" target="_blank" class="llm-link-primary llm-ml-2">查看详情</a>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- 书籍4 -->
+                  <div class="llm-book-item">
+                      <img src="https://ppai.top/ai-guides/imgs/info/home/llm.webp" alt="LLM Cookbook" class="llm-book-cover">
+                      <div class="llm-book-info">
+                          <h4 class="llm-book-title">LLM Cookbook</h4>
+                          <p class="llm-book-desc">面向开发者的大模型手册</p>
+                          <div>
+                              <span class="llm-book-tag">LLM</span>
+                              <a href="https://datawhalechina.github.io/llm-cookbook/#/" target="_blank" class="llm-link-primary llm-ml-2">查看详情</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="llm-book-item">
+                      <img src="https://imgbed.ppai.top/file/1770883894515_java.webp" alt="LLM Cookbook" class="llm-book-cover">
+                      <div class="llm-book-info">
+                          <h4 class="llm-book-title">java实战演练36讲</h4>
+                          <p class="llm-book-desc">java开发实战手册</p>
+                          <div>
+                              <span class="llm-book-tag">Java</span>
+                              <a href="https://book.hhui.top/pdf/java实战演练36讲.pdf" target="_blank" class="llm-link-primary llm-ml-2">查看详情</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="llm-book-item">
+                      <img src="https://imgbed.ppai.top/file/1770883616002_mongodbcover.webp" alt="LLM Cookbook" class="llm-book-cover">
+                      <div class="llm-book-info">
+                          <h4 class="llm-book-title">MongoDB零基础入门手册</h4>
+                          <p class="llm-book-desc">MongoDB手把手入门实战教程</p>
+                          <div>
+                              <span class="llm-book-tag">MongoDB</span>
+                              <a href="https://book.hhui.top/pdf/MongoDB零基础入门手册.pdf" target="_blank" class="llm-link-primary llm-ml-2">查看详情</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="llm-book-item">
+                      <img src="https://imgbed.ppai.top/file/1770883789166_langchain.webp" alt="LLM Cookbook" class="llm-book-cover">
+                      <div class="llm-book-info">
+                          <h4 class="llm-book-title">Hello LangChain</h4>
+                          <p class="llm-book-desc">LangChain 实战开发系列教程</p>
+                          <div>
+                              <span class="llm-book-tag">LangChain</span>
+                              <a href="https://liuyueyi.github.io/langchain-demo/#/" target="_blank" class="llm-link-primary llm-ml-2">查看详情</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+  </div>
+</section>
+<section class="llm-py-16 llm-bg-gradient-blue-purple">
+  <div class="llm-container">
+      <div class="llm-max-w-3xl llm-mx-auto llm-text-center">
+          <img src="https://spring.hhui.top/spring-blog/css/images/avatar.jpg" alt="一灰灰" class="llm-w-24 llm-h-24 llm-rounded-full llm-mx-auto llm-mb-4 llm-border-4 llm-border-white llm-shadow-lg">
+          <h2 class="llm-text-2xl llm-font-bold llm-mb-2">关于博主：一灰灰</h2>
+          <p class="llm-text-gray-600 llm-mb-6">资深Java架构师，多年一线开发与技术布道经验，专注于大模型应用落地与Agent技术研究，致力于帮助开发者快速拥抱AI时代</p>
+          <div class="llm-flex llm-justify-center llm-gap-4">
+              <a href="https://github.com/liuyueyi" class="llm-social-link"  target="_blank">
+                  <i class="fa fa-github"></i>
+              </a>
+              <a href="https://spring.hhui.top/spring-blog/imgs/info/wx.jpg" target="_blank" class="llm-social-link">
+                  <i class="fa fa-weixin"></i>
+              </a>
+              <a href="https://hhui.top/"  target="_blank" class="llm-social-link">
+                  <i class="fa fa-codepen"></i>
+              </a>
+          </div>
+      </div>
+  </div>
+</section>
+<section id="contact" class="llm-py-16 llm-bg-white">
+  <div class="llm-container">
+      <div class="llm-max-w-2xl llm-mx-auto llm-text-center">
+          <h2 class="llm-text-responsive llm-font-bold llm-mb-4">一灰灰Blog</h2>
+          <p class="llm-text-gray-600 llm-mb-8">关注公众号获取更多干货，关注即可实时获取</p>
+          <div class="llm-bg-gray-50 llm-p-6 llm-rounded-xl llm-inline-block">
+              <img src="https://spring.hhui.top/spring-blog/imgs/info/wx.jpg" alt="公众号二维码" class="llm-w-48 llm-h-48 llm-mx-auto llm-mb-4">
+              <p class="llm-font-medium">微信公众号：一灰灰Blog</p>
+          </div>
+      </div>
+  </div>
+</section>
+</div>
+
+
+
 <div align="center">
   <ins class="adsbygoogle"
        style="display:block"
@@ -108,25 +259,3 @@ footer: ©2017 - present @一灰灰Blog 保留所有权利 | <a href="https://be
      data-ad-slot="9219792501"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
-
-## 🔥 精选资料
-
-- [java实战演练36讲](https://book.hhui.top/pdf/java实战演练36讲.pdf)
-- [MongoDB零基础入门手册](https://book.hhui.top/pdf/MongoDB零基础入门手册.pdf)
-- [Java开发手册(黄山版)](https://book.hhui.top/pdf/Java开发手册(黄山版).pdf)
-
-
-
-## ✨ 公众号
-
-
-### 微信公众号: 一灰灰Blog
-
-尽信书则不如，以上内容，纯属一家之言，因个人能力有限，难免有疏漏和错误之处，如发现bug或者有更好的建议，欢迎批评指正，不吝感激
-
-下面一灰灰的个人博客，记录所有学习和工作中的博文，欢迎大家前去逛逛
-
-一灰灰Blog个人博客 https://blog.hhui.top
-一灰灰Blog-Spring专题博客 http://spring.hhui.top
-
-![](https://spring.hhui.top/spring-blog/imgs/info/info.png)

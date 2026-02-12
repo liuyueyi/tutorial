@@ -15,7 +15,12 @@ export default defineUserConfig({
 
   theme,
   head: [
-      // meta
+    [
+      'link',{ rel: 'icon', href: 'https://imgbed.ppai.top/file/1770883079181_hui-logo.ico' }
+    ],
+    [
+      'link',{ rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css' }
+    ],
     ["meta", { name: "robots", content: "all" }],
     ["meta", { name: "author", content: "一灰灰blog" }],
     [
