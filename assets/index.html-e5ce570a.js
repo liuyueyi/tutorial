@@ -1,1 +1,0 @@
-import{_ as l,V as n,W as t,Y as e}from"./framework-094145d2.js";const _={},o=e("p",null,"MySql的一些高端知识点，适用于>=3年开发经验的小伙伴，包括但不限于",-1),s=e("ul",null,[e("li",null,"索引 + 锁 + 事务知识点"),e("li",null,"问题排查指南")],-1),c=[o,s];function i(r,a){return n(),t("div",null,c)}const u=l(_,[["render",i],["__file","index.html.vue"]]);export{u as default};

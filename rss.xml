@@ -6,8 +6,8 @@
     <link>https://liuyueyi.github.io/tutorial/</link>
     <description>一灰灰的全网知识站点</description>
     <language>zh-CN</language>
-    <pubDate>Mon, 09 Feb 2026 05:11:50 GMT</pubDate>
-    <lastBuildDate>Mon, 09 Feb 2026 05:11:50 GMT</lastBuildDate>
+    <pubDate>Thu, 12 Feb 2026 08:30:58 GMT</pubDate>
+    <lastBuildDate>Thu, 12 Feb 2026 08:30:58 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 一灰灰blog</copyright>
@@ -28,6 +28,412 @@
     <category>QuickMCP</category>
     <category>Java</category>
     <category>JDK21</category>
+    <item>
+      <title>9. 基于CloudFlare的图床搭建</title>
+      <link>https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/09.CloudFlare%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA.html</link>
+      <guid>https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/09.CloudFlare%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA.html</guid>
+      <source url="https://liuyueyi.github.io/tutorial/rss.xml">9. 基于CloudFlare的图床搭建</source>
+      <description>零成本搭建专属图床：CloudFlare ImgBed 开源项目部署与深度体验 在日常的博文记录时，原始图片都是和教程放在一起的，这样的好处是所有的相关信息都很完整，不至于因为外部的存储的各种问题（比如备案、被攻击、价格因素等）导致数据缺失；当然缺点也很明显，在将本地的文章分享到各平台时，还得手动再传一遍图，就有点麻烦 当然经常做分享的小伙伴，大概率都会维护一个自己的图床。最近在github上发现一个基于CloudFlare的个人免费图床搭建的方案，试了一下，门槛很低，效果不错，推荐给有兴趣的小伙伴 效果预览 我的图床部署在CloudFlare，绑定了自己的域名，为了安全起见，上传图添加了密码限制🤣</description>
+      <category>工具</category>
+      <category>Chrome</category>
+      <pubDate>Thu, 12 Feb 2026 17:22:29 GMT</pubDate>
+      <content:encoded><![CDATA[<h1> 零成本搭建专属图床：CloudFlare ImgBed 开源项目部署与深度体验</h1>
+<p>在日常的博文记录时，原始图片都是和教程放在一起的，这样的好处是所有的相关信息都很完整，不至于因为外部的存储的各种问题（比如备案、被攻击、价格因素等）导致数据缺失；当然缺点也很明显，在将本地的文章分享到各平台时，还得手动再传一遍图，就有点麻烦</p>
+<p>当然经常做分享的小伙伴，大概率都会维护一个自己的图床。最近在github上发现一个基于CloudFlare的个人免费图床搭建的方案，试了一下，门槛很低，效果不错，推荐给有兴趣的小伙伴</p>
+<h2> 效果预览</h2>
+<p>我的图床部署在CloudFlare，绑定了自己的域名，为了安全起见，上传图添加了密码限制🤣</p>
+<p>上传页面如下：</p>
+<figure><img src="https://imgbed.ppai.top/file/1770878130782_260212-01.webp" alt="260212-01.webp" tabindex="0" loading="lazy"><figcaption>260212-01.webp</figcaption></figure>
+<p>上传的方式多种，支持拖拽、粘贴、选中文件上传；同时也支持外链批量转存</p>
+<figure><img src="https://imgbed.ppai.top/file/1770878404255_260212-02.webp" alt="260212-02.webp" tabindex="0" loading="lazy"><figcaption>260212-02.webp</figcaption></figure>
+<figure><img src="https://imgbed.ppai.top/file/1770878403207_260212-03.webp" alt="260212-03.webp" tabindex="0" loading="lazy"><figcaption>260212-03.webp</figcaption></figure>
+<p>后台提供了所有的图片管理，如下</p>
+<figure><img src="https://imgbed.ppai.top/file/1770878606831_260212-04.webp" alt="260212-04.webp" tabindex="0" loading="lazy"><figcaption>260212-04.webp</figcaption></figure>
+<p>每个文件支持点击查看详情</p>
+<figure><img src="https://imgbed.ppai.top/file/1770878676528_260212-05.webp" alt="260212-05.webp" tabindex="0" loading="lazy"><figcaption>260212-05.webp</figcaption></figure>
+<blockquote>
+<p>从使用者的角度来看，属实是非常方便了</p>
+</blockquote>
+<p>当然从管理员的角度出发，也有很多使用的设置（比如统计、安全设置、存储通道配置、个性化的设置等等）</p>
+<figure><img src="https://imgbed.ppai.top/file/1770879045350_260212-06.webp" alt="260212-06.webp" tabindex="0" loading="lazy"><figcaption>260212-06.webp</figcaption></figure>
+<h2> 快速部署</h2>
+<p>这个项目的部署成本真不算高，官方文档写的也挺清晰了，比如我是选择的 Cloudflare + Discord 方案</p>
+<ul>
+<li>CloudFlare：部署项目工程</li>
+<li>Discord: 作为图床存储渠道，保存上传的内容</li>
+</ul>
+<h3> 前期准备</h3>
+<p>准备CloudFlare账号，注册免费，如果需要使用 <code>Cloudflare R2</code> 作为存储渠道，那么需要绑定支付方式（注意：需要支持境外支付的信用卡）</p>
+<h3> Discord账号</h3>
+<p>注册免费，使用免费</p>
+<p><strong>创建 Discord Bot</strong></p>
+<ul>
+<li>访问 <a href="https://discord.com/developers/applications" target="_blank" rel="noopener noreferrer">Discord Developer Portal</a></li>
+<li>点击 "New Application" 创建应用</li>
+<li>进入 "Bot" 页面，获取你的token（如果没有则点击 <code>Reset Token</code>）</li>
+<li>复制 Bot Token</li>
+<li>点击 OAuth2，在 <code>Scopes</code> 区域勾选 <code>bot</code></li>
+<li>在下面的BotPermissons勾选权限 （不知道选择哪些权限的话，就都选上）</li>
+<li>保存最下面的 <code>Generated URL</code></li>
+</ul>
+<figure><img src="https://imgbed.ppai.top/file/1770879806104_260212-07.webp" alt="260212-07.webp" tabindex="0" loading="lazy"><figcaption>260212-07.webp</figcaption></figure>
+<p><strong>获取 Channel ID</strong></p>
+<ul>
+<li>进入主页：<a href="https://discord.com/" target="_blank" rel="noopener noreferrer">https://discord.com/</a></li>
+<li>在 Discord 客户端中启用开发者模式（用户设置 → 高级 → 开发者模式）</li>
+<li>添加服务器</li>
+<li>在服务器内，创建一个用于存储文件的频道</li>
+<li>右键点击频道，选择 "复制频道 ID"</li>
+<li>将 Bot 添加到服务器并授予发送文件的权限(这一步就是访问上面获取到的 URL)</li>
+</ul>
+<p>配置成功之后，就会发现我们通过图床上传的文件就会在这个频道内展示，如下</p>
+<figure><img src="https://imgbed.ppai.top/file/1770880110414_260212-08.webp" alt="260212-08.webp" tabindex="0" loading="lazy"><figcaption>260212-08.webp</figcaption></figure>
+<h2> CloudFlare部署</h2>
+<p>接下来我们就可以直接通过<code>Cloudflare Pages</code>来实现图床的部署。 CF提供免费托管、全球 CDN 加速和无需服务器维护，绝对是部署的首选方式</p>
+<h3> 1. fork项目</h3>
+<p>fork原始项目到自己的仓库: <a href="https://github.com/MarSeventh/CloudFlare-ImgBed" target="_blank" rel="noopener noreferrer">https://github.com/MarSeventh/CloudFlare-ImgBed</a></p>
+<h3> 2. 创建Pages项目</h3>
+<h4> 2.1 访问 Cloudflare Dashboard</h4>
+<ul>
+<li>登录 <a href="https://dash.cloudflare.com/" target="_blank" rel="noopener noreferrer">Cloudflare Dashboard</a></li>
+<li>选择左侧菜单的 "Compute &amp; AI" -&gt; "Workers &amp; Pages"</li>
+<li>点击 "创建应用程序"</li>
+<li>在最下方 <code>Looking to deploy Pages?</code> 选择 <code>Get started</code></li>
+<li>在 "导入现有 Git 存储库" 处点击 "开始使用"</li>
+</ul>
+<h4> 2.2 连接 GitHub 仓库</h4>
+<ul>
+<li>如果首次使用，需要授权 Cloudflare 访问 GitHub</li>
+<li>选择您 Fork 的 CloudFlare-ImgBed 仓库</li>
+<li>点击 "开始设置"</li>
+</ul>
+<h4> 2.3 配置项目设置</h4>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>项目名称</td>
+<td><code>cloudflare-imgbed</code>（或自定义）</td>
+<td>项目标识符</td>
+</tr>
+<tr>
+<td>生产分支</td>
+<td><code>main</code></td>
+<td>生产环境分支</td>
+</tr>
+<tr>
+<td>构建命令</td>
+<td><code>npm install</code></td>
+<td>重要：v2.0 新构建命令</td>
+</tr>
+<tr>
+<td>构建输出目录</td>
+<td>/</td>
+<td>保持默认</td>
+</tr>
+</tbody>
+</table>
+<figure><img src="https://cfbed.sanyue.de/images/deployment/pages-build-config.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h4> 2.4 部署项目</h4>
+<ol>
+<li>点击 "保存并部署"</li>
+<li>等待首次部署完成（约 2-3 分钟）</li>
+</ol>
+<h3> 3. 配置数据库</h3>
+<p>数据库用于存储文件元数据，是必需的组件，可选数据库为 <code>KV</code> 数据库和 <code>D1</code> 数据库。两者对比如下表所示，根据自己使用场景<strong>从其中选择一种配置即可</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>KV 数据库</th>
+<th>D1 数据库</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>读写性能</td>
+<td>高</td>
+<td>较低</td>
+</tr>
+<tr>
+<td>免费额度</td>
+<td>少</td>
+<td>多</td>
+</tr>
+<tr>
+<td>大文件上传</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>KV 数据库和 D1 数据库<strong>只需要配置其中一个</strong>即可，不需要同时配置两个！建议根据上表选择适合自己的数据库类型。</p>
+</blockquote>
+<p>接下来以 D1 数据库配置进行说明</p>
+<h4> 创建 D1 数据库</h4>
+<ol>
+<li>在 Cloudflare Dashboard 中选择 "存储和数据库"</li>
+<li>点击 "D1 SQL 数据库"</li>
+<li>点击 "创建数据库"</li>
+<li>输入数据库名称：<code>img_d1</code>（建议使用此名称）</li>
+<li>点击 "创建"</li>
+</ol>
+<h4> 初始化 D1 数据库</h4>
+<ol>
+<li>创建完成后，点击进入数据库详情页</li>
+<li>选择 "控制台" 选项卡</li>
+<li>在 SQL 输入框中粘贴并执行注释区域以下的内容（见<a href="https://github.com/MarSeventh/CloudFlare-ImgBed/blob/main/database/init.sql" target="_blank" rel="noopener noreferrer">https://github.com/MarSeventh/CloudFlare-ImgBed/blob/main/database/init.sql</a>）</li>
+<li>点击 "执行"</li>
+</ol>
+<h4> 绑定 D1 到项目</h4>
+<ol>
+<li>返回您的 Pages 项目</li>
+<li>选择 "设置" → "绑定"</li>
+<li>点击 "添加" → "D1 数据库"</li>
+<li>填写绑定信息：
+<ul>
+<li><strong>变量名称</strong>：<code>img_d1</code>（必须是这个名称）</li>
+<li><strong>D1 数据库</strong>：选择刚创建的数据库</li>
+</ul>
+</li>
+<li>点击 "保存"</li>
+</ol>
+<h3> 4. 重新部署</h3>
+<p>绑定数据库后需要重新部署以生效：</p>
+<ol>
+<li>进入项目的 "部署" 页面</li>
+<li>找到最新的部署记录</li>
+<li>点击右侧的 "..." 菜单</li>
+<li>选择 "重试部署"</li>
+<li>等待部署完成</li>
+</ol>
+<figure><img src="https://cfbed.sanyue.de/images/deployment/redeploy.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<h2> 配置</h2>
+<p>到上面这一步，我们的图床服务基本搭建完成，接下来就可以直接进入后台做一些配置</p>
+<h3> 🥘 配置 Discord 渠道</h3>
+<p>在管理后台的 Discord 渠道配置中填入：</p>
+<ul>
+<li><strong>渠道名称</strong>：自定义名称</li>
+<li><strong>Bot Token</strong>：Discord Bot Token</li>
+<li><strong>Channel ID</strong>：Discord 频道 ID</li>
+<li><strong>Is Nitro</strong>：是否为 Nitro 用户（Nitro 用户单文件限制为 25MB，普通用户为 10MB）</li>
+<li><strong>代理 URL</strong>：（可选）自定义代理地址</li>
+</ul>
+<h3> 🔒 安全设置</h3>
+<p>安全相关设置，在管理后台的 "系统设置" → "安全设置" 中配置</p>
+<h4> 认证管理</h4>
+<ul>
+<li>用户端认证：用于 Web 端用户登录和 API 认证</li>
+<li>管理端认证： 管理员用户名和密码，用于访问管理后台</li>
+</ul>
+<h4> 上传管理</h4>
+<p><strong>图像审查</strong></p>
+<p>审查渠道支持 <code>nsfwjs</code> 和 <code>moderatecontent.com</code>，可根据如下步骤自行配置。</p>
+<p><a href="http://1.moderatecontent.com" target="_blank" rel="noopener noreferrer">1.moderatecontent.com</a></p>
+<ul>
+<li>访问 <a href="https://moderatecontent.com/" target="_blank" rel="noopener noreferrer">ModerateContent</a></li>
+<li>注册并获取免费 API Key（目前已不再支持免费注册）</li>
+<li>在管理后台 "系统设置" → "安全设置" 中填入 API Key</li>
+</ul>
+<p>2.nsfwjs</p>
+<ul>
+<li>使用 Docker 部署 <code>nsfwjs</code> 审查服务</li>
+</ul>
+<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>在管理后台 "系统设置" → "安全设置" 中填入审查服务地址，如 <code>https://nsfwjs.your.domain</code></li>
+</ul>
+<h4> 访问管理</h4>
+<ul>
+<li>域名过滤
+<ul>
+<li>放行域名：允许访问的域名列表（留空放行所有域名，否则需要手动添加图床自身域名）</li>
+</ul>
+</li>
+<li>白名单模式：启用后仅允许加入白名单的文件被访问</li>
+</ul>
+<h3> 🌐 网页设置</h3>
+<p>前端网页相关设置，在管理后台的 "系统设置" → "网页设置" 中配置</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>用途</th>
+<th>类型</th>
+<th>内容规范</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>siteTitle</td>
+<td>网站标题</td>
+<td>字符串</td>
+<td>只支持<code>字符串</code>类型，设置为你自定义的网站标题</td>
+</tr>
+<tr>
+<td>siteIcon</td>
+<td>网站图标</td>
+<td>字符串</td>
+<td>只支持<code>字符串</code>类型，设置为你自定义的网站图标链接</td>
+</tr>
+<tr>
+<td>ownerName</td>
+<td>图床名称</td>
+<td>字符串</td>
+<td>只支持<code>字符串</code>类型，设置为你自定义的图床名称（默认为<code>Sanyue</code>）</td>
+</tr>
+<tr>
+<td>logoUrl</td>
+<td>图床Logo</td>
+<td>字符串</td>
+<td>只支持<code>字符串</code>类型，设置为你自定义的图床Logo链接</td>
+</tr>
+<tr>
+<td>logoLink</td>
+<td>Logo跳转链接</td>
+<td>字符串</td>
+<td>只支持<code>字符串</code>类型，设置为点击Logo时跳转的链接，留空则使用默认GitHub链接。仅对上传页面生效</td>
+</tr>
+<tr>
+<td>bkInterval</td>
+<td>背景切换间隔</td>
+<td>正整数</td>
+<td>设置为背景图的轮播时间，默认<code>3000</code>，单位<code>ms</code>。<br>例如你希望10s切换一次，设置为<code>10000</code>即可。</td>
+</tr>
+<tr>
+<td>bkOpacity</td>
+<td>背景图透明度</td>
+<td>(0,1]的浮点数</td>
+<td>展示的背景图透明度，默认为<code>1</code>。<br>如果你觉得显示效果不佳，可以自定义，如<code>0.8</code></td>
+</tr>
+<tr>
+<td>urlPrefix</td>
+<td>默认 URL 前缀</td>
+<td>字符串</td>
+<td>只支持<code>字符串</code>类型，设置为自定义的全局默认链接前缀，该前缀会覆盖原始默认前缀，但不会覆盖用户自定义的链接前缀</td>
+</tr>
+<tr>
+<td>announcement</td>
+<td>公告</td>
+<td>字符串</td>
+<td>只支持<code>字符串</code>类型，可以为 HTML 格式，设置为你自定义的公告内容（如有）</td>
+</tr>
+<tr>
+<td>defaultUploadChannel</td>
+<td>默认上传渠道</td>
+<td>字符串</td>
+<td>只支持<code>字符串</code>类型，设置为你自定义的默认上传渠道，支持<code>telegram</code>（Telegram 渠道）、<code>cfr2</code>（Cloudflare R2）、<code>s3</code>（S3 渠道）、<code>discord</code>（Discord 渠道）和<code>huggingface</code>（HuggingFace 渠道）</td>
+</tr>
+<tr>
+<td>defaultChannelName</td>
+<td>默认渠道名称</td>
+<td>字符串</td>
+<td>只支持<code>字符串</code>类型，指定默认使用的渠道名称，需先选择上传渠道。当同一渠道类型配置了多个渠道时，可通过此项指定默认使用哪个渠道</td>
+</tr>
+<tr>
+<td>defaultUploadNameType</td>
+<td>默认命名方式</td>
+<td>字符串</td>
+<td>只支持<code>字符串</code>类型，设置为你自定义的默认上传文件命名方式，支持<code>default</code>（默认）、<code>index</code>（仅前缀）、<code>original</code>（仅原名）和<code>short</code>（短链接）</td>
+</tr>
+<tr>
+<td>loginBkImg</td>
+<td>登录页背景图</td>
+<td>列表/字符串</td>
+<td>1、当字段类型为<code>列表</code>时，列表中元素为需要添加到轮播列表中的图片链接（列表中只有一张图时即为固定背景），形如<code>["1.jpg","2.jpg"]</code><br>2、当字段类型为<code>字符串</code>时，目前<strong>仅支持</strong>字符串值为<code>bing</code>，设置为该值时启用bing随机图片轮播模式。</td>
+</tr>
+<tr>
+<td>uploadBkImg</td>
+<td>上传页背景图</td>
+<td>列表/字符串</td>
+<td>同loginBkImg</td>
+</tr>
+<tr>
+<td>footerLink</td>
+<td>页脚传送门链接</td>
+<td>字符串</td>
+<td>只支持<code>字符串</code>类型，设置为你自定义的传送地址（如个人博客链接）</td>
+</tr>
+<tr>
+<td>disableFooter</td>
+<td>隐藏页脚</td>
+<td>boolean</td>
+<td>支持<code>boolean</code>类型，设为<code>true</code>时禁用页脚，默认<code>false</code></td>
+</tr>
+<tr>
+<td>defaultConvertToWebp</td>
+<td>默认转换 WebP</td>
+<td>boolean</td>
+<td>支持<code>boolean</code>类型，设为<code>true</code>时默认开启 WebP 转换，默认<code>false</code></td>
+</tr>
+<tr>
+<td>defaultCustomerCompress</td>
+<td>默认开启压缩</td>
+<td>boolean</td>
+<td>支持<code>boolean</code>类型，设为<code>true</code>时默认开启客户端压缩，默认<code>true</code></td>
+</tr>
+<tr>
+<td>defaultCompressBar</td>
+<td>默认压缩阈值</td>
+<td>数字</td>
+<td>图片大小超过此值将自动压缩，单位 MB，范围 1-20，默认<code>5</code></td>
+</tr>
+<tr>
+<td>defaultCompressQuality</td>
+<td>默认期望大小</td>
+<td>数字</td>
+<td>压缩后图片大小期望值，单位 MB，范围 0.5-压缩阈值，默认<code>4</code></td>
+</tr>
+<tr>
+<td>adminLoginBkImg</td>
+<td>管理页登录背景图</td>
+<td>列表/字符串</td>
+<td>同loginBkImg</td>
+</tr>
+<tr>
+<td>adminBkImg</td>
+<td>管理页背景图</td>
+<td>列表/字符串</td>
+<td>同loginBkImg</td>
+</tr>
+</tbody>
+</table>
+<h2> 上传API</h2>
+<p>除了通过网页的控制台进行图片上传之外，还提供了API的上传方式，这样服务器开发的小伙伴，也是可以使用的，但是需要注意的是官方的文档有个bug，authCode是放在请求头中，通过 HTTP 的 <code>Authorization</code> 方式进行鉴权，而不是原文中的请求参数携带</p>
+<p>如何发现的呢？源码的实现鉴权逻辑如下🤣</p>
+<figure><img src="https://imgbed.ppai.top/file/1770881442064_260212-09.webp" alt="260212-09.webp" tabindex="0" loading="lazy"><figcaption>260212-09.webp</figcaption></figure>
+<p>接口上传方式：</p>
+<ul>
+<li>端点：/upload</li>
+<li>方法：POST</li>
+<li>认证：使用上传认证码或 <code>API Token</code>（需要upload权限）</li>
+<li>内容类型：multipart/form-data</li>
+<li>文件大小限制：根据存储渠道而定</li>
+</ul>
+<p>请求示例</p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>Java请求示例</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>除了上面的API方式之外，这个项目还提供了 WebDAV 并支持了 PicGo图床工具的搭配使用，有兴趣的小伙伴可以自行尝试</p>
+<p><strong>WebDAV 支持</strong></p>
+<ul>
+<li>标准协议：支持 WebDAV 标准方法（PROPFIND, GET, PUT, DELETE 等）</li>
+<li>目录浏览：支持通过 WebDAV 客户端浏览和管理文件</li>
+<li>文件操作：支持上传、下载、删除文件和目录</li>
+</ul>
+<p><strong>第三方集成</strong></p>
+<ul>
+<li>PicGo 支持：完美兼容 PicGo 图床工具</li>
+<li>跨域支持：API 支持跨域访问</li>
+</ul>
+<p>项目源码：<a href="https://github.com/MarSeventh/CloudFlare-ImgBed" target="_blank" rel="noopener noreferrer">MarSeventh/CloudFlare-ImgBed</a></p>
+]]></content:encoded>
+      <enclosure url="https://imgbed.ppai.top/file/1770878130782_260212-01.webp" type="image/webp"/>
+    </item>
     <item>
       <title>8. Chrome插件TableHelper-解决在线表格选择困难症</title>
       <link>https://liuyueyi.github.io/tutorial/tool/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/08.TableHelper%E8%A1%A8%E6%A0%BC%E5%8A%A9%E6%89%8B.html</link>
@@ -10633,166 +11039,6 @@ Spring Boot 2.3+ 默认禁用末尾斜杠匹配，需手动启用。</p>
 </ul>
 <p>记录模式是Java模式匹配的重要扩展，建议有兴趣的小伙伴可以参考<a href="https://openjdk.org/jeps/440" target="_blank" rel="noopener noreferrer">官方文档</a>来实际体验一下它的魅力</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content:encoded>
-    </item>
-    <item>
-      <title>05.JDK21字符串模板：更安全、更强大的字符串拼接</title>
-      <link>https://liuyueyi.github.io/tutorial/java/jdk/jdk21/05.%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF.html</link>
-      <guid>https://liuyueyi.github.io/tutorial/java/jdk/jdk21/05.%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF.html</guid>
-      <source url="https://liuyueyi.github.io/tutorial/rss.xml">05.JDK21字符串模板：更安全、更强大的字符串拼接</source>
-      <description>1. 背景：为什么需要字符串模板？ 在Java中，字符串拼接是常见的操作，但传统方式存在诸多问题： 可读性差：使用+或StringBuilder拼接字符串时，代码冗长且难以维护 安全性低：直接拼接用户输入可能导致SQL注入或XSS攻击 性能开销：频繁拼接字符串可能产生大量临时对象，影响性能 字符串模板（String Templates）是JDK21引入的一项新特性（预览），旨在提供一种更安全、更直观的字符串构建方式。它结合了模板引擎的灵活性和Java类型系统的安全性。</description>
-      <category>Java</category>
-      <category>JDK21</category>
-      <pubDate>Thu, 13 Feb 2025 17:48:09 GMT</pubDate>
-      <content:encoded><![CDATA[<h2> 1. 背景：为什么需要字符串模板？</h2>
-<p>在Java中，字符串拼接是常见的操作，但传统方式存在诸多问题：</p>
-<ol>
-<li><strong>可读性差</strong>：使用<code>+</code>或<code>StringBuilder</code>拼接字符串时，代码冗长且难以维护</li>
-<li><strong>安全性低</strong>：直接拼接用户输入可能导致SQL注入或XSS攻击</li>
-<li><strong>性能开销</strong>：频繁拼接字符串可能产生大量临时对象，影响性能</li>
-</ol>
-<p><strong>字符串模板</strong>（String Templates）是JDK21引入的一项新特性（预览），旨在提供一种更安全、更直观的字符串构建方式。它结合了<strong>模板引擎</strong>的灵活性和<strong>Java类型系统</strong>的安全性。</p>
-<p><strong>基本概念</strong></p>
-<p>字符串模板是一种允许在字符串字面量中嵌入表达式的机制。传统的 Java 字符串拼接通常使用 + 运算符或 String.format 方法，这在处理复杂的字符串拼接时会使代码变得冗长且不易阅读。而字符串模板通过将表达式直接嵌入到字符串中，使代码更加简洁和直观。</p>
-<h2> 2. 原理：字符串模板如何工作？</h2>
-<h3> 2.1 传统字符串拼接 vs 字符串模板</h3>
-<h4> 传统方式</h4>
-<ul>
-<li><strong><code>+</code>操作符</strong>：简单但性能较差，可读性低</li>
-<li><strong><code>StringBuilder</code></strong>：性能较好，但代码冗长</li>
-<li><strong><code>String.format</code></strong>：可读性较高，但类型安全性差</li>
-</ul>
-<h4> 字符串模板</h4>
-<ul>
-<li><strong>嵌入式表达式</strong>：在字符串中直接嵌入变量或表达式</li>
-<li><strong>类型安全</strong>：编译器检查表达式类型，避免运行时错误</li>
-<li><strong>自定义处理器</strong>：支持通过处理器（Processor）自定义字符串生成逻辑</li>
-</ul>
-<h3> 核心机制</h3>
-<ol>
-<li>
-<p><strong>模板语法</strong><br>
-使用<code>\{...}</code>嵌入表达式，例如：</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div></li>
-<li>
-<p><strong>模板处理器</strong><br>
-字符串模板支持自定义处理器，例如：</p>
-<ul>
-<li><code>STR</code>：标准处理器，直接拼接字符串</li>
-<li><code>FMT</code>：格式化处理器，支持格式化字符串</li>
-<li>自定义处理器：实现<code>StringTemplate.Processor</code>接口</li>
-</ul>
-</li>
-<li>
-<p><strong>类型安全</strong><br>
-编译器会检查嵌入表达式的类型，确保其与模板兼容。</p>
-</li>
-<li>
-<p><strong>性能优化</strong><br>
-字符串模板在编译时生成高效的字节码，减少运行时开销。</p>
-</li>
-</ol>
-<h3> 2.2 优势：为什么选择字符串模板？</h3>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>传统方式</th>
-<th>字符串模板</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>可读性</td>
-<td>低</td>
-<td><strong>高</strong></td>
-</tr>
-<tr>
-<td>类型安全性</td>
-<td>无</td>
-<td><strong>有</strong></td>
-</tr>
-<tr>
-<td>性能</td>
-<td>较差</td>
-<td><strong>优化</strong></td>
-</tr>
-<tr>
-<td>灵活性</td>
-<td>有限</td>
-<td><strong>高</strong></td>
-</tr>
-</tbody>
-</table>
-<ol>
-<li><strong>代码简洁</strong>：减少样板代码，提升开发效率</li>
-<li><strong>类型安全</strong>：编译器检查表达式类型，减少运行时错误</li>
-<li><strong>性能优化</strong>：编译时生成高效字节码，减少运行时开销</li>
-<li><strong>灵活扩展</strong>：支持自定义处理器，满足多样化需求</li>
-</ol>
-<h2> 3. 使用示例</h2>
-<h3> 语法</h3>
-<p>字符串模板主要有两种形式：简单字符串模板和带标签的字符串模板。</p>
-<p><strong>简单字符串模板</strong></p>
-<p>使用 STR 标签来标识字符串模板，在字符串中使用 <code>\{}</code> 语法嵌入表达式。</p>
-<p><strong>带标签的字符串模板</strong></p>
-<p>除了 STR 标签，我们还可以自定义标签来处理字符串模板。</p>
-<ul>
-<li>自定义标签是一个方法，它接收一个 TemplateContext 对象和一个 Object[] 数组作为参数。</li>
-</ul>
-<p>如</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例1：基本使用</h3>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例2：多行字符串</h3>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例3：格式化字符串</h3>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例4：自定义处理器</h3>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 4. 应用场景探索</h2>
-<p>字符串模板的特性可以有效的应用在我们实际的业务场景中，如</p>
-<h3> 4.1 构建动态消息</h3>
-<p>在生成包含动态数据的消息时，字符串模板非常有用。比如生成用户欢迎消息、日志记录信息等。</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 4.2 SQL拼接</h3>
-<p>在构建 SQL 查询语句时，经常需要将变量值插入到 SQL 字符串中。使用字符串模板可以使代码更加清晰。</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 5. 小结</h2>
-<h3> 4.1 注意事项</h3>
-<ol>
-<li>
-<p><strong>语法兼容性</strong><br>
-字符串模板使用<code>\{...}</code>语法，需确保与现有代码无冲突。</p>
-</li>
-<li>
-<p><strong>处理器选择</strong><br>
-根据需求选择合适的处理器，例如：</p>
-<ul>
-<li><code>STR</code>：普通字符串拼接</li>
-<li><code>FMT</code>：格式化字符串</li>
-<li>自定义处理器：复杂逻辑处理</li>
-</ul>
-</li>
-<li>
-<p><strong>性能测试</strong><br>
-在性能敏感场景中，需测试字符串模板的性能表现。对于性能要求较高的场景，建议使用<code>StringBuilder</code>进行手动拼接</p>
-</li>
-<li>
-<p><strong>安全性</strong><br>
-使用自定义处理器时，确保对用户输入进行验证和转义，避免安全漏洞。</p>
-</li>
-<li>
-<p><strong>表达式复杂度</strong>
-嵌入的表达式应尽量保持简单，避免使用过于复杂的表达式，以免影响代码的可读性。</p>
-</li>
-<li>
-<p><strong>转义字符</strong>
-在字符串模板中，需要注意转义字符的使用。如果需要在字符串中包含 <code>\{</code> 或 <code>}</code>，需要进行适当的转义。</p>
-</li>
-</ol>
-<h3> 4.2 总结</h3>
-<p>JDK21字符串模板通过以下革新提升Java字符串处理的效率：</p>
-<ul>
-<li>✅ 简化字符串拼接代码</li>
-<li>✅ 提升类型安全性和可读性</li>
-<li>✅ 支持多行字符串和格式化</li>
-<li>✅ 灵活扩展自定义处理器</li>
-</ul>
-<p>字符串模板是Java字符串处理的重要扩展，有兴趣的小伙伴可参考<a href="https://openjdk.org/jeps/430" target="_blank" rel="noopener noreferrer">官方文档</a>以掌握最佳实践。</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div>]]></content:encoded>
     </item>
   </channel>
 </rss>

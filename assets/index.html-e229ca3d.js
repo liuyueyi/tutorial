@@ -1,0 +1,1 @@
+import{_ as n,V as t,W as l,Z as e}from"./framework-b1bd8911.js";const o={},_=e("p",null,"SpringBoot 缓存相关知识点",-1),c=e("ul",null,[e("li",null,"guava"),e("li",null,"caffeine")],-1),s=[_,c];function a(i,r){return t(),l("div",null,s)}const d=n(o,[["render",a],["__file","index.html.vue"]]);export{d as default};

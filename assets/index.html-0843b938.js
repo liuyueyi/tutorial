@@ -1,1 +1,0 @@
-import{_ as e,V as t,W as n,Y as _}from"./framework-094145d2.js";const c={},o=_("p",null,"实战系列教程，有0基础的搭建项目工程，有进阶的问题排查手册，也有使用的业务场景支持；欢迎来到实战系列教程栏目",-1),s=[o];function r(a,l){return t(),n("div",null,s)}const i=e(c,[["render",r],["__file","index.html.vue"]]);export{i as default};

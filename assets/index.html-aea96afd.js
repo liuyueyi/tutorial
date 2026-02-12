@@ -1,0 +1,1 @@
+import{_ as a,V as t,W as c,Z as e,a1 as s}from"./framework-b1bd8911.js";const n={},r=e("h1",{id:"quicktask应用专栏",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#quicktask应用专栏","aria-hidden":"true"},"#"),s(" QuickTask应用专栏")],-1),o=[r];function i(_,d){return t(),c("div",null,o)}const l=a(n,[["render",i],["__file","index.html.vue"]]);export{l as default};

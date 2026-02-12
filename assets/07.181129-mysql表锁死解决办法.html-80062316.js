@@ -1,0 +1,3 @@
+import{_ as e,V as s,W as a,X as n,Z as l,Y as c}from"./framework-b1bd8911.js";const t={},o=l("p",null,"MySQL表修改频繁，导致表被锁死，悲催的表现时这个表完全没法继续使用了，查询，修改，删除都不能使用，这种场景下除了重启mysql服务之外还可以怎么处理？",-1),i=c(`<p>另外一种解决办法:</p><p>查看当前的操作process，然后找出锁表的那个进程，杀掉</p><div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code>show full processlist
+<span class="token function">kill</span> xxx
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div>`,3);function r(_,d){return s(),a("div",null,[o,n(" more "),i])}const p=e(t,[["render",r],["__file","07.181129-mysql表锁死解决办法.html.vue"]]);export{p as default};

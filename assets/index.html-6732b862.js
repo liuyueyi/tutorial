@@ -1,0 +1,1 @@
+import{_ as e,V as t,W as c,Z as n}from"./framework-b1bd8911.js";const o={},s=n("p",null,"长连接websocket从0到1实战",-1),_=[s];function r(a,l){return t(),c("div",null,_)}const i=e(o,[["render",r],["__file","index.html.vue"]]);export{i as default};

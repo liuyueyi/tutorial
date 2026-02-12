@@ -1,1 +1,0 @@
-import{_ as e,V as t,W as c,Y as n}from"./framework-094145d2.js";const o={},_=n("p",null,"异步解耦削峰利器MQ的系列教程文档，包括但不限于:RabbitMq,Kafaka,RocketMQ等消息队列的使用及进阶博文",-1),a=[_];function s(r,l){return t(),c("div",null,a)}const d=e(o,[["render",s],["__file","index.html.vue"]]);export{d as default};

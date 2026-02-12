@@ -1,0 +1,1 @@
+import{_,V as t,W as s,Z as e}from"./framework-b1bd8911.js";const c={},n=e("p",null,"idea内部类，导入标红，提示找不到对应的依赖，解决办法",-1),o=e("p",null,[e("code",null,"file -> Invalidate Caches/ Restart")],-1),l=[n,o];function a(i,r){return t(),s("div",null,l)}const f=_(c,[["render",a],["__file","03.IDEA依赖类标红问题fix.html.vue"]]);export{f as default};

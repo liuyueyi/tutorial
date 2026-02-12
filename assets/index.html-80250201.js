@@ -1,0 +1,1 @@
+import{_ as e,V as n,W as t,Z as _}from"./framework-b1bd8911.js";const c={},o=_("p",null,"以搭建完整可用的SpringAI应用为目的，演示SpringAI的业务边界和表现",-1),s=[o];function r(a,i){return n(),t("div",null,s)}const d=e(c,[["render",r],["__file","index.html.vue"]]);export{d as default};
