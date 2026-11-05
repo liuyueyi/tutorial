@@ -52,7 +52,7 @@ export const zhNavbar = navbar([
       {
         text: "架构",
         prefix: "arch/",
-        children: ["distribute/"],
+        children: ["distribute/", "design/"],
       },
       {
         text: "AI",
@@ -199,6 +199,7 @@ export const zhNavbar = navbar([
     prefix: "/tool/",
     children: [ "开发工具", "GIT", "Linux", "Docker", "Maven", "Devops", "Nginx"]
   },
+  { text: "轻境", icon: "leaf", link: "https://calm-bqi.pages.dev/#water" },
   { text: "百宝箱", icon: "tool", link: "https://tool.hhui.top/" },
   { text: "关于", icon: "valine", link: "/me/about-me" },
 ]);

@@ -114,9 +114,9 @@ footer: ©2017 - present @一灰灰Blog 保留所有权利 | <a href="https://be
                   </div>
                   <div class="llm-bg-gray-50 llm-p-4 llm-rounded-lg llm-flex llm-items-center llm-gap-4 llm-card-hover">
                       <img src="https://ppai.top/ai-guides/imgs/info/home/aiGame02.webp" alt="资料封面" class="llm-w-16 llm-h-16 llm-rounded llm-object-cover">
-                      <a style="text-decoration: none;color:black;" href="https://mp.weixin.qq.com/s/e3wZ7wMnKepm6R1Cz2DbAw" target="_blank">
-                          <h4 class="llm-font-medium">AI生成的垃圾小游戏-上架谷歌应用市场全流程-图文介绍</h4>
-                          <p class="llm-text-xs llm-text-gray-500">发布于 2025-04-06</p>
+                      <a style="text-decoration: none;color:black;" href="https://mp.weixin.qq.com/s/cR3h2c8OxNhoDWfNRUxggQ" target="_blank">
+                          <h4 class="llm-font-medium">导出功能还要每个系统写一遍吗？统一下载中心的收口思路</h4>
+                          <p class="llm-text-xs llm-text-gray-500">发布于 2026-11-05</p>
                       </a>
                   </div>
                   <div class="llm-bg-gray-50 llm-p-4 llm-rounded-lg llm-flex llm-items-center llm-gap-4 llm-card-hover">
@@ -143,19 +143,6 @@ footer: ©2017 - present @一灰灰Blog 保留所有权利 | <a href="https://be
                               <span class="llm-book-tag">Agent</span>
                               <span class="llm-book-tag">LLM</span>
                               <a href="https://drive.usercontent.google.com/download?id=1_s2UaD7tEPECjgC5YMOa1LIOB9HUWFO-&export=download&authuser=0&confirm=t&uuid=e7d73b62-7deb-44d9-93a1-20bff7c1d5ec&at=ANTm3cydWA8T5H0Jdu9YVKDnPDth%3A1767580584092" class="llm-link-primary llm-ml-2" target="_blank">查看详情</a>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- 书籍3 -->
-                  <div class="llm-book-item">
-                      <img src="https://book.heterocat.com.cn/images/hello-agents.png" alt="大模型私有化部署" class="llm-book-cover">
-                      <div class="llm-book-info">
-                          <h4 class="llm-book-title">Hello Agent</h4>
-                          <p class="llm-book-desc">从零开始构建智能体系统原理与实践教程</p>
-                          <div>
-                              <span class="llm-book-tag">LLM</span>
-                              <span class="llm-book-tag">Agent</span>
-                              <a href="https://book.heterocat.com.cn/" target="_blank" class="llm-link-primary llm-ml-2">查看详情</a>
                           </div>
                       </div>
                   </div>

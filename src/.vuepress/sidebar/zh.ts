@@ -20,7 +20,7 @@ export const zhSidebar = sidebar({
         text: "专栏",
         prefix: "",
         collapsible: false,
-        children: [ "tech/", "app/", "arch/"],
+        children: ["tech/", "app/", "arch/"],
       },
   ],
 
@@ -86,6 +86,12 @@ export const zhSidebar = sidebar({
           text: "分布式专栏",
           icon: "tree",
           prefix: "distribute/",
+          children: "structure",
+        },
+        {
+          text: "架构设计",
+          icon: "mount",
+          prefix: "design/",
           children: "structure",
         },
       ],
