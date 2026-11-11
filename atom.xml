@@ -9,7 +9,7 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2026-11-05T08:37:56.766Z</updated>
+  <updated>2026-11-11T08:55:03.020Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
@@ -30,6 +30,158 @@
     <name>一灰灰blog</name>
     <uri>https://hhui.top</uri>
   </contributor>
+  <entry>
+    <title type="text">02.MyBatis XML 还原成自包含 SQL 模板：统一导出平台的关键一环</title>
+    <id>https://liuyueyi.github.io/tutorial/column/arch/design/02.%E7%BB%9F%E4%B8%80%E5%AF%BC%E5%87%BASQL%E6%A8%A1%E6%9D%BF%E6%8F%90%E5%8F%96%E5%99%A8%E6%B7%B1%E5%BA%A6%E6%8B%86%E8%A7%A3.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/column/arch/design/02.%E7%BB%9F%E4%B8%80%E5%AF%BC%E5%87%BASQL%E6%A8%A1%E6%9D%BF%E6%8F%90%E5%8F%96%E5%99%A8%E6%B7%B1%E5%BA%A6%E6%8B%86%E8%A7%A3.html"/>
+    <updated>2026-11-11T08:37:33.000Z</updated>
+    <summary type="html"><![CDATA[<h1> 把 MyBatis XML 还原成自包含 SQL 模板（统一导出平台细节补全）</h1>
+<figure><img src="https://cloudflare-imgbed-65s.pages.dev/file/1794384701557_fkoXQtSzX.jpeg" alt="fkoXQtSzX.jpeg" tabindex="0" loading="lazy"><figcaption>fkoXQtSzX.jpeg</figcaption></figure>
+<blockquote>
+<p>本文是《01.统一导出任务下载中心架构方案设计与实现》的细节补全篇。上一篇文章刻意略过了一个问题，业务侧下发的"与列表查询同源"的 SQL 模板，究竟是怎么从 mapper XML 里生成的。本文把它拆开，从设计动机讲到具体实现，再到关键的踩坑点。</p>
+</blockquote>]]></summary>
+    <content type="html"><![CDATA[<h1> 把 MyBatis XML 还原成自包含 SQL 模板（统一导出平台细节补全）</h1>
+<figure><img src="https://cloudflare-imgbed-65s.pages.dev/file/1794384701557_fkoXQtSzX.jpeg" alt="fkoXQtSzX.jpeg" tabindex="0" loading="lazy"><figcaption>fkoXQtSzX.jpeg</figcaption></figure>
+<blockquote>
+<p>本文是《01.统一导出任务下载中心架构方案设计与实现》的细节补全篇。上一篇文章刻意略过了一个问题，业务侧下发的"与列表查询同源"的 SQL 模板，究竟是怎么从 mapper XML 里生成的。本文把它拆开，从设计动机讲到具体实现，再到关键的踩坑点。</p>
+</blockquote>
+<hr>
+<p>上一篇文章把平台的主干流程讲完了，业务侧下发 SQL 模板，平台侧动态解析、分页执行、统一交付。</p>
+<p>但有一个细节当时被刻意略过了，业务侧手里那段模板，到底是怎么从 mapper XML 里长出来的？</p>
+<p>这个细节说小不小。提取这一步做不干净，平台侧的动态解析会在第一次导出任务上直接报错，而且是那种报错信息完全不指向根因的错误。我们把它做成了一个独立的小工具，本文从设计动机讲到实现，再把中间踩过的坑逐个摆出来。</p>
+<p>读完这篇，大家能带走三样东西。一份"基于Mybatis的xml 业务SQL 还原为自包含 SQL 模板"的完整思路与实现，一套剥离业务分页的 SQL 文本处理手法，还有一张可以直接抄走的踩坑清单。</p>
+<h2> 01、为什么要先做"模板提取"这一步？</h2>
+<p>先说结论，直接把 mapper XML 里的片段原文下发，平台侧是可能解析不了的。</p>
+<p>原因藏在 MyBatis 的解析机制里。平台收到模板后，会把它包装成 script 脚本再用 XML 语言驱动解析，遇到 include 标签时要查当前进程的 Configuration 里有没有对应的 <code>&lt;sql&gt;</code> 片段。</p>
+<p>业务应用进程里有这些片段，任务平台进程里没有。查不到，解析时就会抛 <code>IncompleteElementException</code>，任务直接失败。</p>
+<p>先看模板在两个进程之间的流转路径。</p>
+<p>模板一旦在业务侧完成内联，平台侧的解析就不再依赖任何业务进程的内部状态，这一步是后面所有能力的前提。</p>
+<p>同一份 mapper XML，在两个进程里的"完整程度"不一样，这就是整个问题的根源。</p>
+<p>有小伙伴可能会想，把业务应用的 mapper XML 也给平台加载一份不就行了。这条路走不通，第一，业务 XML 是全量文件，为一个导出场景把整套 mapper 拖给平台，体积和加载成本都不可控。</p>
+<p>第二，两个进程各自持有 XML 副本，改一边忘一边，同源一致性就破了。</p>
+<p>所以模板必须在业务侧完成内联，以完全自包含的形态下发。这也是提取器存在的唯一理由。</p>
+<h2> 02、怎么从 MyBatis 手里拿回原始 XML？</h2>
+<p>这里有个反直觉的事实，语句对象里拿不回模板原文。</p>
+<p>MyBatis 在启动时就把 XML 消化成了内部对象，动态标签被转换成节点树，include 要么被展开、要么被挂起等待补全。运行时从语句对象出发，只能拿到编译后的产物，拿不到带 include 标签的原始文本。</p>
+<p>还有一条弯路要提前排除。直接拼接语句对象吐出来的 SQL 字符串行不通，那条路只能拿到静态骨架，动态 if 标签已经被拆成了判断节点，拼回去的文本和 XML 原文早就不是同一个东西。绕开的办法只有一个，回到 XML 原件。</p>
+<p>好在留了两扇后门，片段和语句的拿法不一样。提取器入口先做分流。</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><code>&lt;sql&gt;</code> 片段走第一条路，直接操作 Configuration 里保留的原始 DOM，改起来最顺手。</p>
+<p>select 语句走第二条路，根据语句对象记录的 resource 串把 mapper XML 重新读回来，手动解析一遍，再定位到目标节点。</p>
+<figure><img src="https://cloudflare-imgbed-65s.pages.dev/file/1794368264722_tg01.webp" alt="tg01.jpeg" tabindex="0" loading="lazy"><figcaption>tg01.jpeg</figcaption></figure>
+<p>重新解析这步有个很容易撞上的坑。mapper XML 头部声明了外部 DTD，JVM 出于安全默认禁止解析器发起外部 DTD 的网络加载，一访问 <a href="http://mybatis.org" target="_blank" rel="noopener noreferrer">mybatis.org</a> 的 dtd 地址就被拒绝，解析直接失败。</p>
+<p>解法是关闭外部加载的 feature 开关，同时挂上 MyBatis 自带的本地实体解析器，让它从 mybatis 的 jar 包里读内置的 dtd 文件。整个过程不出进程，网络被禁也无所谓。</p>
+<p>第二个坑藏在 resource 串本身。IDE 环境下它可能是一段 file [...] 包装的绝对路径，跟运行时 classpath 对不上号，按 resource 串加载必然失败。</p>
+<p>兜底方案是按 mapper 接口的包结构推导，接口在哪个包，同名 XML 就在哪个包或其 xml 子包里，逐个候选尝试。</p>
+<h2> 03、include 是怎么被消除的？</h2>
+<p>拿回原始 DOM 之后，剩下的活是在 DOM 树上做一次宏展开。先看流程。</p>
+<p>include 的展开是递归的，片段里再引用片段也能处理(因此include嵌include也是可以进行铺开，从而获取完整的sql片段）。refid 支持短名写法，不带 namespace 前缀时自动补上当前的 namespace。</p>
+<p>CDATA 区、<code>${}</code> 静态拼接文本、注释节点全部原样保留，不会在展开过程中被吃掉 —— XML 里大量存在的 CDATA 包裹和枚举拼接，就靠这条保真规则活下来。</p>
+<p>序列化之后还有一道必须做的转义：</p>
+<blockquote>
+<p>提取结果会被平台包进 script 再解析一次，文本里的裸 <code>&lt;</code>、<code>&gt;</code>、<code>&amp;</code> 如果不进行处理，后续sql模板执行时，<code>&lt;</code> <code>&gt;</code> 会被当成标签开头、结束直接导致xml解析失败了</p>
+</blockquote>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>转义顺序是这段代码里最要紧的一处。先处理 <code>&amp;</code>，再处理尖括号，反过来的话，XML 里已经存在的 <code>&amp;lt;</code> 实体会被再套一层，到了平台侧文本里就多出两个不存在的字符，报错还不带提示。</p>
+<blockquote>
+<p>说明：mybatis的基础转移除了上面的三个之外，单引号和双引号，分别对应 <code>&amp;apos;</code> 和 <code>@quot;</code> ，不过一般比较少见</p>
+</blockquote>
+<h2> 04、列表查询怎么变成导出模板？</h2>
+<p>原始的列表查询逻辑，更多的是面向业务侧的分页展示列表详情，若我们需要基于此做一层导出逻辑的增强（比较常见的一个应用场景，再列表上添加一个导出的功能，可以根据前端的各种筛选条件，将满足的数据导出excel，此时导出和列表查询实际公用的一个逻辑，无法是列表是单页、而导出是全部）</p>
+<p>因此导出场景的一个关键点就是要把"分页列表查询"改造成"全量导出查询"，为此我们再提取器的工具类中提供了一条三段流水线实现方案</p>
+<p>前两步对所有模板生效，第三步只在语句声明了 resultMap 时才执行。</p>
+<p>第二步剥离 LIMIT，原因对应上一篇文章 4.3 节的设计，平台执行时用子查询把模板包一层，在外层追加分页参数，模板内部不能再自带 LIMIT。</p>
+<p>第三步的素材是语句声明的 resultMap。MyBatis 解析时已经把"结果集列名到实体属性"的映射收进了语句对象，直接读出来，把 organization_name 这样的下划线列名改写成 organizationName 驼峰属性名，让模板的输出列和导出列元数据的字段一一对应。</p>
+<p>改写失败时不阻断导出，退回未改写的模板，别名正确性由 XML 作者保证。</p>
+<p>为什么要做这步改写，看真实场景就明白了。我再实际接入时，发现xx明细导出做的验证场景里，列表查询是三个 UNION ALL 分支的大查询，每个分支二三十列，resultMap 声明了近 30 条列映射(这特么是人干的事😭)</p>
+<p>如果为了导出再手写一份改好别名的 SQL，想想，应该没什么人想这么干</p>
+<p>所以在具体的实现中，额外补了一个<code>resultMap</code>的解析和重命名回写</p>
+<figure><img src="https://cloudflare-imgbed-65s.pages.dev/file/1794381206154_image.webp" alt="image.webp" tabindex="0" loading="lazy"><figcaption>image.webp</figcaption></figure>
+<h2> 05、去 LIMIT 为什么差点翻车？</h2>
+<p>剥离 LIMIT 最朴素的实现是一条正则，匹配到 LIMIT 就截断到语句结尾。这个方案在评审时就被拦下了，问题出在子查询上</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>这条 SQL 里的 LIMIT 在括号里面，语义是子查询的取数上限，不是分页。朴素截断会把它当成分页位置，从子查询处一路砍到结尾，右括号、剩余列、FROM、WHERE 全部丢失。</p>
+<p>更难受的是这种错误不会抛异常，模板看起来还是一段像样的 SQL，等平台真正执行时才炸，排查时对着两边的日志根本对不上号。</p>
+<p>解法是给"顶层"一个精确定义，括号深度为 0，且不在单引号字符串内。判定某个 LIMIT 的位置时，从语句开头逐字符扫描到该位置，维护括号计数器和字符串开关，两个条件同时满足才算分页 LIMIT。</p>
+<blockquote>
+<p>但是上面这个实现的方案有一个前提，业务侧不要将sql直接包装在一个<code>()</code>中，当然这个我们就采用了规则约定，没有做额外的系统层兼容（毕竟应该没有哪个大聪明会这么写sql）</p>
+</blockquote>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>逐字符扫描听起来开销不小，实际完全扛得住。导出模板的量级充其量是几十 KB 文本，扫描通常只会发生一次，（这就涉及到我们要求接入方遵循最佳实践进行接入了，提前缓存好sql模板，不要每次回调接口时实时构建），之后模板就是一份静态字符串，运行期不存在任何重复扫描。</p>
+<p>完整的判定逻辑比较清晰了，只是实现起来有点恶心罢了</p>
+<p><strong>注意：额外说一个恶心的点</strong></p>
+<p>还有一个更蛋疼的分支场景，比如 <code>SELECT ... LIMIT 10 UNION ALL SELECT ... LIMIT 29</code> 这种写法，每个分支各自带 LIMIT，没有统一的外层分页。此时不存在安全的截断点，删掉任何一个都会改变某个分支的语义，所以只能整段原样保留了（对于这种你自己都把limit写死了，那我只能要求你在接入任务中心的时候，将单页的查询page设置得较大，超过你自己内部的limit，这样就能保证任务中心不会触发下一页查询）</p>
+<p>我们给这个判定补了六个单元测试，把六种输入形态的期望行为全部锁死。</p>
+<table>
+<thead>
+<tr>
+<th>输入形态</th>
+<th>期望行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>子查询内 LIMIT（顶层无 LIMIT）</td>
+<td>原样保留</td>
+</tr>
+<tr>
+<td>单 SELECT 尾部 LIMIT</td>
+<td>剥离</td>
+</tr>
+<tr>
+<td>UNION + 最末统一外层 LIMIT</td>
+<td>剥离最末的 LIMIT</td>
+</tr>
+<tr>
+<td>括号包裹 UNION + 外层 LIMIT</td>
+<td>只剥外层，分支内 LIMIT 保留</td>
+</tr>
+<tr>
+<td>UNION 各分支各自带 LIMIT</td>
+<td>整段保留</td>
+</tr>
+<tr>
+<td>UNION 分支带 LIMIT 但无外层</td>
+<td>整段保留</td>
+</tr>
+</tbody>
+</table>
+<h2> 06、参数怎么跟着模板一起下发？</h2>
+<p>模板能执行了，平台还得知道怎么绑参数。跨进程之下平台拿不到参数实体类，早期方案是在模板文本上做正则扫描，把 <a href="http://query.xxx" target="_blank" rel="noopener noreferrer">query.xxx</a> 的属性清单猜出来随契约下发。</p>
+<p>这个方案的问题，是把"模板必须用 <code>query.</code> 前缀"变成了隐式约定，换个包装名就GG了，很明显这种约束是不讲道理的，没有什么人愿意遵循</p>
+<p>老老实实的从 Mapper 方法签名进行推导吧。方法上的 @Param 注解给出模板的顶层键名；类型是 bean 或 Map 的参数视为承载筛选条件的包装对象；primitive基本类型、集合、枚举这类简单类型视为简单参数，运行时原样绑定。</p>
+<p>模板文本扫描还可以继续用，但具体的定位发生一点改变，关键在于它不再假定统一的前缀<code>xxx</code>,扫描规则很简单，实体反射时以 <code>@Param</code> 名加英文句点为前缀，命中即收集，模板里用哪个包装效果都可以正确工作。</p>
+<p>我们对参数的下发结构进行统一的约束：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>为了更好的理解上面的这个结构定义（主要是wrapper这个），举两个列子</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>对于上面这个mapper查询方法的定义，<code>searchEntity</code> 的实体前面有一个 <code>@Param("query")</code> 的装饰，对应的xml中的sql，所有的查询条件都是形如下面这种，查询条件前面会带前缀 <code>query.</code></p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>针对上面这种场景，我们返回的结构中， <code>wrapper = true</code>, <code>name = "query"</code></p>
+<p>同样的，如果mapper的接口定义是下面这种</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>对应的xml中的sql，会是下面这种，注意没有前缀，直接是<code>id</code> （即searchEntity中的一个field）</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>这种场景中，返回的结构中 <code>wrapper = false</code>, <code>name = null</code></p>
+<p>此外值得额外说一句的就是 fieldTypes 里存的是每个属性在实体上的真实类型。</p>
+<p>由于数据在任务快照里落库后再取出来，日期字段可能已经被序列化成时间戳或字符串，执行期需要知道"这个字段原本是日期"才能归一回去，所以传参类型必须在业务侧就随契约下发，这个也是踩过坑才发现的问题，最开始我们并没有设计这个字段，只设计了 <code>filedNames</code>，结果发现这个 filedType 没有还不行，就让AI自动补全了这段逻辑，当然从更加的编程实现的角度来看，有了这个 <code>fieldTypes</code> 之后，这个 <code>fieldName</code> 就可以下岗了，没必要存两份</p>
+<p>最后实体反射还差最后一块拼图，模板可能引用了实体上不存在的字段。真实的例子里，模板引用了 <code>query.transactionType</code>，而实体上只有 <code>transactionTypeList</code>。</p>
+<p>不补回去的话，这个筛选条件会在执行期被静默丢弃，用户勾了条件但导出结果没生效，比直接报错更难发现。所以属性集做一次并集，实体可读属性加上模板文本扫描得到的引用字段。</p>
+<p>下面这个截图就是关键的实现点（再文章最后有完整源码）</p>
+<figure><img src="https://cloudflare-imgbed-65s.pages.dev/file/1794382384443_image.webp" alt="image.webp" tabindex="0" loading="lazy"><figcaption>image.webp</figcaption></figure>
+<h2> 07、业务侧的接入姿势长什么样？</h2>
+<p>接入成本被压到了构造函数里。契约实现类在 Spring 容器启动时完成一次提取，之后每次平台回调拿到的都是现成的字符串。</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>提取在构造期完成，运行期零开销。模板里没有任何指向业务进程的引用，平台拿到手就是一份孤立的文本，序列化、缓存、重试都不需要额外处理。</p>
+<p>测试同样锁死了这一点，无论传入什么筛选参数，契约返回的模板内容完全相同，参数只在执行期由任务快照绑定。</p>
+<figure><img src="https://cloudflare-imgbed-65s.pages.dev/file/1794383809886_fkoTgMeuo.webp" alt="fkoTgMeuo.jpeg" tabindex="0" loading="lazy"><figcaption>fkoTgMeuo.jpeg</figcaption></figure>
+<h2> 08、小结</h2>
+<p>本文作为前篇的技术细节补全，单独看起来可能有些懵的小伙伴，不妨看看上篇： <a href="https://mp.weixin.qq.com/s/cR3h2c8OxNhoDWfNRUxggQ" target="_blank" rel="noopener noreferrer">导出功能还要每个系统写一遍吗？统一下载中心的收口思路</a></p>
+<p>最后再把整条流程串起来再看一眼。</p>
+<p>这一篇的核心点不在于逻辑流程的理解，重难点更多的在于实现层的技术挑战上，需要考虑的是各种奇葩场景的覆盖，下面是完整的源码（两个类），欢迎有兴趣的小伙伴丢给AI进行扒一扒相关的细节</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="架构设计"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2026-11-11T00:00:00.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
   <entry>
     <title type="text">01.统一导出任务下载中心架构设计</title>
     <id>https://liuyueyi.github.io/tutorial/column/arch/design/01.%E7%BB%9F%E4%B8%80%E5%AF%BC%E5%87%BA%E4%BB%BB%E5%8A%A1%E4%B8%8B%E8%BD%BD%E4%B8%AD%E5%BF%83%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.html</id>
@@ -12470,240 +12622,6 @@ Spring Boot 2.3+ 默认禁用末尾斜杠匹配，需手动启用。</p>
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2025-02-13T09:48:09.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">02.JDK21虚拟线程：重新定义Java高并发编程</title>
-    <id>https://liuyueyi.github.io/tutorial/java/jdk/jdk21/02.%E8%99%9A%E6%8B%9F%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html</id>
-    <link href="https://liuyueyi.github.io/tutorial/java/jdk/jdk21/02.%E8%99%9A%E6%8B%9F%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B.html"/>
-    <updated>2025-05-21T11:07:19.000Z</updated>
-    <summary type="html"><![CDATA[<h2> 1. 背景：为什么需要虚拟线程？</h2>
-<p>在传统Java并发模型中，每个<code>java.lang.Thread</code>都直接对应一个操作系统线程（称为<strong>平台线程</strong>）。虽然这种1:1的模型保证了可靠的并发执行，但存在两个关键瓶颈：</p>
-<ol>
-<li><strong>资源限制</strong>：操作系统线程创建成本高（默认1MB栈空间），难以支持百万级并发</li>
-<li><strong>上下文切换开销</strong>：线程数量激增时，CPU时间大量消耗在切换线程上下文上</li>
-</ol>
-<p>开发者通常通过线程池和异步编程（如CompletableFuture）缓解这些问题，但这导致了代码复杂度上升。<strong>Project Loom</strong>应运而生，其核心成果<strong>虚拟线程</strong>在JDK19中首次预览，最终在JDK21正式发布。</p>]]></summary>
-    <content type="html"><![CDATA[<h2> 1. 背景：为什么需要虚拟线程？</h2>
-<p>在传统Java并发模型中，每个<code>java.lang.Thread</code>都直接对应一个操作系统线程（称为<strong>平台线程</strong>）。虽然这种1:1的模型保证了可靠的并发执行，但存在两个关键瓶颈：</p>
-<ol>
-<li><strong>资源限制</strong>：操作系统线程创建成本高（默认1MB栈空间），难以支持百万级并发</li>
-<li><strong>上下文切换开销</strong>：线程数量激增时，CPU时间大量消耗在切换线程上下文上</li>
-</ol>
-<p>开发者通常通过线程池和异步编程（如CompletableFuture）缓解这些问题，但这导致了代码复杂度上升。<strong>Project Loom</strong>应运而生，其核心成果<strong>虚拟线程</strong>在JDK19中首次预览，最终在JDK21正式发布。</p>
-<h2> 2. 原理：虚拟线程如何工作？</h2>
-<h3> 2.1 传统线程模型 vs 虚拟线程模型</h3>
-<h4> 传统线程模型（平台线程）</h4>
-<ul>
-<li><strong>1:1 模型</strong>：每个Java线程直接映射到一个操作系统线程。</li>
-<li><strong>资源开销大</strong>：每个线程默认占用1MB栈空间，创建和销毁成本高。</li>
-<li><strong>上下文切换依赖内核</strong>：线程切换需要内核介入，开销较大。</li>
-<li><strong>并发限制</strong>：受限于操作系统线程数（通常数千个）。</li>
-</ul>
-<h4> 虚拟线程模型</h4>
-<ul>
-<li><strong>M:N 模型</strong>：大量虚拟线程（M）复用在少量平台线程（N）上运行。</li>
-<li><strong>轻量级</strong>：虚拟线程的栈空间按需分配，初始内存占用仅几百字节。</li>
-<li><strong>协作式调度</strong>：虚拟线程在阻塞操作（如I/O）时自动让出执行权，由JVM调度器管理。</li>
-<li><strong>高并发支持</strong>：可轻松创建数百万个虚拟线程。</li>
-</ul>
-<h3> 虚拟线程的核心机制</h3>
-<ol>
-<li>
-<p><strong>Continuation（延续体）</strong></p>
-<ul>
-<li>虚拟线程的核心是一个可暂停和恢复的任务单元（Continuation）。</li>
-<li>当虚拟线程执行阻塞操作时，JVM会保存当前状态并挂起任务，切换到其他虚拟线程。</li>
-<li>阻塞操作完成后，JVM恢复任务状态并继续执行。</li>
-</ul>
-</li>
-<li>
-<p><strong>调度器</strong></p>
-<ul>
-<li>默认使用<code>ForkJoinPool</code>作为调度器，将虚拟线程分配到平台线程上执行。</li>
-<li>调度器负责在虚拟线程阻塞时将其从平台线程上卸载，并在就绪时重新调度。</li>
-</ul>
-</li>
-<li>
-<p><strong>栈管理</strong></p>
-<ul>
-<li>虚拟线程的栈空间是动态分配的，按需增长和收缩。</li>
-<li>通过<strong>Stack Chunk</strong>技术，JVM可以高效地管理虚拟线程的栈内存。</li>
-</ul>
-</li>
-<li>
-<p><strong>阻塞操作优化</strong></p>
-<ul>
-<li>虚拟线程在执行I/O、锁等待等阻塞操作时，会自动让出平台线程。</li>
-<li>这种机制避免了平台线程的浪费，提高了资源利用率。</li>
-</ul>
-</li>
-</ol>
-<h4> 对比总结</h4>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>平台线程</th>
-<th>虚拟线程</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>线程模型</td>
-<td>1:1（Java线程:OS线程）</td>
-<td>M:N（虚拟线程:平台线程）</td>
-</tr>
-<tr>
-<td>内存开销</td>
-<td>默认1MB/线程</td>
-<td><strong>~200字节/线程</strong></td>
-</tr>
-<tr>
-<td>上下文切换</td>
-<td>内核参与，开销大</td>
-<td><strong>JVM管理，开销小</strong></td>
-</tr>
-<tr>
-<td>阻塞操作</td>
-<td>占用平台线程</td>
-<td><strong>自动让出平台线程</strong></td>
-</tr>
-<tr>
-<td>并发能力</td>
-<td>数千级</td>
-<td><strong>百万级</strong></td>
-</tr>
-</tbody>
-</table>
-<h3> 2.2 虚拟线程调度</h3>
-<p>虚拟线程的调度主要包含三个核心部分：虚拟线程（Virtual Threads）、平台线程（Platform Threads）和调度器（Scheduler）。</p>
-<ol>
-<li><strong>虚拟线程池：</strong></li>
-</ol>
-<ul>
-<li>这是一个包含大量虚拟线程的集合。每个虚拟线程代表一个轻量级的执行单元，它们可以由用户代码创建并提交到执行器中等待执行。虚拟线程之间是平等的，它们的栈空间较小，创建和销毁的开销也很低。</li>
-</ul>
-<ol start="2">
-<li><strong>平台线程池：</strong></li>
-</ol>
-<ul>
-<li>平台线程是与操作系统内核线程一一对应的线程，数量相对较少。平台线程负责执行虚拟线程中的实际任务，它们是系统资源的实际使用者。</li>
-</ul>
-<ol start="3">
-<li><strong>调度器：</strong></li>
-</ol>
-<ul>
-<li>调度器是整个系统的核心，负责将虚拟线程分配到可用的平台线程上执行。</li>
-<li>调度器会根据虚拟线程的状态（如就绪、阻塞等）和平台线程的负载情况进行智能调度。</li>
-<li>当一个虚拟线程遇到阻塞操作（如 I/O 操作）时，调度器会将该虚拟线程暂停，并将平台线程分配给其他就绪的虚拟线程；当阻塞操作完成后，调度器会将该虚拟线程重新加入到就绪队列中，等待再次分配到平台线程执行。</li>
-</ul>
-<ol start="4">
-<li><strong>阻塞与唤醒机制：</strong></li>
-</ol>
-<ul>
-<li>当虚拟线程进行 I/O 等阻塞操作时，会触发阻塞信号，调度器将其标记为阻塞状态并让出平台线程；</li>
-<li>当阻塞操作完成，会有唤醒信号，调度器将其重新标记为就绪状态等待调度。</li>
-</ul>
-<p>虚拟线程调度的基本流程：</p>
-<p>虚拟线程进入调度器，调度器将其分配到平台线程执行，当平台线程上的虚拟线程遇到阻塞操作时通知调度器，调度器再去唤醒其他就绪的虚拟线程执行。</p>
-<figure><img src="/imgs/column/java/jdk21_virtual_thread_00.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h3> 2.3 优势：为什么选择虚拟线程？</h3>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>平台线程</th>
-<th>虚拟线程</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>创建数量</td>
-<td>数千级</td>
-<td><strong>百万级</strong></td>
-</tr>
-<tr>
-<td>内存消耗</td>
-<td>默认1MB/线程</td>
-<td><strong>~200字节/线程</strong></td>
-</tr>
-<tr>
-<td>上下文切换</td>
-<td>内核参与</td>
-<td><strong>JVM优化</strong></td>
-</tr>
-<tr>
-<td>编程模型</td>
-<td>回调地狱风险</td>
-<td><strong>同步代码风格</strong></td>
-</tr>
-</tbody>
-</table>
-<ol>
-<li><strong>高吞吐</strong>：轻松支撑10万+并发连接</li>
-<li><strong>低资源消耗</strong>：创建百万虚拟线程仅需几百MB内存</li>
-<li><strong>代码简化</strong>：用同步代码实现异步性能，避免回调地狱</li>
-<li><strong>兼容性</strong>：与现有Thread API、调试工具（如jstack）完全兼容</li>
-</ol>
-<h2> 3. 使用示例</h2>
-<h3> 示例1：创建虚拟线程</h3>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例2：HTTP服务器对比</h3>
-<p><strong>传统线程池（20线程）：</strong></p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>虚拟线程版：</strong></p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3> 示例3：使用虚拟线程实现归并排序</h3>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>说明：</strong></p>
-<ul>
-<li>使用虚拟线程并行化归并排序的递归任务。</li>
-<li>每个子任务（<code>mergeSort</code>）都在独立的虚拟线程中执行。</li>
-<li>通过<code>Future</code>获取子任务结果，并合并（<code>merge</code>）排序后的数组。</li>
-</ul>
-<h2> 4.小结</h2>
-<h3> 4.1 注意事项</h3>
-<ol>
-<li><strong>阻塞操作仍影响平台线程</strong></li>
-</ol>
-<p>在<code>synchronized</code>块或native方法中阻塞会占用平台线程</p>
-<ol start="2">
-<li><strong>避免在虚拟线程中：</strong></li>
-</ol>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="3">
-<li><strong>正确关闭ExecutorService</strong></li>
-</ol>
-<p>使用try-with-resources确保自动关闭</p>
-<ol start="4">
-<li><strong>不要池化虚拟线程</strong></li>
-</ol>
-<p>每个任务应新建虚拟线程（JVM已优化创建成本）</p>
-<ol start="5">
-<li><strong>性能考虑</strong></li>
-</ol>
-<p>虚拟线程适合处理 I/O 密集型任务，而传统线程更适合处理 CPU 密集型任务。在设计系统时，需要根据任务的特点合理分配线程类型，以充分发挥各自的优势。</p>
-<ol start="6">
-<li><strong>资源管理：</strong></li>
-</ol>
-<p>无论是虚拟线程还是传统线程，都需要注意资源的合理使用和释放，避免出现资源泄漏的问题。</p>
-<h3> 4.2 小结</h3>
-<p>JDK21虚拟线程通过以下革新重塑Java并发：</p>
-<ul>
-<li>✅ 使高并发应用的代码复杂度降低50%+</li>
-<li>✅ 吞吐量提升10倍（Tomcat基准测试数据）</li>
-<li>✅ 完全兼容现有代码和监控工具</li>
-</ul>
-<p><strong>适用场景</strong>：高并发服务、微服务架构、异步IO处理等</p>
-<p>尽管虚拟线程并非万能（CPU密集型任务仍需平台线程），但它无疑是Java在云原生时代的重要进化。 有兴趣的小伙伴快尝试下吧，<a href="https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html" target="_blank" rel="noopener noreferrer">更多使用相关推荐参考官方指导</a></p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div>]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <category term="Java"/>
-    <category term="JDK21"/>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2025-02-13T11:48:09.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
 </feed>
