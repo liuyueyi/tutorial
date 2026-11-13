@@ -9,10 +9,11 @@
   </author>
   <logo>https://liuyueyi.github.io/tutorial/logo.svg</logo>
   <rights>Copyright by 一灰灰blog</rights>
-  <updated>2026-11-13T01:45:03.215Z</updated>
+  <updated>2026-11-13T03:33:28.071Z</updated>
   <generator>vuepress-plugin-feed2</generator>
   <link rel="self" href="https://liuyueyi.github.io/tutorial/atom.xml"/>
   <link rel="alternate" href="https://liuyueyi.github.io/tutorial/"/>
+  <category term="Quick系列"/>
   <category term="架构设计"/>
   <category term="工具"/>
   <category term="Chrome"/>
@@ -27,6 +28,404 @@
     <name>一灰灰blog</name>
     <uri>https://hhui.top</uri>
   </contributor>
+  <entry>
+    <title type="text">2. 汉字笔顺生成（hanzi-writer）</title>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/02.%E6%B1%89%E5%AD%97%E7%AC%94%E9%A1%BA%E7%94%9F%E6%88%90.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/02.%E6%B1%89%E5%AD%97%E7%AC%94%E9%A1%BA%E7%94%9F%E6%88%90.html"/>
+    <updated>2026-11-13T03:14:21.000Z</updated>
+    <summary type="html"><![CDATA[<p><code>quick-chinese-transfer</code> 仓库里除了简繁转换的 <code>transfer-core</code>，还藏了一个好玩的模块：<strong><code>hanzi-writer</code>，它能把一个汉字拆成一笔一画，输出带书写动画的 SVG</strong>。基于它做的「查笔顺」APP 已经上架 GooglePlay，也提供了<a href="https://paper.ppai.top/stroke-order" target="_blank" rel="noopener noreferrer">在线体验版</a>。</p>
+<p>这篇教程介绍它的使用姿势和实现原理：一笔 SVG 动画到底是怎么画出来的。</p>
+<blockquote>
+<p>项目地址：<a href="https://github.com/liuyueyi/quick-chinese-transfer" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/quick-chinese-transfer</a>
+对应模块：<code>hanzi-writer</code>（maven 坐标 <code>com.github.liuyueyi:hanzi-writer</code>，当前最新版本 <code>0.1.1</code>）</p>
+</blockquote>
+]]></summary>
+    <content type="html"><![CDATA[<p><code>quick-chinese-transfer</code> 仓库里除了简繁转换的 <code>transfer-core</code>，还藏了一个好玩的模块：<strong><code>hanzi-writer</code>，它能把一个汉字拆成一笔一画，输出带书写动画的 SVG</strong>。基于它做的「查笔顺」APP 已经上架 GooglePlay，也提供了<a href="https://paper.ppai.top/stroke-order" target="_blank" rel="noopener noreferrer">在线体验版</a>。</p>
+<p>这篇教程介绍它的使用姿势和实现原理：一笔 SVG 动画到底是怎么画出来的。</p>
+<blockquote>
+<p>项目地址：<a href="https://github.com/liuyueyi/quick-chinese-transfer" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/quick-chinese-transfer</a>
+对应模块：<code>hanzi-writer</code>（maven 坐标 <code>com.github.liuyueyi:hanzi-writer</code>，当前最新版本 <code>0.1.1</code>）</p>
+</blockquote>
+<!-- more -->
+<h2> 1. 能做什么</h2>
+<p>输入一个汉字，输出它的笔顺 SVG：</p>
+<ul>
+<li><strong>终态 SVG</strong>：一张静态图，包含田字格背景、字形灰色描边、笔画顺序编号；</li>
+<li><strong>逐笔 SVG 列表</strong>：每一笔一张图，当前笔高亮、前一笔过渡色、已完成的笔深色，适合做"一笔一笔教写字"的 UI；</li>
+<li><strong>书写动画 SVG</strong>：利用 SVG 的 <code>stroke-dasharray</code> + CSS <code>@keyframes</code>，浏览器里直接播放按笔顺书写动画，无需任何 JS 库。</li>
+</ul>
+<h2> 2. 快速上手</h2>
+<h3> 2.1 引入依赖</h3>
+<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>gradle：</p>
+<div class="language-gradle line-numbers-mode" data-ext="gradle"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><blockquote>
+<p>零依赖！整个模块没有引入任何第三方库（连 json 解析库都没有，后面原理篇会讲为什么）。</p>
+</blockquote>
+<h3> 2.2 最小示例</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>把 <code>svg</code> 存成 <code>.svg</code> 文件用浏览器打开，就能看到一个会自己写字的"帅"字；<code>strokeSvgList</code> 里则是 5 张图，分别是写完第 1 笔、第 2 笔……第 5 笔的状态。</p>
+<h2> 3. 参数详解</h2>
+<p><code>HanZiSvgGenerator</code> 是典型的 Builder 模式，所有配置项及默认值如下：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>size</code></td>
+<td><code>int</code></td>
+<td>输出 svg 大小</td>
+<td><code>300</code></td>
+</tr>
+<tr>
+<td><code>svgStyle</code></td>
+<td><code>string</code></td>
+<td>svg 根标签的 style</td>
+<td><code>border: 1px solid rgb(204,204,204); background-color: rgb(238,238,238);</code></td>
+</tr>
+<tr>
+<td><code>bgShow</code></td>
+<td><code>boolean</code></td>
+<td>是否显示背景的田字格</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>bg</code></td>
+<td><code>string</code></td>
+<td>田字格背景内容（自定义 svg 片段）</td>
+<td>灰色虚线田字格</td>
+</tr>
+<tr>
+<td><code>outlineShow</code></td>
+<td><code>boolean</code></td>
+<td>是否显示字形灰色描边</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>outlineColor</code></td>
+<td><code>string</code></td>
+<td>描边颜色</td>
+<td><code>rgba(221,221,221,1)</code></td>
+</tr>
+<tr>
+<td><code>animateShow</code></td>
+<td><code>boolean</code></td>
+<td>是否支持按笔顺动画展示</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>drawColor</code></td>
+<td><code>string</code></td>
+<td>动画执行完之后的颜色</td>
+<td><code>rgb(85,85,85)</code></td>
+</tr>
+<tr>
+<td><code>midColor</code></td>
+<td><code>string</code></td>
+<td>动画执行过程中的颜色</td>
+<td><code>rgb(68,68,255)</code></td>
+</tr>
+<tr>
+<td><code>animateColor</code></td>
+<td><code>string</code></td>
+<td>动画开始执行的颜色</td>
+<td><code>rgb(187,68,68)</code></td>
+</tr>
+<tr>
+<td><code>animateSeconds</code></td>
+<td><code>float</code></td>
+<td>每一笔动画时长（秒）</td>
+<td><code>0.9</code></td>
+</tr>
+<tr>
+<td><code>writeTipShow</code></td>
+<td><code>boolean</code></td>
+<td>是否显示书写轮廓提示</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>writeTipStyle</code></td>
+<td><code>string</code></td>
+<td>轮廓提示样式</td>
+<td><code>.median-stroke{...}</code></td>
+</tr>
+<tr>
+<td><code>strokeNumShow</code></td>
+<td><code>boolean</code></td>
+<td>是否显示笔顺数字</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>strokeNumStyle</code></td>
+<td><code>string</code></td>
+<td>笔顺数字样式</td>
+<td>白字黑描边的 Helvetica 50px</td>
+</tr>
+<tr>
+<td><code>renderStyle</code></td>
+<td><code>enum</code></td>
+<td><code>NORMAL</code> / <code>STROKE_ANIMATE</code> / <code>TOTAL</code></td>
+<td><code>NORMAL</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意：<code>svgStyle</code> 目前只对<strong>逐笔拆分的 svg</strong>（<code>getStrokes()</code>）生效，终态 svg 的 style 是写死的默认值。</p>
+</blockquote>
+<p><code>renderStyle</code> 决定返回结果里有什么：</p>
+<ul>
+<li><code>NORMAL</code>：只返回 <code>vo.getSvg()</code>（终态 svg，内部带动画定义）；</li>
+<li><code>STROKE_ANIMATE</code>：只返回 <code>vo.getStrokes()</code>（逐笔 svg 列表，纯静态无动画）；</li>
+<li><code>TOTAL</code>：两个都返回。</li>
+</ul>
+<h2> 4. 字库与数据格式</h2>
+<h3> 4.1 字库来源与覆盖</h3>
+<p>字库数据来自开源项目 <a href="https://github.com/chanind/hanzi-writer" target="_blank" rel="noopener noreferrer">chanind/hanzi-writer</a>，处理成纯文本后打包在 jar 内：<code>src/main/resources/hz/&lt;汉字&gt;.txt</code>，共 <strong>9574 个文件</strong>（9534 个 CJK 基本区汉字 + 40 个扩展区汉字/部首符号），常用汉字覆盖无压力。</p>
+<h3> 4.2 数据格式</h3>
+<p>每个汉字文件固定两行 JSON：</p>
+<ul>
+<li><strong>第 1 行</strong>：字形元信息（读音、释义、偏旁、部件拆解等），目前只做展示素材，不参与渲染；</li>
+<li><strong>第 2 行</strong>：渲染需要的核心数据，包含两个字段：</li>
+</ul>
+<div class="language-json line-numbers-mode" data-ext="json"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>两个数组按下标一一对应，各代表每笔的两面：</p>
+<ul>
+<li><strong><code>strokes</code></strong>：笔画的<strong>轮廓 path</strong>，决定"这一笔长什么样"（描边、填充用它）；</li>
+<li><strong><code>medians</code></strong>：笔画书写过程的<strong>中线轨迹点</strong>，决定"这一笔怎么写出来"（动画用它）。</li>
+</ul>
+<p>理解了这组数据的语义，后面动画的原理就顺理成章了。</p>
+<h3> 4.3 不支持的字符怎么办</h3>
+<p>字库中查不到对应字符时（jar 内无该字文件），会抛出 <code>NullPointerException</code>；文件存在但内容不足两行时返回 <code>null</code>。所以生产上记得对<strong>字库外的字符做兜底处理</strong>（比如降级渲染为文本，或提前用字符集过滤）。</p>
+<h2> 5. 使用姿势扩展</h2>
+<h3> 5.1 逐笔教学效果</h3>
+<p><code>STROKE_ANIMATE</code> / <code>TOTAL</code> 模式返回的逐笔 svg 是纯静态图，但内部做了状态着色：</p>
+<ul>
+<li>当前正在写的这一笔 → <code>animateColor</code>（红色高亮）</li>
+<li>前一笔 → <code>midColor</code>（蓝色过渡）</li>
+<li>更早的笔画 → <code>drawColor</code>（深灰，已写完）</li>
+</ul>
+<p>在前端翻页或定时切换这些图片，就是最简单的"一笔一笔教写字"效果，不需要动画支持，适合嵌入 pdf、海报等静态介质。</p>
+<h3> 5.2 自定义渲染内容</h3>
+<p>除了按字取字库，还支持把 <code>HanZiRenderContents</code>（character + strokes + medians）直接喂给生成器：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>这意味着你完全可以接入自己的字库数据（比如手写体、生僻字、艺术字），复用同一套 SVG 渲染管线。</p>
+<h2> 6. 实现原理</h2>
+<p>整个模块一共 12 个类，核心链路是：</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 6.1 不引入 json 库的解析（HanZiGenUtil）</h3>
+<p>数据是 JSON，但模块坚持零依赖，所以 <code>parseRenderContent</code> 用手写的"指针扫描"来解析：</p>
+<ul>
+<li><code>character</code> / <code>strokes</code>：定位字段名后的 <code>[</code> <code>]</code>，截取中间内容切分；</li>
+<li><code>medians</code>：按 <code>[</code> <code>]</code> 配对维护一个 <code>level</code> 计数器，<code>level==2</code> 时的 <code>,</code> 分隔 x/y，<code>level==1</code> 的 <code>]</code> 收点、<code>level==0</code> 的 <code>]</code> 收一笔，把嵌套数组逐层还原成 <code>List&lt;List&lt;Point&gt;&gt;</code>。</li>
+</ul>
+<p>这个解析只服务于<strong>结构固定</strong>的字库数据，牺牲一点通用性换来了零依赖和打包体积，思路值得借鉴：<strong>如果待解析的数据格式是你自己定的，手写解析往往比引库更划算</strong>。</p>
+<h3> 6.2 笔画轮廓的组装</h3>
+<p>每笔的 <code>strokes[i]</code> 轮廓 path 直接输出两份：</p>
+<ul>
+<li>一份进描边层 <code>&lt;g&gt;</code>，填充 <code>outlineColor</code>，构成整个字的灰色底稿；</li>
+<li>一份包进 <code>&lt;clipPath id="clip-i"&gt;</code>，作为第 i 笔动画的<strong>裁剪区域</strong>——这是动画效果的第二个关键点，见下节。</li>
+</ul>
+<h3> 6.3 书写动画的原理</h3>
+<p>动画的核心是 SVG 的 <strong>dash 技巧</strong>：一条线用 <code>stroke-dasharray = "L 2L"</code>（L 为线段总长，实现里还额外加了 128 的余量防止衔接处缺口）把它切成一段实线一段空白，再用 <code>stroke-dashoffset</code> 从 L 动画到 0，视觉上就是"线从起点画到终点"。</p>
+<p>对每个笔画 <code>medians[i]</code>：</p>
+<ol>
+<li>
+<p>用中线点串成折线 path（<code>M x y L x y ...</code>），并计算折线总长 <code>dashArray</code>；</p>
+</li>
+<li>
+<p>输出动画 path，挂上 <code>clip-path="url(#clip-i)"</code>——<strong>动画只能在第 i 笔的轮廓内渲染</strong>，这样粗线条就不会画出格子；</p>
+<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+<li>
+<p>每一笔生成一组 <code>@keyframes</code>，三段式颜色 + 线宽动画：</p>
+<div class="language-css line-numbers-mode" data-ext="css"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li><code>from → 60%</code>：dashoffset 从 L 到 0，笔画"被写出来"，颜色从高亮红过渡到蓝色；</li>
+<li><code>60% → to</code>：stroke-width 从 128 撑到 1024，配合 clipPath，粗线恰好把整个轮廓填满，完成"上色"；</li>
+</ul>
+</li>
+<li>
+<p><code>animation-delay: i * animateSeconds</code> 让各笔按顺序接力播放，就得到了完整的书写动画。</p>
+</li>
+</ol>
+<h3> 6.4 笔顺数字与书写提示</h3>
+<ul>
+<li>笔顺数字：取每笔中线<strong>第一个点</strong>作为定位点，输出 <code>&lt;text&gt;</code>；由于整体坐标系做了 <code>scale(1,-1)</code> 翻转（SVG 的 y 轴朝下，而字库数据 y 轴朝上），text 上再套一层 <code>transform: scale(1,-1)</code> 把数字翻转回来；</li>
+<li>书写提示：把每笔的中线折线用 <code>.median-stroke</code> 样式（半透明细线）画出来，即写字时参考的"行笔路线"。</li>
+</ul>
+<h3> 6.5 两套坐标系的翻转</h3>
+<p>整个 svg 输出时套了一层 <code>&lt;g transform="scale(1,-1) translate(0,-900)"&gt;</code> 把 y 轴翻转回来，所以内部所有 path 的坐标都可以直接使用字库里的原始数据，不需要逐点换算——这是一个"翻转容器，而不是翻转数据"的实用技巧。</p>
+<h2> 7. 小结</h2>
+<ul>
+<li><code>hanzi-writer</code> 的本质：<strong>字库数据（轮廓 + 中线）+ SVG 组装器</strong>，零依赖、开箱即用；</li>
+<li>动画三件套：<code>strokes</code> 轮廓做 clipPath，<code>medians</code> 中线做书写轨迹，dash 技巧做"描画"动效；</li>
+<li><code>renderStyle</code> 三种模式覆盖三种场景：终态展示（NORMAL）、逐笔教学图（STROKE_ANIMATE）、动图/网页动画（TOTAL + animateShow）。</li>
+</ul>
+<p>如果再往前追一层，<code>medians</code> 中线数据来自 hanzi-writer-data 的笔画书写轨迹采集，轮廓来自字形矢量化，感兴趣的同学可以去 <a href="https://github.com/chanind/hanzi-writer" target="_blank" rel="noopener noreferrer">hanzi-writer</a> 项目围观。</p>
+<h2> 相关链接</h2>
+<ul>
+<li>项目地址：<a href="https://github.com/liuyueyi/quick-chinese-transfer" target="_blank" rel="noopener noreferrer">https://github.com/liuyueyi/quick-chinese-transfer</a></li>
+<li>字库来源：<a href="https://github.com/chanind/hanzi-writer" target="_blank" rel="noopener noreferrer">https://github.com/chanind/hanzi-writer</a></li>
+<li>在线体验：<a href="https://paper.ppai.top/stroke-order" target="_blank" rel="noopener noreferrer">查笔顺 APP 在线版</a> | <a href="https://play.google.com/store/apps/details?id=com.hui.bishun" target="_blank" rel="noopener noreferrer">GooglePlay 下载</a></li>
+<li>简繁转换原理见上一篇：<a href="/tutorial/git/quick-chinese-transfer/01.%E7%AE%80%E7%B9%81%E8%BD%AC%E6%8D%A2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.html" target="blank">1. 简繁转换原理分析</a></li>
+</ul>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="Quick系列"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2026-11-13T09:30:00.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
+  <entry>
+    <title type="text">3. GitHub Action 自动发布 Maven 中央仓库</title>
+    <id>https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/03.GithubAction%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83Maven%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93.html</id>
+    <link href="https://liuyueyi.github.io/tutorial/git/quick-chinese-transfer/03.GithubAction%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83Maven%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93.html"/>
+    <updated>2026-11-13T03:14:21.000Z</updated>
+    <summary type="html"><![CDATA[<p>开源项目发布到 Maven 中央仓库，最麻烦的不是写代码，而是<strong>发包流程</strong>：早期的 OSSRH（<a href="http://issues.sonatype.org" target="_blank" rel="noopener noreferrer">issues.sonatype.org</a>）要在本地 <code>mvn deploy</code> + GPG 签名 + 手动 close/release staging 仓库，一次发包至少十来分钟。Sonatype 迁移到新版中央仓库 <a href="https://central.sonatype.com/" target="_blank" rel="noopener noreferrer">central.sonatype.com</a> 之后，配合 <code>central-publishing-maven-plugin</code> + GitHub Action，完全可以做到 <strong>git push 即发包，全程无人工</strong>。</p>
+<p>这篇教程以 <a href="https://github.com/liuyueyi/quick-chinese-transfer" target="_blank" rel="noopener noreferrer">quick-chinese-transfer</a> 的真实配置为例，完整走一遍这套流程。</p>
+<blockquote>
+<p>对应配置文件：</p>
+<ul>
+<li>构建发布配置：<a href="https://github.com/liuyueyi/quick-chinese-transfer/blob/master/pom.xml" target="_blank" rel="noopener noreferrer">pom.xml</a> 的 <code>release</code> profile</li>
+<li>CI 工作流：<a href="https://github.com/liuyueyi/quick-chinese-transfer/blob/master/.github/workflows/maven-central-publish.yml" target="_blank" rel="noopener noreferrer">.github/workflows/maven-central-publish.yml</a></li>
+</ul>
+</blockquote>
+]]></summary>
+    <content type="html"><![CDATA[<p>开源项目发布到 Maven 中央仓库，最麻烦的不是写代码，而是<strong>发包流程</strong>：早期的 OSSRH（<a href="http://issues.sonatype.org" target="_blank" rel="noopener noreferrer">issues.sonatype.org</a>）要在本地 <code>mvn deploy</code> + GPG 签名 + 手动 close/release staging 仓库，一次发包至少十来分钟。Sonatype 迁移到新版中央仓库 <a href="https://central.sonatype.com/" target="_blank" rel="noopener noreferrer">central.sonatype.com</a> 之后，配合 <code>central-publishing-maven-plugin</code> + GitHub Action，完全可以做到 <strong>git push 即发包，全程无人工</strong>。</p>
+<p>这篇教程以 <a href="https://github.com/liuyueyi/quick-chinese-transfer" target="_blank" rel="noopener noreferrer">quick-chinese-transfer</a> 的真实配置为例，完整走一遍这套流程。</p>
+<blockquote>
+<p>对应配置文件：</p>
+<ul>
+<li>构建发布配置：<a href="https://github.com/liuyueyi/quick-chinese-transfer/blob/master/pom.xml" target="_blank" rel="noopener noreferrer">pom.xml</a> 的 <code>release</code> profile</li>
+<li>CI 工作流：<a href="https://github.com/liuyueyi/quick-chinese-transfer/blob/master/.github/workflows/maven-central-publish.yml" target="_blank" rel="noopener noreferrer">.github/workflows/maven-central-publish.yml</a></li>
+</ul>
+</blockquote>
+<!-- more -->
+<h2> 1. 前置准备</h2>
+<h3> 1.1 Sonatype Central Portal 账号与命名空间</h3>
+<p>新版中央仓库的管理入口是 <a href="https://central.sonatype.com/" target="_blank" rel="noopener noreferrer">central.sonatype.com</a>（老的 <a href="http://issues.sonatype.org" target="_blank" rel="noopener noreferrer">issues.sonatype.org</a> 工单系统已不再受理新申请）：</p>
+<ol>
+<li>注册/登录 Sonatype 账号；</li>
+<li>注册一个 <strong>namespace（groupId）</strong>，比如本项目用的是 <code>com.github.liuyueyi</code>。github 用户可以用 <code>io.github.&lt;用户名&gt;</code> 免验证；</li>
+<li>在账号设置里 <strong>Generate User Token</strong>，得到一对 <code>Token Username</code> / <code>Token Password</code>。</li>
+</ol>
+<blockquote>
+<p>注意：这里用的是 <strong>Token</strong>，不是登录账号密码！后面 Maven 认证用的就是这对 token。</p>
+</blockquote>
+<h3> 1.2 GPG 密钥</h3>
+<p>中央仓库要求所有构件（jar、sources、javadoc、pom）必须有 GPG 签名。本地生成并上传公钥：</p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>后面 GitHub Action 里需要两样东西：</p>
+<ul>
+<li><code>GPG_PRIVATE_KEY</code>：私钥的 <strong>ASCII armored 导出内容</strong>（<code>gpg --export-secret-keys --armor &lt;密钥ID&gt;</code> 的输出全文）</li>
+<li><code>GPG_PASSPHRASE</code>：生成密钥时设置的 passphrase</li>
+</ul>
+<h3> 1.3 配置 GitHub Secrets</h3>
+<p>在 GitHub 仓库的 <code>Settings → Secrets and variables → Actions → New repository secret</code> 中添加 4 个 secret：</p>
+<table>
+<thead>
+<tr>
+<th>Secret 名</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MAVEN_USERNAME</code></td>
+<td>Central Portal 的 Token Username</td>
+</tr>
+<tr>
+<td><code>MAVEN_PASSWORD</code></td>
+<td>Central Portal 的 Token Password</td>
+</tr>
+<tr>
+<td><code>GPG_PRIVATE_KEY</code></td>
+<td>GPG 私钥（armor 格式全文）</td>
+</tr>
+<tr>
+<td><code>GPG_PASSPHRASE</code></td>
+<td>GPG passphrase</td>
+</tr>
+</tbody>
+</table>
+<h2> 2. pom.xml 的发布配置</h2>
+<h3> 2.1 <code>release</code> profile</h3>
+<p>所有发布相关的插件都收在 <code>release</code> profile 里，日常 <code>mvn package</code> 不会触发签名，只在发包时 <code>-P release</code> 激活：</p>
+<div class="language-xml line-numbers-mode" data-ext="xml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>除了这两个插件，中央仓库还要求每个构件附带 sources、javadoc 和必要的 pom 元数据（license、developers、scm），这些在父 pom 的公共构建里已经通过 <code>maven-source-plugin</code>、<code>maven-javadoc-plugin</code> 配好了。</p>
+<h3> 2.2 多模块的版本管理</h3>
+<p>本项目是 Maven 多模块（<code>transfer-core</code> + <code>hanzi-writer</code>），两个模块<strong>版本号独立演进</strong>：父 pom 固定 <code>0.2</code>，子模块各自带版本（当前 <code>quick-transfer-core:0.2.18</code>、<code>hanzi-writer:0.1.1</code>）。发包时进入对应模块目录执行 <code>mvn deploy</code> 即可只发该模块——这也是后面工作流按分支区分模块的基础。</p>
+<p>发包命令等价于（项目里也留了个 <code>deploy.sh</code>）：</p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 3. GitHub Action 工作流</h2>
+<h3> 3.1 触发策略：按分支决定发什么</h3>
+<p>因为各模块版本独立，本项目没有用 tag 触发，而是用<strong>三个发布分支</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>分支</th>
+<th>推送后发布的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>transfer</code></td>
+<td>只发布 <code>transfer-core</code> 模块</td>
+</tr>
+<tr>
+<td><code>hanzi</code></td>
+<td>只发布 <code>hanzi-writer</code> 模块</td>
+</tr>
+<tr>
+<td><code>release</code></td>
+<td>发布全部模块</td>
+</tr>
+</tbody>
+</table>
+<p>日常开发在 master，当某个模块准备发版时：改版本号 → commit → 把对应分支指向该提交并推送，Action 就会自动发包。工作流定义：</p>
+<div class="language-yaml line-numbers-mode" data-ext="yml"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3.2 几个关键点拆解</h3>
+<p><strong>① GPG 私钥导入用 <code>crazy-max/ghaction-import-gpg</code></strong></p>
+<p>不要自己在 CI 里 <code>echo $GPG_PRIVATE_KEY | gpg --import</code>——这个 action 会同时把 passphrase 写进 gpg agent 缓存，让 <code>maven-gpg-plugin</code> 签名时不用人工输密码（本地发包时 gpg 弹窗要密码，CI 里没人输，这就是很多人 CI 签名卡死的原因）。</p>
+<p><strong>② settings.xml 里的 server id 必须是 <code>central</code></strong></p>
+<p><code>central-publishing-maven-plugin</code> 配置的 <code>&lt;publishingServerId&gt;central&lt;/publishingServerId&gt;</code> 会在 deploy 时去 settings.xml 找 id 为 <code>central</code> 的 server 拿认证信息，两边必须对上。</p>
+<p><strong>③ deploy 从子目录执行</strong></p>
+<p><code>cd transfer-core &amp;&amp; mvn deploy</code> 而不是根目录全量 deploy，配合按分支触发的策略，实现"推哪个分支发哪个模块"。</p>
+<p><strong>④ <code>-DskipTests</code></strong></p>
+<p>发包流水线只负责发布，测试放平常的 CI（如 travis/codecov）里跑，避免发包被测试失败阻塞。</p>
+<h2> 4. 实际发版操作流程</h2>
+<p>假设 <code>transfer-core</code> 要从 <code>0.2.18</code> 升到 <code>0.2.19</code>：</p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>发布成功后，几分钟内即可在 <a href="https://central.sonatype.com/" target="_blank" rel="noopener noreferrer">central.sonatype.com</a> 搜到新版本（<code>autoPublish=true</code> 时无需手动去控制台点 release）。新依赖一般 2~10 分钟同步到中央仓代理（阿里云镜像会慢一些）。</p>
+<blockquote>
+<p>常见翻车点速查：</p>
+<ul>
+<li><code>401 Unauthorized</code>：secrets 里填了账号密码而不是 token；</li>
+<li><code>missing signature</code> / gpg 卡住：GPG 私钥没导入或 passphrase 不对；</li>
+<li><code>Invalid publisher</code>：namespace 与 groupId 不匹配（pom 的 groupId 必须是你注册的 namespace）；</li>
+<li>构件校验失败（missing javadoc/sources 等）：确认 <code>maven-source-plugin</code>、<code>maven-javadoc-plugin</code> 已在父 pom 中绑定 <code>package</code> 阶段（本项目已配好，自己改造时别漏）。</li>
+</ul>
+</blockquote>
+<h2> 5. 小结</h2>
+<p>整套自动发包的配置量不大，收益很高：</p>
+<ol>
+<li><strong>pom 侧</strong>：<code>release</code> profile 收纳 gpg 签名 + <code>central-publishing-maven-plugin</code>（<code>autoPublish=true</code>）；</li>
+<li><strong>CI 侧</strong>：4 个 secrets + 一个 40 行的 workflow，按分支决定发布模块；</li>
+<li><strong>发版动作</strong>收敛为"改版本号 → push 发布分支"两步，彻底告别本地 deploy 和手动 staging。</li>
+</ol>
+<p>如果你的开源项目还在手动发包，非常推荐按这个思路改造一遍，一次配置，终身受益。</p>
+]]></content>
+    <author>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </author>
+    <category term="Quick系列"/>
+    <contributor>
+      <name>一灰灰blog</name>
+      <uri>https://hhui.top</uri>
+    </contributor>
+    <published>2026-11-13T10:00:00.000Z</published>
+    <rights>Copyright by 一灰灰blog</rights>
+  </entry>
   <entry>
     <title type="text">1.基于FFMPEG实现音频转码</title>
     <id>https://liuyueyi.github.io/tutorial/git/quick-media/audio/01.%E5%9F%BA%E4%BA%8EFFMPEG%E5%AE%9E%E7%8E%B0%E9%9F%B3%E9%A2%91%E8%BD%AC%E7%A0%81.html</id>
@@ -13550,44 +13949,6 @@ Spring Boot 2.3+ 默认禁用末尾斜杠匹配，需手动启用。</p>
       <uri>https://hhui.top</uri>
     </contributor>
     <published>2025-05-30T12:55:36.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">Spring迭代记录</title>
-    <id>https://liuyueyi.github.io/tutorial/spring/basic/%E8%BF%AD%E4%BB%A3/</id>
-    <link href="https://liuyueyi.github.io/tutorial/spring/basic/%E8%BF%AD%E4%BB%A3/"/>
-    <updated>2025-05-30T08:22:22.000Z</updated>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2025-05-30T07:04:38.000Z</published>
-    <rights>Copyright by 一灰灰blog</rights>
-  </entry>
-  <entry>
-    <title type="text">编程语言</title>
-    <id>https://liuyueyi.github.io/tutorial/codelan/</id>
-    <link href="https://liuyueyi.github.io/tutorial/codelan/"/>
-    <updated>2025-05-21T11:07:19.000Z</updated>
-    <summary type="html"><![CDATA[<h2> Kotlin专栏</h2>
-<p><a href="/tutorial/codelan/kotlin/" target="blank">kotlin编程语言</a></p>
-]]></summary>
-    <content type="html"><![CDATA[<h2> Kotlin专栏</h2>
-<p><a href="/tutorial/codelan/kotlin/" target="blank">kotlin编程语言</a></p>
-]]></content>
-    <author>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </author>
-    <contributor>
-      <name>一灰灰blog</name>
-      <uri>https://hhui.top</uri>
-    </contributor>
-    <published>2025-05-21T11:07:19.000Z</published>
     <rights>Copyright by 一灰灰blog</rights>
   </entry>
 </feed>
