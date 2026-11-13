@@ -227,13 +227,35 @@ markdown转html，转图片的封装类， 详细内容查看: [markdown-plugin]
 
 **photo-plugin**
 
-相片、图片处理插件，适用于图像的各种处理，如灰度，素描，滤镜等
+相片、图片处理插件，适用于图像的各种处理，如灰度，素描，滤镜等，详细查看：[photo-plugin使用说明](photo/)
 
 ```xml
 <!-- https://mvnrepository.com/artifact/com.github.liuyueyi.media/imagic-plugin -->
 <dependency>
     <groupId>com.github.liuyueyi.media</groupId>
     <artifactId>photo-plugin</artifactId>
+</dependency>
+```
+
+**tts-plugin**
+
+文本转语音插件，给一段文字，输出一段可以听的音频，详细查看：[tts-plugin使用说明](tts/)
+
+```xml
+<dependency>
+    <groupId>com.github.liuyueyi.media</groupId>
+    <artifactId>tts-plugin</artifactId>
+</dependency>
+```
+
+**base-plugin**
+
+各个插件的公共基础库，包含文件读写、图片加载、gif编解码、颜色处理等工具类，通常随其他插件间接引入，详细查看：[base-plugin使用说明](base/)
+
+```xml
+<dependency>
+    <groupId>com.github.liuyueyi.media</groupId>
+    <artifactId>base-plugin</artifactId>
 </dependency>
 ```
 

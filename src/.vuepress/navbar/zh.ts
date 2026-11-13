@@ -179,7 +179,7 @@ export const zhNavbar = navbar([
       {
         text: "Quick-Media",
         prefix: "quick-media/",
-        children: ["qrcode", "svg", "image", "imagic", "photo", "markdown", "phantom", "audio", "date"],
+        children: ["qrcode", "svg", "image", "imagic", "photo", "markdown", "phantom", "audio", "date", "base", "tts"],
       },
       {
         text: "Quick-Chinese",
