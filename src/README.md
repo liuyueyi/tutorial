@@ -94,6 +94,59 @@ footer: ©2017 - present @一灰灰Blog 保留所有权利 | <a href="https://be
 ---
 
 <div>
+<section id="recommend" class="llm-py-16 llm-bg-gray-50">
+  <div class="llm-container">
+      <div class="llm-text-center llm-mb-12">
+          <h2 class="llm-text-responsive llm-font-bold">推荐软件 / 应用</h2>
+          <p class="llm-text-gray-600 llm-mt-2">日常开发与使用过程中，个人觉得好用、值得安利的工具与应用</p>
+      </div>
+      <div class="llm-grid llm-grid-cols-1 llm-md-grid-cols-2 llm-lg-grid-cols-3 llm-gap-6">
+          <!-- 推荐项3 -->
+          <div class="llm-bg-white llm-p-5 llm-rounded-lg llm-flex llm-items-center llm-gap-4 llm-card-hover">
+              <img src="https://imgbed.ppai.top/file/1794536894104_unnamed.webp" alt="软件图标" class="llm-book-cover">
+              <div>
+                  <h4 class="llm-font-medium">源漫仓</h4>
+                  <p class="llm-text-xs llm-text-gray-500">支持换源的在线免费漫画阅读器</p>
+                  <a href="https://play.google.com/store/apps/details?id=io.sourcereader.comic" target="_blank" class="llm-book-tag">GooglePlay / 安装</a>
+              </div>
+          </div>
+          <div class="llm-bg-white llm-p-5 llm-rounded-lg llm-flex llm-items-center llm-gap-4 llm-card-hover">
+              <img src="https://imgbed.ppai.top/file/app/sloth/assets/icon.jpg" alt="软件图标" class="llm-book-cover">
+              <div>
+                  <h4 class="llm-font-medium">SlothReader</h4>
+                  <p class="llm-text-xs llm-text-gray-500">Sloth Reader 为你的电子书、文档和漫画提供一个安静的阅读空间</p>
+                  <a href="https://play.google.com/store/apps/details?id=io.hui.slothreader" target="_blank" class="llm-book-tag">GooglePlay / 安装</a>
+              </div>
+          </div>
+           <div class="llm-bg-white llm-p-5 llm-rounded-lg llm-flex llm-items-center llm-gap-4 llm-card-hover">
+              <img src="https://imgbed.ppai.top/file/app/cy/1794539008225_image.webp" alt="软件图标" class="llm-book-cover">
+              <div>
+                  <h4 class="llm-font-medium">成语拼拼大闯关</h4>
+                  <p class="llm-text-xs llm-text-gray-500">拼成语、组汉字、消消闯关，六大国风玩法陪你从童生考到状元，每日签到领好礼！</p>
+                  <a href="https://play.google.com/store/apps/details?id=com.hui.moke.game" target="_blank" class="llm-book-tag">GooglePlay / 安装</a>
+              </div>
+          </div>
+          <!-- 推荐项1 -->
+          <div class="llm-bg-white llm-p-5 llm-rounded-lg llm-flex llm-items-center llm-gap-4 llm-card-hover">
+              <img src="https://imgbed.ppai.top/file/1770862032200_icon128.png" alt="软件图标" class="llm-w-16 llm-h-16 llm-book-cover">
+              <div>
+                  <h4 class="llm-font-medium">MyBatis SQL Log Merge</h4>
+                  <p class="llm-text-xs llm-text-gray-500">帮助开发者轻松地将 MyBatis 日志中的 SQL 模板和参数合并成完整的可执行 SQL 语句</p>
+                  <a href="https://chromewebstore.google.com/detail/mybatis-sql-log-merger/ldlekpjpadmkfoohidfgjjcmegdbkbho" target="_blank" class="llm-book-tag">Chrome插件 / 安装</a>
+              </div>
+          </div>
+          <!-- 推荐项2 -->
+          <div class="llm-bg-white llm-p-5 llm-rounded-lg llm-flex llm-items-center llm-gap-4 llm-card-hover">
+              <img src="https://imgbed.ppai.top/file/1770863123529_icon128.png" alt="软件图标" class="llm-w-16 llm-h-16 llm-book-cover">
+              <div>
+                  <h4 class="llm-font-medium">TableHelper表格助手</h4>
+                  <p class="llm-text-xs llm-text-gray-500">像Excel一样选择表格单元格 - 选择、复制、数据分析</p>
+                  <a href="https://chromewebstore.google.com/detail/tablehelper/dklaelceomicpnakfmdonmghianjoiag" target="_blank" class="llm-book-tag">Chrome插件 / 安装</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
 <section id="resources" class="llm-py-16 llm-bg-white">
   <div class="llm-container">
       <div class="llm-text-center llm-mb-12">
@@ -133,6 +186,19 @@ footer: ©2017 - present @一灰灰Blog 保留所有权利 | <a href="https://be
           </div>
           <div id="books-tab" class="llm-tab-content">
               <div class="llm-grid llm-grid-cols-1 llm-md-grid-cols-2 llm-gap-6">
+                  <!-- 书籍2 -->
+                  <div class="llm-book-item">
+                      <img src="https://imgbed.ppai.top/file/1794533385423_cover-2.webp" alt="Hello Harness" class="llm-book-cover">
+                      <div class="llm-book-info">
+                          <h4 class="llm-book-title">Hello Harness</h4>
+                          <p class="llm-book-desc">从 0 到 1 构建现代 Coding Agent Harness</p>
+                          <div>
+                              <span class="llm-book-tag">Agent</span>
+                              <span class="llm-book-tag">Harness</span>
+                              <a href="https://liuyueyi.github.io/hello-harness/zh/">查看详情</a>
+                          </div>
+                      </div>
+                  </div>
                   <!-- 书籍2 -->
                   <div class="llm-book-item">
                       <img src="https://ppai.top/ai-guides/imgs/info/home/aiEngine.webp" alt="AI Engineering Guide Book" class="llm-book-cover">

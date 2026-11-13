@@ -10,7 +10,7 @@ icon: creative
 [![Builder](https://travis-ci.org/liuyueyi/quick-chinese-transfer.svg?branch=master)](https://travis-ci.org/liuyueyi/quick-chinese-transfer)
 [![Maven Central with version prefix filter](https://img.shields.io/maven-central/v/com.github.liuyueyi/quick-transfer-core.svg)](https://search.maven.org/search?q=a:quick-transfer-core)
 [![JitPack](https://jitpack.io/v/liuyueyi/quick-chinese-transfer.svg)](https://jitpack.io/#liuyueyi/quick-chinese-transfer)
-[![codecov](https://codecov.io/gh/liuyueyi/quick-chinese-transfer/branch/master/graph/badge.svg)](https://codecov.io/gh/liuyueyi/quick-chinese-transfer)
+[![codecov](https://codecov.io/gh/liuyueyi/quick-chinese-transfer/branch/master/graph/badge.svg)](https://codecov.io/gh/liuyueyi/quick-chinese-transfer/branch/master)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/liuyueyi/quick-chinese-transfer.svg)](http://isitmaintained.com/project/liuyueyi/quick-chinese-transfer "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/liuyueyi/quick-chinese-transfer.svg)](http://isitmaintained.com/project/liuyueyi/quick-chinese-transfer "Percentage of issues still open")
 
@@ -19,9 +19,28 @@ icon: creative
 - [简繁转换](transfer-core)
 - [汉字笔画](hanzi-writer)
 
+基于这个库实现的 `查笔顺` APP，可以在 GooglePlay 上直接下载体验啦
+
+- [GooglePlay Install](https://play.google.com/store/apps/details?id=com.hui.bishun)
+- [Apk Install](https://yss.hhui.top/cc/app/bisun.apk)
+- 在线访问体验：[https://paper.ppai.top/](https://paper.ppai.top/stroke-order)
+
+![](https://imgbed.ppai.top/file/webapp/1783915291071_bishun.webp)
+
+## 相关教程
+
+- [1. 简繁转换原理分析](./01.简繁转换原理分析.md)
+- [2. 汉字笔顺生成](./02.汉字笔顺生成.md)
+- [3. GitHub Action 自动发布 Maven 中央仓库](./03.GithubAction自动发布Maven中央仓库.md)
+- [版本说明](./version.md)
+
 ## 简繁转换 (transfer-core)
 
 简体中文，繁体中文，香港繁体，台湾繁体 相互转换的Java库
+
+> 台湾繁体提供两种转换粒度：
+> - `ChineseUtils.s2tw(...)`：简体 → 台湾繁体（台湾字形 + 基础 IT 词汇，对应 OpenCC `s2tw.json`），如 `里 → 裡`、`软件 → 軟體`
+> - `ChineseUtils.s2twp(...)`：简体 → 台湾繁体（在 s2tw 基础上叠加完整台湾常用语词典，对应 OpenCC `s2twp.json`），如 `视频 → 影片`
 
 本项目主要来自于
 
@@ -43,7 +62,7 @@ icon: creative
 <dependency>
     <groupId>com.github.liuyueyi</groupId>
     <artifactId>quick-transfer-core</artifactId>
-    <version>0.2.14</version>
+    <version>0.2.18</version>
 </dependency>
 ```
 
@@ -51,7 +70,7 @@ icon: creative
 
 ```gradle
 // https://mvnrepository.com/artifact/com.github.liuyueyi/quick-transfer-core
-implementation 'com.github.liuyueyi:quick-transfer-core:0.2.14'
+implementation 'com.github.liuyueyi:quick-transfer-core:0.2.18'
 ```
 
 **使用jitpack导入依赖**
@@ -68,7 +87,7 @@ implementation 'com.github.liuyueyi:quick-transfer-core:0.2.14'
 <dependency>
 <groupId>com.github.liuyueyi.quick-chinese-transfer</groupId>
 <artifactId>quick-transfer-core</artifactId>
-<version>0.2.14</version>
+<version>0.2.18</version>
 </dependency>
 ```
 
@@ -83,7 +102,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.liuyueyi.quick-chinese-transfer:quick-transfer-core:0.2.11'
+    implementation 'com.github.liuyueyi.quick-chinese-transfer:quick-transfer-core:0.2.18'
 }
 ```
 
@@ -117,6 +136,16 @@ hk2s -->这斜月三星洞…… 长寿面，孙悟空，猪八戒，唐僧，�
 tw2s -->这斜月三星洞…… 长寿面，孙悟空，猪八戒，唐僧，沙和尚，白龙马，李靖，托塔天王, 戏说西游，许多人都这样说，收拾一下，拾金不昧；才=才
 ```
 
+> 注意：`s2tw` 与 `s2twp` 的区别在于地区词典的覆盖规模。`s2tw` 挂载 `t2tw.txt`（台湾字形 + 少量 IT 词汇，如 `软件→軟體`）；
+> `s2twp` 额外挂载 `t2twp.txt`（源自 OpenCC 的台湾常用语全集），覆盖面更广，如 `视频→影片`（s2tw 输出 `視訊`）。
+
+```java
+// 台湾字形转换（s2tw）
+System.out.println(ChineseUtils.s2tw("视频数据"));   // 視訊資料
+// 台湾字形 + 台湾常用语转换（s2twp）
+System.out.println(ChineseUtils.s2twp("视频数据"));  // 影片資料
+```
+
 ### 高性能接入
 
 **词典预加载**
@@ -128,14 +157,10 @@ tw2s -->这斜月三星洞…… 长寿面，孙悟空，猪八戒，唐僧，�
 ChineseUtils.preLoad(true,TransType.values());
 
 // 预加载简体转繁体词典
-        ChineseUtils.
-
-preLoad(true,TransType.SIMPLE_TO_TRADITIONAL);
+ChineseUtils.preLoad(true,TransType.SIMPLE_TO_TRADITIONAL);
 
 // 预加载简繁互转词典
-ChineseUtils.
-
-preLoad(true,TransType.SIMPLE_TO_TRADITIONAL, TransType.TRADITIONAL_TO_SIMPLE);
+ChineseUtils.preLoad(true,TransType.SIMPLE_TO_TRADITIONAL, TransType.TRADITIONAL_TO_SIMPLE);
 ```
 
 **卸载**
@@ -147,9 +172,7 @@ preLoad(true,TransType.SIMPLE_TO_TRADITIONAL, TransType.TRADITIONAL_TO_SIMPLE);
 ChineseUtils.unLoad(TransType.values());
 
 // 卸载简繁互转词典
-        ChineseUtils.
-
-unLoad(TransType.SIMPLE_TO_TRADITIONAL, TransType.TRADITIONAL_TO_SIMPLE);
+ChineseUtils.unLoad(TransType.SIMPLE_TO_TRADITIONAL, TransType.TRADITIONAL_TO_SIMPLE);
 ```
 
 **转换**
@@ -160,8 +183,55 @@ ChineseUtils封装了通用的字体转换接口，可以直接通过下面的�
 ChineseUtils.transfer("一灰灰blog",TransType.SIMPLE_TO_TRADITIONAL);
 ```
 
+**加载自定义转换词典**
+
+> 若有一些自定义的转换词典，希望加载到转换词典中，可以调用下面的方法进行初始化
+
+在 0.2.16 以及之后的版本中，提供了自定义词典加载功能，使用姿势
+
+```java
+Map<String, String> map = new HashMap<>();
+map.put("发展国家", "發达國家");
+ChineseUtils.loadAdditionalDict(TransType.SIMPLE_TO_TRADITIONAL, map);
+```
+
+**加载不参与转换的词典**
+
+> 若自带的转换词典不满足需求，可以使用下面的方式将不参与转换的词加入词典
+
+在 0.2.16 以及之后的版本中，提供了自定义过滤词库加载功能，使用姿势如下
+
+```java
+// 简繁转换中，我们不希望将 国 -> 转换为 國， 不希望将 发展国家 转换为 發展國家
+ChineseUtils.loadExcludeDict(TransType.SIMPLE_TO_TRADITIONAL, Arrays.asList("发展国家", "国"));
+
+// 验证示例:
+System.out.println("加载后：简=>繁 ==>" 
+        + ChineseUtils.s2t("中华人民共和国目前还处于发展国家行列，但他依然在快速发展中"));
+
+// 输出内容为： 加载后：简=>繁 ==>中華人民共和国目前還處於发展国家行列，但他依然在快速發展中
+```
+
+上面适用于指定具体的某种转换类型，也可以使用下面的方式将不参与转换的词加入全局的转换中，这样实现不管是什么类型的转换，都维持原状
+
+```java
+ChineseUtils.loadExcludeDict(Arrays.asList("发展国家", "国"));
+```
+
 ### 版本说明
 
+- 0.2.18
+    - 新增 `s2twp`（简体→台湾繁体，字形 + 台湾常用词汇，对应 OpenCC `s2twp.json`）
+    - [#37 「新力」被自动转换成「索尼」](https://github.com/liuyueyi/quick-chinese-transfer/issues/37)
+    - [#38 繁转简：多士->吐司 数位->数码](https://github.com/liuyueyi/quick-chinese-transfer/issues/38)
+    - [#41 希望新增（简体 -> 台湾正体字形）](https://github.com/liuyueyi/quick-chinese-transfer/issues/41)
+- 0.2.17
+    - [#31「棋圣」和「碁圣」繁体转简体问题处理](https://github.com/liuyueyi/quick-chinese-transfer/issues/31)
+    - [#26 繁体转简体会将"教廷"转换为"梵蒂冈"](https://github.com/liuyueyi/quick-chinese-transfer/issues/26)
+- 0.2.16
+    - [#18 新增自定义词库加载，自定义排除词加载](https://github.com/liuyueyi/quick-chinese-transfer/issues/18)
+- 0.2.15
+    - [#23 繁简转换问题](https://github.com/liuyueyi/quick-chinese-transfer/issues/23)
 - 0.2.14
     - [#17 繁简转换问题](https://github.com/liuyueyi/quick-chinese-transfer/issues/17)
     - [#19 繁简转换问题](https://github.com/liuyueyi/quick-chinese-transfer/issues/19)
@@ -217,19 +287,19 @@ ChineseUtils.transfer("一灰灰blog",TransType.SIMPLE_TO_TRADITIONAL);
 中央仓库导入依赖
 
 ```xml
-<!-- https://mvnrepository.com/artifact/com.github.liuyueyi/quick-transfer-core -->
+<!-- https://mvnrepository.com/artifact/com.github.liuyueyi/hanzi-writer -->
 <dependency>
     <groupId>com.github.liuyueyi</groupId>
     <artifactId>hanzi-writer</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 
 **中央仓库 gradle**
 
 ```gradle
-// https://mvnrepository.com/artifact/com.github.liuyueyi/quick-transfer-core
-implementation 'com.github.liuyueyi:hanzi-writer:0.1.0'
+// https://mvnrepository.com/artifact/com.github.liuyueyi/hanzi-writer
+implementation 'com.github.liuyueyi:hanzi-writer:0.1.1'
 ```
 
 **使用jitpack导入依赖**
@@ -246,7 +316,7 @@ implementation 'com.github.liuyueyi:hanzi-writer:0.1.0'
 <dependency>
 <groupId>com.github.liuyueyi.quick-chinese-transfer</groupId>
 <artifactId>hanzi-writer</artifactId>
-<version>0.2.14</version>
+<version>0.1.1</version>
 </dependency>
 ```
 
@@ -261,7 +331,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.liuyueyi.quick-chinese-transfer:hanzi-writer:0.2.14'
+    implementation 'com.github.liuyueyi.quick-chinese-transfer:hanzi-writer:0.1.1'
 }
 ```
 
@@ -290,10 +360,11 @@ List<String> strokeSvgList = vo.getStrokes();
 | 参数               | 类型        | 说明                            | 默认值                                                                                                                                                                                                                                                                   
 |------------------|-----------|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `size`           | `int`     | 输出svg大小                       | `300`                                                                                                                                                                                                                                                                 |
+| `svgStyle`       | `string`  | svg 根标签的 style                | `border: 1px solid rgb(204, 204, 204); background-color: rgb(238, 238, 238);`                                                                                                                                                                                          |
 | `bgShow`         | `boolean` | 是否显示背景的田字格                    | `true`                                                                                                                                                                                                                                                                |
 | `bg`             | `string`  | 背景信息，田字格                      | `<g stroke="lightgray"stroke-dasharray="1,1"stroke-width="1"transform="scale(4, 4)"><line x1="0"y1="0"x2="256"y2="256"></line><line x1="256"y1="0"x2="0"y2="256"></line><line x1="128"y1="0"x2="128"y2="256"></line><line x1="0"y1="128"x2="256"y2="128"></line></g>` |
 | `outlineShow`    | `boolean` | 是否显示背景描边                      | `true`                                                                                                                                                                                                                                                                | 
-| `outlineColor`   | `string`  | 背景描边色                         | `rgba(221,221,221,1)`                                                                                                                                                                                                                                                 |
+| `outlineColor`   | `string`  | 背景描边色                         | `rgba(221,221,221,1)`                                                                                                                                                                                                                                                 | 
 | `animateShow`    | `boolean` | 是否支持按笔画顺序进行动画展示               | `true`                                                                                                                                                                                                                                                                | 
 | `drawColor`      | `string`  | 动画执行完之后的颜色                    | `rgb(85, 85, 85)`                                                                                                                                                                                                                                                     |
 | `midColor`       | `string`  | 动画执行过程中的颜色                    | `rgb(68, 68, 255)`                                                                                                                                                                                                                                                    |
@@ -315,5 +386,19 @@ List<String> strokeSvgList = vo.getStrokes();
 
 ### 版本说明
 
+- 0.1.1
+    - 新增 GitHub Action，实现自动上传 jar 包到中央仓库
 - 0.1.0
     - 完成初始版本
+
+## 中央仓库上传说明
+
+新版中央仓管理地址： [central.sonatype.com](https://central.sonatype.com/)
+
+基于GitHub Action实现自动上传jar包到中央仓库，由于不同模块版本号不一致，因此这里采用分支的触发方式
+
+1. hanzi: 分支上有变更，表示推送 hanzi-writer 模块到中央仓库
+2. transfer: 分支上有变更，表示推送 transfer-core 模块到中央仓库
+3. release: 分支上有变更，表示整个项目推送到中央仓库
+
+具体实现原理与配置细节，见教程：[3. GitHub Action 自动发布 Maven 中央仓库](./03.GithubAction自动发布Maven中央仓库.md)
